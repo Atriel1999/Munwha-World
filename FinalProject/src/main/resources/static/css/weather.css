@@ -1,0 +1,56 @@
+/* 전국날씨 이미지 */
+.nation-img {
+    width: 90px;
+    margin-top: -28px;
+    margin-bottom: -7px;
+  }
+
+  .table {
+    margin-left: -10px
+  }
+
+/*오늘,내일 표 안의 글자 */
+  .table th {
+    white-space: nowrap;
+    font-size: 19px;
+    padding: 0px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+  }
+
+  /* 주간- 최저, 최고 기온  글씨부분*/
+  .table span {
+    font-size: 19px;
+    padding: 2px;
+  }
+
+/*오늘,내일 시각 부분 (0시, 1시... 23시)/ 주간 지역, 10일.. 날짜 */
+  .table b {
+    font-size: 19px;
+    padding: 5px;
+  }
+
+
+
+ /*오늘, 내일 이미지 */ 
+  .hour-img {
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+  }
+
+
+
+/* 주간 이미지 */
+  .week img {
+    width: 70px;
+    height: auto;
+    padding: 0px;
+    margin-top: -10px;
+  }
+
+  /* 주간 표 안의 글자 */
+  .week h6 {
+    margin-top: -5px;
+    margin-bottom: -10px;
+  }

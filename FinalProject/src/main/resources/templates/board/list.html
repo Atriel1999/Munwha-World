@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head" th:replace="~{common/layout :: head}">
+</head>
+<style>
+	section#board-list-container{width:600px; margin:0 auto; text-align:center;}
+	section#board-list-container h2{margin:10px 0;}
+	table#tbl-board{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both; }
+	table#tbl-board th, table#tbl-board td {border:1px solid; padding: 5px 0; text-align:center;} 
+	input#btn-add{float:right; margin: 0 0 15px;}
+	div#pageBar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3);}
+    .blue_window { display: inline-block; width: 366px;  border: 3px solid #6ccaf5; }
+    .input_text { width: calc( 100% - 14px); margin: 6px 7px; border: 0;  background: #007dd100; font-weight: bold;font-size: 16px; outline: none;}
+    .sch_smit {width: 54px; height: 40px; margin: 0; border: 0; vertical-align: top; background: #007dd1; color: white; font-weight: bold; border-radius: 1px; cursor: pointer;}
+    .sch_smit:hover {background: #007dd1;}
+    #board-list-container h2{text-align: center; margin-top: 5px; margin-bottom: 5px}
+</style>
+
+<body>
+<header th:replace="~{common/layout :: #header}"></header>
+
+
+
+<section id="content">
+	<div id="board-list-container">
+		<h2>자유 게시판</h2>
+		
+		<!-- 검색창 시작 -->
+		<form name="searchForm" th:action="@{/board/list}" method="get">
+			<input type="hidden" name="page" value="1">		
+			
+			<!-- 카테고리 checkbox -->	
+			<div style="text-align: center;">
+				<th:block th:each="item : ${categoryList}">
+					<label>
+						<input type="checkbox" name="types" th:value="${item.type}"
+							th:checked="${param.types != null and #arrays.contains(param.types, item.type) ? 'checked' : null}">
+						[[${item.name}]]
+					</label>
+				</th:block>
+			</div>
+			<div style="text-align: center;">
+				<label>
+					<input type="radio" name="searchType" value="all" th:checked="${#strings.equals(param.searchType, 'all') } ? 'checked' : null "> 전체
+				</label>
+				<label>
+					<input type="radio" name="searchType" value="title" th:checked="${#strings.equals(param.searchType, 'title')} ? 'checked' : null "> 제목
+				</label>
+				<label>
+					<input type="radio" name="searchType" value="content" th:checked="${#strings.equals(param.searchType, 'content')} ? 'checked' : null "> 내용
+				</label>
+				<label>
+					<input type="radio" name="searchType" value="writer" th:checked="${#strings.equals(param.searchType, 'writer')} ? 'checked' : null "> 작성자
+				</label>
+				<span class="blue_window"> 
+					<input type="text" id="searchValue" name="searchValue" class="input_text" th:value="${param.searchValue}" />
+				</span>
+				<button type="submit" class="sch_smit">검색</button>
+			</div>
+		</form>
+		<!-- 검색창 종료 -->
+
+	
+		<!-- 글쓰기 버튼 -->
+		<th:block th:if="${session.loginMember != null}">
+				<button type="button" id="btn-add" onclick="location.href='/board/write'">글쓰기</button>
+		</th:block>
+		<!-- 게시판 리스트 시작 -->
+		<table id="tbl-board">
+			<tr>
+				<th>번호</th>
+				<th>타입</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>첨부파일</th>
+				<th>조회수</th>
+			</tr>
+			<th:block th:if="${list == null || #lists.size(list) == 0}">
+				<tr>
+					<td colspan="6">조회된 글이 없습니다.</td>
+				</tr>
+			</th:block>
+			<th:block th:if="${list != null && #lists.size(list) != 0}">
+					<tr th:each="board : ${list}">
+						<td th:text="${board.bno}"></td>
+						<td th:text="${board.boardCategory.name}"></td>
+						<td>
+							<a th:href="|/board/view?no=${board.bno}|">
+								[[${board.title}]]
+							</a>
+						</td>
+						<td th:text="${board.member.memberId}"></td>
+						<td th:text="${#dates.format(board.createDate, 'yyyy/MM/dd')}"></td>
+						<td>
+							[[${#lists.size(board.boardAttachFileList)}]]
+						</td>
+						<td>[[${board.readCount}]]</td>
+					</tr>
+			</th:block>
+		</table>
+		<!-- 게시판 리스트 종료 -->
+		<!-- page부 시작 -->
+		
+		
+		<th:block th:if="${list != null && #lists.size(list) != 0}">
+			<div align="center">
+				<!--처음 페이지 -->
+				<button onclick="movePage(1);">&lt;&lt;</button>
+				<!--이전 페이지 -->
+				<button th:onclick="|movePage(${pageInfo.prevPage}');|">&lt;</button>
+			
+				<!-- 10개 페이지 -->
+				<th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+					<th:block th:if="${status.current == pageInfo.currentPage}">
+						<button disabled>[[${status.current}]]</button>
+					</th:block>
+					<th:block th:if="${status.current != pageInfo.currentPage}">
+						<button th:onclick="|movePage(${status.current});|">
+							[[${status.current}]]
+						</button>
+					</th:block>
+				</th:block>
+
+				<!--다음 페이지 -->
+				<button th:onclick="|movePage(${pageInfo.nextPage});|">&gt;</button>
+				<!-- 마지막 페이지 -->
+				<button th:onclick="|movePage(${pageInfo.maxPage});|">&gt;&gt;</button>
+			</div>
+		</th:block>
+		<!-- page부 종료 -->
+	</div>
+</section>
+
+
+<footer th:replace="~{common/layout :: #footer}"></footer>
+</body>
+
+<script type="text/javascript">
+	function movePage(page){
+		searchForm.page.value = page;
+		searchForm.submit();
+	}
+</script>
+</html>
+
+

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title> 박물관 상세페이지 </title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template" />
+  <meta name="keywords"
+    content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch" />
+  <meta name="author" content="Createx Studio" />
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicon and Touch Icons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg" />
+  <meta name="msapplication-TileColor" content="#766df4" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <!-- Page loading styles-->
+  <style>
+    @font-face {
+      font-family: "GmarketSansMedium";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    .gmarketfontM {
+      font-family: "GmarketSansMedium";
+    }
+
+    * {
+      font-family: "GmarketSansMedium";
+    }
+
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all 0.4s 0.2s ease-in-out;
+      transition: all 0.4s 0.2s ease-in-out;
+      background-color: #1f1b2d;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #fff;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: 0.75rem;
+      vertical-align: text-bottom;
+      border: 0.15em solid #9691a4;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner 0.75s linear infinite;
+      animation: spinner 0.75s linear infinite;
+    }
+
+    @-webkit-keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <!-- Page loading scripts-->
+  <script>
+    (function () {
+      window.onload = function () {
+        var preloader = document.querySelector(".page-loading");
+        preloader.classList.remove("active");
+        setTimeout(function () {
+          preloader.remove();
+        }, 2000);
+      };
+    })();
+  </script>
+  <!-- Vendor Styles-->
+  <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css" />
+  <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css" />
+  <link rel="stylesheet" media="screen" href="vendor/lightgallery/css/lightgallery-bundle.min.css" />
+  <link rel="stylesheet" media="screen" href="vendor/nouislider/dist/nouislider.min.css" />
+
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="css/theme.min.css" />
+</head>
+<!-- Body-->
+
+<body>
+  <!-- Page loading spinner-->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div>
+      <span>Loading...</span>
+    </div>
+  </div>
+  <!-- 헤더 시작 -->
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+    <div class="container">
+      <a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block"
+          src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%" width="60" alt="Finder" /></a>
+      <span style="font-size: 20pt; color: white">&nbsp문화월드 |</span>
+      <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+        <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem">
+          <!-- Menu items-->
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">문화재</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">행사</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-single.html">Single Job Page</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">박물관</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">쇼핑</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">추천</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">날씨정보</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">커뮤니티</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
+        <i class="fi-user me-2"></i><span>로그인</span>
+      </a>
+    </div>
+  </header>
+  <!-- 헤더 끝 -->
+  <main class="page-wrapper">
+    <!-- Page content-->
+    <section class="container mt-5 mb-lg-5 mb-4 pt-5 pb-lg-5">
+      <!-- Breadcrumb-->
+      <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="real-estate-catalog-rent.html"> 박물관 검색 </a></li>
+          <li class="breadcrumb-item active" aria-current="page"> 박물관 상세페이지 </li>
+        </ol>
+      </nav>
+      <div class="row gy-5 pt-lg-2">
+        <div class="col-lg-7">
+          <div class="d-flex flex-column">
+            <!--================ 박물관 이미지 -->
+            <div class="tns-carousel-wrapper mb-3">
+              <img class="rounded-3" src="img/museum_img/bg-3.jpeg" alt="Image" style="width: 100%; height: 520px;">
+            </div>
+
+            <!--============== 관람안내 -->
+            <div class="order-lg-2 order-1">
+              <h1 class="h2 mt-3"> 관람안내 </h1>
+              <h4 class="mb-2"> 관람 시간 </h4>
+              <ul class="list-unstyled mt-n1 mb-0 h5 opacity-70">
+                <li class="mt-1 mb-0">
+                  <b class="me-5"> 평일 관람시간 </b>
+                  09 : 00 ~ 20 : 30
+                </li>
+                <li class="mt-1 mb-0">
+                  <b class="me-3"> 공휴일 관람시간 </b>&nbsp;
+                  09 : 00 ~ 20 : 30
+                </li>
+              </ul>
+              <br><br>
+              <h4 class="mb-2"> 휴관정보 </h4>
+              <ul class="list-unstyled mt-n1 mb-0 h5 opacity-70">
+                <li class="mt-1 mb-0">
+                  월(단, 월요일이 공휴일인 경우 당일은 개관하고 그 다음 첫번째
+                  평일에 휴관)+1월1일+설 및 추석 당일
+                </li>
+              </ul>
+              <br>
+              <hr><br>
+              <h4 class="mb-2"> 관람료 </h4>
+              <ul class="list-unstyled mt-n1 mb-0 h5 opacity-70">
+                <li class="mt-1 mb-0">
+                  <b class="me-5"> 어른관람료 </b>
+                  무료
+                </li>
+                <li class="mt-1 mb-0">
+                  <b class="me-4"> 청소년 관람료 </b>
+                  무료
+                </li>
+                <li class="mt-1 mb-0">
+                  <b class="me-4"> 어린이 관람료 </b>
+                  무료
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!--  찾아 오시는 길 =============== -->
+          <br>
+          <hr><br>
+          <h1 class="h2 mb-2"> 찾아오시는 길 </h1>
+          <h1 class="h5 mb-2"><i class="fi-map-pin me-1 mb-1"></i>
+            서울특별시 용산구 서빙고로 137 </h1>
+          <section>
+            <!-- 지도를 표시할 div 입니다 -->
+            <div id="map" style="width:100%; height:300px;"></div>
+            <script type="text/javascript"
+              src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=04524540eaf5cf777208f85e52d03be1"></script>
+            <script>
+              var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = {
+                  center: new kakao.maps.LatLng(37.5794832, 126.9787619), // 지도의 중심좌표
+                  level: 2 // 지도의 확대 레벨
+                };
+              // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+              var map = new kakao.maps.Map(mapContainer, mapOption); 
+            </script>
+          </section>
+          <br>
+          <br>
+          <!-- 이용후기 -->
+          <section>
+            <div
+              class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between">
+              <div class="d-flex">
+                <div class="d-flex align-items-center">
+                  <h2 class="h2 me-3"> 이용후기 </h2>
+                  <i class="fi-star-filled mt-n1 me-1 lead align-middle text-warning"></i>
+                  4,9 (32 이용후기)
+                </div>
+              </div>
+              <div class="d-flex align-items-center ms-sm-4 mb-1">
+                <label class="me-2 pe-1 text-nowrap" for="reviews-sorting">
+                  <i class="fi-arrows-sort text-muted mt-n1 me-2"></i> 정렬 순서 &nbsp :
+                </label>
+                <select class="form-select form-select-sm" id="reviews-sorting" style="font-weight: bold;">
+                  <option> 최신순 </option>
+                  <option> 오래된 순</option>
+                  <option> 인기 순 </option>
+                  <option> 별점 높은 순</option>
+                  <option> 별점 낮은 순 </option>
+                </select>
+              </div>
+            </div>
+            <hr><br>
+            <!-- Review-->
+            <div class="mb-4 pb-4 border-bottom">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/05.jpg"
+                    width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0"> 문화월드 </h6><span class="star-rating"><i
+                        class="star-rating-icon fi-star-filled active"></i><i
+                        class="star-rating-icon fi-star-filled active"></i><i
+                        class="star-rating-icon fi-star-filled active"></i><i
+                        class="star-rating-icon fi-star-filled active"></i><i
+                        class="star-rating-icon fi-star-filled active"></i></span>
+                  </div>
+                </div><span class="text-muted fs-sm">Oct 28, 2020</span>
+              </div>
+              <p>
+                사람이 너무 많아서 많은 문화재를 둘러 보기 힘들었어요.
+                주말에 국립중앙박물관 가는 건 힘든 일이에요
+
+              </p>
+              <div class="d-flex align-items-center">
+                <button class="btn-like" type="button"><i class="fi-like"></i><span>(2)</span></button>
+                <div class="border-end me-1">&nbsp;</div>
+                <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
+              </div>
+            </div>
+            <!-- Review-->
+            <div class="mb-4 pb-4 border-bottom">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/04.jpg"
+                    width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0">Ralph Edwards</h6><span class="star-rating"><i
+                        class="star-rating-icon fi-star-filled active"></i><i
+                        class="star-rating-icon fi-star-filled active"></i><i
+                        class="star-rating-icon fi-star-filled active"></i><i
+                        class="star-rating-icon fi-star-filled active"></i><i
+                        class="star-rating-icon fi-star"></i></span>
+                  </div>
+                </div><span class="text-muted fs-sm">Sep 14, 2020</span>
+              </div>
+              <p> 금동대향로 실제로 보니깐 훨씬 멋있어요.
+              </p>
+              <div class="d-flex align-items-center">
+                <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
+                <div class="border-end me-1">&nbsp;</div>
+                <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+              <nav aria-label="Reviews pagination">
+                <ul class="pagination mb-0">
+                  <li class="page-item d-sm-none"><span class="page-link  page-link-static">1 / 8</span>
+                  </li>
+                  <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span
+                        class="visually-hidden">(current)</ span></span></li>
+                  <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item d-none d-sm-block">...</li>
+                  <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
+                  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i
+                        class="fi-chevron-right"></i></a></li>
+                </ul>
+              </nav><a class="btn btn-outline-primary rounded-pill ms-4" href="#modal-review" data-bs-toggle="modal"><i
+                  class="fi-edit mt-n1 me-1 align-middle"></i>
+                리뷰 쓰기 </a>
+            </div>
+          </section>
+
+
+        </div>
+        <!-- ======================================================== 오른쪽 사이드 -->
+        <aside class="col-lg-5">
+          <div class="ps-lg-5">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div>
+                <span class="badge bg-info me-2 mb-2"> 공립 </span>
+                <span class="badge bg-primary me-2 mb-2"> 무료 </span>
+              </div>
+              <div class="text-nowrap">
+                <button
+                  class="btn btn-icon btn-light-primary btn-xs text-warning shadow-sm rounded-circle ms-2 mb-2 me-2"
+                  type="button" data-bs-toggle="tooltip" title=" 즐겨찾기 "><i class="fi-heart"></i>
+                </button>
+                <!--========================================================= 카카오톡 공유하기 -->
+                <div class="btn-xs d-inline-block shadow-sm" type="button" data-bs-toggle="tooltip" title="공유하기">
+                  <a id="kakaotalk-sharing-btn" href="javascript:;">
+                    <img
+                      src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
+                      alt="카카오톡 공유 보내기 버튼" style="width: 33px;" />
+                  </a>
+                  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
+                    integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8"
+                    crossorigin="anonymous"></script>
+                  <script>
+                    Kakao.init('04524540eaf5cf777208f85e52d03be1'); // 사용하려는 앱의 JavaScript 키 입력
+                  </script>
+                  <script>
+                    Kakao.Share.createDefaultButton({
+                      container: '#kakaotalk-sharing-btn',
+                      objectType: 'feed',
+                      content: {
+                        title: '문화월드',
+                        description: '박물관 공유하기',
+                        imageUrl:
+                          'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA5MjRfMTg5%2FMDAxNjk1NTYyMzIzNTQ3.N9uPfbXKX7-eqmaQnbs-0Gspm9KSpbifQ9KTTO0s-5cg.KXHAFQuaCIBdpRzVGvjrQ66RKoeIzmyqnCbLvlUfsvEg.JPEG.hyunmi246%2F20230918_121735.jpg&type=a340',
+                        link: {
+                          // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+                          webUrl: 'http://127.0.0.1:5500',
+                        },
+                      },
+                      social: {
+                        likeCount: 286,
+                        commentCount: 45,
+                        sharedCount: 845,
+                      },
+                      buttons: [
+                        {
+                          title: '웹으로 보기',
+                          link: {
+                            webUrl: 'http://127.0.0.1:5500/Finder-1-html/Finder/dist/amuseum%EB%B7%B0%EB%B0%B0%EB%84%884.html#',
+                          },
+                        },
+                      ],
+                    });
+                  </script>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex">
+              <img src="img/museum_img/logo.png" style="width: 40px; height: 40px;" alt="Thumbnail">
+              &nbsp &nbsp
+              <h1> 국립중앙박물관 </h1>
+            </div>
+            <h3 class="h5 mb-2"> 관람시간 </h3>
+            <h2 class="h3 mb-4 pb-2"> 09 : 00 ~ 20 : 30 <span class="d-inline-block ms-1 fs-base fw-normal text-body">/
+                평일 </span>
+            </h2>
+            <!-- Property details-->
+            <div class="card border-0 bg-secondary mb-4" style="height: 215px;">
+              <div class="card-body">
+                <h4 class="mb-0 pb-3"> 연락처 </h4>
+                <ul class="list-unstyled mt-n2 mb-0 h5 opacity-80">
+                  <li class="mt-2 mb-0"> <i class="fi-map-pin me-1"> </i> 서울특별시 용산구 서빙고로 137</li>
+                  <li class="mt-2 mb-0"> <i class="fi-phone me-1"> </i> 302 - 555 - 0107 </li>
+                  <li class="mt-2 mb-0"> <i class="fi-globe me-1"> </i> <b class="fs-sm">
+                      https://www.ulsan.go.kr/s/bangudae/main.ulsan </b>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- ======================================= 길찾기 -->
+            <a class="d-inline-block pb-2 text-decoration-none" href="#"><i class="fi-map me-2 mt-n1 align-middle"></i>
+              지도로 길찾기 </a>
+            <div class="btn btn-lg btn-primary w-100 mb-5" href="#">
+              <a href="https://map.naver.com/v5/entry/place/11583151?c=14127558.6582488,4513510.7752420,15,0,0,0,dh"
+                target="_blank" class="nav-link me-3">
+                <img src="img/museum_img/map-naver.png" style="height: 20px; width:20px;" alt=" Image">
+                네이버지도
+              </a>
+              <a href="https://map.kakao.com/?map_type=TYPE_MAP&q=%EA%B5%AD%ED%9A%8C%EC%9D%98%EC%82%AC%EB%8B%B9&hId=18742697&mode=place&urlLevel=3&urlX=481032&urlY=1120122"
+                target="_blank" class="nav-link me-2">
+                <img src="img/museum_img/map-kakao.png" style="height: 20px; width:20px;" alt="Image">
+                카카오지도
+              </a>
+              <a href="https://map.naver.com/v5/entry/place/11583151?c=14127558.6582488,4513510.7752420,15,0,0,0,dh"
+                target="_blank" class="nav-link  me-4">
+                <img src="img/museum_img/map-google.png" style="height: 20px; width:20px;" alt="Image"> 구글지도
+              </a>
+              <a href="https://map.naver.com/v5/entry/place/11583151?c=14127558.6582488,4513510.7752420,15,0,0,0,dh"
+                target="_blank" class="nav-link me-2">
+                <img src="img/museum_img/map-tmap.jpg" style="height: 20px; width:20px;" alt="Image">
+                티맵지도
+              </a>
+            </div>
+
+            <!-- Amenities-->
+            <div class="card border-0 bg-secondary mb-4">
+              <div class="card-body">
+                <h4 class="mb-3"> 관람 시 유의사항 </h4>
+                <div class="d-flex mb-1">
+                  <img src="img/museum_img/sub01_img15.png" style="height: 23px; margin-right: 10px;" alt="">
+                  뛰어다니지
+                  마십시오. 또한 전시실에서는 자전거, 킥보드, 인라인 스케이트 등을 이용할 수 없습니다.
+                </div>
+                <div class="d-flex mb-1">
+                  <img src="img/museum_img/sub01_img16.png" style="height: 23px; margin-right: 10px;" alt="">
+                  전시관내 음식물 반입 금지입니다.
+                </div>
+                <div class="d-flex mb-1">
+                  <img src="img/museum_img/sub01_img17.png" style="height: 23px; margin-right: 10px;" alt="">
+                  타관람객의 감상을 방해하는 모든 행위를 금지합니다.
+                </div>
+                <div class="d-flex mb-1">
+                  <img src="img/museum_img/sub01_img19.png" style="height: 23px; margin-right: 10px;" alt="">
+                  플래시/ 삼각대
+                  등을 이용한 촬영과 상업적 용도를 위한 촬영을 금지외어 있습니다.
+                </div>
+                <div class="d-flex mb-1">
+                  <img src="img/museum_img/sub01_img13.png" style="height: 23px; margin-right: 10px;" alt="">
+                  전시실의 모든 구역은 금연구역입니다.
+                </div>
+              </div>
+            </div>
+            <!-- Not included in rent-->
+            <div class="card border-0 bg-secondary mb-4">
+              <div class="card-body">
+                <h5> 데이터 정보 </h5>
+                <ul class="list-unstyled row gy-1 mb-0 text-nowrap">
+                  <li><i class="fi-calendar-alt mt-n1 me-2 fs-lg align-middle"></i> 데이터 기준일자 : <b> 2023-10-10 </b></li>
+                  <li><i class="fi-museum mt-n1 me-2 fs-lg align-middle"></i> 관리 기관명 : <b> 이천시립박물관 </b></li>
+                  <li><i class="fi-user mt-n1 me-2 fs-lg align-middle"></i> Views: <b>48</b> </li>
+                </ul>
+              </div>
+            </div>
+
+            <h4 class="mb-3"> 로드뷰 </h4>
+            <!-- 로드뷰 -->
+            <!-- 로드뷰를 표시할 div 입니다 ============================================== -->
+            <div class="rounded-3" id="roadview" style="width:100%;height:300px;"></div>
+            <script>
+              var roadviewContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
+              var roadview = new kakao.maps.Roadview(roadviewContainer); //로드뷰 객체
+              var roadviewClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+              var position = new kakao.maps.LatLng(37.5794832, 126.9787619);
+              // 특정 위치의 좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+              roadviewClient.getNearestPanoId(position, 50, function (panoId) {
+                roadview.setPanoId(panoId, position); //panoId와 중심좌표를 통해 로드뷰 실행
+              });
+            </script>
+
+          </div>
+        </aside>
+      </div>
+    </section>
+    <!-- 박물관 추천 =================================================================================================-->
+    <section class="container mb-5 pb-2 pb-lg-4">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="h3 mb-0"> 박물관 추천 </h2>
+        <a class="btn btn-link fw-2 p-0" href="real-estate-catalog-rent.html">
+          더 보기
+          <i class="fi-arrow-long-right ms-2"></i></a>
+      </div>
+      <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
+        <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4"
+          data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
+          <!-- Item-->
+          <div class="col" style="height: 350px;">
+            <div class="card shadow-sm card-hover border-0 h-100">
+              <div class="card-img-top card-img-hover" style="height: 200px; width: 100%;"><a class="img-overlay"
+                  href="real-estate-single-v1.html"></a>
+                <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
+                  <span class="d-table badge bg-success"> 대학 </span>
+                </div>
+                <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                  <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
+                    data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기 "><i class="fi-heart"></i></button>
+                </div>
+                <img src="img/museum_img/bg-7.jpg" alt="Image" style="height: 100%; width: 100%;">
+              </div>
+              <div class="card-body position-relative pb-3">
+                <div class="h4">
+                  <a href="#" class="h3 nav-link stretched-link" style="min-height: 60px;">
+                    부산교육대학교 교육박물관(한새갤러리)
+                  </a>
+                </div>
+                <div class="d-flex mb-1 text-primary">
+                  <i class="fi-map-pin me-2"></i>
+                  서울특별시
+                  용산구 서빙고로 137
+                </div>
+                <div class="mb-2">
+                  <i class="fi-clock me-1"></i>
+                  <span class="ms-1"> 10:00 AM - 6:00 PM </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="col" style="height: 350px;">
+            <div class="card shadow-sm card-hover border-0 h-100">
+              <div class="card-img-top card-img-hover" style="height: 200px; width: 100%;"><a class="img-overlay"
+                  href="real-estate-single-v1.html"></a>
+                <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
+                  <span class="d-table badge bg-success"> 대학 </span>
+                </div>
+                <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                  <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
+                    data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기 "><i class="fi-heart"></i></button>
+                </div>
+                <img src="img/museum_img/bg-1.png" alt="Image" style="height: 100%; width: 100%;">
+              </div>
+              <div class="card-body position-relative pb-3">
+                <div class="h4">
+                  <a href="#" class="h3 nav-link stretched-link" style="min-height: 60px;">
+                    부산교육대학교 교육박물관(한새갤러리)
+                  </a>
+                </div>
+                <div class="d-flex mb-1 text-primary">
+                  <i class="fi-map-pin me-2"></i>
+                  서울특별시
+                  용산구 서빙고로 137
+                </div>
+                <div class="mb-2">
+                  <i class="fi-clock me-1"></i>
+                  <span class="ms-1"> 10:00 AM - 6:00 PM </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="col" style="height: 350px;">
+            <div class="card shadow-sm card-hover border-0 h-100">
+              <div class="card-img-top card-img-hover" style="height: 200px; width: 100%;"><a class="img-overlay"
+                  href="real-estate-single-v1.html"></a>
+                <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
+                  <span class="d-table badge bg-success"> 대학 </span>
+                </div>
+                <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                  <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
+                    data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기 "><i class="fi-heart"></i></button>
+                </div>
+                <img src="img/museum_img/bg-3.jpeg" alt="Image" style="height: 100%; width: 100%;">
+              </div>
+              <div class="card-body position-relative pb-3">
+                <div class="h4">
+                  <a href="#" class="h3 nav-link stretched-link" style="min-height: 60px;">
+                    국립중앙박물관
+                  </a>
+                </div>
+                <div class="d-flex mb-1 text-primary">
+                  <i class="fi-map-pin me-2"></i>
+                  서울특별시
+                  용산구 서빙고로 137
+                </div>
+                <div class="mb-2">
+                  <i class="fi-clock me-1"></i>
+                  <span class="ms-1"> 10:00 AM - 6:00 PM </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="col" style="height: 350px;">
+            <div class="card shadow-sm card-hover border-0 h-100">
+              <div class="card-img-top card-img-hover" style="height: 200px; width: 100%;"><a class="img-overlay"
+                  href="real-estate-single-v1.html"></a>
+                <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
+                  <span class="d-table badge bg-success"> 대학 </span>
+                </div>
+                <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                  <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
+                    data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기 "><i class="fi-heart"></i></button>
+                </div>
+                <img src="img/museum_img/bg-7.jpg" alt="Image" style="height: 100%; width: 100%;">
+              </div>
+              <div class="card-body position-relative pb-3">
+                <div class="h4">
+                  <a href="#" class="h3 nav-link stretched-link" style="min-height: 60px;">
+                    부산교육대학교 교육박물관(한새갤러리)
+                  </a>
+                </div>
+                <div class="d-flex mb-1 text-primary">
+                  <i class="fi-map-pin me-2"></i>
+                  서울특별시
+                  용산구 서빙고로 137
+                </div>
+                <div class="mb-2">
+                  <i class="fi-clock me-1"></i>
+                  <span class="ms-1"> 10:00 AM - 6:00 PM </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="col" style="height: 350px;">
+            <div class="card shadow-sm card-hover border-0 h-100">
+              <div class="card-img-top card-img-hover" style="height: 200px; width: 100%;"><a class="img-overlay"
+                  href="real-estate-single-v1.html"></a>
+                <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
+                  <span class="d-table badge bg-success"> 대학 </span>
+                </div>
+                <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                  <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
+                    data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기 "><i class="fi-heart"></i></button>
+                </div>
+                <img src="img/museum_img/bg-7.jpg" alt="Image" style="height: 100%; width: 100%;">
+              </div>
+              <div class="card-body position-relative pb-3">
+                <div class="h4">
+                  <a href="#" class="h3 nav-link stretched-link" style="min-height: 60px;">
+                    부산교육대학교 교육박물관(한새갤러리)
+                  </a>
+                </div>
+                <div class="d-flex mb-1 text-primary">
+                  <i class="fi-map-pin me-2"></i>
+                  서울특별시
+                  용산구 서빙고로 137
+                </div>
+                <div class="mb-2">
+                  <i class="fi-clock me-1"></i>
+                  <span class="ms-1"> 10:00 AM - 6:00 PM </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- 푸터 -->
+  <footer class="footer bg-dark">
+    <div class="container pt-3 pt-lg-3">
+      <div class="row pt-2 pt-lg-1">
+        <div class="col-lg-3 mt-4">
+          <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
+          <p class="fs-sm text-light opacity-70">
+            새로 업데이트되는 소식을 전해드립니다
+          </p>
+          <form class="form-group form-group-light w-100">
+            <div class="input-group input-group-sm">
+              <span class="input-group-text"> <i class="fi-mail"></i></span>
+              <input class="form-control" type="text" placeholder="Email 주소" />
+            </div>
+            <button class="btn btn-primary btn-icon btn-sm" type="button">
+              <i class="fi-send"></i>
+            </button>
+          </form>
+        </div>
+        <div class="col mt-5">
+          <a href="#" style="text-decoration: none"><span class="text-light"
+              style="font-size: 20pt">문화재</span></a><br /><br />
+          <a href="#" style="text-decoration: none"><span class="text-light" style="font-size: 20pt">추천페이지</span></a>
+        </div>
+        <div class="col mt-5">
+          <a href="#" style="text-decoration: none"><span class="text-light"
+              style="font-size: 20pt">문화재행사</span></a><br /><br />
+          <a href="#" style="text-decoration: none"><span class="text-light" style="font-size: 20pt">날씨정보</span></a>
+        </div>
+        <div class="col mt-5">
+          <a href="#" style="text-decoration: none"><span class="text-light"
+              style="font-size: 20pt">박물관</span></a><br /><br />
+          <a href="#" style="text-decoration: none"><span class="text-light" style="font-size: 20pt">모임</span></a>
+        </div>
+        <div class="col mt-5">
+          <a href="#" style="text-decoration: none"><span class="text-light"
+              style="font-size: 20pt">쇼핑</span></a><br /><br />
+          <a href="#" style="text-decoration: none"><span class="text-light" style="font-size: 20pt">커뮤니티</span></a>
+        </div>
+
+        <div class="col-lg-3 mb-2 mb-sm-4">
+          <div class="row">
+            <div class="col mt-2">
+              <span class="text-light" style="font-size: 40pt">문화</span>
+              <span class="text-light" style="font-size: 40pt">&nbsp;월드</span>
+            </div>
+            <div class="col mt-2">
+              <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%" alt="" />
+              <div class="d-flex flex-wrap pt-2">
+                <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i
+                    class="fi-facebook"></i></a>
+                <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i
+                    class="fi-twitter"></i></a>
+                <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i
+                    class="fi-telegram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+
+  <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span
+      class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">
+    </i></a>
+  <!-- Vendor scrits: js libraries and plugins-->
+  <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+  <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+  <script src="vendor/nouislider/dist/nouislider.min.js"></script>
+  <script src="vendor/cleave.js/dist/cleave.min.js"></script>
+  <!-- Main theme script-->
+  <script src="js/theme.min.js"></script>
+</body>
+
+</html>

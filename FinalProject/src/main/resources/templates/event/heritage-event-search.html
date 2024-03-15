@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Finder | 행사검색 | 상세검색기능</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Page loading styles-->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #666276;;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #bbb7c5;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+          src: url()
+        }
+      }
+
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+  </head>
+  <!-- Body-->
+  <body>
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>로딩중...</span>
+      </div>
+    </div>
+    <main class="page-wrapper">
+      <!-- Sign In Modal-->
+      <div class="modal fade" id="signin-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0 mx-auto" style="max-width: 950px;">
+          <div class="modal-content">
+            <div class="modal-body px-0 py-2 py-sm-0">
+              <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
+              <div class="row mx-0 align-items-center">
+                <div class="col-md-6 border-end-md p-4 p-sm-5">
+                  <h2 class="h3 mb-4 mb-sm-5">Hey there!<br>Welcome back.</h2><img class="d-block mx-auto" src="img/signin-modal/signin.svg" width="344" alt="Illustartion">
+                  <div class="mt-4 mt-sm-5">Don't have an account? <a href="#signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal">Sign up here</a></div>
+                </div>
+                <div class="col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 rounded-pill mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a><a class="btn btn-outline-info w-100 rounded-pill mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a>
+                  <div class="d-flex align-items-center py-3 mb-3">
+                    <hr class="w-100">
+                    <div class="px-3">Or</div>
+                    <hr class="w-100">
+                  </div>
+                  <form class="needs-validation" novalidate>
+                    <div class="mb-4">
+                      <label class="form-label mb-2" for="signin-email">Email address</label>
+                      <input class="form-control" type="email" id="signin-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-4">
+                      <div class="d-flex align-items-center justify-content-between mb-2">
+                        <label class="form-label mb-0" for="signin-password">Password</label><a class="fs-sm" href="#">Forgot password?</a>
+                      </div>
+                      <div class="password-toggle">
+                        <input class="form-control" type="password" id="signin-password" placeholder="Enter password" required>
+                        <label class="password-toggle-btn" aria-label="Show/hide password">
+                          <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary btn-lg w-100 rounded-pill" type="submit">Sign in</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sign Up Modal-->
+      <div class="modal fade" id="signup-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0 mx-auto" style="max-width: 734px;">
+          <div class="modal-content">
+            <div class="modal-body p-sm-5">
+              <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
+              <ul class="nav nav-pills flex-column flex-sm-row border-bottom pb-4 mt-sm-n2 my-4" role="tablist">
+                <li class="nav-item me-sm-3 mb-sm-0"><a class="nav-link active" href="#job-seeker" data-bs-toggle="tab" role="tab" aria-controls="job-seeker" aria-selected="true"><i class="fi-user me-2"></i>I am job seeker</a></li>
+                <li class="nav-item mb-sm-0"><a class="nav-link" href="#employer" data-bs-toggle="tab" role="tab" aria-controls="employer" aria-selected="false"><i class="fi-briefcase me-2"></i>I am employer</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="job-seeker" role="tabpanel">
+                  <h3>Register to add a resume</h3>
+                  <p class="pb-3">Get access to all the functions of the site that will help you find a great job.</p>
+                  <div class="row gx-2 gx-md-4">
+                    <div class="col-sm-6 mb-3"><a class="btn btn-outline-info w-100 rounded-pill" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a></div>
+                    <div class="col-sm-6 mb-3"><a class="btn btn-outline-info w-100 rounded-pill" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a></div>
+                  </div>
+                  <div class="d-flex align-items-center py-2 mb-2">
+                    <hr class="w-100">
+                    <div class="px-3">Or</div>
+                    <hr class="w-100">
+                  </div>
+                  <form class="needs-validation" novalidate>
+                    <div class="row gx-2 gx-md-4">
+                      <div class="col-sm-6 mb-4">
+                        <label class="form-label" for="js-fn">Full name</label>
+                        <input class="form-control" type="text" id="js-fn" placeholder="Enter your full name" required>
+                      </div>
+                      <div class="col-sm-6 mb-4">
+                        <label class="form-label" for="js-email">Emaill address</label>
+                        <input class="form-control" type="email" id="js-email" placeholder="Enter your email" required>
+                      </div>
+                      <div class="col-sm-6 mb-4">
+                        <label class="form-label" for="js-password">Password <span class='text-muted'>(min. 8 char)</span></label>
+                        <div class="password-toggle">
+                          <input class="form-control" type="password" id="js-password" minlength="8" required>
+                          <label class="password-toggle-btn" aria-label="Show/hide password">
+                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 mb-4">
+                        <label class="form-label" for="js-password-confirm">Confirm password</label>
+                        <div class="password-toggle">
+                          <input class="form-control" type="password" id="js-password-confirm" minlength="8" required>
+                          <label class="password-toggle-btn" aria-label="Show/hide password">
+                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-check mb-4">
+                      <input class="form-check-input" type="checkbox" id="agree-to-terms" required>
+                      <label class="form-check-label" for="agree-to-terms">By joining, I agree to the <a href='#'>Terms of use</a> and <a href='#'>Privacy policy</a></label>
+                    </div>
+                    <button class="btn btn-primary btn-lg w-100 rounded-pill" type="submit">Sign up</button>
+                  </form>
+                </div>
+                <div class="tab-pane fade" id="employer" role="tabpanel">
+                  <h3>Register to post a vacancy</h3>
+                  <p class="pb-3">Get access to all special services for employers on Finder.</p>
+                  <form class="needs-validation" novalidate>
+                    <div class="row gx-2 gx-md-4">
+                      <div class="col-sm-6 mb-4">
+                        <label class="form-label" for="em-fn">Full name</label>
+                        <input class="form-control" type="text" id="em-fn" placeholder="Enter your full name" required>
+                      </div>
+                      <div class="col-sm-6 mb-4">
+                        <label class="form-label" for="em-email">Emaill <span class='text-muted'>(better corporate)</span></label>
+                        <input class="form-control" type="email" id="em-email" placeholder="Enter email" required>
+                      </div>
+                      <div class="col-sm-6 mb-4">
+                        <label class="form-label" for="em-company">Company name</label>
+                        <input class="form-control" type="text" id="em-company" placeholder="Enter company name" required>
+                      </div>
+                      <div class="col-sm-6 mb-4">
+                        <label class="form-label" for="em-location">Main office location</label>
+                        <input class="form-control" type="text" id="em-location" placeholder="Country, City, Address" required>
+                      </div>
+                      <div class="col-sm-6 mb-4">
+                        <label class="form-label" for="em-password">Password <span class='text-muted'>(min. 8 char)</span></label>
+                        <div class="password-toggle">
+                          <input class="form-control" type="password" id="em-password" minlength="8" required>
+                          <label class="password-toggle-btn" aria-label="Show/hide password">
+                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 mb-4">
+                        <label class="form-label" for="em-password-confirm">Confirm password</label>
+                        <div class="password-toggle">
+                          <input class="form-control" type="password" id="em-password-confirm" minlength="8" required>
+                          <label class="password-toggle-btn" aria-label="Show/hide password">
+                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-check mb-4">
+                      <input class="form-check-input" type="checkbox" id="agree-to-terms2" required>
+                      <label class="form-check-label" for="agree-to-terms2">By joining, I agree to the <a href='#'>Terms of use</a> and <a href='#'>Privacy policy</a></label>
+                    </div>
+                    <button class="btn btn-primary btn-lg w-100 rounded-pill" type="submit">Sign up</button>
+                  </form>
+                </div>
+              </div>
+              <div class="pt-4 pb-3 pb-sm-0 mt-2">Already have an account? <a href="#signin-modal" data-bs-toggle="modal" data-bs-dismiss="modal">Sign in</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 헤더 시작 -->
+      <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
+          <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
+          <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+              <!-- Menu items-->
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문화재</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
+                  <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">날씨정보</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
+            <i class="fi-user me-2"></i>로그인</span>
+          </a>
+        </div>
+      </header>
+      <!-- 헤더 끝 -->
+
+      <!-- Page content-->
+      <!-- Page header-->
+      <section class="bg-dark pt-5">
+        <div class="container py-5 text-center">
+          <h1 class="hym display-2 text-light mb-4 pb-lg-2">문화재 행사 검색</h1>
+          <h1 class="display-6 text-light mb-4 pb-lg-2" style="font-size: 16pt;">원하는 행사를 찾아보세요</h1>
+          <!-- Search form-->
+          <form class="form-group form-group-light d-block rounded-lg-pill mb-4">
+            <div class="row align-items-center g-0 ms-n2">
+              <div class="col-lg-3 col-xl-4">
+                <div class="input-group input-group-lg border-end-lg border-light"><span class="input-group-text text-light rounded-pill opacity-50 ps-3"><i class="fi-search"></i></span>
+                  <input class="form-control" type="text" placeholder="행사 이름 검색">
+                </div>
+              </div>
+              <hr class="hr-light d-lg-none my-2">
+              <div class="col-lg-5 d-sm-flex">
+                <div class="dropdown w-sm-50 border-end-sm border-light" data-bs-toggle="select">
+                  <!-- 시/도 군/구 데이터 참고: https://chichi-story.tistory.com/18 -->
+                  <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">지역검색(시, 도)</span></button>
+                  <input type="hidden">
+                  <ul class="dropdown-menu dropdown-menu-dark my-3">
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Accounting</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Marketing &amp; PR</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Medicine</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Internet technology</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">HoReCa</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Design, creativity</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Fitness &amp; sports</span></a></li>
+                  </ul>
+                </div>
+                <hr class="hr-light d-sm-none my-2">
+                <div class="dropdown w-sm-50 border-end-lg border-light" data-bs-toggle="select">
+                  <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-geo me-2"></i><span class="dropdown-toggle-label">지역검색(군,구)</span></button>
+                  <input type="hidden">
+                  <ul class="dropdown-menu dropdown-menu-dark my-3">
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Dallas</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Chicago</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Houston</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Las Vegas</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Los Angeles</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">New York</span></a></li>
+                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">San Francisco</span></a></li>
+                  </ul>
+                </div>
+              </div>
+              <hr class="hr-light d-lg-none my-2">
+              <div class="col-lg-4 col-xl-3 d-flex align-items-center">
+                <div class="dropdown w-50 w-lg-100" data-bs-toggle="select">
+                  <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span id="selected-date">날짜</span></button>
+                  <input type="hidden">
+                  <ul class="dropdown-menu dropdown-menu-dark my-3">
+                    <li><input type="date" value="${dateType2}" id="searchday" onchange="searchdate()"></li>
+                  </ul>
+                </div>
+                <button class="btn btn-primary btn-lg w-50 w-lg-auto rounded-pill" type="button">검색하기</button>
+                <script>
+                  function searchdate(){
+                    var x = document.getElementById("searchday").value;
+                    // console.log(x);
+                    document.getElementById('selected-date').innerHTML = x;
+                  }
+                </script>
+              </div>
+            </div>
+          </form>
+          <!-- Search params (dropdowns)-->
+        </div>
+      </section>
+
+
+      <!-- 검색 결과 페이지-->
+      <section class="position-relative bg-white rounded-xxl-4 zindex-5" style="margin-top: -30px;">
+        <div class="container pt-4 pb-5 mb-md-4">
+          <!-- 페이지 위치 요약-->
+          <nav class="pb-4 my-2" aria-label="Breadcrumb">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item"><a href="job-board-home-v1.html">행사</a></li>
+              <li class="breadcrumb-item active" aria-current="page">문화재 행사 검색</li>
+            </ol>
+          </nav>
+          <div class="row">
+            <!-- 검색결과 목록-->
+            <div class="col-lg-12 col-md-6 position-relative mb-4 mb-md-0" style="z-index: 1025;">
+              <!-- 정렬-->
+              <div class="d-sm-flex align-items-center justify-content-between pb-4 mb-sm-2">
+                <div class="d-flex align-items-center">
+                  <label class="fs-sm me-2 pe-1 text-nowrap" for="sorting"><i class="fi-arrows-sort mt-n1 me-2"></i>정렬 순:</label>
+                  <select class="form-select form-select-sm" id="sorting">
+                    <option>최신순</option>
+                    <option>오래된순</option>
+                    <option>평점순</option>
+                  </select>
+                </div>
+                <div class="text-muted fs-sm text-nowrap"><i class="fi-billboard-house fs-base mt-n1 me-2"></i>248 검색결과</div>
+              </div>
+              <!-- 검색결과 아이템-->
+              <table class="tbl type_01 mt30">
+                <colgroup>
+                  <col style="width:40%">
+                  <col>
+                  <col>
+                  <col>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col" style="text-align: center;">행사명</th>
+                    <th scope="col" style="text-align: center;">장소</th>
+                    <th scope="col" style="text-align: center;">기간</th>
+                    <th scope="col" style="text-align: center;">문의처</th>
+                  </tr>
+                </thead>
+                <tbody id="regularEventList" tabindex="0" style="outline: none;">
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_ssang.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+
+                  <!-- 아이템2-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_gotec.png" style="vertical-align:middle">
+                          고顧
+                        </p>
+                      </a>
+                    </td>
+                    <td>전라북도 / 김제시</td>
+                    <td>2023. 10. 28 ~
+                      2028. 10. 28</td>
+                    <td>063-545-0304</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_ssang.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_ssang.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_ssang.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_ssang.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_ssang.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_ssang.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_ssang.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_ssang.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_ssang.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_temple.png">
+                          용화사 칠존석불을 만나다
+                        </p>
+                      </a>
+                    </td>
+                    <td>충청북도 / 서원구</td>
+                    <td>2022. 11. 08 ~ 2022. 11. 08</td>
+                    <td>043-274-2159</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_sege.png">
+                          남한상성 행궁교육체험
+                        </p>
+                      </a>
+                    </td>
+                    <td>경기도</td>
+                    <td>2022. 11. 05 ~ 2022. 11. 05</td>
+                    <td>02-482-7647</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_night.png">
+                          옥천변 순천역사 도서관
+                        </p>
+                      </a>
+                    </td>
+                    <td>전라남도 / 순천시</td>
+                    <td>2022. 11. 04 ~ 2022. 11. 06</td>
+                    <td>061-749-6813</td>
+                  </tr>
+
+                  <!-- 아이템1-->
+                  <tr>
+                    <td style="text-align: left;">
+                      <a href="heritage-event-single.html" style="text-decoration: none !important;">
+                        <p>
+                          <img src="img/myimages/ybh/ic_jedan.png">
+                          검은노다지(석탄), 새로운 시대를 만나다!
+                        </p>
+                      </a>
+                    </td>
+                    <td>강원도 / 태백시</td>
+                    <td>2023. 09. 01 ~
+                      2309. 09. 01</td>
+                    <td>02-2038-8938</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 페이지네이션 -->
+          <div class="container mt-5">
+            <div class="row justify-content-center">
+              <div class="col-5">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <a href="#" class="page-link" aria-label="Previous">
+                        <i class="fi-chevron-left"></i>
+                      </a>
+                    </li>
+                    <li class="page-item d-sm-none">
+                      <span class="page-link page-link-static">2 / 5</span>
+                    </li>
+                    <li class="page-item d-none d-sm-block">
+                      <a href="#" class="page-link">1</a>
+                    </li>
+                    <li class="page-item active d-none d-sm-block" aria-current="page">
+                      <span class="page-link">
+                        2
+                        <span class="visually-hidden">(current)</span>
+                      </span>
+                    </li>
+                    <li class="page-item d-none d-sm-block">
+                      <a href="#" class="page-link">3</a>
+                    </li>
+                    <li class="page-item d-none d-sm-block">
+                      <a href="#" class="page-link">4</a>
+                    </li>
+                    <li class="page-item d-none d-sm-block">
+                      <a href="#" class="page-link">5</a>
+                    </li>
+                    <li class="page-item">
+                      <a href="#" class="page-link" aria-label="Next">
+                        <i class="fi-chevron-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <!-- 페이지네이션 끝 -->
+          
+        </div>
+      </section>
+    </main>
+    <!-- 푸터 -->
+    <footer class="footer bg-dark">
+      <div class="container pt-3 pt-lg-3 justify-content-between">
+        <div class="row pt-2 pt-lg-1">
+          <div class="col-lg-3 mt-4">
+            <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
+            <p class="fs-sm text-light opacity-70">새로 업데이트되는 소식을 전해드립니다</p>
+            <form class="form-group form-group-light w-100">
+              <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
+                <input class="form-control" type="text" placeholder="Email 주소">
+              </div>
+              <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
+            </form>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재행사</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
+          </div>
+
+          <div class="col-lg-3 mb-2 mb-sm-4">
+            <div class="row">
+              <div class="col mt-2">
+                <span class="text-light" style="font-size: 40pt;">문화</span>
+                <span class="text-light" style="font-size: 40pt;">&nbsp;월드</span>
+              </div>
+              <div class="col mt-2">
+                <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%;" alt="">
+                <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-telegram"></i></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- 푸터 끝 -->
+
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">위</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Main theme script-->
+    <script src="js/theme.min.js"></script>
+  </body>
+</html>

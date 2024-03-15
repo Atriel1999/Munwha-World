@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Finder | Job Board | Account - My Resumes</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Page loading styles-->
+    <style>
+      @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      .gmarketfontM{
+        font-family: 'GmarketSansMedium';
+      }
+      * {
+        font-family: 'GmarketSansMedium';
+      }
+      .navbar {
+        height: 110px;
+      }
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #666276;;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #bbb7c5;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" th:href="@{/vendor/simplebar/dist/simplebar.min.css}"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}">
+  </head>
+  <!-- Body-->
+  <body class="bg-secondary">
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Loading...</span>
+      </div>
+    </div>
+    <main class="page-wrapper">
+      <!-- 헤더 시작 -->
+      <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
+          <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
+          <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+              <!-- Menu items-->
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문화재</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
+                  <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">날씨정보</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
+            <i class="fi-user me-2"></i>로그인</span>
+          </a>
+        </div>
+      </header>
+      <!-- 헤더 끝 -->
+
+      <!-- Page content-->
+      <!-- Page container-->
+      <div class="position-absolute top-0 start-0 w-100 bg-dark" style="height: 398px;"></div>
+      <div class="container content-overlay mt-5 mb-md-4 py-5">
+        <!-- Page card like wrapper-->
+        <div class="bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2">
+
+          <!-- 회원요약 -->
+          <div class="d-flex align-items-start justify-content-between pb-4 mb-2">
+            <div class="d-flex align-items-start">
+              <div class="position-relative flex-shrink-0">
+                <img class="rounded-circle" src="img/myimages/ksw/replyicon.png" width="100" alt="">
+              </div>
+              <div class="ps-3 ps-sm-4">
+                <h3 class="h5">홍길동</h3>
+                <ul class="list-unstyled fs-sm mb-0">
+                  <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>annette_black@email.com</span></li>
+                  <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>010-1234-1234</span></li>
+                </ul>
+              </div>
+            </div><a class="nav-link p-0 d-none d-md-block" href="signin-light.html"><i class="fi-logout mt-n1 me-2"></i>로그아웃</a>
+          </div>
+
+          <!-- 마이페이지 메뉴 -->
+          <a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>마이페이지 메뉴</a>
+          <div class="collapse d-md-block" id="account-nav">
+            <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
+			  <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" th:href="@{/mypageProfile}"><i class="fi-settings mt-n1 me-2 fs-base"></i>회원정보 설정</a></li>
+              <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" th:href="@{/mypageReviews}"><i class="fi-chat-circle mt-n1 me-2 fs-base"></i>리뷰 관리</a></li>
+              <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" th:href="@{/mypageBookmarks}"><i class="fi-heart mt-n1 me-2 fs-base"></i>즐겨찾기</a></li>
+              <li class="nav-item mb-md-0"><a class="nav-link active" th:href="@{/mypageShopList}" aria-current="page"><i class="fi-shopping-bag mt-n1 me-2 fs-base"></i>주문목록</a></li>
+              <li class="nav-item d-md-none"><a class="nav-link" th:href="@{/signin-light}"><i class="fi-logout mt-n1 me-2 fs-base"></i>로그아웃</a></li>
+            </ul>
+          </div>
+
+          <!-- Page title-->
+          <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
+            <h1 class="h2 mb-0">주문목록</h1>
+          </div>
+          <div class="row">
+
+            <!-- 주문목록 목록 시작 -->
+            <div class="col-md-9">
+              <!-- 주문항목 시작 -->
+              <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
+                <!-- 여기에 대표 이미지 -->
+                <a href="#" class="card-img-top" style="background-image: url(img/myimages/ksw/order1.png);"></a>
+                <div class="card-body">
+                  <h3 class="pt-1 mb-2 h2">
+                    <a href="#" class="nav-link">이조 채화 나비목단 쌍합 보석함</a>
+                  </h3>
+                  <p class="text-muted h4">47,000원</p>
+                  <br>
+                  <p class="text-muted h5">2024.01.26. 18:14 결제</p>
+                  <p class="text-muted h3">결제 취소</p>
+                  <span class="float-end"><a href="#"><i class="fi-trash alert-danger h5"></i></a></span>
+                </div>
+              </article>
+              <!-- 주문항목 끝 -->
+              <!-- 주문항목 시작 -->
+              <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
+                <!-- 여기에 대표 이미지 -->
+                <a href="#" class="card-img-top" style="background-image: url(img/myimages/ksw/order2.png);"></a>
+                <div class="card-body">
+                  <h3 class="pt-1 mb-2 h2">
+                    <a href="#" class="nav-link">화조도 사각 쟁반</a>
+                  </h3>
+                  <p class="text-muted h4">25,500원</p>
+                  <br>
+                  <p class="text-muted h5">2024.01.26. 12:00 결제</p>
+                  <p class="text-muted h3">결제 완료</p>
+                  <span class="float-end"><a href="#"><i class="fi-trash alert-danger h5"></i></a></span>
+                </div>
+              </article>
+              <!-- 주문항목 끝 -->
+              <!-- 주문항목 시작 -->
+              <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
+                <!-- 여기에 대표 이미지 -->
+                <a href="#" class="card-img-top" style="background-image: url(img/myimages/ksw/order3.png);"></a>
+                <div class="card-body">
+                  <h3 class="pt-1 mb-2 h2">
+                    <a href="#" class="nav-link">조선왕실등 만들기 키트</a>
+                  </h3>
+                  <p class="text-muted h4">66,600원</p>
+                  <br>
+                  <p class="text-muted h5">2024.01.24. 03:54 결제</p>
+                  <p class="text-muted h3">결제 완료</p>
+                  <span class="float-end"><a href="#"><i class="fi-trash alert-danger h5"></i></a></span>
+                </div>
+              </article>
+              <!-- 주문항목 끝 -->
+              <!-- 주문항목 시작 -->
+              <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
+                <!-- 여기에 대표 이미지 -->
+                <a href="#" class="card-img-top" style="background-image: url(img/myimages/ksw/order1.png);"></a>
+                <div class="card-body">
+                  <h3 class="pt-1 mb-2 h2">
+                    <a href="#" class="nav-link">이조 채화 나비목단 쌍합 보석함</a>
+                  </h3>
+                  <p class="text-muted h4">47,000원</p>
+                  <br>
+                  <p class="text-muted h5">2024.01.26. 18:14 결제</p>
+                  <p class="text-muted h3">결제 취소</p>
+                  <span class="float-end"><a href="#"><i class="fi-trash alert-danger h5"></i></a></span>
+                </div>
+              </article>
+              <!-- 주문항목 끝 -->
+
+              <!-- 페이지네이션 -->
+              <div class="container mt-5">
+                <div class="row justify-content-center">
+                  <div class="col-5">
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination">
+                        <li class="page-item">
+                          <a href="#" class="page-link" aria-label="Previous">
+                            <i class="fi-chevron-left"></i>
+                          </a>
+                        </li>
+                        <li class="page-item d-sm-none">
+                          <span class="page-link page-link-static">2 / 5</span>
+                        </li>
+                        <li class="page-item d-none d-sm-block">
+                          <a href="#" class="page-link">1</a>
+                        </li>
+                        <li class="page-item active d-none d-sm-block" aria-current="page">
+                          <span class="page-link">
+                            2
+                            <span class="visually-hidden">(current)</span>
+                          </span>
+                        </li>
+                        <li class="page-item d-none d-sm-block">
+                          <a href="#" class="page-link">3</a>
+                        </li>
+                        <li class="page-item d-none d-sm-block">
+                          <a href="#" class="page-link">4</a>
+                        </li>
+                        <li class="page-item d-none d-sm-block">
+                          <a href="#" class="page-link">5</a>
+                        </li>
+                        <li class="page-item">
+                          <a href="#" class="page-link" aria-label="Next">
+                            <i class="fi-chevron-right"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+              <!-- 페이지네이션 끝 -->
+
+            </div>
+            <!-- 주문목록 끝 -->
+            
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+
+    <!-- 푸터 -->
+    <footer class="footer bg-dark">
+      <div class="container pt-3 pt-lg-3 justify-content-between">
+        <div class="row pt-2 pt-lg-1">
+          <div class="col-lg-3 mt-4">
+            <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
+            <p class="fs-sm text-light opacity-70">새로 업데이트되는 소식을 전해드립니다</p>
+            <form class="form-group form-group-light w-100">
+              <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
+                <input class="form-control" type="text" placeholder="Email 주소">
+              </div>
+              <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
+            </form>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재행사</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
+          </div>
+
+          <div class="col-lg-3 mb-2 mb-sm-4">
+            <div class="row">
+              <div class="col mt-2">
+                <span class="text-light" style="font-size: 40pt;">문화</span>
+                <span class="text-light" style="font-size: 40pt;">&nbsp;월드</span>
+              </div>
+              <div class="col mt-2">
+                <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%;" alt="">
+                <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-telegram"></i></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- 푸터 끝 -->
+
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Vendor scripts: js libraries and plugins-->
+    <script src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
+    <script src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
+    <!-- Main theme script-->
+    <script src="@{/js/theme.min.js}"></script>
+  </body>
+</html>

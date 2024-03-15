@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Finder | 행사검색 | 행사상세페이지</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Page loading styles-->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #1f1b2d;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #fff;;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #9691a4;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css"/>
+    <link rel="stylesheet" media="screen" href="vendor/lightgallery/css/lightgallery-bundle.min.css"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+  </head>
+  <!-- Body  bg-white-->
+  <body class="bg-dark"> 
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>로딩중...</span>
+      </div>
+    </div>
+    <main class="page-wrapper">
+      <!-- Sign In Modal-->
+      <div class="modal fade" id="signin-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0 mx-auto" style="max-width: 950px;">
+          <div class="modal-content bg-dark border-light">
+            <div class="modal-body px-0 py-2 py-sm-0">
+              <button class="btn-close btn-close-white position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
+              <div class="row mx-0 align-items-center">
+                <div class="col-md-6 border-end-md border-light p-4 p-sm-5">
+                  <h2 class="h3 text-light mb-4 mb-sm-5">Hey there!<br>Welcome back.</h2><img class="d-block mx-auto" src="img/signin-modal/signin-dark.svg" width="344" alt="Illustartion">
+                  <div class="text-light mt-4 mt-sm-5"><span class="opacity-60">Don't have an account? </span><a class="text-light" href="#signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal">Sign up here</a></div>
+                </div>
+                <div class="col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a>
+                  <div class="d-flex align-items-center py-3 mb-3">
+                    <hr class="hr-light w-100">
+                    <div class="text-light opacity-70 px-3">Or</div>
+                    <hr class="hr-light w-100">
+                  </div>
+                  <form class="needs-validation" novalidate>
+                    <div class="mb-4">
+                      <label class="form-label text-light mb-2" for="signin-email">Email address</label>
+                      <input class="form-control form-control-light" type="email" id="signin-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-4">
+                      <div class="d-flex align-items-center justify-content-between mb-2">
+                        <label class="form-label text-light mb-0" for="signin-password">Password</label><a class="fs-sm text-light" href="#">Forgot password?</a>
+                      </div>
+                      <div class="password-toggle">
+                        <input class="form-control form-control-light" type="password" id="signin-password" placeholder="Enter password" required>
+                        <label class="password-toggle-btn" aria-label="Show/hide password">
+                          <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary btn-lg w-100" type="submit">Sign in         </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sign Up Modal-->
+      <div class="modal fade" id="signup-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0 mx-auto" style="max-width: 950px;">
+          <div class="modal-content bg-dark border-light">
+            <div class="modal-body px-0 py-2 py-sm-0">
+              <button class="btn-close btn-close-white position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
+              <div class="row mx-0 align-items-center">
+                <div class="col-md-6 border-end-md border-light p-4 p-sm-5">
+                  <h2 class="h3 text-light mb-4 mb-sm-5">Join Finder.<br>Get premium benefits:</h2>
+                  <ul class="list-unstyled mb-4 mb-sm-5">
+                    <li class="d-flex mb-2"><i class="fi-check-circle text-primary mt-1 me-2"></i><span class="text-light">Add and promote your listings</span></li>
+                    <li class="d-flex mb-2"><i class="fi-check-circle text-primary mt-1 me-2"></i><span class="text-light">Easily manage your wishlist</span></li>
+                    <li class="d-flex mb-0"><i class="fi-check-circle text-primary mt-1 me-2"></i><span class="text-light">Leave reviews</span></li>
+                  </ul><img class="d-block mx-auto" src="img/signin-modal/signup-dark.svg" width="344" alt="Illustartion">
+                  <div class="text-light mt-sm-4 pt-md-3"><span class="opacity-60">Already have an account? </span><a class="text-light" href="#signin-modal" data-bs-toggle="modal" data-bs-dismiss="modal">Sign in</a></div>
+                </div>
+                <div class="col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a>
+                  <div class="d-flex align-items-center py-3 mb-3">
+                    <hr class="hr-light w-100">
+                    <div class="text-light opacity-70 px-3">Or</div>
+                    <hr class="hr-light w-100">
+                  </div>
+                  <form class="needs-validation" novalidate>
+                    <div class="mb-4">
+                      <label class="form-label text-light" for="signup-name">Full name</label>
+                      <input class="form-control form-control-light" type="text" id="signup-name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="mb-4">
+                      <label class="form-label text-light" for="signup-email">Email address</label>
+                      <input class="form-control form-control-light" type="email" id="signup-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-4">
+                      <label class="form-label text-light" for="signup-password">Password <span class='fs-sm opacity-50'>min. 8 char</span></label>
+                      <div class="password-toggle">
+                        <input class="form-control form-control-light" type="password" id="signup-password" minlength="8" required>
+                        <label class="password-toggle-btn" aria-label="Show/hide password">
+                          <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="mb-4">
+                      <label class="form-label text-light" for="signup-password-confirm">Confirm password</label>
+                      <div class="password-toggle">
+                        <input class="form-control form-control-light" type="password" id="signup-password-confirm" minlength="8" required>
+                        <label class="password-toggle-btn" aria-label="Show/hide password">
+                          <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-check form-check-light mb-4">
+                      <input class="form-check-input" type="checkbox" id="agree-to-terms" required>
+                      <label class="form-check-label" for="agree-to-terms"><span class='opacity-70'>By joining, I agree to the</span> <a href='#' class='text-light'>Terms of use</a> <span class='opacity-70'>and</span> <a href='#' class='text-light'>Privacy policy</a></label>
+                    </div>
+                    <button class="btn btn-primary btn-lg w-100" type="submit">Sign up         </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 헤더 시작 -->
+      <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
+          <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
+          <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+              <!-- Menu items-->
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문화재</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
+                  <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">날씨정보</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
+            <i class="fi-user me-2"></i>로그인</span>
+          </a>
+        </div>
+      </header>
+      <!-- 헤더 끝 -->
+
+      <!-- Page content-->
+      <!-- 리뷰 페이지 모달 -->
+      <div class="modal fade" id="modal-review" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4">
+              <h3 class="modal-title mt-4 text-center">평가 남기기</h3>
+              <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-sm-5 px-4">
+              <form class="needs-validation" novalidate>
+                <div class="mb-3">
+                  <label class="form-label" for="review-name">이름 <span class='text-danger'>*</span></label>
+                  <input class="form-control" type="text" id="review-name" placeholder="Your name" required>
+                  <div class="invalid-feedback">이름을 작성해 주세요</div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="review-email">이메일 <span class='text-danger'>*</span></label>
+                  <input class="form-control" type="email" id="review-email" placeholder="Your email address" required>
+                  <div class="invalid-feedback">유효한 이메일을 작성해 주세요.</div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="review-rating">별점 <span class='text-danger'>*</span></label>
+                  <select class="form-control form-select" id="review-rating" required>
+                    <option value="" selected disabled hidden>별점을 골라 주세요</option>
+                    <option value="5 stars">5점</option>
+                    <option value="4 stars">4점</option>
+                    <option value="3 stars">3점</option>
+                    <option value="2 stars">2점</option>
+                    <option value="1 star">1점</option>
+                  </select>
+                  <div class="invalid-feedback">별점을 선택해 주세요</div>
+                </div>
+                <div class="mb-4">
+                  <label class="form-label" for="review-text">평가 내용 <span class='text-danger'>*</span></label>
+                  <textarea class="form-control" id="review-text" rows="5" placeholder="Your review message" required></textarea>
+                  <div class="invalid-feedback">평가 내용을 작성해 주세요</div>
+                </div>
+                <button class="btn btn-primary d-block rounded-pill w-100 mb-4" type="submit">리뷰 작성</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page header-->
+      <div class="container mt-5 mb-md-4 py-5">
+        <!-- Breadcrumb-->
+        <nav class="mb-3 pt-md-3" aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-light">
+            <li class="breadcrumb-item"><a href="car-finder-home.html">행사</a></li>
+            <li class="breadcrumb-item"><a href="car-finder-catalog-grid.html">문화재 행사 상세정보</a></li>
+            <li class="breadcrumb-item active" aria-current="page"></li>
+          </ol>
+        </nav>
+        <!-- Title + Sharing-->
+        <div class="d-sm-flex align-items-end align-items-md-center justify-content-between position-relative mb-4" style="z-index: 1025;">
+          <div class="me-3">
+            <h1 class="h2 text-light mb-md-0 chosun">검은노다지(석탄), 새로운 시대를 만나다!</h1>
+            <div class="d-md-none">
+              <div class="d-flex align-items-center mb-3">
+                <div class="h3 mb-0 text-light">$31,900</div>
+                <div class="text-nowrap ps-3"><span class="badge bg-info fs-base me-2">Used</span><span class="badge bg-success fs-base me-2" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex&quot;&gt;&lt;i class=&quot;fi-award mt-1 me-2&quot;&gt;&lt;/i&gt;&lt;div&gt;This car is checked and&lt;br&gt;certified by Finder.&lt;/div&gt;&lt;/div&gt;">Certified</span></div>
+              </div>
+              <div class="d-flex flex-wrap align-items-center text-light mb-2">
+                <div class="text-nowrap border-end border-light pe-3 me-3"><i class="fi-dashboard fs-lg opacity-70 me-2"></i><span class="align-middle">25K miles</span></div>
+                <div class="text-nowrap"><i class="fi-map-pin fs-lg opacity-70 me-2"></i><span class="align-middle">Chicago, IL 60603</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="text-nowrap pt-3 pt-sm-0">
+            <button class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-sm-2" type="button" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
+            <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
+              <button class="btn btn-icon btn-translucent-light btn-xs rounded-circle ms-2 mb-sm-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
+              <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end my-1">
+                <button class="dropdown-item" type="button"><i class="fi-facebook fs-base opacity-75 me-2"></i>Facebook</button>
+                <button class="dropdown-item" type="button"><i class="fi-twitter fs-base opacity-75 me-2"></i>Twitter</button>
+                <button class="dropdown-item" type="button"><i class="fi-instagram fs-base opacity-75 me-2"></i>Instagram</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+            <!-- Gallery-->
+            <div class="tns-carousel-wrapper">
+              <div class="tns-slides-count text-light"><i class="fi-image fs-lg me-2"></i>
+                <div class="ps-1"><span class="tns-current-slide fs-5 fw-bold"></span><span class="fs-5 fw-bold">/</span><span class="tns-total-slides fs-5 fw-bold"></span></div>
+              </div>
+              <div class="tns-carousel-inner" data-carousel-options="{&quot;navAsThumbnails&quot;: true, &quot;navContainer&quot;: &quot;#thumbnails&quot;, &quot;gutter&quot;: 12, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false},&quot;500&quot;:{&quot;controls&quot;: true}}}">
+                <div><img class="rounded-3" src="img/myimages/ybh/test_thumnail(coal)1.png" alt="Image"></div>
+                <div><img class="rounded-3" src="img/myimages/ybh/test_thumnail(coal)2.png" alt="Image"></div>
+                <div><img class="rounded-3" src="img/myimages/ybh/test_thumnail(coal)3.png" alt="Image"></div>
+                <div><img class="rounded-3" src="img/myimages/ybh/test_thumnail(coal)4.png" alt="Image"></div>
+
+              </div>
+            </div>
+            <ul class="tns-thumbnails" id="thumbnails">
+              <li class="tns-thumbnail"><img src="img/myimages/ybh/test_thumnail(coal)1.png" alt="Thumbnail"></li>
+              <li class="tns-thumbnail"><img src="img/myimages/ybh/test_thumnail(coal)2.png" alt="Thumbnail"></li>
+              <li class="tns-thumbnail"><img src="img/myimages/ybh/test_thumnail(coal)3.png" alt="Thumbnail"></li>
+              <li class="tns-thumbnail"><img src="img/myimages/ybh/test_thumnail(coal)4.png" alt="Thumbnail"></li>
+              <li class="tns-thumbnail"><a class="d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-faded-light rounded text-light text-decoration-none" href="https://www.youtube.com/watch?v=iP2i_Kbc8bs&ab_channel=YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4" data-bs-toggle="lightbox" data-video="true"><i class="fi-play-circle fs-5"></i><span class="opacity-70 mt-1">영상 재생</span></a></li>
+            </ul>
+            <!-- 리뷰 리스트-->
+            <h2 class="h4 mb-4 text-light">리뷰 작성</h2>
+            <div class="row mb-md-5 mb-4">
+              <!-- Rating breakdown-->
+              <div class="col-sm-8 order-sm-1 order-2">
+                <div class="d-flex align-items-center mb-2 fs-sm">
+                  <div class="text-nowrap">5<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
+                  <div class="progress w-100 mx-3">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><span style="min-width: 48px;">80%</span>
+                </div>
+                <div class="d-flex align-items-center mb-2 fs-sm">
+                  <div class="text-nowrap">4<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
+                  <div class="progress w-100 mx-3">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><span style="min-width: 48px;">10%</span>
+                </div>
+                <div class="d-flex align-items-center mb-2 fs-sm">
+                  <div class="text-nowrap">3<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
+                  <div class="progress w-100 mx-3">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><span style="min-width: 48px;">0%</span>
+                </div>
+                <div class="d-flex align-items-center mb-2 fs-sm">
+                  <div class="text-nowrap">2<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
+                  <div class="progress w-100 mx-3">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><span style="min-width: 48px;">0%</span>
+                </div>
+                <div class="d-flex align-items-center mb-2 fs-sm">
+                  <div class="text-nowrap">1<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
+                  <div class="progress w-100 mx-3">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><span style="min-width: 48px;">10%</span>
+                </div>
+              </div>
+              <!-- 점수 요약-->
+              <div class="col-sm-4 order-sm-2 order-1 mb-sm-0 mb-3 text-center">
+                <h5 class="display-4 mb-2 text-light">4.7</h5>
+                <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                </div><span class="fs-sm">48개 평가</span>
+              </div>
+            </div>
+            <!-- 리뷰 작성 & 리뷰 정렬-->
+            <div class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-between mb-4 pb-4 border-bottom"><a class="btn btn-outline-primary rounded-pill mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit mt-n1 me-1 align-middle"></i>리뷰 작성</a>
+              <div class="d-flex align-items-center ms-sm-4">
+                <label class="d-inline-block me-2 pe-1 text-muted text-nowrap" for="reviews-sort"><i class="fi-arrows-sort mt-n1 me-1 align-middle opacity-80"></i>정렬 기준:</label>
+                <select class="form-select" id="reviews-sort" style="min-width: 180px;">
+                  <option>최신순</option>
+                  <option>오래된순</option>
+                  <option>별점 높은순</option>
+                  <option>별점 낮은순</option>
+                </select>
+              </div>
+            </div>
+            <!-- 리뷰글 시작 -->
+            <div class="card card-body p-4 card-light mb-2">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2">
+                  <img class="rounded-circle me-1" src="img/myimages/ksw/replyicon.png" width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0 text-light">홍길동</h6>
+                    <div class="star-rating">
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <span class="text-light">[행사]검은 노다지(석탄), 새로운 시대를 만나다!</span>
+                <span class="fs-sm"><i class="fi-clock"></i> 2024.01.20. &nbsp;<a href="#"><i class="fi-trash alert-danger"></i></a></span>
+              </div>
+              <p class="text-light">대한민국에 이만한 석탑이 어디 있겠는가? 아름다움으로는 그 어느 탑들도 따라갈 수 없는 멋있는 구조물. 요즘 사람들은 잘 찾지 않겠지만 10원짜리 동전에도 계속 새겨져 있다.</p>
+            </div>
+            <!-- 리뷰글 끝 -->
+            <!-- 리뷰글 시작 -->
+            <div class="card card-body p-4 card-light mb-2">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2">
+                  <img class="rounded-circle me-1" src="img/myimages/ksw/replyicon.png" width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0 text-light">홍길동</h6>
+                    <div class="star-rating">
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <span class="text-light">[행사]검은 노다지(석탄), 새로운 시대를 만나다!</span>
+                <span class="fs-sm"><i class="fi-clock"></i> 2024.01.20. &nbsp;<a href="#"><i class="fi-trash alert-danger"></i></a></span>
+              </div>
+              <p class="text-light">대한민국에 이만한 석탑이 어디 있겠는가? 아름다움으로는 그 어느 탑들도 따라갈 수 없는 멋있는 구조물. 요즘 사람들은 잘 찾지 않겠지만 10원짜리 동전에도 계속 새겨져 있다.</p>
+            </div>
+            <!-- 리뷰글 끝 -->
+            <!-- 리뷰글 시작 -->
+            <div class="card card-body p-4 card-light mb-2">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2">
+                  <img class="rounded-circle me-1" src="img/myimages/ksw/replyicon.png" width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0 text-light">홍길동</h6>
+                    <div class="star-rating">
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <span class="text-light">[행사]검은 노다지(석탄), 새로운 시대를 만나다!</span>
+                <span class="fs-sm"><i class="fi-clock"></i> 2024.01.20. &nbsp;<a href="#"><i class="fi-trash alert-danger"></i></a></span>
+              </div>
+              <p class="text-light">대한민국에 이만한 석탑이 어디 있겠는가? 아름다움으로는 그 어느 탑들도 따라갈 수 없는 멋있는 구조물. 요즘 사람들은 잘 찾지 않겠지만 10원짜리 동전에도 계속 새겨져 있다.</p>
+            </div>
+            <!-- 리뷰글 끝 -->
+            <!-- 리뷰글 시작 -->
+            <div class="card card-body p-4 card-light mb-2">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2">
+                  <img class="rounded-circle me-1" src="img/myimages/ksw/replyicon.png" width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0 text-light">홍길동</h6>
+                    <div class="star-rating">
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <span class="text-light">[행사]검은 노다지(석탄), 새로운 시대를 만나다!</span>
+                <span class="fs-sm"><i class="fi-clock"></i> 2024.01.20. &nbsp;<a href="#"><i class="fi-trash alert-danger"></i></a></span>
+              </div>
+              <p class="text-light">대한민국에 이만한 석탑이 어디 있겠는가? 아름다움으로는 그 어느 탑들도 따라갈 수 없는 멋있는 구조물. 요즘 사람들은 잘 찾지 않겠지만 10원짜리 동전에도 계속 새겨져 있다.</p>
+            </div>
+            <!-- 리뷰글 끝 -->
+            <!-- 리뷰글 시작 -->
+            <div class="card card-body p-4 card-light mb-2">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2">
+                  <img class="rounded-circle me-1" src="img/myimages/ksw/replyicon.png" width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0 text-light">홍길동</h6>
+                    <div class="star-rating">
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star-filled active"></i>
+                      <i class="star-rating-icon fi-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <span class="text-light">[행사]검은 노다지(석탄), 새로운 시대를 만나다!</span>
+                <span class="fs-sm"><i class="fi-clock"></i> 2024.01.20. &nbsp;<a href="#"><i class="fi-trash alert-danger"></i></a></span>
+              </div>
+              <p class="text-light">대한민국에 이만한 석탑이 어디 있겠는가? 아름다움으로는 그 어느 탑들도 따라갈 수 없는 멋있는 구조물. 요즘 사람들은 잘 찾지 않겠지만 10원짜리 동전에도 계속 새겨져 있다.</p>
+            </div>
+            <!-- 리뷰글 끝 -->
+            
+            <!-- 리뷰 페이지 넘김 + Add review btn-->
+            <div class="d-flex align-items-center justify-content-between">
+              <nav aria-label="Reviews pagination">
+                <ul class="pagination mb-0">
+                  <li class="page-item d-sm-none"><span class="page-link page-link-static text-light">1 / 8</span></li>
+                  <li class="page-item active d-none d-sm-block text-light" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
+                  <li class="page-item d-none d-sm-block text-light"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item d-none d-sm-block text-light"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item d-none d-sm-block text-light">...</li>
+                  <li class="page-item d-none d-sm-block text-light"><a class="page-link" href="#">8</a></li>
+                  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                </ul>
+              </nav>
+            </div>
+
+          <!-- 리뷰리스트 끝-->
+          </div>
+
+          <!-- 오른쪽 영역-->
+          <div class="col-md-5 pt-5 pt-md-0" style="margin-top: -6rem;">
+            <div class="sticky-top pt-5">
+              <div class="d-none d-md-block pt-5">
+              </div>
+              <div class="card card-light card-body mb-4">
+                <div class="h5 text-light mb-1">행사기간</div>
+                <div class="text-light mb-2">2023. 09. 01 ~
+                  2309. 09. 01</div>
+                  
+                <div class="pt-3 mt-2">
+                  <div class="h5 text-light mb-1">주관단체</div>
+                  <div class="text-light mb-2">한국문화유산연구센터</div>
+                  <button class="btn btn-outline-light btn-lg px-4 mb-3" type="button"><i class="fi-phone me-2"></i>02-2038-8938</button><br>
+                </div>
+
+                <div class="h5 pt-3 text-nowrap text-light mb-1"><i class="fi-map-pin fs-lg opacity-70 me-2"></i><span class="align-middle">소재지</span></div>
+                <div class="text-light mb-2">강원도 태백시 / 태백 황지초등학교</div><br>
+
+                <div class="h5 text-light mb-1">대상</div>
+                <div class="text-light mb-2">황지초등학교 160명</div>
+                
+                <div class="pt-3 mt-2">
+                  <div class="h5 text-light mb-2">상세페이지</div>
+                  <a class="btn btn-primary btn-lg" href="http://www.kocent.co.kr/es_bh2/?r=home&c=3/32&uid=374"><i class="fi-chat-left me-2"> 바로가기</i></a>
+                </div><br>
+
+                <div class="h5 text-light mb-1">가격</div>
+                <div class="text-light mb-2">무료</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 관련 정보 -->
+        <h2 class="h3 text-light pt-5 pb-3 mt-md-4">이런 행사에 관심 있으신가요?</h2>
+        <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-carousel-light">
+          <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 3, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1, &quot;gutter&quot;: 16},&quot;500&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 18},&quot;900&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 20}, &quot;1100&quot;:{&quot;gutter&quot;: 24}}}">
+            <!-- 관련행사 시작-->
+            <div>
+              <div class="card card-light card-hover h-100">
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="#"></a>
+                  <div class="position-absolute start-0 top-0 pt-3 ps-3"></div>
+                  <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="찜하기"><i class="fi-heart"></i></button>
+                  </div><img src="img/myimages/ybh/relate1.png" alt="Image">
+                </div>
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">2022. 11. 08 ~ 2022. 11. 08</span>
+                  </div>
+                  <h3 class="h6 mb-1"><a class="nav-link-light" href="#">여러분, 백제를 아시나요?</a></h3>
+                  <div class="text-primary fw-bold mb-1">무료</div>
+                  <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>충청북도 공주시</div>
+                </div>
+                <div class="card-footer border-0 pt-0">
+                  <div class="border-top border-light pt-3">
+                    <div class="row g-2">
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-house-chosen d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">생생 문화재</span></div>
+                      </div>
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-phone d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">041-852-8520</span></div>
+                      </div>
+                      <div class="col">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-apartment d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">금강과사람들</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 관련행사 끝-->
+            <!-- 관련행사 시작-->
+            <div>
+              <div class="card card-light card-hover h-100">
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="#"></a>
+                  <div class="position-absolute start-0 top-0 pt-3 ps-3"></div>
+                  <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="찜하기"><i class="fi-heart"></i></button>
+                  </div><img src="img/myimages/ybh/relate2.png" alt="Image">
+                </div>
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">11/1, 11/8, 11/15, 11/22, 11/27</span>
+                  </div>
+                  <h3 class="h6 mb-1"><a class="nav-link-light" href="#">나를 찾아가는 역사이야기</a></h3>
+                  <div class="text-primary fw-bold mb-1">무료</div>
+                  <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>울산광역시</div>
+                </div>
+                <div class="card-footer border-0 pt-0">
+                  <div class="border-top border-light pt-3">
+                    <div class="row g-2">
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-house-chosen d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">향교·서원</span></div>
+                      </div>
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-phone d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">052-264-0630</span></div>
+                      </div>
+                      <div class="col">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-apartment d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">성균관유도회</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 관련행사 끝-->
+            <!-- 관련행사 시작-->
+            <div>
+              <div class="card card-light card-hover h-100">
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="#"></a>
+                  <div class="position-absolute start-0 top-0 pt-3 ps-3"></div>
+                  <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="찜하기"><i class="fi-heart"></i></button>
+                  </div><img src="img/myimages/ybh/relate3.png" alt="Image">
+                </div>
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">11월 4일~11월 28일까지 매주 화~금요일</span>
+                  </div>
+                  <h3 class="h6 mb-1"><a class="nav-link-light" href="#">영랑생가 사랑방이야기</a></h3>
+                  <div class="text-primary fw-bold mb-1">무료</div>
+                  <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>전라남도</div>
+                </div>
+                <div class="card-footer border-0 pt-0">
+                  <div class="border-top border-light pt-3">
+                    <div class="row g-2">
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-house-chosen d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">고택·종갓집</span></div>
+                      </div>
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-phone d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">061-430-3372</span></div>
+                      </div>
+                      <div class="col">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-apartment d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">시문학파기념관</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 관련행사 끝-->
+            <!-- 관련행사 시작-->
+            <div>
+              <div class="card card-light card-hover h-100">
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="#"></a>
+                  <div class="position-absolute start-0 top-0 pt-3 ps-3"></div>
+                  <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="찜하기"><i class="fi-heart"></i></button>
+                  </div><img src="img/myimages/ybh/relate1.png" alt="Image">
+                </div>
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">2022. 11. 08 ~ 2022. 11. 08</span>
+                  </div>
+                  <h3 class="h6 mb-1"><a class="nav-link-light" href="#">여러분, 백제를 아시나요?</a></h3>
+                  <div class="text-primary fw-bold mb-1">무료</div>
+                  <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>충청북도 공주시</div>
+                </div>
+                <div class="card-footer border-0 pt-0">
+                  <div class="border-top border-light pt-3">
+                    <div class="row g-2">
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-house-chosen d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">생생 문화재</span></div>
+                      </div>
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-phone d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">041-852-8520</span></div>
+                      </div>
+                      <div class="col">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-apartment d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">금강과사람들</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 관련행사 끝-->
+            <!-- 관련행사 시작-->
+            <div>
+              <div class="card card-light card-hover h-100">
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="#"></a>
+                  <div class="position-absolute start-0 top-0 pt-3 ps-3"></div>
+                  <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="찜하기"><i class="fi-heart"></i></button>
+                  </div><img src="img/myimages/ybh/relate1.png" alt="Image">
+                </div>
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">2022. 11. 08 ~ 2022. 11. 08</span>
+                  </div>
+                  <h3 class="h6 mb-1"><a class="nav-link-light" href="#">여러분, 백제를 아시나요?</a></h3>
+                  <div class="text-primary fw-bold mb-1">무료</div>
+                  <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>충청북도 공주시</div>
+                </div>
+                <div class="card-footer border-0 pt-0">
+                  <div class="border-top border-light pt-3">
+                    <div class="row g-2">
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-house-chosen d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">생생 문화재</span></div>
+                      </div>
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-phone d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">041-852-8520</span></div>
+                      </div>
+                      <div class="col">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-apartment d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">금강과사람들</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 관련행사 끝-->
+            <!-- 관련행사 시작-->
+            <div>
+              <div class="card card-light card-hover h-100">
+                <div class="card-img-top card-img-hover"><a class="img-overlay" href="#"></a>
+                  <div class="position-absolute start-0 top-0 pt-3 ps-3"></div>
+                  <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="찜하기"><i class="fi-heart"></i></button>
+                  </div><img src="img/myimages/ybh/relate1.png" alt="Image">
+                </div>
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">2022. 11. 08 ~ 2022. 11. 08</span>
+                  </div>
+                  <h3 class="h6 mb-1"><a class="nav-link-light" href="#">여러분, 백제를 아시나요?</a></h3>
+                  <div class="text-primary fw-bold mb-1">무료</div>
+                  <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>충청북도 공주시</div>
+                </div>
+                <div class="card-footer border-0 pt-0">
+                  <div class="border-top border-light pt-3">
+                    <div class="row g-2">
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-house-chosen d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">생생 문화재</span></div>
+                      </div>
+                      <div class="col me-sm-1">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-phone d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">041-852-8520</span></div>
+                      </div>
+                      <div class="col">
+                        <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-apartment d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">금강과사람들</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 관련행사 끝-->
+
+            
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- 푸터 -->
+    <footer class="footer bg-dark">
+      <div class="container pt-3 pt-lg-3 justify-content-between">
+        <div class="row pt-2 pt-lg-1">
+          <div class="col-lg-3 mt-4">
+            <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
+            <p class="fs-sm text-light opacity-70">새로 업데이트되는 소식을 전해드립니다</p>
+            <form class="form-group form-group-light w-100">
+              <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
+                <input class="form-control" type="text" placeholder="Email 주소">
+              </div>
+              <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
+            </form>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재행사</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
+          </div>
+
+          <div class="col-lg-3 mb-2 mb-sm-4">
+            <div class="row">
+              <div class="col mt-2">
+                <span class="text-light" style="font-size: 40pt;">문화</span>
+                <span class="text-light" style="font-size: 40pt;">&nbsp;월드</span>
+              </div>
+              <div class="col mt-2">
+                <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%;" alt="">
+                <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-telegram"></i></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- 푸터 끝 -->
+    
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+    <script src="vendor/lightgallery/lightgallery.min.js"></script>
+    <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+    <!-- Main theme script-->
+    <script src="js/theme.min.js"></script>
+  </body>
+</html>
