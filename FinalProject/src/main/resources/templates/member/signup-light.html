@@ -17,6 +17,7 @@
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
     <!-- Page loading styles-->
     <style>
       @font-face {
@@ -101,6 +102,7 @@
       
     </style>
     <!-- Page loading scripts-->
+    
     <script>
       (function () {
         window.onload = function () {
@@ -234,6 +236,22 @@
                     </label>
                   </div>
                 </div>
+                <div class="mb-4">
+                  <label class="form-label" for="phone">전화번호</label>
+                  <input class="form-control" type="text" name="phone" id="phone" placeholder="아이디를 입력하세요">
+                </div>
+                <div class="mb-4">
+                  <label class="form-label" for="email">이메일</label>
+                  <input class="form-control" type="text" name="email" id="email" placeholder="아이디를 입력하세요">
+                </div>
+                <div class="mb-4">
+                  <label class="form-label" for="addresscode">주소</label>
+                  <select class="form-select" name="addresscode" id="addresscode">
+                  	<option>시군구 선택</option>
+                  </select>
+                  <input class="form-control" type="text" name="address">
+                </div>
+                  <input type="hidden" id="codeno" name="codeno" value="11">
                 <button class="btn btn-primary btn-lg w-100" type="submit">회원 가입</button>
               </form>
             </div>
@@ -293,13 +311,38 @@
       </div>
     </footer>
     <!-- 푸터 끝 -->
-
+    
+	<script>
+	  $(function(){
+        var area = ["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"];
+        var code = [ 11, 21, 22, 23, 24, 25, 26, 45, 31, 32, 33, 34, 35,
+            36, 37, 38, 50 ];
+        
+        $("#addresscode").each(function(){
+          $sel = $(this);
+          $.each(eval(area), function(){
+            $sel.append("<option value='"+this+"'>"+this+"</option>");
+          });
+        });
+        
+        $("#addresscode").change(function(){
+        	var areasel = $(this).val();
+        	console.log(areasel);
+        	var num = area.indexOf(areasel);
+        	console.log(code[num]);
+        	$("#codeno").val(code[num]);
+        });
+        
+        
+      });
+    </script>
+	
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
-    <script src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
-    <script src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
-    <script src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
     <!-- Main theme script-->
-    <script src="@{/js/theme.min.js}"></script>
+    <script th:src="@{/js/theme.min.js}"></script>
   </body>
 </html>
