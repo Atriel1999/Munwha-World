@@ -5,7 +5,7 @@
     border-color: rgba(255, 255, 255, .15) !important
 }
 
- /*HY맑은샘물M*/
+/*HY맑은샘물M*/
 @font-face {
     font-family: "HYM1004";       
     font-weight: normal;
@@ -13,6 +13,7 @@
     src: url("../fonts/hym-yoond1004.woff");
 }
 
+/*조선100년체*/
 @font-face {
     font-family: "ChosunCentennial";       
     font-weight: normal;
@@ -20,24 +21,7 @@
     src: url("../fonts/ChosunCentennial.woff");
 }
 
-.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
-.tbl tr th{background:#4966c5;color:#fff}
-.tbl tr td{border-bottom:1px solid #ddd;color:#555;text-align:center}
-.tbl tr td a{color:#555}
-.tbl tr td a:hover, .tbl tr td a:focus{color:#0d408c}
-.tbl tr td a p{width:100%;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tbl tbody tr:hover td,.tbl tbody tr:focus td{background:#e7ebf8}
-.tbl tr th, .tbl tr td{padding:15px 0}
-.tbl tr td.tb_tit{text-align:left}
-
-.tbl.type_01{border-top:3px solid #4966c5}
-.tbl.type_01 tr th,.tbl.type_01 tr td{background:#fff}
-.tbl.type_01 tr th{color:#000;border-bottom:1px solid #ddd;font-weight:normal}
-.tbl.type_01 tr td:first-child{padding-left:1%}
-
-
-.mt30{margin-top:30px}
-
+/*폰트적용 hym, chosun*/
 .hym {
     font-family: "HYM1004";
 }
@@ -45,6 +29,7 @@
 .chosun {
     font-family: "ChosunCentennial";
 }
+/*폰트적용 끝*/
 
 .opacity-transition {
     transition: opacity .25s ease-in-out

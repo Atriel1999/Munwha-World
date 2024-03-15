@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Finder | 문화재 | 문화재추천</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Page loading styles-->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #666276;;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #bbb7c5;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+          src: url()
+        }
+      }
+
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="css/heritage-recommend.css">
+  </head>
+  <!-- Body-->
+  <body>
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>로딩중...</span>
+      </div>
+    </div>
+    <main class="page-wrapper">
+
+      <!-- 헤더 시작 -->
+      <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
+          <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
+          <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+              <!-- Menu items-->
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문화재</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
+                  <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">날씨정보</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
+            <i class="fi-user me-2"></i>로그인</span>
+          </a>
+        </div>
+      </header>
+      <!-- 헤더 끝 -->
+
+      <!-- Page content-->
+      <!-- Best3 문화재-->
+      <section class="bg-dark pt-5">
+        <div class="container pt-5 pb-2">
+          <img class="mt-4 mb-2 pb-lg-2" style="height: 8rem;" src="img/myimages/ybh/heritage-recommend-title1.png" alt="Image">
+        </div>
+        
+        <div class="container pb-5 mb-5" style="display:flex;">
+            <!-- Item-->
+            <div class="me-lg-5" style="flex:1">
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" style="height: 20rem; object-fit:cover;" src="img/myimages/ybh/recommend1.png" alt="Image">
+                </div>
+                <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link text-light" href="city-guide-single.html">숭례문</a></h3>
+                <h6 class="mb-2 fs-xs"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">톤 스튜디오 서울</a></h6>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(48개 리뷰)</span></li>
+                  <li class="list-inline-item pe-1"><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle"></i>서울특별시 중구 세종대로 40</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Item-->
+            <div class="me-lg-5" style="flex:1">
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" style="height: 20rem; object-fit:cover;" src="img/myimages/ybh/recommend2.png" alt="Image">
+                </div>
+                <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link text-light" href="city-guide-single.html">북한산 신라 순수비</a></h3>
+                <h6 class="mb-2 fs-xs"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">톤 스튜디오 서울</a></h6>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(48개 리뷰)</span></li>
+                  <li class="list-inline-item pe-1"><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle"></i>서울특별시 종로구 구기동 산3-35</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Item-->
+            <div class="me-lg-5" style="flex:1">
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" style="height: 20rem; object-fit:cover;" src="img/myimages/ybh/recommend3.png" alt="Image">
+                </div>
+                <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link text-light" href="city-guide-single.html">성덕대왕신종(에밀레종)</a></h3>
+                <h6 class="mb-2 fs-xs"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">톤 스튜디오 서울</a></h6>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(48개 리뷰)</span></li>
+                  <li class="list-inline-item pe-1"><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle"></i>경북 경주시 일정로 186 (인왕동)</li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- 국보 추천-->
+      <section class="position-relative bg-white rounded-xxl-4 zindex-5" style="margin-top: -30px;">
+        <div class="container pt-5 pb-3">
+          <img class="mb-2 pb-lg-2" style="height: 8rem;" src="img/myimages/ybh/heritage-recommend-title2.png" alt="Image">
+          <img class="mb-2 pb-lg-2" style="height: 12rem;" src="img/myimages/ybh/heritage-recommend-title3.png" alt="Image">
+        </div>
+        <div class="container pb-2 mb-2" style="display:flex;">
+          <!-- Item-->
+          <div class="me-lg-5" style="flex:2.1">
+            <div class="position-relative">
+              <div class="position-relative mb-3">
+                <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button>
+                <div class ="heritage-recommend-title"><h2 class="heritage-recommend-font">서울 원각사지 십층석탑</h2></div>
+                <img class="rounded-3" style="width: 60rem; height: 20rem; object-fit:fill;" src="img/myimages/ybh/heritage-recommend-img1.jpg" alt="Image">
+              </div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="me-lg-5" style="flex:1">
+            <div class="position-relative">
+              <div class="position-relative mb-3">
+                <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button>
+                <div class ="heritage-recommend-title"><h2 class="heritage-recommend-font">서울 북한산 신라 진흥왕 순수비</h2></div>
+                <img class="rounded-3" style="width: 30rem; height: 20rem; object-fit:fill;" src="img/myimages/ybh/heritage-recommend-img2.jpg" alt="Image">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container pb-5 mb-5" style="display:flex;">
+          <!-- Item-->
+          <div class="me-lg-5" style="flex:1">
+            <div class="position-relative">
+              <div class="position-relative mb-3">
+                <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button>
+                <div class ="heritage-recommend-title"><h2 class="heritage-recommend-font">여주 고달사지 승탑</h2></div>
+                <img class="rounded-3" style="width: 30rem; height: 20rem; object-fit:fill;" src="img/myimages/ybh/heritage-recommend-img3.jpg" alt="Image">
+              </div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="me-lg-5" style="flex:1">
+            <div class="position-relative">
+              <div class="position-relative mb-3">
+                <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button>
+                <div class ="heritage-recommend-title"><h2 class="heritage-recommend-font">보은 법주사 쌍사자 석등</h2></div>
+                <img class="rounded-3" style="width: 30rem; height: 20rem; object-fit:fill;" src="img/myimages/ybh/heritage-recommend-img4.jpg" alt="Image">
+              </div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="me-lg-5" style="flex:1">
+            <div class="position-relative">
+              <div class="position-relative mb-3">
+                <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button>
+                <div class ="heritage-recommend-title"><h2 class="heritage-recommend-font">충주 탑평리 칠층석탑</h2></div>
+                <img class="rounded-3" style="width: 30rem; height: 20rem; object-fit:fill;" src="img/myimages/ybh/heritage-recommend-img5.jpg" alt="Image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 지역별 추천 -->
+      <section class="bg-dark pt-5">
+        <div class="container pt-2 pb-3">
+          <img class="mt-2 mb-5 pb-lg-2 float-start" style="height: 8rem;" src="img/myimages/ybh/heritage-recommend-title4.png" alt="Image">
+          <div class="pt-5 float-end">
+            <h3 class="fs-lg me-sm-5 text-white text-end">현재위치: 전라남도</h3>
+            <div class="dropdown w-sm-50 text-end" data-bs-toggle="select">
+              <!-- 시/도 군/구 데이터 참고: https://chichi-story.tistory.com/18 -->
+              <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">지역 선택</span></button>
+              <input type="hidden">
+              <ul class="dropdown-menu dropdown-menu-dark my-3">
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">서울특별시</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">인천광역시</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대전광역시</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">광주광역시</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">대구광역시</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">울산광역시</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">부산광역시</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경기도</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">강원도</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">충청북도</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">충청남도</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">전라북도</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">전라남도</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경상북도</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">경상남도</span></a></li>
+                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">제주도</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container pb-5 mb-5" style="display:flex;">
+            <!-- Item-->
+            <div class="me-lg-5" style="flex:1">
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" style="height: 20rem; object-fit:cover;" src="img/myimages/ybh/recommend1.png" alt="Image">
+                </div>
+                <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link text-light" href="city-guide-single.html">숭례문</a></h3>
+                <h6 class="mb-2 fs-xs"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">톤 스튜디오 서울</a></h6>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(48개 리뷰)</span></li>
+                  <li class="list-inline-item pe-1"><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle"></i>서울특별시 중구 세종대로 40</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Item-->
+            <div class="me-lg-5" style="flex:1">
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" style="height: 20rem; object-fit:cover;" src="img/myimages/ybh/recommend2.png" alt="Image">
+                </div>
+                <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link text-light" href="city-guide-single.html">북한산 신라 순수비</a></h3>
+                <h6 class="mb-2 fs-xs"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">톤 스튜디오 서울</a></h6>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(48개 리뷰)</span></li>
+                  <li class="list-inline-item pe-1"><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle"></i>서울특별시 종로구 구기동 산3-35</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Item-->
+            <div class="me-lg-5" style="flex:1">
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" style="height: 20rem; object-fit:cover;" src="img/myimages/ybh/recommend3.png" alt="Image">
+                </div>
+                <h3 class="mb-1 fs-lg"><a class="nav-link stretched-link text-light" href="city-guide-single.html">성덕대왕신종(에밀레종)</a></h3>
+                <h6 class="mb-2 fs-xs"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">톤 스튜디오 서울</a></h6>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(48개 리뷰)</span></li>
+                  <li class="list-inline-item pe-1"><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle"></i>경북 경주시 일정로 186 (인왕동)</li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- 문화재 행사 추천-->
+      <section class="position-relative bg-white" style="margin-top: 15rem;">
+          <div class="wrap-recommend-event event-container" style="width: 100vw; font-size: 0">
+            <a href="http://www.gjnighttrip.or.kr/ko/index.php"><img style="height: 30rem; object-fit:cover;" src="img/myimages/ybh/recommend-event1.jpg"/></a>
+            <a href="https://jeongdong-culturenight.kr/kor/index.php"><img style="height: 30rem; object-fit:cover;" src="img/myimages/ybh/recommend-event2.jpg"/></a>
+            <a href="http://namwonnight.co.kr"><img style="height: 30rem; object-fit:cover;" src="img/myimages/ybh/recommend-event3.jpg"/></a>
+            <a href="http://www.sdmnightroad.com"><img style="height: 30rem; object-fit:cover;" src="img/myimages/ybh/recommend-event4.jpg"/></a>
+            <a href="https://www.culturenight.co.kr"><img style="height: 30rem; object-fit:cover;" src="img/myimages/ybh/recommend-event5.jpg"/></a>
+          </div>    
+      </section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer bg-dark">
+      <div class="container pt-3 pt-lg-3 justify-content-between">
+        <div class="row pt-2 pt-lg-1">
+          <div class="col-lg-3 mt-4">
+            <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
+            <p class="fs-sm text-light opacity-70">새로 업데이트되는 소식을 전해드립니다</p>
+            <form class="form-group form-group-light w-100">
+              <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
+                <input class="form-control" type="text" placeholder="Email 주소">
+              </div>
+              <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
+            </form>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재행사</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
+          </div>
+
+          <div class="col-lg-3 mb-2 mb-sm-4">
+            <div class="row">
+              <div class="col mt-2">
+                <span class="text-light" style="font-size: 40pt;">문화</span>
+                <span class="text-light" style="font-size: 40pt;">&nbsp;월드</span>
+              </div>
+              <div class="col mt-2">
+                <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%;" alt="">
+                <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-telegram"></i></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- 푸터 끝 -->
+
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">위</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Main theme script-->
+    <script src="js/theme.min.js"></script>
+  </body>
+</html>
