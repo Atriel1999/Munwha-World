@@ -1,5 +1,6 @@
 package com.multi.bbs.member.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +16,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.multi.bbs.kakao.KakaoService;
 import com.multi.bbs.member.model.service.MemberService;
 import com.multi.bbs.member.model.vo.Member;
-import com.multi.bbs.member.model.vo.MemberForm;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,6 +30,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private KakaoService kakaoService;
 	
 	@PostMapping("/login")
 	String login(Model model, String userId, String userPwd) {
@@ -53,37 +55,6 @@ public class MemberController {
 		status.setComplete();
 		log.info("status : " + status.isComplete());
 		return "redirect:/";
-	}
-	
-	@GetMapping("/member/enroll")
-	public String enrollPage() {
-		log.info("가입 페이지 요청");
-		return "member/enroll";
-	}
-	
-	@PostMapping("/member/enroll")
-	public String enroll(Model model, @Validated MemberForm memberForm, BindingResult bindingResult) { // @ModelAttribute 생각가능
-		log.info("회원가입, MemberForm : " + memberForm.toString());
-
-		if(bindingResult.hasErrors()) {
-			model.addAttribute("msg","회원가입 실패 : " + bindingResult.getAllErrors().get(0).getDefaultMessage());
-			model.addAttribute("location", "/member/enroll");
-			return "common/msg";
-		}
-
-		Member member = memberForm.toMember();
-		
-
-		Member result = service.save(member);
-		
-		if(result != null) { // 성공
-			model.addAttribute("msg", "회원가입에 성공하였습니다.");
-			model.addAttribute("location", "/");
-		}else { // 실패
-			model.addAttribute("msg", "회원가입에 실패하였습니다. 입력정보를 확인하세요.");
-			model.addAttribute("location", "/");
-		}
-		return "common/msg";
 	}
 	
 
@@ -174,17 +145,79 @@ public class MemberController {
 	// 로그인페이지 진입
 	@GetMapping("/login")
 	public String loginpage() {
-		
+		log.debug("로그인페이지");
 		return "member/signin-light";
 	}
+	
+	
 	
 	
 	
 	// 회원가입페이지 진입
 	@GetMapping("/signup")
 	public String signuppage() {
+		log.debug("회원가입페이지");
 		return "member/signup-light";
 	}
+	
+	// 회원가입 처리
+	@PostMapping("/signup")
+	public String enroll(Model model, Member member) {
+		log.debug("회원가입 요청 : " + member.toString());
+		Member result = service.save(member);
+		
+		if(result != null) { // 성공
+			model.addAttribute("msg", "회원가입에 성공하였습니다.");
+			model.addAttribute("location", "/");
+		}else { // 실패
+			model.addAttribute("msg", "회원가입에 실패하였습니다. 입력정보를 확인하세요.");
+			model.addAttribute("location", "/");
+		}
+		return "common/msg";
+	}
+	
+	// 카카오회원가입요청
+	@GetMapping("/signupkakao")
+	public String signupkakao(Model model, String code) {
+		log.debug("카카오회원가입요청");
+		if(code != null) {
+			try {
+				String url = "http://localhost/signupkakao";
+				log.debug("code: " + code);
+				String token = kakaoService.getToken(code, url);
+				Map<String, Object> map = kakaoService.getUserInfo(token);
+				model.addAttribute("kakaoMap", map);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return "member/signup-light";
+	}
+	
+	// 카카오로그인
+	@GetMapping("/kakaoLogin")
+	public String kakaoLogin(Model model, String code) {
+		if(code != null) {
+			try {
+				String url = "http://localhost/kakaoLogin";
+				String token = kakaoService.getToken(code, url);
+				Map<String, Object> map = kakaoService.getUserInfo(token);
+				String kakaoToken = (String) map.get("id");
+				Member loginMember = service.loginKakao(kakaoToken);
+				if (loginMember != null) {
+					model.addAttribute("loginMember", loginMember);
+					return "redirect:/";
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		model.addAttribute("msg", "로그인 실패");
+		model.addAttribute("location", "/");
+		return "common/msg";
+	}
+	
 	
 	
 	

@@ -43,9 +43,6 @@ public class MemberService {
 			System.out.println(encodePW);
 			member.setPassword(encodePW);
 		}
-		if(member.getHobby() == null) {
-			member.setHobby("");
-		}
 		return memberRepo.save(member);
 	}
 	
@@ -73,6 +70,16 @@ public class MemberService {
 		Member member = memberOption.get();
 		member.setPassword(encodePW);
 		return memberRepo.save(member);
+	}
+
+	// 카카오로그인
+	public Member loginKakao(String kakaoToken) {
+		Member member = memberRepo.findByKakaotoken(kakaoToken);
+		if (member == null) {
+			return null;
+		} else {
+			return member;
+		}
 	}
 	
 }
