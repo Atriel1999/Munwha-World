@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Finder | Sign In Page</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Page loading styles-->
+    <style>
+      @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      .gmarketfontM{
+        font-family: 'GmarketSansMedium';
+      }
+      * {
+        font-family: 'GmarketSansMedium';
+      }
+      .navbar {
+        height: 110px;
+      }
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #666276;;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #bbb7c5;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+  </head>
+  <!-- Body-->
+  <body class="bg-secondary">
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Loading...</span>
+      </div>
+    </div>
+    <main class="page-wrapper">
+
+      <!-- 헤더 시작 -->
+      <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
+          <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
+          <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+              <!-- Menu items-->
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문화재</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
+                  <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">날씨정보</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
+            <i class="fi-user me-2"></i>로그인</span>
+          </a>
+        </div>
+      </header>
+      <!-- 헤더 끝 -->
+<!-- Body-->
+
+<body class="handheld-toolbar-enabled">
+    <main class="page-wrapper">
+
+        <!-- Page content-->
+      <div class="container-fluid" style="margin-top: 150px;">
+        <section class="container px-5 mb-5 pb-2 my-5" style="margin-right: 100px;">
+            <div class="row gy-5">
+                <form class="needs-validation col-md-8" novalidate>
+                    <!-- Details-->
+                    <div class="mb-4 pb-md-0 pb-2">
+                      <h1>Write</h1>
+                        <div class="row gy-md-4 gy-3">
+                            <div class="col-sm-6">
+                                <label class="form-label" for="details-category"> 게시판 선택 <span
+                                        class="ms-1 text-danger">*</span> </label>
+                                <select class="form-select" id="details-category">
+                                    <option disabled selected> 게시판 선택 </option>
+                                    <option> Q & A </option>
+                                    <option>공지사항</option>
+                                    <option>자유게시판</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                              <label class="form-label" for="details-title"> 제목
+                                  <span class="ms-1 text-danger">*</span></label>
+                              <input class="form-control" id="details-title" type="Text" placeholder="제목을 입력하세요"
+                                  required>
+                              <div class="invalid-feedback">제목을 입력하세요</div><span class="form-text">
+                                  최대 100자입니다. HTML이나 이모티콘은 허용되지 않습니다.</span>
+                          </div>
+                            <div class="invalid-feedback">Please choose rating!</div>
+                            <div class="col-12">
+                                <label class="form-label" for="details-description">내용<span
+                                        class="ms-1 text-danger">*</span></label>
+                                <textarea class="form-control" id="details-description" rows="4"
+                                    placeholder="내용을 입력하세요"></textarea><span class="form-text">0 of 500 characters
+                                    used.</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Upload file-->
+                    <div class="mb-md-5 mb-4 pb-md-0 pb-2">
+                        <h3 class="h5 mb-2 pb-1 fs-3">Photos </h3>
+                        <p class="mb-4 fs-7"> 파일 지원 형식 : PNG, JPG, GIF, WEBP, MP3 or
+                            MP4. Max size: 100mb.
+                        </p>
+                        <!-- Drag and drop file upload-->
+                        <div class="file-drop-area" style="background-color:rgba(220, 220, 220, 0.171);">
+                            <div class="file-drop-icon ci-cloud-upload"></div>
+                              <i class="fi-folder"></i>
+                            <input class="file-drop-input" type="file">
+                        </div>
+                    </div>
+                    <!-- Submit-->
+                    <div class="pt-2">
+                        <button class="btn btn-lg btn-accent d-block w-100" type="submit"> 작성 완료하기 </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+      </div>
+    </main>
+    <!-- 푸터 -->
+    <footer class="footer bg-dark">
+      <div class="container pt-3 pt-lg-3 justify-content-between">
+        <div class="row pt-2 pt-lg-1">
+          <div class="col-lg-3 mt-4">
+            <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
+            <p class="fs-sm text-light opacity-70">새로 업데이트되는 소식을 전해드립니다</p>
+            <form class="form-group form-group-light w-100">
+              <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
+                <input class="form-control" type="text" placeholder="Email 주소">
+              </div>
+              <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
+            </form>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재행사</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
+          </div>
+
+          <div class="col-lg-3 mb-2 mb-sm-4">
+            <div class="row">
+              <div class="col mt-2">
+                <span class="text-light" style="font-size: 40pt;">문화</span>
+                <span class="text-light" style="font-size: 40pt;">&nbsp;월드</span>
+              </div>
+              <div class="col mt-2">
+                <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%;" alt="">
+                <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-telegram"></i></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- 푸터 끝 -->
+
+
+
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Main theme script-->
+    <script src="js/theme.min.js"></script>
+  </body>
+</html>

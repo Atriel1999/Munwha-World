@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Finder | Sign In Page</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Page loading styles-->
+    <style>
+      @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      .gmarketfontM{
+        font-family: 'GmarketSansMedium';
+      }
+      * {
+        font-family: 'GmarketSansMedium';
+      }
+      .navbar {
+        height: 110px;
+      }
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #666276;;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #bbb7c5;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css"/>
+    <link rel="stylesheet" media="screen" href="vendor/flatpickr/dist/flatpickr.min.css"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+  </head>
+  <!-- Body-->
+  <body class="bg-secondary">
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Loading...</span>
+      </div>
+    </div>
+    <main class="page-wrapper">
+
+      <!-- 헤더 시작 -->
+      <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
+          <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
+          <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+              <!-- Menu items-->
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문화재</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
+                  <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">날씨정보</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
+                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
+            <i class="fi-user me-2"></i>로그인</span>
+          </a>
+        </div>
+      </header>
+      <!-- 헤더 끝 -->
+      <!-- Page Title-->
+      <div class="container-fluid">
+        <div class="container d-lg-flex justify-content-between" style= "margin-top: 150px; margin-left: 300px;">
+          <h1>곤룡포잔</h1>
+        </div>
+      <div class="container">
+        <!-- Gallery + details-->
+        <div class="bg-light shadow-lg rounded-3 px-4 py-3 mb-5">
+          <div class="px-lg-3">
+            <div class="row">
+              <!-- Product gallery-->
+              <div class="col-lg-6 pe-lg-0 pt-lg-4">
+                <div class="product-gallery">
+                  <div class="tns-slides-count text-light"><i class="fi-image fs-lg me-2"></i>
+                    <div class="ps-1"><span class="tns-current-slide fw-bold"></span><span class="fs-5 fw-bold">/</span><span class="tns-total-slides fs-5 fw-bold"></span></div>
+                  </div>
+                  <div class="tns-carousel-wrapper">
+                    <div class="tns-slides-count text-light"><i class="fi-image fs-lg me-2"></i>
+                      <div class="ps-1"><span class="tns-current-slide fs-5 fw-bold"></span><span class="fs-5 fw-bold">/</span><span class="tns-total-slides fs-5 fw-bold"></span></div>
+                    </div>
+                    <div class="tns-carousel-inner" data-carousel-options="{&quot;navAsThumbnails&quot;: true, &quot;navContainer&quot;: &quot;#thumbnails&quot;, &quot;gutter&quot;: 12, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false},&quot;500&quot;:{&quot;controls&quot;: true}}}">
+                      <div><img class="rounded-3" src="img/shopping_img/곤룡포잔 1.PNG" alt="Image"></div>
+                      <div><img class="rounded-3" src="img/shopping_img/곤룡포잔2.PNG" alt="Image"></div>
+                      <div><img class="rounded-3" src="img/shopping_img/곤룡포자 3.PNG" alt="Image"></div>
+                      <div><img class="rounded-3" src="img/shopping_img/곤룡포자4.PNG" alt="Image"></div>
+                      <div><img class="rounded-3" src="img/shopping_img/곤룡포자5.PNG" alt="Image"></div>
+                    </div>
+                  </div>
+                  <ul class="tns-thumbnails" id="thumbnails">
+                    <li class="tns-thumbnail"><img src="img/shopping_img/곤룡포잔 1.PNG" alt="Thumbnail"></li>
+                    <li class="tns-thumbnail"><img src="img/shopping_img/곤룡포잔2.PNG" alt="Thumbnail"></li>
+                    <li class="tns-thumbnail"><img src="img/shopping_img/곤룡포자 3.PNG" alt="Thumbnail"></li>
+                    <li class="tns-thumbnail"><img src="img/shopping_img/곤룡포자4.PNG" alt="Thumbnail"></li>
+                    <li class="tns-thumbnail"><img src="img/shopping_img/곤룡포자5.PNG" alt="Thumbnail"></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Product details-->
+              <div class="col-lg-5 pt-5 p-md-4 m-lg-4";>
+                <div class="product-details ms-auto pb-3">
+                  <div class="d-flex justify-content-between align-items-center mb-2"><a href="#reviews" data-scroll>
+                      <div class="star-rating"><i class="fi-star-filled mt-n1 me-1 text-warning align-middle opacity-70"></i><i class="fi-star-filled mt-n1 me-1 text-warning align-middle opacity-70"></i><i class="fi-star-filled mt-n1 me-1 text-warning align-middle opacity-70"></i><i class="fi-star-filled mt-n1 me-1 text-warning align-middle opacity-70"></i><i class="fi-star mt-n1 me-1 text-warning align-middle opacity-70"></i>
+                      </div><span class="d-inline-block fs-sm text-body align-middle mt-1 ms-1">74 Reviews</span></a>
+                      <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="찜하기"><i class="fi-heart"></i></button>
+                  </div>
+                  <div class="mb-3"><span class="h3 fw-normal text-accent me-1">35000원</span>
+                  </div>
+                  <div class="position-relative me-n4 mb-3">
+                  <form class="mb-grid-gutter" method="post">
+                    <div class="mb-3 d-flex align-items-center">
+                      <select class="form-select me-3" style="width: 5rem;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      <button class="btn btn-primary btn-shadow d-block w-100" type="submit"><i class="ci-cart fs-lg me-2"></i>Add to Cart</button>
+                    </div>
+                  </form>
+                  <!-- Product panels-->
+                  <div class="accordion mb-4" id="productPanels">
+                    <div class="accordion-item">
+                      <h3 class="accordion-header"><a class="accordion-button" href="#productInfo" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="productInfo"><i class="fi-info-circle text-muted fs-lg align-middle mt-n1 me-2"></i>Product info</a></h3>
+                      <div class="accordion-collapse collapse show" id="productInfo" data-bs-parent="#productPanels">
+                        <div class="accordion-body">
+                          <h6 class="fs-sm mb-2">곤룡포잔은 청색, 적색, 백색잔 3가지 컬러로 구성되어 있으며 패키지 뒷면에 한글과 영문 설명이 표기되어 있어 외국인 선물로 추천합니다.</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h3 class="accordion-header"><a class="accordion-button" href="#productInfo" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="productInfo"><i class="fi-truck text-muted fs-lg align-middle mt-n1 me-2"></i>Shipping info</a></h3>
+                      <div class="accordion-collapse collapse show" id="productInfo" data-bs-parent="#productPanels">
+                        <div class="accordion-body">
+                          <h6 class="fs-sm mb-2">
+                            상품결제정보 고액결제의 경우 안전을 위해 카드사에서 확인전화를 드릴 수도 있습니다. <br>
+                            확인과정에서 도난 카드의 사용이나 타인 명의의 주문등 정상적인 주문이 아니라고 판단될 경우 임의로 주문을 보류 또는 취소할 수 있습니다.
+                            <br><br>
+                            <ul class="fs-sm ps-4">
+                              <li>주문시 입력한 입금자명과 실제입금자의 성명이 반드시 일치하여야 하며, 7일 이내로 입금을 하셔야 하며 입금되지 않은 주문은 자동취소 됩니다.</li>                             
+                              <li>배송정보 배송 방법 : 로젠택배 (타택배사 발송 불가) 배송 지역 : 전국지역 배송 비용 : 3,000원 배송 기간 : 3일 ~ 7일 배송 안내 : - 산간벽지나 도서지방은 주문단계에서 추가금액이 발생할 수 있습니다. - 무형문화재 작품의 경우 주문 후 제작되므로 7~20일 정도 소요될 수 있습니다.</li>
+                              <li>급하신 경우, 미리 재고 문의 후 주문부탁드립니다. - 주문하신 상품은 입금 확인 후 배송해 드립니다. 다만, 상품에 따라서 상품의 배송이 다소 지연될 수 있습니다.</li>
+                            </ul>
+                               
+                            <ul class="fs-sm ps-4 mb-0">
+                              교환 및 반품이 가능한 경우
+                              <li>계약내용에 관한 서면을 받은 날부터 7일. <br> 단, 그 서면을 받은 때보다 재화등의 공급이 늦게 이루어진 경우에는 재화등을 공급받거나 재화등의 공급이 시작된 날부터 7일 이내 - 공급받으신 상품 및 용역의 내용이 표시.광고 내용과 다르거나 계약내용과 다르게 이행된 때에는 당해 재화 등을 공급받은 날 부터 3월이내, 그사실을 알게 된 날 또는 알 수 있었던 날부터 30일이내 교환 및 반품이 불가능한 경우</li>
+                              <li>이용자에게 책임 있는 사유로 재화 등이 멸실 또는 훼손된 경우(다만, 재화 등의 내용을 확인하기 위하여 포장 등을 훼손한 경우에는 청약철회를 할 수 있습니다) - 이용자의 사용 또는 일부 소비에 의하여 재화 등의 가치가 현저히 감소한 경우</li>
+                              <br> ※ 고객님의 마음이 바뀌어 교환, 반품을 하실 경우 상품반송 비용은 고객님께서 부담하셔야 합니다. (색상 교환, 사이즈 교환 등 포함)
+                              서비스문의 기업·기관주문/대량주문/로고인쇄 문의 
+                              <br><br> ■ 전화번호 : 02-2270-1208 ■ E-mail : b2b@chf.or.kr
+                            </ul>
+                            </h6>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Product description section 1-->
+        <div class="row align-items-center py-md-3 m-lg-4 col-10" style="padding-left: 250px;">
+            <img src="img/shopping_img/곤룡포잔 디테일1.PNG" alt="">
+        </div>
+        <!-- Product description section 2-->
+        <div class="row align-items-center py-md-3 col-10" style="padding-left: 250px;">
+            <img src="img/shopping_img/곤룡포잔 디테일3.PNG" alt="">
+        </div>
+      </div>
+      <!-- Reviews-->
+      <div class="border-top border-bottom my-lg-4 py-4">
+        <div class="container pt-md-2" id="reviews">
+          <div class="row pb-3">
+            <div class="col-lg-4 col-md-5" style="padding-left: 100px;">
+              <h2 class="h4 mb-2">Average rating</h2>
+              <div class="star-rating me-2"></div><h5 class="display-2">4.7</h5>
+              <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+              </div><span class="fs-sm">48 reviews</span>
+            </div>
+            <div class="col-lg-8 col-md-4 m-6 pt-4" style="padding-right: 100px;">
+              <div class="d-flex align-items-center mb-2">
+                <div class="text-nowrap">5<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
+                <div class="progress w-100 mx-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                </div><span style="min-width: 48px;">80%</span>
+              </div>
+              <div class="d-flex align-items-center mb-2 fs-sm">
+                <div class="text-nowrap">4<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
+                <div class="progress w-100 mx-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                </div><span style="min-width: 48px;">10%</span>
+              </div>
+              <div class="d-flex align-items-center mb-2 fs-sm">
+                <div class="text-nowrap">3<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
+                <div class="progress w-100 mx-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div><span style="min-width: 48px;">0%</span>
+              </div>
+              <div class="d-flex align-items-center mb-2 fs-sm">
+                <div class="text-nowrap">2<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
+                <div class="progress w-100 mx-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div><span style="min-width: 48px;">0%</span>
+              </div>
+              <div class="d-flex align-items-center mb-2 fs-sm">
+                <div class="text-nowrap">1<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
+                <div class="progress w-100 mx-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                </div><span style="min-width: 48px;">10%</span>
+              </div>
+            </div>
+        <hr class="mt-4 mb-3">
+          <div class="row pt-4">
+            <!-- Reviews list-->
+            <div class="col-md-7">
+            <!-- Review-->
+            <div class="mb-4 pb-4 border-bottom">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                  </div>
+                </div><span class="text-muted fs-sm">Jan 17, 2021</span>
+              </div>
+              <p>Elementum ut quam tincidunt egestas vitae elit, hendrerit. Ullamcorper nulla amet lobortis elit, nibh condimentum enim. Aliquam felis nisl tellus sodales lectus dictum tristique proin vitae. Odio fermentum viverra tortor quis.</p>
+              <div class="d-flex align-items-center">
+                <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>
+                <div class="border-end me-1">&nbsp;</div>
+                <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
+              </div>
+            </div>
+            <!-- Review-->
+            <div class="mb-4 pb-4 border-bottom">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/13.png" width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0">Darrell Steward</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star"></i></span>
+                  </div>
+                </div><span class="text-muted fs-sm">Dec 1, 2020</span>
+              </div>
+              <p>Vel dictum nunc ut tristique. Egestas diam amet, ut proin hendrerit. Dui accumsan at phasellus tempus consequat dignissim.</p>
+              <div class="d-flex align-items-center">
+                <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
+                <div class="border-end me-1">&nbsp;</div>
+                <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
+              </div>
+            </div>
+            <!-- Review-->
+            <div class="mb-4 pb-4 border-bottom">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/13.png" width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0">Floyd Miles</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
+                  </div>
+                </div><span class="text-muted fs-sm">Oct  28, 2020</span>
+              </div>
+              <p>Viverra nunc blandit sapien non imperdiet sit. Purus tempus elementum aliquam eu urna. A aenean duis non egestas at libero porttitor integer eget. Sed dictum lobortis laoreet gravida.</p>
+              <div class="d-flex align-items-center">
+                <button class="btn-like" type="button"><i class="fi-like"></i><span>(2)</span></button>
+                <div class="border-end me-1">&nbsp;</div>
+                <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
+              </div>
+            </div>
+            <!-- Review-->
+            <div class="mb-4 pb-4 border-bottom">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/04.jpg" width="48" alt="Avatar">
+                  <div class="ps-2">
+                    <h6 class="fs-base mb-0">Ralph Edwards</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star"></i></span>
+                  </div>
+                </div><span class="text-muted fs-sm">Sep 14, 2020</span>
+              </div>
+              <p>Elementum nisl, egestas nam consectetur nisl, at pellentesque cras. Non sed ac vivamus dolor dignissim ut. Nisl sapien blandit pulvinar sagittis donec sociis ipsum arcu est. Tempus, rutrum morbi scelerisque tempor mi. Etiam urna, cras bibendum leo nec faucibus velit. Tempor lectus dignissim at auctor integer neque quam amet.</p>
+              <div class="d-flex align-items-center">
+                <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
+                <div class="border-end me-1">&nbsp;</div>
+                <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
+              </div>
+            </div>
+            <!-- Review pagination + Add review btn-->
+            <div class="d-flex align-items-center justify-content-between">
+              <nav aria-label="Reviews pagination">
+                <ul class="pagination mb-0">
+                  <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 8</span></li>
+                  <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
+                  <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item d-none d-sm-block">...</li>
+                  <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
+                  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+            <!-- Leave review form-->
+            <div class="col-md-5 mt-2 pt-4 mt-md-0 pt-md-0">
+              <div class="py-grid-gutter px-grid-gutter rounded-3">
+                <h3 class="h4 pb-2">Write a review</h3>
+                <form class="needs-validation" method="post" novalidate>
+                  <div class="mb-3">
+                    <label class="form-label" for="review-rating">Rating<span class="text-danger">*</span></label>
+                    <select class="form-select" required id="review-rating">
+                      <option value="">Choose rating</option>
+                      <option value="5">5 stars</option>
+                      <option value="4">4 stars</option>
+                      <option value="3">3 stars</option>
+                      <option value="2">2 stars</option>
+                      <option value="1">1 star</option>
+                    </select>
+                    <div class="invalid-feedback">Please choose rating!</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="review-text">Review<span class="text-danger">*</span></label>
+                    <textarea class="form-control" rows="6" required id="review-text"></textarea>
+                    <div class="invalid-feedback">Please write a review!</div><small class="form-text text-muted">Your review must be at least 50 characters.</small>
+                  </div>
+                  <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Submit a Review</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Recently viewed-->
+      <section class="container pb-5 mb-lg-4">
+        <div class="d-flex align-items-center justify-content-between mb-4 pb-2">
+          <h2 class="h3 mb-0">Recently viewed</h2><a class="btn btn-link fw-normal ms-sm-3 p-0" href="city-guide-catalog.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
+        </div>
+        <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside mb-xxl-2">
+          <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 3, &quot;gutter&quot;: 24, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1,&quot;nav&quot;:true},&quot;500&quot;:{&quot;items&quot;:2},&quot;850&quot;:{&quot;items&quot;:3},&quot;1400&quot;:{&quot;items&quot;:3,&quot;nav&quot;:false}}}">
+            <!-- Item-->
+            <div>
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/머그1.PNG" alt="Article img">
+                </div>
+                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="#">'궁궐,시선을 담다' 머그</a></h3>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(48)</span></li>
+                  <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>13000원</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Item-->
+            <div>
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/부채1.PNG" alt="Article img">
+                </div>
+                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="#">'궁궐,시선을 담다' 부채</a></h3>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.8</b><span class="text-muted">&nbsp;(24)</span></li>
+                  <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>12000원</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Item-->
+            <div>
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/복북어1.PNG" alt="Article img">
+                </div>
+                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="#">복 북어</a></h3>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.9</b><span class="text-muted">&nbsp;(43)</span></li>
+                  <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>50000원</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Item-->
+            <div>
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/키트1.PNG" alt="Article img">
+                </div>
+                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="#">조선왕실등 만들기 키트</a></h3>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.5</b><span class="text-muted">&nbsp;(13)</span></li>
+                  <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>35000원</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
+      </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer bg-dark">
+      <div class="container pt-3 pt-lg-3 justify-content-between">
+        <div class="row pt-2 pt-lg-1">
+          <div class="col-lg-3 mt-4">
+            <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
+            <p class="fs-sm text-light opacity-70">새로 업데이트되는 소식을 전해드립니다</p>
+            <form class="form-group form-group-light w-100">
+              <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
+                <input class="form-control" type="text" placeholder="Email 주소">
+              </div>
+              <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
+            </form>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재행사</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
+          </div>
+          <div class="col mt-5">
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
+            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
+          </div>
+
+          <div class="col-lg-3 mb-2 mb-sm-4">
+            <div class="row">
+              <div class="col mt-2">
+                <span class="text-light" style="font-size: 40pt;">문화</span>
+                <span class="text-light" style="font-size: 40pt;">&nbsp;월드</span>
+              </div>
+              <div class="col mt-2">
+                <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%;" alt="">
+                <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>
+                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-telegram"></i></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- 푸터 끝 -->
+
+
+
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="vendor/lightgallery/lightgallery.min.js"></script>
+    <script src="vendor/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+    <!-- Main theme script-->
+    <script src="js/theme.min.js"></script>
+  </body>
+</html>
