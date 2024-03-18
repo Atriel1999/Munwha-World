@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
     <style>
       @font-face {
         font-family: 'GmarketSansMedium';
@@ -25,78 +26,24 @@
       }
     </style>
     <!-- Vendor Styles-->
-    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
-    <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css"/>
+    <link rel="stylesheet" media="screen" th:href="@{/vendor/simplebar/dist/simplebar.min.css}"/>
+    <link rel="stylesheet" media="screen" th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}"/>
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}">
   </head>
   <body style="padding-top: 72px;">
     <!-- 헤더 시작 -->
-    <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
-      <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
-        <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
-        <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
-          <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
-            <!-- Menu items-->
-            <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문화재</a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
-                <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천</a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">날씨정보</a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
-          <i class="fi-user me-2"></i>로그인</span>
-        </a>
-      </div>
-    </header>
-    <!-- 헤더 끝 -->
+    <th:block th:replace="common/header :: headerFragment"></th:block>
+    
     <section class="py-5">
       <div class="container">
         <div class="mt-4 d-flex flex-column flex-md-row justify-content-md-between align-items-md-center mb-4">
           <h1 class="mb-3 mb-md-0 hero-heading mb-0" style="font-size: 50pt;">무엇을 도와드릴까요?</h1>
-          <div><a class="btn btn-link ps-0" href="#"><i class="fi-arrow-back"></i> 뒤로 가기</a></div>
+          <div><a class="btn btn-link ps-0" href="#"><i class="fi-arrow-back"></i> &nbsp뒤로 가기</a></div>
         </div>
         <!-- 채팅공간 -->
         <div class="px-4 py-5">
-          <div class="row">
+          <div class="row" id="chatArea">
             <!-- 챗봇 메세지 -->
             <div class="d-flex col-md-9 col-xl-7 mb-3">
               <img class="img-thumbnail rounded-circle" 
@@ -169,75 +116,83 @@
                   style="height: 80px;"
                   src="img/myimages/ksw/replyicon.png" alt="user">
             </div>
+          </div>
         </div>
         <!-- 채팅 입력창 -->
         <form class="bg-faded-accent rounded shadow-sm" action="#">
           <div class="input-group">
-            <textarea class="form-control border-0 p-4 bg-secondary text-sm" placeholder="질문을 입력하세요" aria-describedby="button-sendMessage"></textarea>
-            <button class="btn btn-link" id="button-sendMessage" type="submit"><i class="fi-send"></i></button>
+            <textarea class="form-control border-0 p-4 bg-secondary text-sm" id="userChat" placeholder="질문을 입력하세요" aria-describedby="sendMessage"></textarea>
+            <button class="btn btn-link" id="sendMessage" type="button"><i class="fi-send"></i></button>
           </div>
         </form>
       </div>
     </section>
 
     <!-- 푸터 -->
-    <footer class="footer bg-dark">
-      <div class="container pt-3 pt-lg-3 justify-content-between">
-        <div class="row pt-2 pt-lg-1">
-          <div class="col-lg-3 mt-4">
-            <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
-            <p class="fs-sm text-light opacity-70">새로 업데이트되는 소식을 전해드립니다</p>
-            <form class="form-group form-group-light w-100">
-              <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
-                <input class="form-control" type="text" placeholder="Email 주소">
-              </div>
-              <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
-            </form>
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재행사</span></a><br><br>
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
-          </div>
-
-          <div class="col-lg-3 mb-2 mb-sm-4">
-            <div class="row">
-              <div class="col mt-2">
-                <span class="text-light" style="font-size: 40pt;">문화</span>
-                <span class="text-light" style="font-size: 40pt;">&nbsp;월드</span>
-              </div>
-              <div class="col mt-2">
-                <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%;" alt="">
-                <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
-                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>
-                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-telegram"></i></a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- 푸터 끝 -->
+	<th:block th:replace="common/footer :: footerFragment"></th:block>
+    
+    <!-- 챗봇 기능 ajax -->
+    <script th:inline="javascript">
+    	$(()=>{
+    		$('#sendMessage').click(()=>{
+    			let userChat = $('#userChat').val();
+    			// 사용자 질문 화면에 출력
+    			$('#chatArea').append(
+   					"<div class='d-flex col-md-9 col-xl-7 ms-auto mb-3'>"+
+   		              "<div class='me-3'>"+
+   		                "<div class='bg-primary rounded p-4 mb-2'>"+
+   		                  "<p class='text-sm mb-0 text-white'>"+
+   		                  userChat +
+   		                  "</p>"+
+   		                "</div>"+
+   		              "</div>"+
+   		              "<img class='img-thumbnail rounded-circle' "+
+   		                  "style='height: 80px;'"+
+   		                  "src='img/myimages/ksw/replyicon.png'>"+
+   		            "</div>"
+    			);
+    			$('#userChat').val("");
+    			
+    			// ajax로 송수신
+    			$.ajax({
+    				type:'post',
+    				url:'chatbotAjax.do',
+    				data:{
+    					userChat:userChat
+    				},
+    				success:(result)=>{
+    					$('#chatArea').append(
+   							"<div class='d-flex col-md-9 col-xl-7 mb-3'>"+
+   				              "<img class='img-thumbnail rounded-circle' "+
+   				                  "style='height: 80px;'"+
+   				                  "src='img/myimages/ksw/FinalLogo.jpg'>"+
+   				              "<div class='ms-3'>"+
+   				                "<div class='bg-secondary rounded p-4 mb-2'>"+
+   				                  "<p class='text-sm mb-0'>"+
+   				                  result+
+   				                  "</p>"+
+   				                "</div>"+
+   				              "</div>"+
+   				            "</div>"
+    					);
+    				},
+    				error:(e)=>{
+    					console.log(e);
+    				}
+    			});
+    		});
+    	});
+    
+    </script>
+    
+    
 
     <!-- Vendor scrits: js libraries and plugins-->
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
+    <script th:src="@{/vendor/tiny-slider/dist/min/tiny-slider.js}"></script>
     <!-- Main theme script-->
-    <script src="js/theme.min.js"></script>
+    <script th:src="@{/js/theme.min.js}"></script>
   </body>
 </html>
