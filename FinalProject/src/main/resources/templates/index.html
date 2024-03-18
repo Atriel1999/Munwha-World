@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <title>문화월드</title>
@@ -121,20 +121,20 @@
     <link
       rel="stylesheet"
       media="screen"
-      href="vendor/simplebar/dist/simplebar.min.css"
+      th:href="@{/vendor/simplebar/dist/simplebar.min.css}"
     />
     <link
       rel="stylesheet"
       media="screen"
-      href="vendor/tiny-slider/dist/tiny-slider.css"
+      th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}"
     />
     <link
       rel="stylesheet"
       media="screen"
-      href="vendor/lightgallery/css/lightgallery-bundle.min.css"
+      th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}"
     />
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="css/theme.min.css" />
+    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}" />
   </head>
   <!-- Body-->
   <body>
@@ -889,6 +889,6 @@
     <script src="vendor/lightgallery/lightgallery.min.js"></script>
     <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
     <!-- Main theme script-->
-    <script src="js/theme.min.js"></script>
+    <script th:src="@{/js/theme.min.js}"></script>
   </body>
 </html>
