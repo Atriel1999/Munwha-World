@@ -3,7 +3,7 @@
 <th:block th:fragment="headerFragment">
 	<!-- 헤더 시작 -->
       <header id="header" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
-        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
+        <div class="container"><a class="navbar-brand me-0 me-xl-4" th:href="@{/}"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
           <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
           <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
             <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
@@ -17,7 +17,7 @@
               <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li><a class="dropdown-item" href="job-board-catalog.html">행사 검색</a></li>
-                  <li><a class="dropdown-item" href="job-board-single.html">행사 달력</a></li>
+                  <li><a class="dropdown-item" th:href="@{/calendar}">행사 달력</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
@@ -54,9 +54,16 @@
               </li>
             </ul>
           </div>
-          <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
-            <span><i class="fi-user me-2"></i>로그인</span>
-          </a>
+          <th:block th:if="${session.loginMember == null}">
+            <a th:href="@{/login}" class="btn btn-primary btn-sm ms-2 order-lg-3">
+              <span><i class="fi-user me-2"></i>로그인</span>
+            </a>
+          </th:block>
+          <th:block th:if="${session.loginMember != null}">
+            <a th:href="@{/mypageProfile}" class="btn btn-primary btn-sm ms-2 order-lg-3">
+              <span><i class="fi-user me-2"></i>마이페이지</span>
+            </a>
+          </th:block>
         </div>
       </header>
       <!-- 헤더 끝 -->

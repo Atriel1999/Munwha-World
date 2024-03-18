@@ -146,13 +146,13 @@
                 <img class="rounded-circle" src="img/myimages/ksw/replyicon.png" width="100" alt="">
               </div>
               <div class="ps-3 ps-sm-4">
-                <h3 class="h5">홍길동</h3>
+                <h3 class="h5">[[${loginMember.name}]]</h3>
                 <ul class="list-unstyled fs-sm mb-0">
-                  <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>annette_black@email.com</span></li>
-                  <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>010-1234-1234</span></li>
+                  <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>[[${loginMember.email}]]</span></li>
+                  <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>[[${loginMember.phone}]]</span></li>
                 </ul>
               </div>
-            </div><a class="nav-link p-0 d-none d-md-block" href="signin-light.html"><i class="fi-logout mt-n1 me-2"></i>로그아웃</a>
+            </div><a class="nav-link p-0 d-none d-md-block" th:href="@{/logout}"><i class="fi-logout mt-n1 me-2"></i>로그아웃</a>
           </div>
 
           <!-- 마이페이지 메뉴 -->
@@ -179,7 +179,7 @@
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="pe-2">
                       <label class="form-label fw-bold">아이디</label>
-                      <div id="email-value">annette_black@email.com</div>
+                      <div id="email-value">[[${loginMember.memberId}]]</div>
                     </div>
                     <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#email-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
                   </div>
@@ -247,7 +247,7 @@
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="pe-2">
                       <label class="form-label fw-bold">이름</label>
-                      <div id="fn-value">홍길동</div>
+                      <div id="fn-value">[[${loginMember.name}]]</div>
                     </div>
                     <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#fn-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
                   </div>
@@ -255,29 +255,12 @@
                     <input class="form-control mt-3" type="email" data-bs-binded-element="#fn-value" data-bs-unset-value="Not specified" value="Annette Black">
                   </div>
                 </div>
-                <!-- Gender-->
-                <div class="border-bottom pb-3 mb-3">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="pe-2">
-                      <label class="form-label fw-bold">성별</label>
-                      <div id="gender-value">남</div>
-                    </div>
-                    <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#gender-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-                  </div>
-                  <div class="collapse" id="gender-collapse" data-bs-parent="#personal-details">
-                    <select class="form-select mt-3" data-bs-binded-element="#gender-value">
-                      <option value="" disabled>성별을 고르세요</option>
-                      <option value="Male">남</option>
-                      <option value="Female" selected>여</option>
-                    </select>
-                  </div>
-                </div>
                 <!-- Date of birth-->
                 <div class="border-bottom pb-3 mb-3">
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="pe-2">
-                      <label class="form-label fw-bold">생년월일</label>
-                      <div id="birth-value">Not specified</div>
+                      <label class="form-label fw-bold">이메일</label>
+                      <div id="birth-value">[[${loginMember.email}]]</div>
                     </div>
                     <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#birth-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
                   </div>
@@ -294,7 +277,7 @@
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="pe-2">
                       <label class="form-label fw-bold">전화번호</label>
-                      <div id="phone-value">010-1234-1234</div>
+                      <div id="phone-value">[[${loginMember.phone}]]</div>
                     </div>
                     <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#phone-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
                   </div>
@@ -307,7 +290,7 @@
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="pe-2">
                       <label class="form-label fw-bold">주소</label>
-                      <div id="address-value">서울 강남구 역삼동</div>
+                      <div id="address-value">[[${loginMember.address}]]</div>
                     </div>
                     <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#address-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
                   </div>
@@ -378,11 +361,11 @@
     
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scripts: js libraries and plugins-->
-    <script src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
-    <script src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
-    <script src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
     <!-- Main theme script-->
-    <script src="@{/js/theme.min.js}"></script>
-    <script src="@{/vendor/flatpickr/dist/flatpickr.min.js}"></script>
+    <script th:src="@{/js/theme.min.js}"></script>
+    <script th:src="@{/vendor/flatpickr/dist/flatpickr.min.js}"></script>
   </body>
 </html>

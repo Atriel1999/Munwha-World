@@ -35,9 +35,9 @@ public class MemberController {
 	private KakaoService kakaoService;
 	
 	@PostMapping("/login")
-	String login(Model model, String userId, String userPwd) {
-		log.info("id : " + userId + ", pwd : " + userPwd);
-		Member loginMember = service.login(userId, userPwd);
+	String login(Model model, String memberId, String password) {
+		log.info("id : " + memberId + ", pwd : " + password);
+		Member loginMember = service.login(memberId, password);
 		System.out.println("loginMember : " + loginMember);
 		if(loginMember != null) { // 성공
 			model.addAttribute("loginMember", loginMember);
@@ -223,25 +223,61 @@ public class MemberController {
 	
 	// 마이페이지 회원설정
 	@GetMapping("/mypageProfile")
-	public String myprofile() {
+	public String myprofile(
+			Model model,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember
+			) {
+		if(loginMember == null) {
+			model.addAttribute("msg","잘못된 접근입니다.");
+			model.addAttribute("location","/");
+			return "common/msg";
+		}
+		model.addAttribute("loginMember", loginMember);
 		return "member/mypageProfile";
 	}
 	
 	// 마이페이지 내가쓴글
 	@GetMapping("/mypageReviews")
-	public String myreviews() {
+	public String myreviews(
+			Model model,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember
+			) {
+		if(loginMember == null) {
+			model.addAttribute("msg","잘못된 접근입니다.");
+			model.addAttribute("location","/");
+			return "common/msg";
+		}
+		model.addAttribute("loginMember", loginMember);
 		return "member/mypageReviews";
 	}
 	
 	// 마이페이지 즐겨찾기
 	@GetMapping("/mypageBookmarks")
-	public String mybookmarks() {
+	public String mybookmarks(
+			Model model,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember
+			) {
+		if(loginMember == null) {
+			model.addAttribute("msg","잘못된 접근입니다.");
+			model.addAttribute("location","/");
+			return "common/msg";
+		}
+		model.addAttribute("loginMember", loginMember);
 		return "member/mypageBookmarks";
 	}
 	
 	// 마이페이지 주문목록
 	@GetMapping("/mypageShopList")
-	public String myshoplist() {
+	public String myshoplist(
+			Model model,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember
+			) {
+		if(loginMember == null) {
+			model.addAttribute("msg","잘못된 접근입니다.");
+			model.addAttribute("location","/");
+			return "common/msg";
+		}
+		model.addAttribute("loginMember", loginMember);
 		return "member/mypageShopList";
 	}	
 	

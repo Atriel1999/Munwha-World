@@ -150,14 +150,14 @@
               <form class="needs-validation" th:action="@{/login}" method="post">
                 <div class="mb-4">
                   <label class="form-label mb-2" for="signin-email">아이디</label>
-                  <input class="form-control" type="email" id="signin-email" placeholder="아이디를 입력하세요" required>
+                  <input class="form-control" type="text" id="signin-email" name="memberId" placeholder="아이디를 입력하세요" required>
                 </div>
                 <div class="mb-4">
                   <div class="d-flex align-items-center justify-content-between mb-2">
                     <label class="form-label mb-0" for="signin-password">비밀번호</label>
                   </div>
                   <div class="password-toggle">
-                    <input class="form-control" type="password" id="signin-password" placeholder="비밀번호를 입력하세요" required>
+                    <input class="form-control" type="password" name="password" id="signin-password" placeholder="비밀번호를 입력하세요" required>
                     <label class="password-toggle-btn" aria-label="Show/hide password">
                       <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                     </label>
