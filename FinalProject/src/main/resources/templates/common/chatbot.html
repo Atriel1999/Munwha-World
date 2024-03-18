@@ -35,7 +35,7 @@
     <!-- 헤더 시작 -->
     <th:block th:replace="common/header :: headerFragment"></th:block>
     
-    <section class="py-5">
+    <section class="py-5" id="area">
       <div class="container">
         <div class="mt-4 d-flex flex-column flex-md-row justify-content-md-between align-items-md-center mb-4">
           <h1 class="mb-3 mb-md-0 hero-heading mb-0" style="font-size: 50pt;">무엇을 도와드릴까요?</h1>
@@ -100,8 +100,8 @@
 				            "</div>"
 					);
 				
-                const top = $('#chatArea').prop('scrollHeight');
-                $('#chatArea').scrollTop(top);
+                /* const top = $('#area').prop('scrollHeight');
+                $('#area').scrollTop(top); */
 			};
 			
 			ws.onclose = function() {
@@ -130,8 +130,8 @@
     			);
     			
    			$('#userChat').val("");
-   			const top = $('#chatArea').prop('scrollHeight');
-            $('#chatArea').scrollTop(top);
+   			/* const top = $('#area').prop('scrollHeight');
+            $('#area').scrollTop(top); */
             
             var sendMsg = {
             	id : memberId,
