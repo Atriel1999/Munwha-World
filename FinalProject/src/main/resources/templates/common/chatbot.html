@@ -44,85 +44,14 @@
         <!-- 채팅공간 -->
         <div class="px-4 py-5">
           <div class="row" id="chatArea">
-            <!-- 챗봇 메세지 -->
-            <div class="d-flex col-md-9 col-xl-7 mb-3">
-              <img class="img-thumbnail rounded-circle" 
-                  style="height: 80px;"
-                  src="img/myimages/ksw/FinalLogo.jpg" alt="user">
-              <div class="ms-3">
-                <div class="bg-secondary rounded p-4 mb-2">
-                  <p class="text-sm mb-0">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections</p>
-                </div>
-                <p class="small text-muted ms-3">12:00 PM | Aug 13</p>
-              </div>
-            </div>
-            <!-- 사용자 메세지 -->
-            <div class="d-flex col-md-9 col-xl-7 ms-auto mb-3">
-              <div class="me-3">
-                <div class="bg-primary rounded p-4 mb-2">
-                  <p class="text-sm mb-0 text-white">The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. &quot;What's happened to me?&quot; he thought. It wasn't a dream.</p>
-                </div>
-                <p class="small text-muted ms-3">12:00 PM | Aug 13</p>
-              </div>
-              <img class="img-thumbnail rounded-circle" 
-                  style="height: 80px;"
-                  src="img/myimages/ksw/replyicon.png" alt="user">
-            </div>
-            <!-- 챗봇 메세지 -->
-            <div class="d-flex col-md-9 col-xl-7 mb-3">
-              <img class="img-thumbnail rounded-circle" 
-                  style="height: 80px;"
-                  src="img/myimages/ksw/FinalLogo.jpg" alt="user">
-              <div class="ms-3">
-                <div class="bg-secondary rounded p-4 mb-2">
-                  <p class="text-sm mb-0">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections</p>
-                </div>
-                <p class="small text-muted ms-3">12:00 PM | Aug 13</p>
-              </div>
-            </div>
-            <!-- 사용자 메세지 -->
-            <div class="d-flex col-md-9 col-xl-7 ms-auto mb-3">
-              <div class="me-3">
-                <div class="bg-primary rounded p-4 mb-2">
-                  <p class="text-sm mb-0 text-white">The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. &quot;What's happened to me?&quot; he thought. It wasn't a dream.</p>
-                </div>
-                <p class="small text-muted ms-3">12:00 PM | Aug 13</p>
-              </div>
-              <img class="img-thumbnail rounded-circle" 
-                  style="height: 80px;"
-                  src="img/myimages/ksw/replyicon.png" alt="user">
-            </div>
-            <!-- 챗봇 메세지 -->
-            <div class="d-flex col-md-9 col-xl-7 mb-3">
-              <img class="img-thumbnail rounded-circle" 
-                  style="height: 80px;"
-                  src="img/myimages/ksw/FinalLogo.jpg" alt="user">
-              <div class="ms-3">
-                <div class="bg-secondary rounded p-4 mb-2">
-                  <p class="text-sm mb-0">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections</p>
-                </div>
-                <p class="small text-muted ms-3">12:00 PM | Aug 13</p>
-              </div>
-            </div>
-            <!-- 사용자 메세지 -->
-            <div class="d-flex col-md-9 col-xl-7 ms-auto mb-3">
-              <div class="me-3">
-                <div class="bg-primary rounded p-4 mb-2">
-                  <p class="text-sm mb-0 text-white">The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. &quot;What's happened to me?&quot; he thought. It wasn't a dream.</p>
-                </div>
-                <p class="small text-muted ms-3">12:00 PM | Aug 13</p>
-              </div>
-              <img class="img-thumbnail rounded-circle" 
-                  style="height: 80px;"
-                  src="img/myimages/ksw/replyicon.png" alt="user">
-            </div>
           </div>
         </div>
         <!-- 채팅 입력창 -->
         <form class="bg-faded-accent rounded shadow-sm" action="#">
           <div class="input-group">
-            <textarea class="form-control border-0 p-4 bg-secondary text-sm" id="userChat" placeholder="질문을 입력하세요" aria-describedby="sendMessage"></textarea>
-            <button class="btn btn-link" id="sendMessage" type="button"><i class="fi-send"></i></button>
+            <textarea class="form-control border-0 p-4 bg-secondary text-sm" id="userChat" placeholder="질문을 입력하세요" 
+            	onkeydown="if(event.keyCode == 13)send();" aria-describedby="sendMessage"></textarea>
+            <button class="btn btn-link" onclick="send();" type="button"><i class="fi-send"></i></button>
           </div>
         </form>
       </div>
@@ -131,18 +60,66 @@
     <!-- 푸터 -->
 	<th:block th:replace="common/footer :: footerFragment"></th:block>
     
-    <!-- 챗봇 기능 ajax -->
-    <script th:inline="javascript">
-    	$(()=>{
-    		$('#sendMessage').click(()=>{
-    			let userChat = $('#userChat').val();
-    			// 사용자 질문 화면에 출력
-    			$('#chatArea').append(
+    <!-- 챗봇 기능 -->
+    <script>
+    	var ws;
+    	var memberId = "Question";
+    
+		function connect() {
+			ws = new WebSocket('ws://localhost:80/chat.do');
+			// 채팅 입장
+			ws.onopen = function() {
+                console.log("웹소켓 연결 생성");
+                
+				var msg = {
+                    type: "register",
+                    memberId: memberId
+                }
+                
+                ws.send(JSON.stringify(msg));
+			};
+			
+			ws.onerror = function(event){
+				console.log(event);
+			}
+			// 서버에서 메세지 수신
+			ws.onmessage = function(e) {
+				var msg = e.data;
+				$('#chatArea').append(
+							"<div class='d-flex col-md-9 col-xl-7 mb-3'>"+
+				              "<img class='img-thumbnail rounded-circle' "+
+				                  "style='height: 80px;'"+
+				                  "src='img/myimages/ksw/FinalLogo.jpg'>"+
+				              "<div class='ms-3'>"+
+				                "<div class='bg-secondary rounded p-4 mb-2'>"+
+				                  "<p class='text-sm mb-0'>"+
+				                    msg +
+				                  "</p>"+
+				                "</div>"+
+				              "</div>"+
+				            "</div>"
+					);
+				
+                const top = $('#chatArea').prop('scrollHeight');
+                $('#chatArea').scrollTop(top);
+			};
+			
+			ws.onclose = function() {
+				console.log(ws);
+				console.log("연결종료");
+			};
+		}
+		connect();
+		
+		// 사용자 채팅 송신
+		function send() {
+            var chat = $("#userChat").val();
+            $('#chatArea').append(
    					"<div class='d-flex col-md-9 col-xl-7 ms-auto mb-3'>"+
-   		              "<div class='me-3'>"+
+   		              "<div class='ms-auto me-3'>"+
    		                "<div class='bg-primary rounded p-4 mb-2'>"+
    		                  "<p class='text-sm mb-0 text-white'>"+
-   		                  userChat +
+   		                    chat +
    		                  "</p>"+
    		                "</div>"+
    		              "</div>"+
@@ -151,37 +128,19 @@
    		                  "src='img/myimages/ksw/replyicon.png'>"+
    		            "</div>"
     			);
-    			$('#userChat').val("");
     			
-    			// ajax로 송수신
-    			$.ajax({
-    				type:'post',
-    				url:'chatbotAjax.do',
-    				data:{
-    					userChat:userChat
-    				},
-    				success:(result)=>{
-    					$('#chatArea').append(
-   							"<div class='d-flex col-md-9 col-xl-7 mb-3'>"+
-   				              "<img class='img-thumbnail rounded-circle' "+
-   				                  "style='height: 80px;'"+
-   				                  "src='img/myimages/ksw/FinalLogo.jpg'>"+
-   				              "<div class='ms-3'>"+
-   				                "<div class='bg-secondary rounded p-4 mb-2'>"+
-   				                  "<p class='text-sm mb-0'>"+
-   				                  result+
-   				                  "</p>"+
-   				                "</div>"+
-   				              "</div>"+
-   				            "</div>"
-    					);
-    				},
-    				error:(e)=>{
-    					console.log(e);
-    				}
-    			});
-    		});
-    	});
+   			$('#userChat').val("");
+   			const top = $('#chatArea').prop('scrollHeight');
+            $('#chatArea').scrollTop(top);
+            
+            var sendMsg = {
+            	id : memberId,
+                type: "chat",
+                target: "",
+                msg: chat
+            }
+            ws.send(JSON.stringify(sendMsg));
+        }
     
     </script>
     
