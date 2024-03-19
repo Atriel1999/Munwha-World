@@ -129,7 +129,6 @@
    		            "</div>"
     			);
     			
-   			$('#userChat').val("");
    			/* const top = $('#area').prop('scrollHeight');
             $('#area').scrollTop(top); */
             
@@ -140,6 +139,7 @@
                 msg: chat
             }
             ws.send(JSON.stringify(sendMsg));
+   			$('#userChat').val("");
         }
     
     </script>

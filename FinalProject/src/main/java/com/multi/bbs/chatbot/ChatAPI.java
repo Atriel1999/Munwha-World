@@ -16,9 +16,9 @@ import org.json.simple.parser.JSONParser;
 import java.util.Base64;
 
 public class ChatAPI {
-	private static String secretKey = "eEVxdmhpdmFieWltTG9NRFpzY0dtcVhLTVphb0pZWkk=";
+	private static String secretKey = "VllPZ0FFU2VRV0FQQ0JHTXBtbWVDUXVjVXFRV3NPZEY=";
 	// APIGW Invoke URL
-	private static String apiUrl = "https://47rv9xlkxz.apigw.ntruss.com/custom/v1/13797/4ebde42874f9cb13f73e4ea12b87f7c4f3c6f8a88a828bd45883b10667d483b5";
+	private static String apiUrl = "https://47rv9xlkxz.apigw.ntruss.com/custom/v1/13867/7640a5c56fb397cac06c6f0a8d7fc4cb0f151a225e1bd87cf8d7590549ab1e9f";
 	
 	public static String sendChat(String userChat) throws Exception{
 		URL url = new URL(apiUrl);
