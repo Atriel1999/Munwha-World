@@ -41,8 +41,9 @@ public class Member {
 	private String name; // 이름
 	private String phone; // 전화번호
 	private String email; // 이메일
-	private String address; // 주소
-	private int codeno;
+	private String addressSido; // 시/도주소
+	private String address; // 주소상세
+	private int codeno; // 시/도 주소 코드
 	private String kakaotoken; // 카카오토큰
 	@ColumnDefault("'Y'")
 	private String status; // 상태

@@ -290,7 +290,7 @@
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="pe-2">
                       <label class="form-label fw-bold">주소</label>
-                      <div id="address-value">[[${loginMember.address}]]</div>
+                      <div id="address-value">[[${loginMember.addressSido}]] [[${loginMember.address}]]</div>
                     </div>
                     <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#address-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
                   </div>
@@ -299,7 +299,7 @@
                   </div>
                 </div>
                 <!-- Socials-->
-                <div>
+                <!-- <div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="pe-2">
                       <label class="form-label fw-bold">기타</label>
@@ -337,7 +337,7 @@
                       </div>
                     </div><a class="collapse-label collapsed d-inline-block fs-sm fw-bold text-decoration-none pt-2 pb-3" href="#showMoreSocials" data-bs-toggle="collapse" data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button" aria-expanded="false" aria-controls="showMoreSocials"><i class="fi-arrow-down me-2"></i></a>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -346,8 +346,8 @@
           <div class="row pt-4 mt-2">
             <div class="col-lg-9 offset-lg-3">
               <div class="d-flex align-items-center justify-content-between">
-                <button class="btn btn-primary rounded-pill px-3 px-sm-4" type="button">저장하기</button>
-                <button class="btn btn-link btn-sm px-0" type="button"><i class="fi-trash me-2"></i>회원탈퇴</button>
+                <!-- <button class="btn btn-primary rounded-pill px-3 px-sm-4" type="button">저장하기</button> -->
+                <button class="btn btn-link btn px-0" id="deleteMember" type="button"><i class="fi-trash me-2"></i>회원탈퇴</button>
               </div>
             </div>
           </div>

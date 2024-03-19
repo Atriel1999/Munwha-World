@@ -3,8 +3,8 @@
 <th:block th:fragment="headerFragment">
 	<!-- 헤더 시작 -->
       <header id="header" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
-        <div class="container"><a class="navbar-brand me-0 me-xl-4" th:href="@{/}"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
-          <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
+        <div class="container"><a class="navbar-brand me-0 me-xl-2" th:href="@{/}"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
+          <span style="font-size: 30pt; color: white;">&nbsp문화월드</span>
           <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
             <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
               <!-- Menu items-->
@@ -55,12 +55,12 @@
             </ul>
           </div>
           <th:block th:if="${session.loginMember == null}">
-            <a th:href="@{/login}" class="btn btn-primary btn-sm ms-2 order-lg-3">
+            <a th:href="@{/login}" class="btn btn-primary ms-2 order-lg-3">
               <span><i class="fi-user me-2"></i>로그인</span>
             </a>
           </th:block>
           <th:block th:if="${session.loginMember != null}">
-            <a th:href="@{/mypageProfile}" class="btn btn-primary btn-sm ms-2 order-lg-3">
+            <a th:href="@{/mypageProfile}" class="btn btn-primary ms-2 order-lg-3">
               <span><i class="fi-user me-2"></i>마이페이지</span>
             </a>
           </th:block>

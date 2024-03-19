@@ -17,6 +17,12 @@
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+	<link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
+    <link th:href='@{/lib/main.css}' rel='stylesheet' />
+	<script type="text/javascript" th:src='@{/lib/main.js}'></script>
+	<script type="text/javascript" th:src='@{/lib/locales-all.js}'></script>
     <!-- Page loading styles-->
     <style>
       @font-face {
@@ -111,8 +117,38 @@
           }, 2000);
         };
       })();
-      
     </script>
+    <!-- 풀캘린더 스크립트 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        $(function(){
+        	var request = $.ajax({
+        		url : '/calendarjson',
+        		method : 'GET',
+        		dataType : 'json'
+        	});
+        
+	        request.done(function (data){
+	        	
+		    	var calendarEl = document.getElementById('calendar');
+		        
+		        var calendar = new FullCalendar.Calendar(calendarEl, {
+		        	events : data,
+		        	dayMaxEvents : true,
+		        	locale : 'ko',
+		        	themeSystem: 'bootstrap5',
+		        	headerToolbar :	{
+		        		  start: 'today,prev,next',
+		        		  center: 'title',
+		        		  end: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+		        		}
+		        });
+		        calendar.render();
+	        });
+        });
+      });
+    </script>
+    
     <!-- Vendor Styles-->
     <link rel="stylesheet" media="screen" th:href="@{/vendor/simplebar/dist/simplebar.min.css}"/>
     <link rel="stylesheet" media="screen" th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}"/>
@@ -135,29 +171,49 @@
 
       <!-- Page content-->
       <!-- Page header-->
-      <section class="bg-dark py-5" style="height: 350px;">
-        <div class="container pt-5 pb-lg-5">
-          <!-- Page title-->
-          <div class="mb-lg-5 mx-auto text-center" style="max-width: 856px;">
-            <br><br>
-            <div class="display-5 text-light mt-4 pb-lg-2" style="font-size: 60pt;">문화행사 일정 달력</div>
+      <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 300px;">
+      	<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+  			  background-image: url('img/myimages/ksw/Jongmyo.jpg'); background-size: cover; background-position: center;">
+		</div>
+
+        <div class="content-overlay container py-md-5">
+          <div class="col-md-8 order-md-1">
+            <h1 class="display-4 mb-4 me-lg-n5 text-lg-start text-center text-light" style="margin-top: 100px;">
+              문화행사 일정 달력
+              <span class="text-primary d-inline-block"></span>
+            </h1>
           </div>
         </div>
       </section>
       <!-- Stats-->
-      <section class="bg-white rounded-xxl-4 mb-5 py-md-3 zindex-5" style="margin-top: -30px;">
-        <div class="container pt-5 pb-2 mb-4 mb-md-5">
-          <iframe src="http://naver.me/IxWBWfMd" width="800" height="800" frameborder="0"></iframe>
+      <section class="py-5">
+        <div class="container pb-2 mb-4 mb-md-5">
+      
+	      	<div class="">
+		        <nav aria-label="breadcrumb">
+				  <ol class="breadcrumb">
+				    <li class="breadcrumb-item">
+				      <a th:href="@{/}">Home</a>
+				    </li>
+				    <li class="breadcrumb-item">
+				      <a href="#">행사</a>
+				    </li>
+				    <li class="breadcrumb-item active" aria-current="page">행사 달력</li>
+				  </ol>
+				</nav>
+	        </div>
+	        
+	      <!-- 달력 공간 -->
+	        
+          <div id='calendar'></div>
+        
+        
         </div>
         <div class="container">
           <div class="h3">
-            <a href="#" style="text-decoration: none;">
-              <i class="fi-chevron-left"></i>
-            </a>
-            7월의 문화행사
-            <a href="#" style="text-decoration: none;">
-              <i class="fi-chevron-right"></i>
-            </a>
+            <i class="fi-chevron-left primary" onclick="prevMonth();"></i>
+              7월의 문화행사
+            <i class="fi-chevron-right" onclick="nextMonth();"></i>
           </div>
           <br>
 
@@ -277,14 +333,24 @@
     
     <!-- 푸터 -->
 	<th:block th:replace="common/footer :: footerFragment"></th:block>
+	
+	<script type="text/javascript">
+		function prevMonth() {
+			console.log('이전달');
+		}
+		
+		function nextMonth() {
+			console.log('다음달');
+		}
+	</script>
 
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
-    <script src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
-    <script src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
-    <script src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
-    <script src="@{/vendor/tiny-slider/dist/min/tiny-slider.js}"></script>
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
+    <script th:src="@{/vendor/tiny-slider/dist/min/tiny-slider.js}"></script>
     <!-- Main theme script-->
-    <script src="@{/js/theme.min.js}"></script>
+    <script th:src="@{/js/theme.min.js}"></script>
   </body>
 </html>

@@ -34,13 +34,38 @@
   <body style="padding-top: 72px;">
     <!-- 헤더 시작 -->
     <th:block th:replace="common/header :: headerFragment"></th:block>
-    
+    <main class="page-wrapper">
+    <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 300px;">
+      	<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+  			  background-image: url('img/museum_img/hero2.jpg'); background-size: cover; background-position: center;">
+		</div>
+
+      <div class="content-overlay container py-md-5">
+        <div class="col-md-8 order-md-1">
+          <h1 class="display-4 mb-4 me-lg-n5 text-lg-start text-center" style="margin-top: 100px;">
+            무엇을 도와드릴까요?
+            <span class="text-primary d-inline-block"></span>
+          </h1>
+        </div>
+      </div>
+    </section>
     <section class="py-5" id="area">
       <div class="container">
-        <div class="mt-4 d-flex flex-column flex-md-row justify-content-md-between align-items-md-center mb-4">
-          <h1 class="mb-3 mb-md-0 hero-heading mb-0" style="font-size: 50pt;">무엇을 도와드릴까요?</h1>
-          <div><a class="btn btn-link ps-0" href="#"><i class="fi-arrow-back"></i> &nbsp뒤로 가기</a></div>
+      
+        <div class="">
+	        <nav aria-label="breadcrumb">
+			  <ol class="breadcrumb">
+			    <li class="breadcrumb-item">
+			      <a th:href="@{/}">Home</a>
+			    </li>
+			    <li class="breadcrumb-item">
+			      <a href="#">추천</a>
+			    </li>
+			    <li class="breadcrumb-item active" aria-current="page">챗봇</li>
+			  </ol>
+			</nav>
         </div>
+        
         <!-- 채팅공간 -->
         <div class="px-4 py-5">
           <div class="row" id="chatArea">
@@ -56,7 +81,7 @@
         </form>
       </div>
     </section>
-
+	</main>
     <!-- 푸터 -->
 	<th:block th:replace="common/footer :: footerFragment"></th:block>
     
@@ -111,6 +136,7 @@
 		}
 		connect();
 		
+
 		// 사용자 채팅 송신
 		function send() {
             var chat = $("#userChat").val();
@@ -141,7 +167,15 @@
             ws.send(JSON.stringify(sendMsg));
    			$('#userChat').val("");
         }
-    
+    	$(()=>{
+    		var startMsg = {
+   				id : memberId,
+                type: "chat",
+                target: "",
+                msg: "안녕하세요"
+    		}
+            ws.send(JSON.stringify(startMsg));
+    	});
     </script>
     
     

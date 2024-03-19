@@ -159,8 +159,9 @@
                   <input class="form-control" type="text" name="name" id="signup-name" placeholder="이름을 입력하세요">
                 </div>
                 <div class="mb-4">
-                  <label class="form-label" for="signup-email">아이디</label>
-                  <input class="form-control" type="text" name="memberId" id="signup-email" placeholder="아이디를 입력하세요">
+                  <label class="form-label" for="signupId">아이디</label>
+                  <input class="form-control" type="text" name="memberId" id="signupId" placeholder="아이디를 입력하세요">
+                  <button class="d-flex ms-auto btn btn-primary btn-xs w-auto mt-2" id="duplicateCheck" type="button">중복확인</button>
                 </div>
                 <div class="mb-4">
                   <label class="form-label" for="signup-password">비밀번호 <span class='fs-sm text-muted'></span></label>
@@ -189,9 +190,9 @@
                   <input class="form-control" type="text" name="email" id="email" placeholder="아이디를 입력하세요">
                 </div>
                 <div class="mb-4">
-                  <label class="form-label" for="addresscode">주소</label>
-                  <select class="form-select" name="addresscode" id="addresscode">
-                  	<option>시군구 선택</option>
+                  <label class="form-label" for="addressSido">주소</label>
+                  <select class="form-select" name="addressSido" id="addressSido">
+                  	<option>시/도 선택</option>
                   </select>
                   <input class="form-control" type="text" name="address">
                 </div>
@@ -213,19 +214,50 @@
         var code = [ 11, 21, 22, 23, 24, 25, 26, 45, 31, 32, 33, 34, 35,
             36, 37, 38, 50 ];
         
-        $("#addresscode").each(function(){
+        $("#addressSido").each(function(){
           $sel = $(this);
           $.each(eval(area), function(){
             $sel.append("<option value='"+this+"'>"+this+"</option>");
           });
         });
         
-        $("#addresscode").change(function(){
+        $("#addressSido").change(function(){
         	var areasel = $(this).val();
         	console.log(areasel);
         	var num = area.indexOf(areasel);
         	console.log(code[num]);
         	$("#codeno").val(code[num]);
+        });
+        
+        $('#signup-password-confirm').blur((e)=>{
+        	let pw1 = $('#signup-password').val();
+        	let pw2 = $('#signup-password-confirm').val();
+        	
+        	if (pw1.trim() != pw2.trim()){
+        		alert('비밀번호 불일치!');
+        		$('#signup-password').val("");
+        		$('#signup-password-confirm').val("");
+        		$('#signup-password').focus();
+        	}
+        });
+        
+        $('#duplicateCheck').click(()=>{
+        	let id = $('#signupId').val().trim();
+        	$.ajax({
+        		type:'get',
+        		url:'[[@{/member/idCheck}]]',
+        		data:{id},
+        		success:
+        			(data)=>{
+        				console.log(data);
+        				if (data.validate === true){
+        					alert('중복된 아이디입니다!');
+        				} else {
+        					alert('사용 가능한 아이디입니다');
+        				}
+        			},
+        		error: (e)=>{console.log(e);}
+        	});
         });
         
         
