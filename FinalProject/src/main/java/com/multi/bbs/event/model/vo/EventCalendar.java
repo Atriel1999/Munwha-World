@@ -3,6 +3,7 @@ package com.multi.bbs.event.model.vo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,36 +11,38 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "EVENTCALENDAR")
+@Transactional
 public class EventCalendar {
 	@Id
+	@Column(name = "SEQNO")
 	public String seqNo;		// 고유 ID
-	@Column
+	@Column(name = "SUBTITLE")
 	public String subTitle;		// 행사 제목
-	@Column
+	@Column(name = "SDATE")
 	public String sDate;        // 시작일
-	@Column
+	@Column(name = "EDATE")
 	public String eDate;        // 종료일
-	@Column
+	@Column(name = "SUBPATH")
 	public String subPath;      // 관련 링크 URL
-	@Column
+	@Column(name = "SUBDATE")
 	public String subDate;      // 상세 일정
-	@Column
+	@Column(name = "SUBCONTENT")
 	public String subContent;   // 행사 내용
-	@Column
+	@Column(name = "SITECODE")
 	public String siteCode;     // 행사 종료 구분
-	@Column
+	@Column(name = "GROUPNAME")
 	public String groupName;    // 주최자
-	@Column
+	@Column(name = "CONTACT")
 	public String contact;      // 전화번호
-	@Column
+	@Column(name = "SUBDESC")
 	public String subDesc;      // 장소
-	@Column
+	@Column(name = "SUBDESC2")
 	public String subDesc2;     // 참가대상
-	@Column
+	@Column(name = "SUBDESC3")
 	public String subDesc3;     // 참가바
-	@Column
+	@Column(name = "SIDO")
 	public String sido;         // 주소(시도)
-	@Column
+	@Column(name = "GUGUN")
 	public String gugun;        // 주소(구군)
 }

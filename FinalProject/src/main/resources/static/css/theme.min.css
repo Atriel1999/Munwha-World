@@ -4,7 +4,9 @@
 [class*=" border-"].border-light {
     border-color: rgba(255, 255, 255, .15) !important
 }
-
+.navbar {
+        height: 110px;
+      }
 /*HY맑은샘물M*/
 @font-face {
     font-family: "HYM1004";       

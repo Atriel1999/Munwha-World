@@ -41,6 +41,9 @@ public class EventController {
 		HashMap<String, Object> hash = new HashMap<String, Object>();
 		
 		for (int i = 0; i < eList.size(); i++) {
+			if (eList.get(i).getSDate() == null || eList.get(i).getEDate() == null) {
+				continue;
+			}
 			if (eList.get(i).getSDate().length() != 8 || eList.get(i).getEDate().length() != 8) {
 				continue;
 			}
