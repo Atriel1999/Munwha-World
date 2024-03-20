@@ -104,6 +104,10 @@
           transform: rotate(360deg);
         }
       }
+      .small-gallery img {
+        height: 108px;
+        object-fit: cover;
+      }
     </style>
     <!-- Page loading scripts-->
     <script>
@@ -154,6 +158,13 @@
       <!-- Page header-->
       <section class="container pt-5 mt-5">
         <!-- Breadcrumb-->
+        <nav class="mt-3 mb-3 pt-md-3" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="real-estate-catalog-rent.html"> 문화재 검색 </a></li>
+          <li class="breadcrumb-item active" aria-current="page"> 문화재 상세 페이지 </li>
+        </ol>
+      </nav>
         <div
           class="d-sm-flex align-items-center justify-content-between mt-4 pb-sm-2"
         >
@@ -233,7 +244,7 @@
                 <div class="row g-2 g-md-3">
                   <div class="col">
                     <a
-                      class="gallery-item rounded-1 rounded-md-2"
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
                       href="http://www.cha.go.kr/unisearch/images/national_treasure/1611461.jpg"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
                       ><img
@@ -243,7 +254,7 @@
                   </div>
                   <div class="col">
                     <a
-                      class="gallery-item rounded-1 rounded-md-2"
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
                       href="http://www.cha.go.kr/unisearch/images/national_treasure/1611462.jpg"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;King size bed&lt;/h6&gt;'
                       ><img
@@ -253,7 +264,7 @@
                   </div>
                   <div class="col">
                     <a
-                      class="gallery-item rounded-1 rounded-md-2"
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
                       href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140800.jpg"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Towels&lt;/h6&gt;'
                       ><img
@@ -263,7 +274,7 @@
                   </div>
                   <div class="col">
                     <a
-                      class="gallery-item rounded-1 rounded-md-2"
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
                       href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140801.jpg"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
                       ><img
@@ -273,7 +284,7 @@
                   </div>
                   <div class="col">
                     <a
-                      class="gallery-item rounded-1 rounded-md-2"
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
                       href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140900.jpg"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
                       ><img
@@ -288,7 +299,7 @@
           <!-- Sidebar-->
           <aside class="col-md-5 d-flex flex-wrap align-content-stretch">
             <!-- Place card-->
-            <div class="py-2 px-sm-4 px-3 shadow-sm mb-3">
+            <div class="py-2 px-sm-5 px-3 shadow-sm mb-3">
               <div class="card-body mx-n2">
                 <!-- Place info-->
                 <div class="d-flex align-items-start mb-3 pb-3 border-bottom">

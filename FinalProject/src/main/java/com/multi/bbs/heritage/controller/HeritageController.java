@@ -16,15 +16,21 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class HeritageController {
 
+	@GetMapping("/heritage-search2")
+	public String searchHearitage2(Model model) {
+		
+		return "heritage/heritage-search2";
+	}
+	
 	@GetMapping("/heritage-search")
 	public String searchHearitage(Model model) {
 		
 		return "heritage/heritage-search";
 	}
 	
-	@GetMapping("/heritage-detail2")
+	@GetMapping("/heritage-detail")
 	public String hearitageDetail(Model model) {
 		
-		return "heritage/heritage-detail2";
+		return "heritage/heritage-detail";
 	}
 }
