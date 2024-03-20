@@ -18,6 +18,11 @@ public class HomeController {
 		return "index";
 	}
 	
+	@GetMapping("/testhome")
+	public String testhome() {
+		return "home";
+	}
+	
 	public void init() {}
 	
 }
