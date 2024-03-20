@@ -253,7 +253,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         },
         format: {
           to: function to(value) {
-            return '$' + parseInt(value, 10);
+            return parseInt(value, 10) + "년";
           },
           from: function from(value) {
             return Number(value);
