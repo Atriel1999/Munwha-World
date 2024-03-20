@@ -15,7 +15,7 @@ public class HomeController {
 		if(command != null && command.contains("init")) {
 			init();
 		}
-		return "index";
+		return "home";
 	}
 	
 	@GetMapping("/testhome")
