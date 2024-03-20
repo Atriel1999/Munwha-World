@@ -15,17 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 //@SessionAttributes("loginMember") // loginMember를 Model 취급할때 세션으로 처리하도록 도와주는 어노테이션
 @Controller
 public class HeritageController {
-
-	@GetMapping("/heritage-search2")
-	public String searchHearitage2(Model model) {
-		
-		return "heritage/heritage-search2";
-	}
 	
 	@GetMapping("/heritage-search")
 	public String searchHearitage(Model model) {
 		
-		return "heritage/heritage-search";
+		return "heritage/heritage-search2";
 	}
 	
 	@GetMapping("/heritage-detail")
