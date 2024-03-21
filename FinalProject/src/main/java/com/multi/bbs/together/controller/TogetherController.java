@@ -40,6 +40,58 @@ public class TogetherController {
 		return "together/together";
 	}
 	
+	@GetMapping("/togetherBoard")
+	public String togetherBoard() {
+		log.info("회원 정보 페이지 요청");
+		return "together/together-board";
+	}
+	
+	@GetMapping("/togetherBoardDetail")
+	public String togetherBoardDetail() {
+		log.info("회원 정보 페이지 요청");
+		return "together/together-board-detail";
+	}
+	
+	@GetMapping("/togetherBoardWrite")
+	public String togetherBoardWrite() {
+		log.info("회원 정보 페이지 요청");
+		return "together/together-board-write";
+	}
+	@GetMapping("/togetherCalendar")
+	public String togetherCalendar() {
+		log.info("회원 정보 페이지 요청");
+		return "together/together-calendar";
+	}
+	
+	@GetMapping("/togetherChat")
+	public String togetherChat() {
+		log.info("회원 정보 페이지 요청");
+		return "together/together-chat";
+	}
+	@GetMapping("/togetherDetail")
+	public String togetherdetail() {
+		log.info("회원 정보 페이지 요청");
+		return "together/together-detail";
+	}
+	@GetMapping("/togetherSearch")
+	public String togetherSearch() {
+		log.info("회원 정보 페이지 요청");
+		return "together/together-search";
+	}
+	
+	@GetMapping("/togetherSearchDetail")
+	public String togetherSearchDetail() {
+		log.info("회원 정보 페이지 요청");
+		return "together/together-search-detail";
+	}
+	
+	@GetMapping("/togetherPhoto")
+	public String togetherPhoto() {
+		log.info("회원 정보 페이지 요청");
+		return "together/together-photh";
+	}
+	
+	
 //	
 //	@GetMapping("/logout")
 //	public String logout(SessionStatus status) { // status : 세션의 상태 확인과 해제가 가능한 클래스
