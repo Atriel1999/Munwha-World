@@ -104,6 +104,10 @@
           transform: rotate(360deg);
         }
       }
+      .small-gallery img {
+        height: 108px;
+        object-fit: cover;
+      }
     </style>
     <!-- Page loading scripts-->
     <script>
@@ -146,191 +150,7 @@
       </div>
     </div>
     <!-- 헤더 시작 -->
-    <header
-      class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-      data-scroll-header
-    >
-      <div class="container">
-        <a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"
-          ><img
-            class="d-block"
-            src="img/myimages/ksw/FinalLogo.jpg"
-            style="border-radius: 100%"
-            width="60"
-            alt="Finder"
-        /></a>
-        <span style="font-size: 20pt; color: white">&nbsp문화월드 |</span>
-        <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
-          <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem">
-            <!-- Menu items-->
-            <li class="nav-item dropdown active">
-              <a
-                class="nav-link dropdown-toggle"
-                style="font-size: 15pt"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >문화재</a
-              >
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v1.html"
-                    >For Job Seekers</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v2.html"
-                    >For Employers</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active">
-              <a
-                class="nav-link dropdown-toggle"
-                style="font-size: 15pt"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >행사</a
-              >
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li>
-                  <a class="dropdown-item" href="job-board-catalog.html"
-                    >List of Jobs</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="job-board-single.html"
-                    >Single Job Page</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active">
-              <a
-                class="nav-link dropdown-toggle"
-                style="font-size: 15pt"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >박물관</a
-              >
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v1.html"
-                    >For Job Seekers</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v2.html"
-                    >For Employers</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active">
-              <a
-                class="nav-link dropdown-toggle"
-                style="font-size: 15pt"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >쇼핑</a
-              >
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v1.html"
-                    >For Job Seekers</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v2.html"
-                    >For Employers</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active">
-              <a
-                class="nav-link dropdown-toggle"
-                style="font-size: 15pt"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >추천</a
-              >
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v1.html"
-                    >For Job Seekers</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v2.html"
-                    >For Employers</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active">
-              <a
-                class="nav-link dropdown-toggle"
-                style="font-size: 15pt"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >날씨정보</a
-              >
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v1.html"
-                    >For Job Seekers</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v2.html"
-                    >For Employers</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown active">
-              <a
-                class="nav-link dropdown-toggle"
-                style="font-size: 15pt"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >커뮤니티</a
-              >
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v1.html"
-                    >For Job Seekers</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="job-board-home-v2.html"
-                    >For Employers</a
-                  >
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
-          <i class="fi-user me-2"></i><span>로그인</span>
-        </a>
-      </div>
-    </header>
+    <th:block th:replace="common/header :: headerFragment"></th:block>
     <!-- 헤더 끝 -->
 
     <main class="page-wrapper">
@@ -338,6 +158,13 @@
       <!-- Page header-->
       <section class="container pt-5 mt-5">
         <!-- Breadcrumb-->
+        <nav class="mt-3 mb-3 pt-md-3" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="real-estate-catalog-rent.html"> 문화재 검색 </a></li>
+          <li class="breadcrumb-item active" aria-current="page"> 문화재 상세 페이지 </li>
+        </ol>
+      </nav>
         <div
           class="d-sm-flex align-items-center justify-content-between mt-4 pb-sm-2"
         >
@@ -376,101 +203,103 @@
         <!-- Nav pills-->
         <ul class="nav nav-pills border-bottom mb-4"></ul>
       </section>
-      <!-- Gallery-->
-      <section class="container overflow-auto mb-5" data-simplebar>
-        <div
-          class="row g-2 g-md-3 gallery"
-          data-thumbnails="true"
-          style="min-width: 30rem"
-        >
-          <div class="col-8">
-            <a
-              class="gallery-item rounded rounded-md-3"
-              href="http://www.cha.go.kr/unisearch/images/national_treasure/1611458.jpg"
-              data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Kids bed&lt;/h6&gt;'
-              ><img
-                src="http://www.cha.go.kr/unisearch/images/national_treasure/1611458.jpg"
-                alt="Gallery thumbnail"
-            /></a>
-          </div>
-          <div class="col-4">
-            <a
-              class="gallery-item rounded rounded-md-3 mb-2 mb-md-3"
-              href="http://www.cha.go.kr/unisearch/images/national_treasure/1611459.jpg"
-              data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Kids bed&lt;/h6&gt;'
-              ><img
-                src="http://www.cha.go.kr/unisearch/images/national_treasure/1611459.jpg"
-                alt="Gallery thumbnail" /></a
-            ><a
-              class="gallery-item rounded rounded-md-3"
-              href="http://www.cha.go.kr/unisearch/images/national_treasure/1611460.jpg"
-              data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
-              ><img
-                src="http://www.cha.go.kr/unisearch/images/national_treasure/1611460.jpg"
-                alt="Gallery thumbnail"
-            /></a>
-          </div>
-          <div class="col-12">
-            <div class="row g-2 g-md-3">
-              <div class="col">
-                <a
-                  class="gallery-item rounded-1 rounded-md-2"
-                  href="http://www.cha.go.kr/unisearch/images/national_treasure/1611461.jpg"
-                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
-                  ><img
-                    src="http://www.cha.go.kr/unisearch/images/national_treasure/1611461.jpg"
-                    alt="Gallery thumbnail"
-                /></a>
-              </div>
-              <div class="col">
-                <a
-                  class="gallery-item rounded-1 rounded-md-2"
-                  href="http://www.cha.go.kr/unisearch/images/national_treasure/1611462.jpg"
-                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;King size bed&lt;/h6&gt;'
-                  ><img
-                    src="http://www.cha.go.kr/unisearch/images/national_treasure/1611462.jpg"
-                    alt="Gallery thumbnail"
-                /></a>
-              </div>
-              <div class="col">
-                <a
-                  class="gallery-item rounded-1 rounded-md-2"
-                  href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140800.jpg"
-                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Towels&lt;/h6&gt;'
-                  ><img
-                    src="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140800.jpg"
-                    alt="Gallery thumbnail"
-                /></a>
-              </div>
-              <div class="col">
-                <a
-                  class="gallery-item rounded-1 rounded-md-2"
-                  href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140801.jpg"
-                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
-                  ><img
-                    src="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140801.jpg"
-                    alt="Gallery thumbnail"
-                /></a>
-              </div>
-              <div class="col">
-                <a
-                  class="gallery-item rounded-1 rounded-md-2"
-                  href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140900.jpg"
-                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
-                  ><img
-                    src="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140900.jpg"
-                    alt="Gallery thumbnail"
-                /></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       <!-- Page content-->
       <section class="container mb-md-4">
         <div class="row">
-          <div class="col-md-7 mb-md-0 mb-3">
-            <div class="card py-2 px-sm-4 px-3 shadow-sm">
+          <!-- Left column-->
+          <div class="col-md-7 mb-md-0 mb-4 pb-md-0 pb-2">
+            <div
+              class="row g-2 g-md-3 gallery"
+              data-thumbnails="true"
+              style="min-width: 30rem"
+            >
+              <div class="col-8">
+                <a
+                  class="gallery-item rounded rounded-md-3"
+                  href="http://www.cha.go.kr/unisearch/images/national_treasure/1611458.jpg"
+                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Kids bed&lt;/h6&gt;'
+                  ><img
+                    src="http://www.cha.go.kr/unisearch/images/national_treasure/1611458.jpg"
+                    alt="Gallery thumbnail"
+                /></a>
+              </div>
+              <div class="col-4">
+                <a
+                  class="gallery-item rounded rounded-md-3 mb-2 mb-md-3"
+                  href="http://www.cha.go.kr/unisearch/images/national_treasure/1611459.jpg"
+                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Kids bed&lt;/h6&gt;'
+                  ><img
+                    src="http://www.cha.go.kr/unisearch/images/national_treasure/1611459.jpg"
+                    alt="Gallery thumbnail" /></a
+                ><a
+                  class="gallery-item rounded rounded-md-3"
+                  href="http://www.cha.go.kr/unisearch/images/national_treasure/1611460.jpg"
+                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
+                  ><img
+                    src="http://www.cha.go.kr/unisearch/images/national_treasure/1611460.jpg"
+                    alt="Gallery thumbnail"
+                /></a>
+              </div>
+              <div class="col-12">
+                <div class="row g-2 g-md-3">
+                  <div class="col">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      href="http://www.cha.go.kr/unisearch/images/national_treasure/1611461.jpg"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
+                      ><img
+                        src="http://www.cha.go.kr/unisearch/images/national_treasure/1611461.jpg"
+                        alt="Gallery thumbnail"
+                    /></a>
+                  </div>
+                  <div class="col">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      href="http://www.cha.go.kr/unisearch/images/national_treasure/1611462.jpg"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;King size bed&lt;/h6&gt;'
+                      ><img
+                        src="http://www.cha.go.kr/unisearch/images/national_treasure/1611462.jpg"
+                        alt="Gallery thumbnail"
+                    /></a>
+                  </div>
+                  <div class="col">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140800.jpg"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Towels&lt;/h6&gt;'
+                      ><img
+                        src="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140800.jpg"
+                        alt="Gallery thumbnail"
+                    /></a>
+                  </div>
+                  <div class="col">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140801.jpg"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
+                      ><img
+                        src="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140801.jpg"
+                        alt="Gallery thumbnail"
+                    /></a>
+                  </div>
+                  <div class="col">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140900.jpg"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
+                      ><img
+                        src="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140900.jpg"
+                        alt="Gallery thumbnail"
+                    /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Sidebar-->
+          <aside class="col-md-5 d-flex flex-wrap align-content-stretch">
+            <!-- Place card-->
+            <div class="py-2 px-sm-5 px-3 shadow-sm mb-3">
               <div class="card-body mx-n2">
                 <!-- Place info-->
                 <div class="d-flex align-items-start mb-3 pb-3 border-bottom">
@@ -510,8 +339,8 @@
                 <!-- Place contacts-->
                 <div class="mb-3">
                   <h4 class="h5 mb-2">문화재 정보</h4>
-                  <ul class="nav row row-cols-sm-2 row-cols-1 gy-1">
-                    <li class="col">
+                  <ul style="list-style: none; padding: 0">
+                    <li>
                       <a
                         class="nav-link p-0 fw-normal d-flex align-items-start"
                         href="#"
@@ -519,14 +348,14 @@
                         (용산동6가)</a
                       >
                     </li>
-                    <li class="col">
+                    <li>
                       <a
                         class="nav-link d-inline-block p-0 fw-normal d-inline-flex align-items-start"
                         href="tel:3025550107"
                         >문화재 종류: 기록유산</a
                       >
                     </li>
-                    <li class="col">
+                    <li>
                       <a
                         class="nav-link d-inline-block p-0 fw-normal"
                         href="tel:3025550208"
@@ -544,14 +373,14 @@
                         >비</a
                       >
                     </li>
-                    <li class="col">
+                    <li>
                       <a
                         class="nav-link p-0 fw-normal d-flex align-items-start"
                         href="#"
                         >지정(등록일): 1962.12.20</a
                       >
                     </li>
-                    <li class="col">
+                    <li>
                       <a
                         class="nav-link p-0 fw-normal d-flex align-items-start"
                         href="mailto:bb-hotel@example.com"
@@ -562,17 +391,16 @@
                 </div>
               </div>
             </div>
-          </div>
-          <!-- Location (Map) 카카오맵 구현 부분-->
-          <div class="col-md-5">
-            <div
-              class="position-relative bg-size-cover bg-position-center bg-repeat-0 h-100 rounded-3"
-              style="
-                background-image: url(img/city-guide/single/map.jpg);
-                min-height: 250px;
-              "
-            ></div>
-          </div>
+            <!-- Location (Map) 카카오맵 구현 부분-->
+            <div class="position-relative">
+              <img
+                style="height: 100%; object-fit: cover"
+                class="rounded-3"
+                src="img/city-guide/single/map-sm.jpg"
+                alt="Map"
+              />
+            </div>
+          </aside>
         </div>
       </section>
       <section class="container pb-5 mb-md-4">
@@ -1061,107 +889,7 @@
     </main>
 
     <!-- 푸터 -->
-    <footer class="footer">
-      <div class="container pt-3 pt-lg-3">
-        <div class="row pt-2 pt-lg-1">
-          <div class="col-lg-3 mt-4">
-            <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
-            <p class="fs-sm text-light opacity-70">
-              새로 업데이트되는 소식을 전해드립니다
-            </p>
-            <form class="form-group form-group-light w-100">
-              <div class="input-group input-group-sm">
-                <span class="input-group-text"> <i class="fi-mail"></i></span>
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="Email 주소"
-                />
-              </div>
-              <button class="btn btn-primary btn-icon btn-sm" type="button">
-                <i class="fi-send"></i>
-              </button>
-            </form>
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none"
-              ><span class="text-light" style="font-size: 20pt">문화재</span></a
-            ><br /><br />
-            <a href="#" style="text-decoration: none"
-              ><span class="text-light" style="font-size: 20pt"
-                >추천페이지</span
-              ></a
-            >
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none"
-              ><span class="text-light" style="font-size: 20pt"
-                >문화재행사</span
-              ></a
-            ><br /><br />
-            <a href="#" style="text-decoration: none"
-              ><span class="text-light" style="font-size: 20pt"
-                >날씨정보</span
-              ></a
-            >
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none"
-              ><span class="text-light" style="font-size: 20pt">박물관</span></a
-            ><br /><br />
-            <a href="#" style="text-decoration: none"
-              ><span class="text-light" style="font-size: 20pt">모임</span></a
-            >
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none"
-              ><span class="text-light" style="font-size: 20pt">쇼핑</span></a
-            ><br /><br />
-            <a href="#" style="text-decoration: none"
-              ><span class="text-light" style="font-size: 20pt"
-                >커뮤니티</span
-              ></a
-            >
-          </div>
-
-          <div class="col-lg-3 mb-2 mb-sm-4">
-            <div class="row">
-              <div class="col mt-2">
-                <span class="text-light" style="font-size: 40pt">문화</span>
-                <span class="text-light" style="font-size: 40pt"
-                  >&nbsp;월드</span
-                >
-              </div>
-              <div class="col mt-2">
-                <img
-                  src="img/myimages/ksw/FinalLogo.jpg"
-                  width="140px"
-                  style="border-radius: 100%"
-                  alt=""
-                />
-                <div class="d-flex flex-wrap pt-2">
-                  <a
-                    class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2"
-                    href="#"
-                    ><i class="fi-facebook"></i
-                  ></a>
-                  <a
-                    class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2"
-                    href="#"
-                    ><i class="fi-twitter"></i
-                  ></a>
-                  <a
-                    class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2"
-                    href="#"
-                    ><i class="fi-telegram"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <th:block th:replace="common/footer :: footerFragment"></th:block>
     <!-- 푸터 끝 -->
 
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
@@ -1169,6 +897,7 @@
       ><i class="btn-scroll-top-icon fi-chevron-up"> </i
     ></a>
     <!-- Vendor scrits: js libraries and plugins-->
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
     <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/simplebar/dist/simplebar.min.js"></script>
     <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>

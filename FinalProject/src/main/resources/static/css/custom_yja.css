@@ -202,13 +202,11 @@ footer {
 }
 
 .page-link {
-  color: #ab40ff !important;
   box-shadow: none;
 }
 .page-link.active,
 .active > .page-link {
   color: white !important;
-  background-color: #ab40ff !important;
   border: none !important;
   box-shadow: none !important;
 }
