@@ -24,6 +24,7 @@
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg" />
     <meta name="msapplication-TileColor" content="#766df4" />
     <meta name="theme-color" content="#ffffff" />
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
     <!-- Page loading styles-->
     <style>
       @font-face {
@@ -39,7 +40,13 @@
       * {
         font-family: "GmarketSansMedium";
       }
-
+	  .navbar {
+        height: 110px;
+      }
+      .chat-box {
+		  height: 350px;
+		  overflow-y: scroll;
+		}
       .page-loading {
         position: fixed;
         top: 0;
@@ -150,395 +157,127 @@
     <!-- 헤더 끝 -->
 
     <main class="page-wrapper">
-      <div class="main-bg" style="height: 300px;">
-        <div class="main-text" style="top:150px">
-          <p>원하시는 모임과 함께 떠나보아요</p>
-          <p><span>모임을</span>찾아 보세요~</p>
+    <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 480px;">
+      	<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+  			  background-image: url('img/img_yja/문화재.jpg'); background-size: cover; background-position: center;">
+		</div>
+
+      <div class="content-overlay container py-md-5">
+        <div class="order-md-1">
+          <h3 class="display-4 mb-4 me-lg-n5 text-lg-start text-center text-light" style="margin-top: 100px;">
+            문화재와 함께 역사 속으로 
+          </h1>
+          <h3 class="display-4 mb-4 me-lg-n5 text-lg-start text-center text-light">
+            <span class="d-inline-block text-color" style="color:#ab40ff"> 문화월드 </span>
+            와 함께 떠나요!
+          </h3>
         </div>
       </div>
+    </section>
 
-      <section class="container">
-        <div class="best-heritage__title">
-          <div class="best-heritage">
-            <h2>BEST 3모임</h2>
-            <span>인기 많은 모임들을 확인해보세요.</span>
-          </div>
-          <p>더보기 >></p>
-        </div>
-        <div>
-          <div
-            class="d-sm-flex align-items-center justify-content-between mb-4 pb-2"
-          ></div>
-          <div
-            class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside"
-          >
-            <div
-              class="tns-carousel-inner"
-              data-carousel-options='{"items": 3, "gutter": 24, "responsive": {"0":{"items":1,"nav":true},"500":{"items":2},"850":{"items":3},"1400":{"items":3,"nav":false}}}'
-            >
-              <!-- Item-->
-              <div>
-                <div class="position-relative">
-                  <div class="position-relative mb-3">
-                    <img
-                      class="rounded-3"
-                      src="img/img_yja/숭례문.jpg"
-                      alt="Image"
-                      height="275px"
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <h3 class="mb-2 fs-lg">
-                    <a
-                      class="nav-link stretched-link"
-                      href="city-guide-single.html"
-                      >서울 문화재를 사랑하는모임</a
-                    >
-                  </h3>
-                  <p>주요지역 : 서울</p>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"
-                      ></i
-                      ><b>300</b>
-                    </li>
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"
-                      ></i
-                      >3
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- Item-->
-              <div>
-                <div class="position-relative">
-                  <div class="position-relative mb-3">
-                    <img
-                      class="rounded-3"
-                      src="img/img_yja/숭례문.jpg"
-                      alt="Image"
-                      height="275px"
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <h3 class="mb-2 fs-lg">
-                    <a
-                      class="nav-link stretched-link"
-                      href="city-guide-single.html"
-                      >서울 숭례문</a
-                    >
-                  </h3>
-                  <p>서울 중구 세종대로 40 (남대문 로4가)</p>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"
-                      ></i
-                      ><b>300</b>
-                    </li>
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"
-                      ></i
-                      >3
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- Item-->
-              <div>
-                <div class="position-relative">
-                  <div class="position-relative mb-3">
-                    <img
-                      class="rounded-3"
-                      src="img/img_yja/숭례문.jpg"
-                      alt="Image"
-                      height="275px"
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <h3 class="mb-2 fs-lg">
-                    <a
-                      class="nav-link stretched-link"
-                      href="city-guide-single.html"
-                      >서울 숭례문</a
-                    >
-                  </h3>
-                  <p>서울 중구 세종대로 40 (남대문 로4가)</p>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"
-                      ></i
-                      ><b>23</b>
-                    </li>
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"
-                      ></i
-                      >3
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- Item-->
-              <div>
-                <div class="position-relative">
-                  <div class="position-relative mb-3">
-                    <img
-                      class="rounded-3"
-                      src="img/img_yja/숭례문.jpg"
-                      alt="Image"
-                      height="275px"
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <h3 class="mb-2 fs-lg">
-                    <a
-                      class="nav-link stretched-link"
-                      href="city-guide-single.html"
-                      >서울 숭례문</a
-                    >
-                  </h3>
-                  <p>서울 중구 세종대로 40 (남대문 로4가)</p>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"
-                      ></i
-                      ><b>23</b>
-                    </li>
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"
-                      ></i
-                      >3
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section class="container section-2">
-        <div class="cultural-event">
-          <h2>문화 행사</h2>
-          <div>
-            <img
-              alt="문화행사1"
-              src="img/img_yja/문화행사1.jpg"
-              width="240px"
-              class="event-img"
-            />
-            <img
-              alt="문화행사2"
-              src="img/img_yja/문화행사2.jpg"
-              width="240px"
-              class="event-img"
-            />
-            <img
-              alt="문화행사3"
-              src="img/img_yja/문화행사3.jpg"
-              width="240px"
-              class="event-img"
-            />
-          </div>
-        </div>
-        <div class="today-museum">
-          <h2>오늘의 박물관</h2>
-          <div class="today-museum__grid">
-            <div
-              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
-              style="
-                background-image: url(img/img_yja/경주박물관.jpg);
-                width: 250px;
-                height: 170px;
-              "
-            >
-              <span class="img-gradient-overlay"></span>
-              <div class="card-footer content-overlay border-0 pt-0 pb-4">
-                <div
-                  class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5"
-                >
-                  <a href="#" class="text-decoration-none text-light pe-2">
-                    <h3 class="h5 text-light mb-1">경주 국립 박물관</h3>
-                    <div class="fs-sm opacity-70">
-                      <i class="fi-map-pin me-1"></i>
-                      경상북도 경주시 일정로 186 (인왕동)
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
-              style="
-                background-image: url(img/img_yja/경주박물관.jpg);
-                width: 250px;
-                height: 170px;
-              "
-            >
-              <span class="img-gradient-overlay"></span>
-              <div class="card-footer content-overlay border-0 pt-0 pb-4">
-                <div
-                  class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5"
-                >
-                  <a href="#" class="text-decoration-none text-light pe-2">
-                    <h3 class="h5 text-light mb-1">경주 국립 박물관</h3>
-                    <div class="fs-sm opacity-70">
-                      <i class="fi-map-pin me-1"></i>
-                      경상북도 경주시 일정로 186 (인왕동)
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
-              style="
-                background-image: url(img/img_yja/경주박물관.jpg);
-                width: 250px;
-                height: 170px;
-              "
-            >
-              <span class="img-gradient-overlay"></span>
-              <div class="card-footer content-overlay border-0 pt-0 pb-4">
-                <div
-                  class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5"
-                >
-                  <a href="#" class="text-decoration-none text-light pe-2">
-                    <h3 class="h5 text-light mb-1">경주 국립 박물관</h3>
-                    <div class="fs-sm opacity-70">
-                      <i class="fi-map-pin me-1"></i>
-                      경상북도 경주시 일정로 186 (인왕동)
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
-              style="
-                background-image: url(img/img_yja/경주박물관.jpg);
-                width: 250px;
-                height: 170px;
-              "
-            >
-              <span class="img-gradient-overlay"></span>
-              <div class="card-footer content-overlay border-0 pt-0 pb-4">
-                <div
-                  class="d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5"
-                >
-                  <a href="#" class="text-decoration-none text-light pe-2">
-                    <h3 class="h5 text-light mb-1">경주 국립 박물관</h3>
-                    <div class="fs-sm opacity-70">
-                      <i class="fi-map-pin me-1"></i>
-                      경상북도 경주시 일정로 186 (인왕동)
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#myCarousel"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#myCarousel"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#myCarousel"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <a
-              href="https://www.museum.go.kr/site/main/exhiOnline/list?cp=1&pageSize=8&sortOrder=EXHI_ONLINE_START&sortDirection=ASC&exhiOnlineMuseumGubun=C01&unitedUse=ecms&selectTime=current&currentTime=2024-03-06"
-              ><img
-                src="img/img_yja/사진.png"
-                width="100%"
-                style="object-fit: cover"
-            /></a>
-          </div>
-          <div class="carousel-item">
-            <a href="https://www.youtube.com/watch?v=K_JslwZ47QA&t=33s"
-              ><img
-                src="img/img_yja/캐러셀2.png"
-                width="100%"
-                height="556"
-                style="object-fit: cover"
-            /></a>
+<section class="container section-3">
+	<div class="col-6">
+	
+	     <aside class="col-md-11">
+            <!-- Place card-->
+            <div class="card mb-4 p-2 shadow-sm">
+              <div class="card-body">
+                <!-- Place info-->
+                <div class="d-flex align-items-start mb-3 pb-2 border-bottom"><img src="img/city-guide/brands/hotel.svg" width="60" alt="Thumbnail">
+                  <div class="ps-2 ms-1">
+                    <h3 class="h5 mb-2"> 경주 사랑단</h3>
+                    <ul class="list-unstyled d-flex flex-wrap fs-sm">
+                      <li class="me-2 mb-1 pe-1"><i class="fi-star-filled mt-n1 me-1 text-warning align-middle opacity-70"></i><b>총 가입자 </b>200명</li>
+                      <li class="me-2 mb-1 pe-1"><i class="fi-map-pin mt-n1 me-1 align-middle opacity-70"></i>주운영</li>
+                      <li class="me-2 mb-1 pe-1"><i class="fi-map-pin mt-n1 me-1 align-middle opacity-70"></i>박준영</li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Place contacts-->
+                <div class="mb-3 pb-3 border-bottom">
+                  <h4 class="h5 mb-2">모임 소개글</h4>
+					경주를 사랑하는 모든사람들을 위한 모임</br>
+					경주 문화재를 사랑하는 지역사람들</br>
+					전공을 파고있는 사람들</br>
+					모두모두 포용해서 좋은 모임을 만들어</br>
+					문화재를 사랑하고 알리고 함께 즐기는것이 목표입니다.</br>
+					@한달에 한번 정모</br>
+					@일주일에 한번씩 번개가 있음(강요X)</br>
+					@가입후 자기소개 작성해주세요.</br>
+					모두함께 즐거운 모임 활동 됩시다.</br>
+					</br>
+                </div>
+                <!-- Place pricing-->
 
-            <div class="container">
-              <div
-                class="carousel-caption"
-                style="font-family: GmarketSansMedium, sans-serif"
-              >
-                <h1 style="color: white">돌 벽 위에서 만난 고구려</h1>
+                <!-- Place following-->
               </div>
             </div>
-          </div>
-          <div class="carousel-item">
-            <a href="https://www.youtube.com/watch?v=vxLLHdQe4s4&t=338s"></a>
-            <img
-              src="img/img_yja/캐러셀3.png"
-              width="100%"
-              style="object-fit: cover"
-            />
-            <div class="container">
-              <div
-                class="carousel-caption text-end"
-                style="font-family: GmarketSansMedium, sans-serif"
-              >
-                <h1 style="color: white">신선들의 잔치</h1>
+          </aside>
+	</div>
+	
+	<div class="col-6">
+	          <aside class="col-md-12">
+            <!-- Place card-->
+            <div class="card mb-4 p-2 shadow-sm">
+              <div class="card-body">
+                <!-- Place info-->
+                <div class="d-flex align-items-start mb-3 pb-2 border-bottom">
+                
+                  <div class="ps-2 ms-1">
+                    <h3 class="h5 mb-2"> 모임 정모</h3>
+                    <ul class="list-unstyled d-flex flex-wrap fs-sm">
+                      <li class="me-2 mb-1 pe-1"><i class="fi-star-filled mt-n1 me-1 text-warning align-middle opacity-70"></i><b>참여자 </b>(12명)</li>
+                      <li class="me-2 mb-1 pe-1"><i class="fi-wallet mt-n1 me-1 align-middle opacity-70"></i>$15000</li>
+                      <li class="me-2 mb-1 pe-1"><i class="fi-map-pin mt-n1 me-1 align-middle opacity-70"></i>김용호</li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Place contacts-->
+                <div class="mb-3 pb-3 border-bottom">
+                  <h4 class="h5 mb-2">Contacts:</h4>
+                  <ul class="nav flex-column">
+									<li class="nav-item mb-2"><a
+										class="nav-link p-0 fw-normal d-flex align-items-start"
+										href="#"><i
+											class="fi-map-pin mt-1 me-2 align-middle opacity-70"></i>서울 동서울버스터미널</a></li>
+									<li class="nav-item mb-2"><a
+										class="nav-link d-inline-block p-0 fw-normal d-inline-flex align-items-start"
+										href="tel:3025550107"><i
+											class="fi-phone mt-1 me-2 align-middle opacity-70"></i>01080083704</a></li>
+									<li class="nav-item mb-2"><a
+										class="nav-link p-0 fw-normal d-flex align-items-start"
+										href="#"><i
+											class="fi-globe mt-1 me-2 align-middle opacity-60"></i>m</a></li>
+									<li class="nav-item"><a
+										class="nav-link p-0 fw-normal d-flex align-items-start"
+										href="mailto:bb-hotel@example.com"><i
+											class="fi-mail mt-1 me-2 align-middle opacity-70"></i>zoshs38@gmail.com</a></li>
+								</ul>
+                </div>
+                <!-- Place pricing-->
+                <div class="mb-3 pb-4 border-bottom">
+                  <div class="row row-cols-1">
+                    <div class="col mb-3">
+                      <!-- <h4 class="h5 mb-0"><span class="fs-4">$50-100&nbsp;</span><span class="fs-base fw-normal text-body">/night</span></h4> -->
+                    </div>
+									<div class="col" style="">
+										<a class="btn btn-primary btn-lg rounded-pill w-sm-auto w-100"
+										 style="background-color:#ab40ff"	href="#">모임 가입<i class="fi-chevron-right fs-sm ms-2"></i></a>
+									</div>
+								</div>
+                </div>
+                <!-- Place following-->
               </div>
             </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#myCarousel"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#myCarousel"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+          </aside>
+	</div>
+</section>
 
       <section class="container section-3">
         <div>
-          <h2>커뮤니티</h2>
+          <h2>공지사항</h2>
           <ul class="board">
             <li>
               <a href="post.html" style="text-decoration: none; color: black"
@@ -583,7 +322,7 @@
           </ul>
         </div>
         <div>
-          <h2>기념품</h2>
+          <h2>모임 일정</h2>
           <div class="souvenir">
             <article>
               <a
@@ -596,7 +335,7 @@
               <div class="py-3">
                 <h3 class="fs-base pt-1">
                   <a class="nav-link" href="#"
-                    >This Year is All About New Harley Davidson</a
+                    >모임을 떠나봅시다</a
                   >
                 </h3>
                 <a
@@ -604,7 +343,7 @@
                   class="d-flex align-items-center text-decoration-none"
                 >
                   <div>
-                    <h6 class="fs-sm mb-1" style="color: gray">2,500원</h6>
+                    <h6 class="fs-sm mb-1" style="color: gray">2024.4.15</h6>
                   </div>
                 </a>
               </div>
@@ -620,7 +359,7 @@
               <div class="py-3">
                 <h3 class="fs-base pt-1">
                   <a class="nav-link" href="#"
-                    >This Year is All About New Harley Davidson</a
+                    >모임을 떠나봅시다</a
                   >
                 </h3>
                 <a
@@ -628,7 +367,7 @@
                   class="d-flex align-items-center text-decoration-none"
                 >
                   <div>
-                    <h6 class="fs-sm mb-1" style="color: gray">2,500원</h6>
+                    <h6 class="fs-sm mb-1" style="color: gray">2024.4.15</h6>
                   </div>
                 </a>
               </div>
@@ -644,7 +383,7 @@
               <div class="py-3">
                 <h3 class="fs-base pt-1">
                   <a class="nav-link" href="#"
-                    >This Year is All About New Harley Davidson</a
+                    >모임을 떠나봅시다</a
                   >
                 </h3>
                 <a
@@ -652,7 +391,7 @@
                   class="d-flex align-items-center text-decoration-none"
                 >
                   <div>
-                    <h6 class="fs-sm mb-1" style="color: gray">2,500원</h6>
+                    <h6 class="fs-sm mb-1" style="color: gray">2024.4.15</h6>
                   </div>
                 </a>
               </div>
@@ -668,7 +407,7 @@
               <div class="py-3">
                 <h3 class="fs-base pt-1">
                   <a class="nav-link" href="#"
-                    >This Year is All About New Harley Davidson</a
+                    >모임을 떠나봅시다</a
                   >
                 </h3>
                 <a
@@ -676,7 +415,7 @@
                   class="d-flex align-items-center text-decoration-none"
                 >
                   <div>
-                    <h6 class="fs-sm mb-1" style="color: gray">2,500원</h6>
+                    <h6 class="fs-sm mb-1" style="color: gray">2024.4.15</h6>
                   </div>
                 </a>
               </div>
@@ -685,95 +424,145 @@
         </div>
       </section>
 
-      <section class="container">
-        <div class="best-heritage__title">
-          <div class="best-heritage">
-            <h2>문화재 추천</h2>
-            <span>오늘의 문화재는?</span>
-          </div>
-          <p>더보기 >></p>
+      <section class="container section-3">
+        <div class="col-5">
+          <h2>자유게시판</h2>
+          <ul class="board">
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >행사 또 언제 있나요?</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >오늘 너무 재밌었어요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >주말에 시간내길 잘했어요!</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >담에 또 오려구요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >친구들이랑 왔는데 너무 좋았어요!</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >강아지도 좋아해요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >강아지도 좋아해요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >강아지도 좋아해요</a
+              ><span>2023.12.25</span>
+            </li>
+          </ul>
         </div>
-        <div
-          class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2"
-        >
-          <div
-            class="tns-carousel-inner row gx-4 mx-0 py-md-4 py-3"
-            data-carousel-options='{"items": 4, "responsive": {"0":{"items":1},"500":{"items":2},"768":{"items":3},"992":{"items":4}}}'
-          >
-            <!-- Item-->
-            <div class="col">
-              <a
-                class="card shadow-sm card-hover border-0"
-                href="real-estate-catalog-sale.html"
-              >
-                <div class="card-img-top card-img-hover">
-                  <span></span
-                  ><img src="img/img_yja/숭례문.jpg" alt="New York" />
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="mb-0 fs-base text-nav">숭례문</h3>
-                </div></a
-              >
+	        <div class="d-flex ms-auto col">
+        <div class="today-museum col-7">
+          <h2>모임 사진첩</h2>
+          <div class="today-museum__grid" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/aa5a2b0c-6c55-4353-8837-7fbc84e377bd.jpeg);
+                width: 180px;
+                height: 130px;
+                
+              "
+            >
+              
+
             </div>
-            <!-- Item-->
-            <div class="col">
-              <a
-                class="card shadow-sm card-hover border-0"
-                href="real-estate-catalog-sale.html"
-              >
-                <div class="card-img-top card-img-hover">
-                  <span></span
-                  ><img src="img/img_yja/숭례문.jpg" alt="New York" />
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="mb-0 fs-base text-nav">숭례문</h3>
-                </div></a
-              >
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(img/img_yja/경주박물관.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
             </div>
-            <!-- Item-->
-            <div class="col">
-              <a
-                class="card shadow-sm card-hover border-0"
-                href="real-estate-catalog-sale.html"
-              >
-                <div class="card-img-top card-img-hover">
-                  <span></span
-                  ><img src="img/img_yja/숭례문.jpg" alt="New York" />
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="mb-0 fs-base text-nav">숭례문</h3>
-                </div></a
-              >
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://upload.wikimedia.org/wikipedia/commons/0/0b/%EA%B2%BD%EC%A3%BC_%EB%B6%88%EA%B5%AD%EC%82%AC_%EC%B2%AD%EC%9A%B4%EA%B5%90_%EB%B0%8F_%EB%B0%B1%EC%9A%B4%EA%B5%90.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
             </div>
-            <!-- Item-->
-            <div class="col">
-              <a
-                class="card shadow-sm card-hover border-0"
-                href="real-estate-catalog-sale.html"
-              >
-                <div class="card-img-top card-img-hover">
-                  <span></span
-                  ><img src="img/img_yja/숭례문.jpg" alt="New York" />
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="mb-0 fs-base text-nav">숭례문</h3>
-                </div></a
-              >
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://previews.123rf.com/images/matriyoshka/matriyoshka1610/matriyoshka161000002/63843756-%EA%B3%A0%EA%B3%A0%ED%95%99-%EB%B0%9C%EA%B5%B4-%EA%B3%A0%EB%8C%80%EC%82%AC-%EA%B3%A0%EA%B3%A0%ED%95%99%EC%9E%90%EA%B0%80-%EA%B3%A0%EB%8C%80-%EC%9C%A0%EB%AC%BC%EC%9D%84-%EB%B0%9C%EA%B5%B4.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
             </div>
-            <!-- Item-->
-            <div class="col">
-              <a
-                class="card shadow-sm card-hover border-0"
-                href="real-estate-catalog-sale.html"
-              >
-                <div class="card-img-top card-img-hover">
-                  <span></span
-                  ><img src="img/img_yja/숭례문.jpg" alt="New York" />
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="mb-0 fs-base text-nav">숭례문</h3>
-                </div></a
-              >
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/aa5a2b0c-6c55-4353-8837-7fbc84e377bd.jpeg);
+                width: 180px;
+                height: 130px;
+                
+              "
+            >
+              
+
+            </div>
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(img/img_yja/경주박물관.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
+            </div>
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://upload.wikimedia.org/wikipedia/commons/0/0b/%EA%B2%BD%EC%A3%BC_%EB%B6%88%EA%B5%AD%EC%82%AC_%EC%B2%AD%EC%9A%B4%EA%B5%90_%EB%B0%8F_%EB%B0%B1%EC%9A%B4%EA%B5%90.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
+            </div>
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://previews.123rf.com/images/matriyoshka/matriyoshka1610/matriyoshka161000002/63843756-%EA%B3%A0%EA%B3%A0%ED%95%99-%EB%B0%9C%EA%B5%B4-%EA%B3%A0%EB%8C%80%EC%82%AC-%EA%B3%A0%EA%B3%A0%ED%95%99%EC%9E%90%EA%B0%80-%EA%B3%A0%EB%8C%80-%EC%9C%A0%EB%AC%BC%EC%9D%84-%EB%B0%9C%EA%B5%B4.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
             </div>
           </div>
         </div>
@@ -784,18 +573,112 @@
     <th:block th:replace="common/footer :: footerFragment"></th:block>
     <!-- 푸터 끝 -->
 
+	<!-- 챗봇 기능 -->
+    <script>
+    	var ws;
+    	var memberId = "Question";
+    
+		function connect() {
+			ws = new WebSocket('ws://localhost:80/chat.do');
+			// 채팅 입장
+			ws.onopen = function() {
+                console.log("웹소켓 연결 생성");
+                
+				var msg = {
+                    type: "register",
+                    memberId: memberId
+                }
+                
+                ws.send(JSON.stringify(msg));
+			};
+			
+			ws.onerror = function(event){
+				console.log(event);
+			}
+			// 서버에서 메세지 수신
+			ws.onmessage = function(e) {
+				var msg = e.data;
+				$('#chat-box').append(
+					  "<div class='media w-50 mb-3'><img src='img/myimages/ksw/FinalLogo.jpg' alt='user' width='50' class='img-thumbnail rounded-circle'>"+
+		                "<div class='media-body ml-3'>"+
+		                  "<div class='bg-light rounded py-2 px-3 mb-2'>"+
+		                    "<p class='text-small mb-0 text-muted'>"+
+		                    msg +
+		                    "</p>"+
+		                  "</div>"+
+		                "</div>"+
+		              "</div>"
+					);
+				
+                const top = $('#chat-box').prop('scrollHeight');
+                $('#chat-box').scrollTop(top);
+			};
+			
+			ws.onclose = function() {
+				console.log(ws);
+				console.log("연결종료");
+			};
+		}
+		connect();
+		
+
+		// 사용자 채팅 송신
+		function send() {
+            var chat = $("#userChat").val();
+            $('#chat-box').append(
+            		"<div class='media w-50 ms-auto mb-3'>"+
+	                "<div class='media-body'>"+
+	                  "<div class='bg-primary rounded py-2 px-3 mb-2'>"+
+	                    "<p class='text-small mb-0 text-white'>"+
+	                    chat +
+	                    "</p>"+
+	                  "</div>"+
+	                "</div>"+
+	              "</div>"
+    			);
+    			
+            const top = $('#chat-box').prop('scrollHeight');
+            $('#chat-box').scrollTop(top);
+            
+            var sendMsg = {
+            	id : memberId,
+                type: "chat",
+                target: "",
+                msg: chat
+            }
+            ws.send(JSON.stringify(sendMsg));
+   			$('#userChat').val("");
+        }
+    	$(()=>{
+    		var startMsg = {
+   				id : memberId,
+                type: "chat",
+                target: "",
+                msg: "안녕하세요"
+    		}
+            ws.send(JSON.stringify(startMsg));
+    	});
+    	$(document).ready(function() {
+    		  $(window).keydown(function(event){
+    		    if(event.keyCode == 13) {
+    		      event.preventDefault();
+    		      return false;
+    		    }
+    		  });
+    		});
+    </script>
+
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
       ><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span
       ><i class="btn-scroll-top-icon fi-chevron-up"> </i
     ></a>
     <!-- Vendor scrits: js libraries and plugins-->
-    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
-    <script src="vendor/lightgallery/lightgallery.min.js"></script>
-    <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
+    <script th:src="@{/vendor/tiny-slider/dist/min/tiny-slider.js}"></script>
+    <script th:src="@{/vendor/lightgallery/lightgallery.min.js}"></script>
+    <script th:src="@{/vendor/lightgallery/plugins/video/lg-video.min.js}"></script>
     <!-- Main theme script-->
     <script th:src="@{/js/theme.min.js}"></script>
   </body>
