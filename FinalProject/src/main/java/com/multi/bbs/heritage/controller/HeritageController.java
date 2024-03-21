@@ -27,4 +27,10 @@ public class HeritageController {
 		
 		return "heritage/heritage-detail";
 	}
+	
+	@GetMapping("/heritage-recommend")
+	public String hearitageRecommend(Model model) {
+		
+		return "heritage/heritage-recommend";
+	}
 }
