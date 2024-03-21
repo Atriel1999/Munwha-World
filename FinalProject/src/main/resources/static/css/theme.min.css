@@ -7,6 +7,10 @@
 .navbar {
         height: 110px;
       }
+.footer {
+        height: 300px;
+      }
+   
 /*HY맑은샘물M*/
 @font-face {
     font-family: "HYM1004";       

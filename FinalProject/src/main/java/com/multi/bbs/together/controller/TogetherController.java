@@ -39,6 +39,13 @@ public class TogetherController {
 		log.info("회원 정보 페이지 요청");
 		return "together/together";
 	}
+
+	
+	@GetMapping("/together-album")
+	public String togetherAlbum() {
+		log.info("회원 정보 페이지 요청");
+		return "together/together-album";
+	}
 	
 	@GetMapping("/togetherBoard")
 	public String togetherBoard() {
