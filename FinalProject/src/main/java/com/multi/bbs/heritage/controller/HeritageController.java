@@ -34,3 +34,4 @@ public class HeritageController {
 		return "heritage/heritage-recommend";
 	}
 }
+
