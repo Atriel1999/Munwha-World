@@ -181,23 +181,12 @@
             <div class="row align-items-center g-0 ms-n2">
               <div class="col-md-5 col-xl-3">
                 <div class="input-group input-group-lg border-end-md border-secondary"><span class="input-group-text text-secondary rounded-pill opacity-50 ps-3"><i class="fi-search" style="color: #6c757d; font-weight: bold"></i></span>
-                  <input class="form-control" name="keyword" type="text" placeholder="문화재 키워드 검색">
+                  <input th:value="${keyword}" class="form-control" name="keyword" type="text" placeholder="문화재 키워드 검색">
                 </div>
               </div>
               <hr class="hr-light d-md-none my-2">
               <div class="col-md-7 col-xl-4 d-sm-flex">
                 <div class="dropdown w-sm-50 border-end-sm border-secondary select" data-bs-toggle="select">
-                  <!-- <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">지역</span></button>
-                  <input type="hidden">
-                  <ul class="dropdown-menu dropdown-menu-dark my-3">
-                    <li><a class="dropdown-item" th:classappend="${param.region == ''} ? 'selected' : ''" href="#"><span class="dropdown-item-label">서울</span></a></li>
-                    <li><a class="dropdown-item" th:classappend="${param.region == ''} ? 'selected' : ''" href="#"><span class="dropdown-item-label">대구</span></a></li>
-                    <li><a class="dropdown-item" th:classappend="${param.region == ''} ? 'selected' : ''" href="#"><span class="dropdown-item-label">부산</span></a></li>
-                    <li><a class="dropdown-item" th:classappend="${param.region == ''} ? 'selected' : ''" href="#"><span class="dropdown-item-label">인천</span></a></li>
-                    <li><a class="dropdown-item" th:classappend="${param.region == ''} ? 'selected' : ''" href="#"><span class="dropdown-item-label">Los Angeles</span></a></li>
-                    <li><a class="dropdown-item" th:classappend="${param.region == ''} ? 'selected' : ''" href="#"><span class="dropdown-item-label">New York</span></a></li>
-                    <li><a class="dropdown-item" th:classappend="${param.region == ''} ? 'selected' : ''" href="#"><span class="dropdown-item-label">San Francisco</span></a></li>
-                  </ul> -->
                   <select
 		              class="selectpicker"
 		              title="지역"
@@ -206,22 +195,21 @@
 		              style="border: none; color: gray;"
 		          >
 		              <option value="" selected>지역 전체</option>
-		              <option value="서울" ${param.region == '서울' ? 'selected' : ''}>서울</option>
-		              <option value="대구" ${param.region == '대구' ? 'selected' : ''}>대구</option>
-		              <option value="부산" ${param.region == '부산' ? 'selected' : ''}>부산</option>
+		              <option value="서울" th:selected="${region} == '서울'">서울</option>
+		              <option value="경북" th:selected="${region} == '경북'">경북</option>
+		              <option value="전남" th:selected="${region} == '전남'">전남</option>
+		              <option value="충남" th:selected="${region} == '충남'">충남</option>
+		              <option value="경남" th:selected="${region} == '경남'">경남</option>
+		              <option value="강원" th:selected="${region} == '강원'">강원</option>
+		              <option value="충북" th:selected="${region} == '충북'">충북</option>
+		              <option value="전북" th:selected="${region} == '전북'">전북</option>
+		              <option value="경기" th:selected="${region} == '경기'">경기</option>
+		              <option value="부산" th:selected="${region} == '부산'">부산</option>
+		              <option value="대구" th:selected="${region} == '대구'">대구</option>
 		           </select>
                 </div>
                 <hr class="hr-light d-sm-none my-2">
                 <div class="dropdown w-sm-50 border-end-xl border-secondary select" data-bs-toggle="select">
-                  <!-- <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">유형</span></button>
-                  <input type="hidden">
-                  <ul class="dropdown-menu dropdown-menu-dark my-3">
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">국보</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">보물</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">30 miles</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">40 miles</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">50 miles</span></a></li>
-                  </ul> -->
                   <select
 		              class="selectpicker"
 		              title="유형"
@@ -230,22 +218,13 @@
 		              style="border: none; color: gray;"
 		          >
 		              <option value="" selected>유형 전체</option>
-		              <option value="국보" ${param.category == '국보' ? 'selected' : ''}>국보</option>
-		              <option value="보물" ${param.category == '보물' ? 'selected' : ''}>보물</option>
-		              <option value="사적" ${param.category == '사적' ? 'selected' : ''}>사적</option>
+		              <option value="국보" th:selected="${category} == '국보'">국보</option>
+		              <option value="보물" th:selected="${category} == '보물'">보물</option>
+		              <option value="사적" th:selected="${category} == '사적'">사적</option>
 		           </select>
                 </div>
                 <hr class="hr-light d-sm-none my-2">
                 <div class="dropdown w-sm-50 border-end-xl border-secondary select" data-bs-toggle="select">
-                  <!-- <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">시대</span></button>
-                  <input type="hidden">
-                  <ul class="dropdown-menu dropdown-menu-dark my-3">
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">10 miles</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">20 miles</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">30 miles</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">40 miles</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">50 miles</span></a></li>
-                  </ul> -->
                   <select
 		              class="selectpicker"
 		              title="시대"
@@ -254,9 +233,9 @@
 		              style="border: none; color: gray;"
 		          >
 		              <option value="" selected>시대 전체</option>
-		              <option value="조선" ${param.generation == '조선' ? 'selected' : ''}>조선</option>
-		              <option value="고려" ${param.generation == '고려' ? 'selected' : ''}>고려</option>
-		              <option value="삼국시대" ${param.generation == '삼국시대' ? 'selected' : ''}>삼국시대</option>
+		              <option value="조선" th:selected="${generation} == '조선'">조선</option>
+		              <option value="신라" th:selected="${generation} == '신라'">신라</option>
+		              <option value="고려" th:selected="${generation} == '고려'">고려</option>
 		           </select>
                 </div>
               </div>
@@ -264,11 +243,11 @@
               <div class="col-xl-5 d-sm-flex align-items-center">
                 <div class="d-flex align-items-center w-100 ms-xl-1 ps-3">
                   <div class="text-secondary text-nowrap opacity-60 me-sm-1"><span style="color:#6c757d">지정 연도</span></div>
-                  <div class="range-slider range-slider-secondary mt-1 pe-0 pe-sm-3" data-start-min="0" data-start-max="2024" data-min="0" data-max="2024" data-step="100">
+                  <div class="range-slider range-slider-secondary mt-1 pe-0 pe-sm-3" data-start-min="500" data-start-max="1600" data-min="0" data-max="2024" data-step="100">
                     <div class="range-slider-ui"></div>
                   </div>
                 </div>
-                <button class="btn btn-primary btn-lg w-100 w-sm-50 w-lg-auto rounded-pill mt-4 mt-sm-0" type="submit">Find jobs</button>
+                <button class="btn btn-primary btn-lg w-100 w-sm-50 w-lg-auto rounded-pill mt-4 mt-sm-0" type="submit">문화재 검색</button>
               </div>
             </div>
           </form>
@@ -299,7 +278,8 @@
           </div>
           <hr class="d-none d-sm-block w-100 mx-4">
           <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted">
-            <i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1" style="color: #811faf">148 검색결과</span>
+            <i class="fi-check-circle me-2"></i><span th:text="${size}"  class="fs-sm mt-n1" style="color: #811faf"></span>
+            <span class="fs-sm mt-n1" style="color: #811faf">&nbsp;검색결과</span>
           </div>
         </div>
       </div>
@@ -307,459 +287,83 @@
     <section class="container">
       <!--============================================================== 검색결과 리스트===============  -->
       <div class="search-list gx-5 gy-4">
+	      <th:block th:if="${items == null || #lists.size(items) == 0}">
+					<br>
+						<div class="h3 text-primary"> 조회된 박물관이 없습니다.</div>
+					
+		  </th:block>
             <!-- Carousel inside card -->
-            <div class="card shadow-sm card-hover border-0">
-              <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                <a href="#" class="img-overlay"></a>
-                <div class="tns-carousel-inner">
-                  <img src="img/img_yja/숭례문.jpg" alt="Image" />
-                  <img src="img/img_yja/동궁과월지.jpg" alt="Image" />
-                  <img src="img/img_yja/문화재.jpg" alt="Image" />
-                </div>
-              </div>
-              <div class="card-body position-relative pb-3">
-                <h3 class="h6 mb-2 fs-base">
-                  <a href="#" class="nav-link stretched-link">서울 숭례문</a>
-                </h3>
-                <div class="mb-2 fs-sm">
-                  <i class="fi-map-pin mt-n1 me-2 lead align-middle"></i>
-                  140-60 Beech Ave Flushing, NY 11355
-                </div>
-                <div class="mb-2 fs-sm text-muted heritage-desc">
-                  숭례문은 1392년 조선 건국 후 1396년(태조 5)에 공사를 시작하여,
-                  1398년(태조 7)에 완성하였다. 이후 1448년(세종 30), 1479년(성종
-                  10), 1868년(고종 5) 등 여러 차례에 수리를 거쳤다. ‘숭례’의
-                  이름은 유교의 덕목인 인(仁), 의(義), 예(禮), 지(智)에서 ‘예’를
-                  따와 이름을 지었고, 현판은 태종의 첫째 아들 양녕대군이 쓴
-                  것으로 전해진다. 숭례문은 석축 가운데에 무지개 모양의
-                  홍예문(虹霓門)을 두고, 그 위에 정면 5칸, 측면 2칸으로 지은
-                  누각형 2층 건물이다. 지붕의 형태는 우진각 지붕이고 공포의
-                  양식은 다포(多包)로 되어 있다.
-                </div>
-              </div>
-              <div
-                class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"
-              >
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-heart-filled text-warning ms-1 mt-n1 fs-lg"
-                    style="margin-right: 5px"
-                  ></i
-                  >23
-                </span>
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-chat-circle ms-1 mt-n1 fs-lg text-muted"
-                    style="margin-right: 5px"
-                  ></i
-                  >3
-                </span>
-              </div>
-            </div>
-            <div class="card shadow-sm card-hover border-0">
-              <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                <a href="#" class="img-overlay"></a>
-                <div class="tns-carousel-inner">
-                  <img src="img/img_yja/숭례문.jpg" alt="Image" />
-                  <img src="img/img_yja/동궁과월지.jpg" alt="Image" />
-                  <img src="img/img_yja/문화재.jpg" alt="Image" />
-                </div>
-              </div>
-              <div class="card-body position-relative pb-3">
-                <h3 class="h6 mb-2 fs-base">
-                  <a href="#" class="nav-link stretched-link">서울 숭례문</a>
-                </h3>
-                <div class="mb-2 fs-sm">
-                  <i class="fi-map-pin mt-n1 me-2 lead align-middle"></i>
-                  140-60 Beech Ave Flushing, NY 11355
-                </div>
-                <div class="mb-2 fs-sm text-muted heritage-desc">
-                  숭례문은 1392년 조선 건국 후 1396년(태조 5)에 공사를 시작하여,
-                  1398년(태조 7)에 완성하였다. 이후 1448년(세종 30), 1479년(성종
-                  10), 1868년(고종 5) 등 여러 차례에 수리를 거쳤다. ‘숭례’의
-                  이름은 유교의 덕목인 인(仁), 의(義), 예(禮), 지(智)에서 ‘예’를
-                  따와 이름을 지었고, 현판은 태종의 첫째 아들 양녕대군이 쓴
-                  것으로 전해진다. 숭례문은 석축 가운데에 무지개 모양의
-                  홍예문(虹霓門)을 두고, 그 위에 정면 5칸, 측면 2칸으로 지은
-                  누각형 2층 건물이다. 지붕의 형태는 우진각 지붕이고 공포의
-                  양식은 다포(多包)로 되어 있다.
-                </div>
-              </div>
-              <div
-                class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"
-              >
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-heart-filled text-warning ms-1 mt-n1 fs-lg"
-                    style="margin-right: 5px"
-                  ></i
-                  >23
-                </span>
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-chat-circle ms-1 mt-n1 fs-lg text-muted"
-                    style="margin-right: 5px"
-                  ></i
-                  >3
-                </span>
-              </div>
-            </div>
-            <div class="card shadow-sm card-hover border-0">
-              <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                <a href="#" class="img-overlay"></a>
-                <div class="tns-carousel-inner">
-                  <img src="img/img_yja/숭례문.jpg" alt="Image" />
-                  <img src="img/img_yja/동궁과월지.jpg" alt="Image" />
-                  <img src="img/img_yja/문화재.jpg" alt="Image" />
-                </div>
-              </div>
-              <div class="card-body position-relative pb-3">
-                <h3 class="h6 mb-2 fs-base">
-                  <a href="#" class="nav-link stretched-link">서울 숭례문</a>
-                </h3>
-                <div class="mb-2 fs-sm">
-                  <i class="fi-map-pin mt-n1 me-2 lead align-middle"></i>
-                  140-60 Beech Ave Flushing, NY 11355
-                </div>
-                <div class="mb-2 fs-sm text-muted heritage-desc">
-                  숭례문은 1392년 조선 건국 후 1396년(태조 5)에 공사를 시작하여,
-                  1398년(태조 7)에 완성하였다. 이후 1448년(세종 30), 1479년(성종
-                  10), 1868년(고종 5) 등 여러 차례에 수리를 거쳤다. ‘숭례’의
-                  이름은 유교의 덕목인 인(仁), 의(義), 예(禮), 지(智)에서 ‘예’를
-                  따와 이름을 지었고, 현판은 태종의 첫째 아들 양녕대군이 쓴
-                  것으로 전해진다. 숭례문은 석축 가운데에 무지개 모양의
-                  홍예문(虹霓門)을 두고, 그 위에 정면 5칸, 측면 2칸으로 지은
-                  누각형 2층 건물이다. 지붕의 형태는 우진각 지붕이고 공포의
-                  양식은 다포(多包)로 되어 있다.
-                </div>
-              </div>
-              <div
-                class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"
-              >
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-heart-filled text-warning ms-1 mt-n1 fs-lg"
-                    style="margin-right: 5px"
-                  ></i
-                  >23
-                </span>
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-chat-circle ms-1 mt-n1 fs-lg text-muted"
-                    style="margin-right: 5px"
-                  ></i
-                  >3
-                </span>
-              </div>
-            </div>
-            <div class="card shadow-sm card-hover border-0">
-              <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                <a href="#" class="img-overlay"></a>
-                <div class="tns-carousel-inner">
-                  <img src="img/img_yja/숭례문.jpg" alt="Image" />
-                  <img src="img/img_yja/동궁과월지.jpg" alt="Image" />
-                  <img src="img/img_yja/문화재.jpg" alt="Image" />
-                </div>
-              </div>
-              <div class="card-body position-relative pb-3">
-                <h3 class="h6 mb-2 fs-base">
-                  <a href="#" class="nav-link stretched-link">서울 숭례문</a>
-                </h3>
-                <div class="mb-2 fs-sm">
-                  <i class="fi-map-pin mt-n1 me-2 lead align-middle"></i>
-                  140-60 Beech Ave Flushing, NY 11355
-                </div>
-                <div class="mb-2 fs-sm text-muted heritage-desc">
-                  숭례문은 1392년 조선 건국 후 1396년(태조 5)에 공사를 시작하여,
-                  1398년(태조 7)에 완성하였다. 이후 1448년(세종 30), 1479년(성종
-                  10), 1868년(고종 5) 등 여러 차례에 수리를 거쳤다. ‘숭례’의
-                  이름은 유교의 덕목인 인(仁), 의(義), 예(禮), 지(智)에서 ‘예’를
-                  따와 이름을 지었고, 현판은 태종의 첫째 아들 양녕대군이 쓴
-                  것으로 전해진다. 숭례문은 석축 가운데에 무지개 모양의
-                  홍예문(虹霓門)을 두고, 그 위에 정면 5칸, 측면 2칸으로 지은
-                  누각형 2층 건물이다. 지붕의 형태는 우진각 지붕이고 공포의
-                  양식은 다포(多包)로 되어 있다.
-                </div>
-              </div>
-              <div
-                class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"
-              >
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-heart-filled text-warning ms-1 mt-n1 fs-lg"
-                    style="margin-right: 5px"
-                  ></i
-                  >23
-                </span>
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-chat-circle ms-1 mt-n1 fs-lg text-muted"
-                    style="margin-right: 5px"
-                  ></i
-                  >3
-                </span>
-              </div>
-            </div>
-            <div class="card shadow-sm card-hover border-0">
-              <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                <a href="#" class="img-overlay"></a>
-                <div class="tns-carousel-inner">
-                  <img src="img/img_yja/숭례문.jpg" alt="Image" />
-                  <img src="img/img_yja/동궁과월지.jpg" alt="Image" />
-                  <img src="img/img_yja/문화재.jpg" alt="Image" />
-                </div>
-              </div>
-              <div class="card-body position-relative pb-3">
-                <h3 class="h6 mb-2 fs-base">
-                  <a href="#" class="nav-link stretched-link">서울 숭례문</a>
-                </h3>
-                <div class="mb-2 fs-sm">
-                  <i class="fi-map-pin mt-n1 me-2 lead align-middle"></i>
-                  140-60 Beech Ave Flushing, NY 11355
-                </div>
-                <div class="mb-2 fs-sm text-muted heritage-desc">
-                  숭례문은 1392년 조선 건국 후 1396년(태조 5)에 공사를 시작하여,
-                  1398년(태조 7)에 완성하였다. 이후 1448년(세종 30), 1479년(성종
-                  10), 1868년(고종 5) 등 여러 차례에 수리를 거쳤다. ‘숭례’의
-                  이름은 유교의 덕목인 인(仁), 의(義), 예(禮), 지(智)에서 ‘예’를
-                  따와 이름을 지었고, 현판은 태종의 첫째 아들 양녕대군이 쓴
-                  것으로 전해진다. 숭례문은 석축 가운데에 무지개 모양의
-                  홍예문(虹霓門)을 두고, 그 위에 정면 5칸, 측면 2칸으로 지은
-                  누각형 2층 건물이다. 지붕의 형태는 우진각 지붕이고 공포의
-                  양식은 다포(多包)로 되어 있다.
-                </div>
-              </div>
-              <div
-                class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"
-              >
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-heart-filled text-warning ms-1 mt-n1 fs-lg"
-                    style="margin-right: 5px"
-                  ></i
-                  >23
-                </span>
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-chat-circle ms-1 mt-n1 fs-lg text-muted"
-                    style="margin-right: 5px"
-                  ></i
-                  >3
-                </span>
-              </div>
-            </div>
-            <div class="card shadow-sm card-hover border-0">
-              <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                <a href="#" class="img-overlay"></a>
-                <div class="tns-carousel-inner">
-                  <img src="img/img_yja/숭례문.jpg" alt="Image" />
-                  <img src="img/img_yja/동궁과월지.jpg" alt="Image" />
-                  <img src="img/img_yja/문화재.jpg" alt="Image" />
-                </div>
-              </div>
-              <div class="card-body position-relative pb-3">
-                <h3 class="h6 mb-2 fs-base">
-                  <a href="#" class="nav-link stretched-link">서울 숭례문</a>
-                </h3>
-                <div class="mb-2 fs-sm">
-                  <i class="fi-map-pin mt-n1 me-2 lead align-middle"></i>
-                  140-60 Beech Ave Flushing, NY 11355
-                </div>
-                <div class="mb-2 fs-sm text-muted heritage-desc">
-                  숭례문은 1392년 조선 건국 후 1396년(태조 5)에 공사를 시작하여,
-                  1398년(태조 7)에 완성하였다. 이후 1448년(세종 30), 1479년(성종
-                  10), 1868년(고종 5) 등 여러 차례에 수리를 거쳤다. ‘숭례’의
-                  이름은 유교의 덕목인 인(仁), 의(義), 예(禮), 지(智)에서 ‘예’를
-                  따와 이름을 지었고, 현판은 태종의 첫째 아들 양녕대군이 쓴
-                  것으로 전해진다. 숭례문은 석축 가운데에 무지개 모양의
-                  홍예문(虹霓門)을 두고, 그 위에 정면 5칸, 측면 2칸으로 지은
-                  누각형 2층 건물이다. 지붕의 형태는 우진각 지붕이고 공포의
-                  양식은 다포(多包)로 되어 있다.
-                </div>
-              </div>
-              <div
-                class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"
-              >
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-heart-filled text-warning ms-1 mt-n1 fs-lg"
-                    style="margin-right: 5px"
-                  ></i
-                  >23
-                </span>
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-chat-circle ms-1 mt-n1 fs-lg text-muted"
-                    style="margin-right: 5px"
-                  ></i
-                  >3
-                </span>
-              </div>
-            </div>
-            <div class="card shadow-sm card-hover border-0">
-              <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                <a href="#" class="img-overlay"></a>
-                <div class="tns-carousel-inner">
-                  <img src="img/img_yja/숭례문.jpg" alt="Image" />
-                  <img src="img/img_yja/동궁과월지.jpg" alt="Image" />
-                  <img src="img/img_yja/문화재.jpg" alt="Image" />
-                </div>
-              </div>
-              <div class="card-body position-relative pb-3">
-                <h3 class="h6 mb-2 fs-base">
-                  <a href="#" class="nav-link stretched-link">서울 숭례문</a>
-                </h3>
-                <div class="mb-2 fs-sm">
-                  <i class="fi-map-pin mt-n1 me-2 lead align-middle"></i>
-                  140-60 Beech Ave Flushing, NY 11355
-                </div>
-                <div class="mb-2 fs-sm text-muted heritage-desc">
-                  숭례문은 1392년 조선 건국 후 1396년(태조 5)에 공사를 시작하여,
-                  1398년(태조 7)에 완성하였다. 이후 1448년(세종 30), 1479년(성종
-                  10), 1868년(고종 5) 등 여러 차례에 수리를 거쳤다. ‘숭례’의
-                  이름은 유교의 덕목인 인(仁), 의(義), 예(禮), 지(智)에서 ‘예’를
-                  따와 이름을 지었고, 현판은 태종의 첫째 아들 양녕대군이 쓴
-                  것으로 전해진다. 숭례문은 석축 가운데에 무지개 모양의
-                  홍예문(虹霓門)을 두고, 그 위에 정면 5칸, 측면 2칸으로 지은
-                  누각형 2층 건물이다. 지붕의 형태는 우진각 지붕이고 공포의
-                  양식은 다포(多包)로 되어 있다.
-                </div>
-              </div>
-              <div
-                class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"
-              >
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-heart-filled text-warning ms-1 mt-n1 fs-lg"
-                    style="margin-right: 5px"
-                  ></i
-                  >23
-                </span>
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-chat-circle ms-1 mt-n1 fs-lg text-muted"
-                    style="margin-right: 5px"
-                  ></i
-                  >3
-                </span>
-              </div>
-            </div>
-            <div class="card shadow-sm card-hover border-0">
-              <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                <a href="#" class="img-overlay"></a>
-                <div class="tns-carousel-inner">
-                  <img src="img/img_yja/숭례문.jpg" alt="Image" />
-                  <img src="img/img_yja/동궁과월지.jpg" alt="Image" />
-                  <img src="img/img_yja/문화재.jpg" alt="Image" />
-                </div>
-              </div>
-              <div class="card-body position-relative pb-3">
-                <h3 class="h6 mb-2 fs-base">
-                  <a href="#" class="nav-link stretched-link">서울 숭례문</a>
-                </h3>
-                <div class="mb-2 fs-sm">
-                  <i class="fi-map-pin mt-n1 me-2 lead align-middle"></i>
-                  140-60 Beech Ave Flushing, NY 11355
-                </div>
-                <div class="mb-2 fs-sm text-muted heritage-desc">
-                  숭례문은 1392년 조선 건국 후 1396년(태조 5)에 공사를 시작하여,
-                  1398년(태조 7)에 완성하였다. 이후 1448년(세종 30), 1479년(성종
-                  10), 1868년(고종 5) 등 여러 차례에 수리를 거쳤다. ‘숭례’의
-                  이름은 유교의 덕목인 인(仁), 의(義), 예(禮), 지(智)에서 ‘예’를
-                  따와 이름을 지었고, 현판은 태종의 첫째 아들 양녕대군이 쓴
-                  것으로 전해진다. 숭례문은 석축 가운데에 무지개 모양의
-                  홍예문(虹霓門)을 두고, 그 위에 정면 5칸, 측면 2칸으로 지은
-                  누각형 2층 건물이다. 지붕의 형태는 우진각 지붕이고 공포의
-                  양식은 다포(多包)로 되어 있다.
-                </div>
-              </div>
-              <div
-                class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"
-              >
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-heart-filled text-warning ms-1 mt-n1 fs-lg"
-                    style="margin-right: 5px"
-                  ></i
-                  >23
-                </span>
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-chat-circle ms-1 mt-n1 fs-lg text-muted"
-                    style="margin-right: 5px"
-                  ></i
-                  >3
-                </span>
-              </div>
-            </div>
-            <div class="card shadow-sm card-hover border-0">
-              <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                <a href="#" class="img-overlay"></a>
-                <div class="tns-carousel-inner">
-                  <img src="img/img_yja/숭례문.jpg" alt="Image" />
-                  <img src="img/img_yja/동궁과월지.jpg" alt="Image" />
-                  <img src="img/img_yja/문화재.jpg" alt="Image" />
-                </div>
-              </div>
-              <div class="card-body position-relative pb-3">
-                <h3 class="h6 mb-2 fs-base">
-                  <a href="#" class="nav-link stretched-link">서울 숭례문</a>
-                </h3>
-                <div class="mb-2 fs-sm">
-                  <i class="fi-map-pin mt-n1 me-2 lead align-middle"></i>
-                  140-60 Beech Ave Flushing, NY 11355
-                </div>
-                <div class="mb-2 fs-sm text-muted heritage-desc">
-                  숭례문은 1392년 조선 건국 후 1396년(태조 5)에 공사를 시작하여,
-                  1398년(태조 7)에 완성하였다. 이후 1448년(세종 30), 1479년(성종
-                  10), 1868년(고종 5) 등 여러 차례에 수리를 거쳤다. ‘숭례’의
-                  이름은 유교의 덕목인 인(仁), 의(義), 예(禮), 지(智)에서 ‘예’를
-                  따와 이름을 지었고, 현판은 태종의 첫째 아들 양녕대군이 쓴
-                  것으로 전해진다. 숭례문은 석축 가운데에 무지개 모양의
-                  홍예문(虹霓門)을 두고, 그 위에 정면 5칸, 측면 2칸으로 지은
-                  누각형 2층 건물이다. 지붕의 형태는 우진각 지붕이고 공포의
-                  양식은 다포(多包)로 되어 있다.
-                </div>
-              </div>
-              <div
-                class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"
-              >
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-heart-filled text-warning ms-1 mt-n1 fs-lg"
-                    style="margin-right: 5px"
-                  ></i
-                  >23
-                </span>
-                <span class="d-inline-block mx-1 px-2 fs-sm">
-                  <i
-                    class="fi-chat-circle ms-1 mt-n1 fs-lg text-muted"
-                    style="margin-right: 5px"
-                  ></i
-                  >3
-                </span>
-              </div>
-            </div>
+            <th:block th:if="${items != null && #lists.size(items) != 0}">
+            	<div th:each="item : ${items}" class="card shadow-sm card-hover border-0">
+	              <div class="tns-carousel-wrapper card-img-top card-img-hover">
+	                <a th:href="|/heritage-detail?hno=${item.hno}|" class="img-overlay"></a>
+	                <div class="tns-carousel-inner">
+	                  <img th:src="@{${item.imageUrl}}" style="height: 320px; object-fit: cover;" alt="Image" />
+	                  <img th:src="@{${item.imageUrl}}" style="height: 320px; object-fit: cover;" alt="Image" />
+	                  <img th:src="@{${item.imageUrl}}" style="height: 320px; object-fit: cover;" alt="Image" />
+	                </div>
+	              </div>
+	              <div class="card-body position-relative pb-3">
+	                <h3 class="h6 mb-2 fs-base">
+	                  <a href="#" class="nav-link stretched-link"><span th:text="${item.ccbaMnm1}"></span></a>
+	                </h3>
+	                <div class="mb-2 fs-sm">
+	                  <i class="fi-map-pin mt-n1 me-2 lead align-middle"></i>
+	                  <span th:text="${item.ccbaLcad}"></span>
+	                </div>
+	                <div class="mb-2 fs-sm text-muted heritage-desc">
+	                  <span th:text="${item.content}"></span>
+	                </div>
+	              </div>
+	              <div
+	                class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"
+	              >
+	                <span class="d-inline-block mx-1 px-2 fs-sm">
+	                  <i
+	                    class="fi-heart-filled text-warning ms-1 mt-n1 fs-lg"
+	                    style="margin-right: 5px"
+	                  ></i
+	                  >23
+	                </span>
+	                <span class="d-inline-block mx-1 px-2 fs-sm">
+	                  <i
+	                    class="fi-chat-circle ms-1 mt-n1 fs-lg text-muted"
+	                    style="margin-right: 5px"
+	                  ></i
+	                  >3
+	                </span>
+	              </div>
+            	</div>
+            </th:block>
           </div>
     </section>
     <!--================= -->
     <!-- Pagination: with icons -->
     <section class="container d-flex justify-content-center mt-5">
+    <th:block th:if="${items != null && #lists.size(items) != 0}">
       <nav class="mt-2" aria-label="Page navigation example">
         <ul class="pagination pagination-lg">
-          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><i class="fi-chevron-left"></i></a>
+          <li class="page-item"><a class="page-link" href="#" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
           </li>
-          <li class="page-item d-sm-none"><span class="page-link page-link-static">2 / 5</span></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">2<span
+          
+          
+          <th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+         	<th:block th:if="${status.current == pageInfo.currentPage}">
+       
+          		<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"> [[${status.current}]] <span
                 class="visually-hidden">(current)</span></span></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
-          <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a>
+          	</th:block>      
+          	<th:block th:if="${status.current != pageInfo.currentPage}">
+          <li class="page-item d-none d-sm-block"><a class="page-link"  th:onclick="|movePage(${status.current});|"> [[${status.current}]] </a></li>
+      
+          	</th:block>
+          </th:block>
+          
+          <li class="page-item"><a class="page-link" href="#" aria-label="Next"  th:onclick="|movePage(${pageInfo.nextPage});|"><i class="fi-chevron-right"></i></a>
           </li>
         </ul>
       </nav>
+      </th:block>
     </section>
   </main>
   <br><br><br>
@@ -781,6 +385,12 @@
   <script src="/vendor/cleave.js/dist/cleave.min.js"></script>
   <!-- Main theme script-->
   <script src="/js/theme.min.js"></script>
+  <script type="text/javascript">
+	function movePage(page){
+		searchForm.page.value = page;
+		searchForm.submit();
+	}
+  </script>
 </body>
 
 </html>

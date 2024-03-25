@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.multi.bbs.common.util.PageInfo;
 import com.multi.bbs.heritage.model.service.HeritageService;
 import com.multi.bbs.heritage.model.service.HimageService;
 import com.multi.bbs.heritage.model.vo.HReview;
@@ -35,15 +35,45 @@ public class HeritageController {
 	@GetMapping("/heritage-search")
 	public String searchHearitage(Model model, HeritageParam param) {
 		System.out.println("aaaaaaaaaa" + param);
-		int size = heritageService.getSearchCount("", "강원", "");
-		List<Heritage> list = heritageService.getSearchAll("", "", "국보");
+		String keyword = param.getKeyword() == null ? "" : param.getKeyword();
+		String region = param.getRegion() == null ? "" : param.getRegion();
+		String category = param.getCategory() == null ? "" : param.getCategory();
+		String generation = param.getGeneration() == null ? "" : param.getGeneration();
+		
+		int size = 0;
+		List<Heritage> list = null;
+		
+		PageInfo pageInfo = new PageInfo(param.getPage(), 5, size, 9); // page가 보여질 갯수 : 10, 게시글 목록은 12개
+		System.out.println("boardCount : " + size);
+		System.out.println("setLimit : " + size);
+		System.out.println("setOffset : " + (pageInfo.getStartList() - 1));
+		param.setLimit(pageInfo.getListLimit());
+		param.setOffset(pageInfo.getStartList() - 1);
+		
+		try {
+			size = heritageService.getSearchCount(keyword, region, category, generation);
+			list = heritageService.getSearchAll(keyword, region, category, generation, param);
+		} catch (Exception e) {
+
+		}
+		
 		System.out.println("@@@@ count : " + size);
 //		System.out.println(list);
-		System.out.println("@@@ size : " + list.size());
-		System.out.println("@@@ 0 : " + list.get(0));
-		for(Heritage h : list) {
-//			System.out.println(h);
+		if(size != 0) {
+			System.out.println("@@@ size : " + list.size());
+			System.out.println("@@@ 0 : " + list.get(0));
+			for(Heritage h : list) {
+	//			System.out.println(h);
+			}
 		}
+		
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("items", list);
+		model.addAttribute("size", size);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("region", region);
+		model.addAttribute("category", category);
+		model.addAttribute("generation", generation);
 		
 		
 		return "heritage/heritage-search2";
@@ -61,8 +91,8 @@ public class HeritageController {
 		Himage himage = himageop.get();
 		model.addAttribute("himage", himage);
 		
-		List<Heritage> hList = heritageService.getSearchAll("", "", "국보");
-		model.addAttribute("hList", hList);
+//		List<Heritage> hList = heritageService.getSearchAll("", "", "국보");
+//		model.addAttribute("hList", hList);
 		
 		return "heritage/heritage-detail";
 	}
