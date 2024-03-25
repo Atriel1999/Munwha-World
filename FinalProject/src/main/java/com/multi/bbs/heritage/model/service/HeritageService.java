@@ -9,7 +9,7 @@ import com.multi.bbs.heritage.model.vo.Heritage;
 @Service
 public class HeritageService {
 	@Autowired
-	HeritageRepository repo;
+	private HeritageRepository repo;
 	
 	public Heritage findByHno(int hno) {
 		return repo.findByHno(hno);

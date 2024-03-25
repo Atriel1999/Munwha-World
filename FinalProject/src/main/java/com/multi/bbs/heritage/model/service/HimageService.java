@@ -9,10 +9,10 @@ import com.multi.bbs.heritage.model.vo.Himage;
 @Service
 public class HimageService {
 	@Autowired
-	HimageRepository repo;
+	private HimageRepository repo;
 	
-	public Himage findByHImageNo(int hImageNo) {
-		return repo.findByHImageNo(hImageNo);
-	}
+//	public Himage findByHImageNo(int hImageNo) {
+//		return repo.findByHImageNo(hImageNo);
+//	}
 	
 }

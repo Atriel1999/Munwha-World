@@ -12,6 +12,7 @@ import com.multi.bbs.common.util.PageInfo;
 import com.multi.bbs.heritage.model.service.HeritageService;
 import com.multi.bbs.heritage.model.service.HimageService;
 import com.multi.bbs.heritage.model.vo.Heritage;
+import com.multi.bbs.heritage.model.vo.Himage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,9 +35,10 @@ public class HeritageController {
 	
 	@GetMapping("/heritage-detail")
 	public String hearitageDetail(Model model, int hno) {
-		Heritage heritage = service.findByHno(hno);
-		model.addAttribute("heritage", heritage);
-		
+//		Heritage heritage = service.findByHno(hno);
+//		model.addAttribute("heritage", heritage);
+//		Himage himage = imgservice.findByHImageNo(hno);
+//		model.addAttribute("himage", himage);
 		return "heritage/heritage-detail";
 	}
 	
