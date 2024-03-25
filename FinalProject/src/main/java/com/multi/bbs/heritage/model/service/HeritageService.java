@@ -4,14 +4,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.multi.bbs.heritage.model.repository.HReviewRepository;
 import com.multi.bbs.heritage.model.repository.HeritageRepository;
+import com.multi.bbs.heritage.model.vo.HReview;
 import com.multi.bbs.heritage.model.vo.Heritage;
+
 
 @Service
 public class HeritageService {
 	@Autowired
-	private HeritageRepository repo;
+	private HReviewRepository reviewrepo;
 	
 	@Autowired
 	private HeritageRepository heritageRepository;
@@ -25,6 +29,13 @@ public class HeritageService {
 	}
 	
 	public Heritage findByHno(int hno) {
-		return repo.findByHno(hno);
+		return heritageRepository.findByHno(hno);
+	}
+	@Transactional(rollbackFor = Exception.class)
+	public HReview saveReview(HReview hreview) {
+		return reviewrepo.save(hreview);
+	}
+	public List<HReview> reviewList(Heritage heritage) {
+		return reviewrepo.findByHeritage(heritage);
 	}
 }
