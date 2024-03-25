@@ -12,8 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="himage")
-@Table(name = "himage")
+@Entity(name = "himage")
 @Transactional
 public class Himage {
 	@Id
