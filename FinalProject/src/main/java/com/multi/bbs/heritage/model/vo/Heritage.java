@@ -1,5 +1,7 @@
 package com.multi.bbs.heritage.model.vo;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -56,8 +58,10 @@ public class Heritage {
 	@Column(name = "rate")
 	public double rate;
 	@Column(name = "reviewCount")
+	@ColumnDefault("0")
 	public int reviewCount;
 	@Column(name = "viewCount")
+	@ColumnDefault("0")
 	public int viewCount;
 	@Column(name = "ccbaCtcdNm")
 	public String ccbaCtcdNm;
