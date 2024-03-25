@@ -97,5 +97,15 @@ public class HeritageController {
 		return "/common/msg";
 	}
 	
+	@GetMapping("/heritage/replyDel")
+	public String deleteReply(Model model, @SessionAttribute(name = "loginMember", required = false) Member loginMember,
+			int replyNo, int hno) {
+		log.info("리플 삭제 요청");
+		heritageService.deleteReply(replyNo);
+
+		model.addAttribute("msg", "리플 삭제가 정상적으로 완료되었습니다.");
+		model.addAttribute("location", "/heritage-detail?hno=" + hno);
+		return "/common/msg";
+	}
 }
 

@@ -169,8 +169,8 @@
           class="d-sm-flex align-items-center justify-content-between mt-4 pb-sm-2"
         >
           <div class="me-3 mb-sm-0">
-            <h1 class="h2">서울 북한산 신라 진흥왕 순수비</h1>
-            <h5 style="color: gray">서울 北漢山 新羅 眞興王 巡狩碑</h5>
+            <h1 class="h2">[[${heritage.ccbaMnm1}]]</h1>
+            <h5 style="color: gray">[[${heritage.ccbaMnm2}]]</h5>
           </div>
 
           <div class="text-nowrap">
@@ -500,6 +500,13 @@
 	          <p>
 	            [[${item.rcontent}]]
 	          </p>
+	          <th:block th:if="${session.loginMember != null && 
+							(session.loginMember.mno == item.mno || session.loginMember.role == 'ROLE_ADMIN')}">
+				<div style="display: flex; justify-content: end; margin-top: -15px" > 
+				
+					<a class="btn btn-outline-primary rounded-pill mb-1" th:onclick="'deleteReply(' + ${item.rno} + ',' + ${heritage.hno} + ');'" > 삭제 </a>
+				</div>
+				</th:block>
 	        </div>
         </th:block>
         <th:block th:if="${#lists.isEmpty(rList)}">
@@ -728,6 +735,13 @@
     <th:block th:replace="common/footer :: footerFragment"></th:block>
     <!-- 푸터 끝 -->
 
+	<script type="text/javascript">
+		function deleteReply(replyNo, hno){
+	  		var url = "heritage/replyDel?replyNo=";
+	  		var requestURL = url + replyNo +"&hno=" + hno;
+	  		location.replace(requestURL);
+	  	}
+	</script>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
       ><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span
       ><i class="btn-scroll-top-icon fi-chevron-up"> </i

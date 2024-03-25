@@ -38,4 +38,7 @@ public class HeritageService {
 	public List<HReview> reviewList(Heritage heritage) {
 		return reviewrepo.findByHeritage(heritage);
 	}
+	public void deleteReply(int replyNo) {
+		reviewrepo.deleteById(replyNo);
+	}
 }

@@ -9,4 +9,5 @@ import com.multi.bbs.heritage.model.vo.Heritage;
 
 public interface HReviewRepository extends JpaRepository<HReview, Integer>{
 	List<HReview> findByHeritage(Heritage heritage);
+	void deleteById(int rno);
 }
