@@ -91,8 +91,9 @@ public class HeritageController {
 		Himage himage = himageop.get();
 		model.addAttribute("himage", himage);
 		
-//		List<Heritage> hList = heritageService.getSearchAll("", "", "국보");
-//		model.addAttribute("hList", hList);
+		HeritageParam param = new HeritageParam("", "", "", "", 1, 10, 1);
+		List<Heritage> hList = heritageService.getSearchAll("", "", "", "", param);
+		model.addAttribute("hList", hList);
 		
 		return "heritage/heritage-detail";
 	}
@@ -112,7 +113,8 @@ public class HeritageController {
 			) {
 		System.out.println("리뷰저장시작");
 		HReview hreview = new HReview();
-		hreview.setHeritage(heritageService.findByHno(hno));
+		Heritage heritage = heritageService.findByHno(hno);
+		hreview.setHeritage(heritage);
 		hreview.setMno(loginMember.getMno());
 		hreview.setMname(loginMember.getName());
 		hreview.setRate(rate);
@@ -135,6 +137,7 @@ public class HeritageController {
 
 		model.addAttribute("msg", "리플 삭제가 정상적으로 완료되었습니다.");
 		model.addAttribute("location", "/heritage-detail?hno=" + hno);
+		
 		return "/common/msg";
 	}
 }

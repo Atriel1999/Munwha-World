@@ -34,17 +34,27 @@ public class HeritageService {
 			return heritageRepository.countByCcbaMnm1ContainingAndCcbaCtcdNmContainingAndCcmaNameContainingAndCcceNameContainingOrderByCcbaMnm1(keyword, region, category, generation);
 		}
 	
+	@Transactional
 	public Heritage findByHno(int hno) {
-		return heritageRepository.findByHno(hno);
+		Heritage heritage = heritageRepository.findByHno(hno);
+		heritage.setViewCount(heritage.getViewCount() + 1);
+		return heritage;
 	}
 	@Transactional(rollbackFor = Exception.class)
 	public HReview saveReview(HReview hreview) {
+		Heritage heritage = hreview.getHeritage();
+		heritage.setReviewCount(heritage.getReviewCount() + 1);
 		return reviewrepo.save(hreview);
 	}
 	public List<HReview> reviewList(Heritage heritage) {
 		return reviewrepo.findByHeritage(heritage);
 	}
 	public void deleteReply(int replyNo) {
+		
+		Heritage heritage = reviewrepo.findById(replyNo).get().getHeritage();
+		if (heritage.getReviewCount() > 0) {
+			heritage.setReviewCount(heritage.getReviewCount() - 1);
+		}
 		reviewrepo.deleteById(replyNo);
 	}
 }

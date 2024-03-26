@@ -160,8 +160,8 @@
         <!-- Breadcrumb-->
         <nav class="mt-3 mb-3 pt-md-3" aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
-          <li class="breadcrumb-item"><a href="real-estate-catalog-rent.html"> 문화재 검색 </a></li>
+          <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+          <li class="breadcrumb-item"><a th:href="@{/heritage-search}"> 문화재 검색 </a></li>
           <li class="breadcrumb-item active" aria-current="page"> 문화재 상세 페이지 </li>
         </ol>
       </nav>
@@ -319,19 +319,19 @@
                         <i
                           class="fi-star-filled mt-n1 me-1 text-warning align-middle opacity-70"
                         ></i
-                        ><b>4.9 </b>(48)
+                        ><b>4.9 </b>
                       </li>
                       <li class="me-2 mb-1 pe-1">
                         <i
-                          class="fi-heart-filled mt-n1 me-1 text-warning align-middle opacity-70"
+                          class="fi-eye-on mt-n1 me-1 text-warning align-middle opacity-70"
                         ></i
-                        ><b>23 </b>
+                        ><b>[[${heritage.viewCount}]]</b>
                       </li>
                       <li class="me-2 mb-1 pe-1">
                         <i
                           class="fi-chat-circle mt-n1 me-1 align-middle opacity-70"
                         ></i
-                        >3
+                        >[[${heritage.reviewCount}]]
                       </li>
                     </ul>
                   </div>
@@ -367,11 +367,19 @@
             <script>
               var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                 mapOption = {
-                  center: new kakao.maps.LatLng( '[[${heritage.latitude}]]', '[[${heritage.longitude}]]' ), // 지도의 중심좌표
+                  center: new kakao.maps.LatLng('[[${heritage.latitude}]]', '[[${heritage.longitude}]]' ), // 지도의 중심좌표
                   level: 2 // 지도의 확대 레벨
                 };
               // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-              var map = new kakao.maps.Map(mapContainer, mapOption); 
+              var map = new kakao.maps.Map(mapContainer, mapOption);
+           	  // 마커가 표시될 위치입니다 
+              var markerPosition  = new kakao.maps.LatLng('[[${heritage.latitude}]]', '[[${heritage.longitude}]]'); 
+              // 마커를 생성합니다
+              var marker = new kakao.maps.Marker({
+                  position: markerPosition
+              });
+              // 마커가 지도 위에 표시되도록 설정합니다
+              marker.setMap(map);
             </script>
           </aside>
         </div>
@@ -538,7 +546,7 @@
           <h2 class="h3 mb-0">문화재 추천</h2>
           <a
             class="btn btn-link fw-normal ms-sm-3 p-0"
-            href="#"
+            th:href="@{/heritage-recommend}"
             >더보기<i class="fi-arrow-long-right ms-2"></i
           ></a>
         </div>
