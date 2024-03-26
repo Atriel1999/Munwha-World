@@ -36,8 +36,11 @@ public class HReview {
 	@Column(length = 1000)
 	private String rcontent;
 	
-	@ManyToOne
-	private Member member; // 회원 연결
+	@Column
+	private int mno; // 회원 연결
+	
+	@Column
+	private String mname;
 	
 	@ManyToOne
 	private Heritage heritage; // 문화재 연결

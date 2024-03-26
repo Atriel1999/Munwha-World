@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <title> 박물관 검색 </title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template" />
+  <meta name="keywords"
+    content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch" />
+  <meta name="author" content="Createx Studio" />
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicon and Touch Icons-->
+
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg" />
+  <meta name="msapplication-TileColor" content="#766df4" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <!-- Page loading styles-->
+  <style>
+    @font-face {
+      font-family: "GmarketSansMedium";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    .gmarketfontM {
+      font-family: "GmarketSansMedium";
+    }
+
+    * {
+      font-family: "GmarketSansMedium";
+    }
+
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all 0.4s 0.2s ease-in-out;
+      transition: all 0.4s 0.2s ease-in-out;
+      background-color: #1f1b2d;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #fff;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: 0.75rem;
+      vertical-align: text-bottom;
+      border: 0.15em solid #9691a4;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner 0.75s linear infinite;
+      animation: spinner 0.75s linear infinite;
+    }
+
+    @-webkit-keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <!-- Page loading scripts-->
+  <script>
+    (function () {
+      window.onload = function () {
+        var preloader = document.querySelector(".page-loading");
+        preloader.classList.remove("active");
+        setTimeout(function () {
+          preloader.remove();
+        }, 2000);
+      };
+    })();
+  </script>
+  <!-- Vendor Styles-->
+  <link rel="stylesheet" media="screen"  th:href="@{/vendor/simplebar/dist/simplebar.min.css}" />
+  <link rel="stylesheet" media="screen"  th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}" />
+  <link rel="stylesheet" media="screen"  th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}" />
+  <link rel="stylesheet" media="screen"  th:href="@{/vendor/nouislider/dist/nouislider.min.css}" />
+
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}" />
+</head>
+<!-- Body-->
+
+<body>
+  <!-- Page loading spinner-->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div>
+      <span>Loading...</span>
+    </div>
+  </div>
+  <!-- 헤더시작 -->
+  <th:block th:replace="common/header :: headerFragment"></th:block>
+  <!-- 헤더 끝 -->
+  <!--  히어로 시작 ===========================================================================-->
+  <main class="page-wrapper">
+    <section class="bg-dark py-xxl-5" style="position: relative; overflow: visible; height: 600px;">
+      	<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+  			  background-image: url('img/museum_img/hero2.jpg'); background-size: cover; background-position: center;">
+		</div>
+
+      <div class="content-overlay container py-md-5"  style="z-index: 300;">
+        <div class="col-md-8 order-md-1">
+          <h1 class="display-4 mb-4 me-lg-n5 text-lg-start text-center text-light" style="margin-top: 100px;">
+            전국 박물관
+            <span class="text-primary d-inline-block"> 검색 </span>
+          </h1>
+          <h4 class="text-lg-start text-center text-light mb-4 mb-lg-5"
+            style= "margin-right: 80px; max-width: 590px;">
+             먼 옛날부터 가까운 옛날에 이르기까지 수많은 사람들이 남긴 발자취와 전통이 여러분을 기다리고 있습니다
+          </h4>
+
+          <!-- Search form-->
+          <form class="form-group  d-block rounded-xl-pill mb-2 my-md-4 mt-xl-5" name="searchForm" th:action="@{/museumlist}" method="get">
+	          <input type="hidden" name="page" value="1">		
+            <div class="row align-items-center g-0 ms-n2" >
+              <div class="col-xl-3">
+                <div class="dropdown w-100" data-bs-toggle="select">
+                  <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="fi-map-pin text-primary" style="margin-left: 10px;"></i> <span
+                      class="dropdown-toggle-label" style="width: 155px;">
+                      지역 </span>
+                  </button>
+                  <input type="hidden" name="searchAddress" id="searchAddress" th:value="${param.searchAddress}">
+                  <ul class="dropdown-menu dropdown-menu-dark my-3" >
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('지역')"><span class="dropdown-item-label"> 전체  </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('서울특별시')"><span class="dropdown-item-label"> 서울특별시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('인천광역시')"><span class="dropdown-item-label"> 인천광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('세종특별자치시')"><span class="dropdown-item-label"> 세종특별자치시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('대전광역시')"><span class="dropdown-item-label"> 대전광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('부산광역시')"><span class="dropdown-item-label"> 부산광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('대구광역시')"><span class="dropdown-item-label"> 대구광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('울산광역시')"><span class="dropdown-item-label"> 울산광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('광주광역시')"><span class="dropdown-item-label"> 광주광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('경기도')"><span class="dropdown-item-label"> 경기도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('강원특별자치도')"><span class="dropdown-item-label"> 강원특별자치도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('충청북도')"><span class="dropdown-item-label"> 충청북도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('충청남도')"><span class="dropdown-item-label"> 충청남도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('전북특별자치도')"><span class="dropdown-item-label"> 전북특별자치도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('전라남도')"><span class="dropdown-item-label"> 전라남도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('경상북도')"><span class="dropdown-item-label"> 경상북도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('경상남도')"><span class="dropdown-item-label"> 경상남도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('제주특별자치도')"><span class="dropdown-item-label"> 제주특별자치도 </span></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xl-9 d-lg-flex align-items-center">
+                <div class="d-sm-flex w-100">
+                  <div class="input-group input-group-lg border-end-xl border-light"><span
+                      class="input-group-text text-light rounded-pill ps-3">
+                     &ensp;&ensp; <i class="fi-search text-primary" style="font-weight: bold;"></i></span>
+                    <input class="form-control" type="text" name="searchName"  id="searchName" placeholder=" 박물관 키워드로 검색" th:value="${param.searchName}">
+                  </div>
+                </div>
+                <hr class="hr-light d-xl-none mt-2 mb-3">
+                <button class="btn btn-primary btn-lg rounded-pill w-100 w-lg-auto ms-auto" type="submit" value="박물관 검색">
+                  박물관 검색 </button>
+              </div>
+            </div>
+          </form>
+			<script>
+			 document.addEventListener("DOMContentLoaded", function() {
+				// 페이지 로드 시 실행되는 함수
+				    function initRegionDropdown() {
+				      // 서버로부터 받은 searchAddress 값이 있는지 확인
+				      var searchAddress = document.getElementById('searchAddress').value;
+				      
+				      // searchAddress 값이 있고, 지역 선택 드롭다운에 해당 값이 존재하는지 확인
+				      if (searchAddress && document.querySelector(".dropdown-item[onclick*='" + searchAddress + "']")) {
+				        document.querySelector('.dropdown-toggle-label').textContent = searchAddress;
+				      }
+				    }
+
+				    // 초기화 함수 실행
+				    initRegionDropdown();
+				});
+				</script>
+
+        </div>
+      </div>
+    </section>
+
+    <!--===================================================================== 정렬순서  =======================================-->
+    <section class="position-relative bg-white rounded-xxl-4 zindex-5" style="margin-top: -30px;">
+      <div class="container pt-5">
+        <nav class="mb-2 pt-md-1" aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> 박물관 검색 </li>
+          </ol>
+        </nav>
+        <h1 class="h2 mb-sm-3"> 박물관 검색 결과 </h1>
+        <!-- Sorting-->
+        <form action="#" th:action="@{/museumlist}" method="GET">
+        <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
+          <div class="d-flex align-items-center flex-shrink-0">
+            <label class="fs-sm me-2 pe-1 text-nowrap" for="sortby"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>
+              정렬 순서 : </label>
+            <select name="sortBy" class="form-select form-select-ms" style="font-weight: bold;" id="sortby" onchange="this.form.submit()">
+              <option value="favcount" th:selected="${param.sortBy == 'favcount'}"> 인기순 </option>
+              <option value="reviewcount" th:selected="${param.sortBy == 'reviewcount'}"> 리뷰 많은순</option>
+              <option value="msweekopen" th:selected="${param.sortBy == 'msweekopen'}"> 운영 시간 빠른순 </option>
+            </select>
+          </div>
+          <hr class="d-none d-sm-block w-100 mx-4">
+          <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted">
+            <i class="fi-check-circle me-2"></i><span class="fs-sm mt-n1" style="color: #811faf" th:text="${museumCount} + ' 검색결과' "></span>
+          </div>
+        </div>
+        </form>
+      </div>
+    </section>
+    <section class="container">
+      <!--============================================================== 검색결과 리스트===============  -->
+      <div class="row g-5 g-md-2 g-lg-5 pt-3">
+      	<th:block th:if="${list == null || #lists.size(list) == 0}">
+				<br>
+					<div class="h3 text-primary"> 조회된 박물관이 없습니다.</div>
+				
+		</th:block>
+        <!-- Item ========================================================= 첫번쨰 아이템 ================= -->
+        <th:block th:if="${list != null && #lists.size(list) != 0}">
+         <div class="col-sm-6 col-lg-4" th:each="museum : ${list}">
+          <div class="card shadow-sm card-hover border-0 h-100" style="height: 500px;">
+          <!-- 배경 이미지  -->
+            <div class="card-img-top card-img-hover" style="height: 260px; width: 100%; background: url('/img/museum_img/bg-30.jpg') no-repeat center center; background-size: cover;">
+            	<a class="img-overlay" th:href="|/museumview?no=${museum.msno}|"></a>
+              <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
+              
+                <span th:if="${museum.mstype == '대학'}" class="d-table badge bg-success mb-1">대학</span>
+				<span th:if="${museum.mstype == '사립'}" class="d-table badge bg-warning mb-1">사립</span>
+				<span th:if="${museum.mstype == '공립'}" class="d-table badge bg-info mb-1">공립</span>
+				<span th:if="${museum.mstype == '국립'}" class="d-table badge bg-accent mb-1">국립</span>
+                
+                <th:block th:if="${museum.msadultcharge != '0' or museum.msyngcharge != '0' or museum.mschildcharge != '0'}">
+                 <span class="d-table badge bg-danger"> 유료 </span>
+                </th:block>
+              </div>
+              <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
+                  data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기">
+                  <i class="fi-heart"></i></button>
+              </div>
+              <!-- --이미지 -->
+              	<!-- 이미지가 있는 경우 해당 이미지를 사용 -->
+				<img th:if="${museum.imageUrl != null}" th:src="${museum.imageUrl}" style="height: 100%; width: 100%;">
+
+					<!-- 이미지가 없는 경우 대체 이미지를 사용 -->
+				<img th:if="${museum.imageUrl == null}" th:src="@{/img/museum_img/hero2.jpg}" alt="url 널 " style="height: 100%; width: 100%;">
+				
+              
+            
+            </div>
+            <div class="card-body position-relative pb-3">
+              <div class="h3">
+                <a th:href="|/museumview?no=${museum.msno}|"class="h3 nav-link stretched-link" style="min-height: 70px;" th:text="${museum.msname}">
+                  
+                </a>
+              </div>
+              <div class="d-flex h6 mb-1 text-primary" >
+                <i class="fi-map-pin me-2"></i> <span th:text="${museum.msaddress}"></span>
+              </div>
+              <div class="mb-2 h6">
+                <i class="fi-clock me-1"></i>
+                <span class="ms-1 h5" th:text="${museum.msweekopen} + ' AM - ' + ${museum.msweekclose} + ' PM'"> </span>
+              </div>
+              <div class="d-flex">
+                &ensp;<i class="fi-heart-filled opacity-70 me-1 text-warning"></i> <span th:text="${museum.favcount} + ' Likes' "> 즐겨찾기수 </span>
+                &ensp;&ensp;<i class="fi-chat-circle opacity-70 me-1"></i>  <span th:text="${museum.reviewcount} + ' Reviews'"> 이용후기수</span> 
+              </div>
+
+            </div>
+          </div>
+         </div>
+        </th:block>
+        <!--================= -->
+        
+        </div>
+    </section>
+    <!--================= -->
+    <!-- Pagination: with icons -->
+    <section class="container d-flex justify-content-center mt-5">
+    <th:block th:if="${list != null && #lists.size(list) != 0}">
+      <nav class="mt-2" aria-label="Page navigation example">
+        <ul class="pagination pagination-lg">
+          <li class="page-item"><a class="page-link" href="#" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
+          </li>
+          
+          
+          <th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+         	<th:block th:if="${status.current == pageInfo.currentPage}">
+       
+          		<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"> [[${status.current}]] <span
+                class="visually-hidden">(current)</span></span></li>
+          	</th:block>      
+          	<th:block th:if="${status.current != pageInfo.currentPage}">
+          <li class="page-item d-none d-sm-block"><a class="page-link"  th:onclick="|movePage(${status.current});|"> [[${status.current}]] </a></li>
+      
+          	</th:block>
+          </th:block>
+          
+          <li class="page-item"><a class="page-link" href="#" aria-label="Next"  th:onclick="|movePage(${pageInfo.nextPage});|"><i class="fi-chevron-right"></i></a>
+          </li>
+        </ul>
+      </nav>
+      </th:block>
+      <script type="text/javascript">
+			function movePage(page){
+				searchForm.page.value = page;
+				searchForm.submit();
+				}
+	  </script>
+    </section>
+  </main>
+  <br><br><br>
+  <!-- 푸터 -->
+  <th:block th:replace="common/footer :: footerFragment"></th:block>
+  <!-- 푸터 끝 -->
+
+  <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span
+      class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">
+    </i></a>
+  <!-- Vendor scrits: js libraries and plugins-->
+  <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/simplebar/dist/simplebar.min.js"></script>
+  <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="/vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="/vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+  <script src="/vendor/nouislider/dist/nouislider.min.js"></script>
+  <script src="/vendor/cleave.js/dist/cleave.min.js"></script>
+  <!-- Main theme script-->
+  <script src="/js/theme.min.js"></script>
+</body>
+
+</html>

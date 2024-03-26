@@ -1,5 +1,7 @@
 package com.multi.bbs.heritage.model.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +13,8 @@ public class HimageService {
 	@Autowired
 	private HimageRepository repo;
 	
-//	public Himage findByHImageNo(int hImageNo) {
-//		return repo.findByHImageNo(hImageNo);
-//	}
+	public Optional<Himage> findByHImageNo(int hImageNo) {
+		return repo.findById(hImageNo);
+	}
 	
 }

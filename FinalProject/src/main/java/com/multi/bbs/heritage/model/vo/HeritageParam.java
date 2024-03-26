@@ -4,6 +4,7 @@ public class HeritageParam {
 	private String keyword;
 	private String region;
 	private String category;
+	private String generation;
 
 	// 페이징 인자
 	private int page;
@@ -15,11 +16,13 @@ public class HeritageParam {
 		page = 1;
 	}
 
-	public HeritageParam(String keyword, String region, String category, int page, int limit, int offset) {
+	public HeritageParam(String keyword, String region, String category, String generation, int page, int limit,
+			int offset) {
 		super();
 		this.keyword = keyword;
 		this.region = region;
 		this.category = category;
+		this.generation = generation;
 		this.page = page;
 		this.limit = limit;
 		this.offset = offset;
@@ -27,8 +30,8 @@ public class HeritageParam {
 
 	@Override
 	public String toString() {
-		return "HeritageParam [keyword=" + keyword + ", region=" + region + ", category=" + category + ", page=" + page
-				+ ", limit=" + limit + ", offset=" + offset + "]";
+		return "HeritageParam [keyword=" + keyword + ", region=" + region + ", category=" + category + ", generation="
+				+ generation + ", page=" + page + ", limit=" + limit + ", offset=" + offset + "]";
 	}
 
 	public String getKeyword() {
@@ -53,6 +56,14 @@ public class HeritageParam {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getGeneration() {
+		return generation;
+	}
+
+	public void setGeneration(String generation) {
+		this.generation = generation;
 	}
 
 	public int getPage() {

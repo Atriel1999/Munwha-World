@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface HimageRepository extends JpaRepository<Himage, Integer>{
-//	Himage findByHImageNo(int hImageNo);
+	
 }
