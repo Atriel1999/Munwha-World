@@ -217,18 +217,32 @@
                   ><img
                     th:src="${himage.imageUrl1}"
                     alt="Gallery thumbnail" /></a
-                ><a
-                  class="gallery-item rounded rounded-md-3"
-                  th:href="${himage.imageUrl2}"
-                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
-                  ><img
-                    th:src="${himage.imageUrl2}"
-                    alt="Gallery thumbnail"
-                /></a>
+                >
+                <th:block th:if="${himage.imageUrl2} != null">
+	                <a
+	                  class="gallery-item rounded rounded-md-3"
+	                  th:href="${himage.imageUrl2}"
+	                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
+	                  ><img
+	                    th:src="${himage.imageUrl2}"
+	                    alt="Gallery thumbnail"
+	                /></a>
+                </th:block>
+                <th:block th:if="${himage.imageUrl2} == null">
+	                <a
+	                  class="gallery-item rounded rounded-md-3"
+	                  th:href="${heritage.imageUrl}"
+	                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
+	                  ><img
+	                    th:src="${heritage.imageUrl}"
+	                    alt="Gallery thumbnail"
+	                /></a>
+                </th:block>
               </div>
               <div class="col-12">
                 <div class="row g-2 g-md-3">
                   <div class="col">
+                  <th:block th:if="${himage.imageUrl3} != null">
                     <a
                       class="gallery-item rounded-1 rounded-md-2 small-gallery"
                       th:href="${himage.imageUrl3}"
@@ -237,8 +251,20 @@
                         th:src="${himage.imageUrl3}"
                         alt="Gallery thumbnail"
                     /></a>
+                    </th:block>
+                  <th:block th:if="${himage.imageUrl3} == null">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      th:href="${heritage.imageUrl}"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
+                      ><img
+                        th:src="${heritage.imageUrl}"
+                        alt="Gallery thumbnail"
+                    /></a>
+                    </th:block>
                   </div>
                   <div class="col">
+                  <th:block th:if="${himage.imageUrl4} != null">
                     <a
                       class="gallery-item rounded-1 rounded-md-2 small-gallery"
                       th:href="${himage.imageUrl4}"
@@ -247,8 +273,20 @@
                         th:src="${himage.imageUrl4}"
                         alt="Gallery thumbnail"
                     /></a>
+                    </th:block>
+                  <th:block th:if="${himage.imageUrl4} == null">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      th:href="${himage.imageUrl4}"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;King size bed&lt;/h6&gt;'
+                      ><img
+                        th:src="${heritage.imageUrl}"
+                        alt="Gallery thumbnail"
+                    /></a>
+                    </th:block>
                   </div>
                   <div class="col">
+                  <th:block th:if="${himage.imageUrl5} != null">
                     <a
                       class="gallery-item rounded-1 rounded-md-2 small-gallery"
                       th:href="${himage.imageUrl5}"
@@ -257,24 +295,35 @@
                         th:src="${himage.imageUrl5}"
                         alt="Gallery thumbnail"
                     /></a>
+                    </th:block>
+                  <th:block th:if="${himage.imageUrl5} == null">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      th:href="${heritage.imageUrl}"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Towels&lt;/h6&gt;'
+                      ><img
+                        th:src="${heritage.imageUrl}"
+                        alt="Gallery thumbnail"
+                    /></a>
+                    </th:block>
                   </div>
                   <div class="col">
                     <a
                       class="gallery-item rounded-1 rounded-md-2 small-gallery"
-                      th:href="${himage.imageUrl2}"
+                      th:href="${heritage.imageUrl}"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
                       ><img
-                        th:src="${himage.imageUrl2}"
+                        th:src="${heritage.imageUrl}"
                         alt="Gallery thumbnail"
                     /></a>
                   </div>
                   <div class="col">
                     <a
                       class="gallery-item rounded-1 rounded-md-2 small-gallery"
-                      th:href="${himage.imageUrl2}"
+                      th:href="${heritage.imageUrl}"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
                       ><img
-                        th:src="${himage.imageUrl3}"
+                        th:src="${heritage.imageUrl}"
                         alt="Gallery thumbnail"
                     /></a>
                   </div>
