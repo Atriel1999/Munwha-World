@@ -47,6 +47,14 @@
 		  height: 350px;
 		  overflow-y: scroll;
 		}
+	  .selectpicker:focus {
+    	outline: 0;
+      }
+      .select {
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+      }
       .page-loading {
         position: fixed;
         top: 0;
@@ -173,29 +181,38 @@
           </h3>
 
           <!-- Search form-->
-          <form style="background-color: white;" class="form-group form-group-secondary d-block rounded-xl-pill mt-n3 mt-md-4 mt-xl-5 mb-md-4">
+          <form th:action="@{/heritage-search}" method="get" style="background-color: white;" class="form-group form-group-secondary d-block rounded-xl-pill mt-n3 mt-md-4 mt-xl-5 mb-md-4">
             <div class="row align-items-center g-0 ms-n2">
               <div class="col-md-5 col-xl-9">
                 <div class="input-group input-group-lg border-end-md border-secondary"><span class="input-group-text text-secondary rounded-pill opacity-50 ps-3"><i class="fi-search" style="color: #6c757d; font-weight: bold"></i></span>
-                  <input class="form-control" type="text" placeholder="문화재 키워드 검색">
+                  <input th:value="${keyword}" class="form-control" name="keyword" type="text" placeholder="문화재 키워드 검색">
                 </div>
               </div>
               <hr class="hr-light d-md-none my-2">
               <div class="col-md-7 col-xl-3 d-sm-flex">
-                <div class="dropdown w-sm-50 border-end-sm border-secondary" data-bs-toggle="select">
-                  <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">지역</span></button>
-                  <input type="hidden">
-                  <ul class="dropdown-menu dropdown-menu-dark my-3">
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Dallas</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Chicago</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Houston</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Las Vegas</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Los Angeles</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">New York</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">San Francisco</span></a></li>
-                  </ul>
+                <div class="dropdown w-sm-50 border-end-sm border-secondary select" data-bs-toggle="select">
+                  <select
+		              class="selectpicker"
+		              title="지역"
+		              data-style="btn-form-control"
+		              name="region"
+		              style="border: none; color: gray; width:120px;"
+		          >
+		              <option value="" selected>지역 전체</option>
+		              <option value="서울" th:selected="${region} == '서울'">서울</option>
+		              <option value="경북" th:selected="${region} == '경북'">경북</option>
+		              <option value="전남" th:selected="${region} == '전남'">전남</option>
+		              <option value="충남" th:selected="${region} == '충남'">충남</option>
+		              <option value="경남" th:selected="${region} == '경남'">경남</option>
+		              <option value="강원" th:selected="${region} == '강원'">강원</option>
+		              <option value="충북" th:selected="${region} == '충북'">충북</option>
+		              <option value="전북" th:selected="${region} == '전북'">전북</option>
+		              <option value="경기" th:selected="${region} == '경기'">경기</option>
+		              <option value="부산" th:selected="${region} == '부산'">부산</option>
+		              <option value="대구" th:selected="${region} == '대구'">대구</option>
+		           </select>
                 </div>
-                <button class="btn btn-primary btn-lg w-100 w-sm-50 w-lg-auto rounded-pill mt-4 mt-sm-0" type="button" style="margin-left: 15px;">문화재 검색</button>
+                <button class="btn btn-primary btn-lg w-100 w-sm-50 w-lg-auto rounded-pill mt-4 mt-sm-0" type="submit" style="margin-left: 15px;">문화재 검색</button>
               </div>
             </div>
           </form>
