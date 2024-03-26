@@ -182,7 +182,7 @@
               </ul>
               <br><br>
               <h4 class="mb-2"> 휴관정보 </h4>
-              <ul class="list-unstyled mt-n1 mb-0 h5 opacity-70">
+              <ul class="list-unstyled mt-n1 mb-0 h5 opacity-70" style="min-height: 45px;">
                 <li class="mt-1 mb-0">
                  [[${museum.msclosureinfo}]]
                 </li>
@@ -193,15 +193,18 @@
               <ul class="list-unstyled mt-n1 mb-0 h5 opacity-70">
                 <li class="mt-1 mb-0">
                   <b class="me-5"> 어른관람료 </b>
-                  [[${museum.msadultcharge}]]
+                  <span th:if="${museum.msadultcharge == '0'}" > 무료 </span>
+                  <span th:if="${museum.msadultcharge != '0'}" > [[${museum.msadultcharge}]] 원 </span>
                 </li>
                 <li class="mt-1 mb-0">
                   <b class="me-4"> 청소년 관람료 </b>
-                 [[${museum.msyngcharge}]]
+                  <span th:if="${museum.msyngcharge == '0'}" > 무료 </span>
+                  <span th:if="${museum.msyngcharge != '0'}" > [[${museum.msyngcharge}]] 원 </span>
                 </li>
                 <li class="mt-1 mb-0">
                   <b class="me-4"> 어린이 관람료 </b>
-                  [[${museum.mschildcharge}]]
+                  <span th:if="${museum.mschildcharge == '0'}" > 무료 </span>
+                  <span th:if="${museum.mschildcharge != '0'}" > [[${museum.mschildcharge}]] 원 </span>
                 </li>
               </ul>
             </div>
@@ -571,45 +574,43 @@
         </aside>
       </div>
     </section>
+    
+    
+    
     <!-- 박물관 추천 =================================================================================================-->
     <section class="container mb-5 pb-2 pb-lg-4">
       <div class="d-flex align-items-center justify-content-between mb-3">
         <h2 class="h3 mb-0"> 박물관 추천 </h2>
-        <a class="btn btn-link fw-2 p-0" href="real-estate-catalog-rent.html">
-          더 보기
-          <i class="fi-arrow-long-right ms-2"></i></a>
+        <a >
+        </a>
       </div>
       <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2">
         <div class="tns-carousel-inner row gx-4 mx-0 pt-3 pb-4"
           data-carousel-options="{&quot;items&quot;: 4, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4}}}">
-          <!-- Item-->
+           <!-- Item-->
           <div class="col" style="height: 350px;">
             <div class="card shadow-sm card-hover border-0 h-100">
-              <div class="card-img-top card-img-hover" style="height: 200px; width: 100%;"><a class="img-overlay"
-                  href="real-estate-single-v1.html"></a>
+              <div class="card-img-top card-img-hover" style="height: 250px; width: 100%;"><a class="img-overlay" th:href="@{http://localhost/museumview(no=710)}"></a>
                 <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
-                  <span class="d-table badge bg-success"> 대학 </span>
+                  <span class="d-table badge bg-accent"> 국립 </span>
                 </div>
-                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                  <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
-                    data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기 "><i class="fi-heart"></i></button>
+                <div class="content-overlay end-0 top-0 pt-3 pe-3"> <button></button>>
                 </div>
-                <img src="img/museum_img/bg-7.jpg" alt="Image" style="height: 100%; width: 100%;">
+                <img src="img/museum_img/mu5.jpg" alt="Image" style="height: 100%; width: 100%;">
               </div>
               <div class="card-body position-relative pb-3">
                 <div class="h4">
-                  <a href="#" class="h3 nav-link stretched-link" style="min-height: 60px;">
-                    부산교육대학교 교육박물관(한새갤러리)
+                  <a class="h3 nav-link stretched-link">
+                     국립익산박물관 
                   </a>
                 </div>
-                <div class="d-flex mb-1 text-primary">
+                <div class="d-flex mb-1 text-primary" style="min-height: 10px;">
                   <i class="fi-map-pin me-2"></i>
-                  서울특별시
-                  용산구 서빙고로 137
+                    전라북도 익산시 금마면 
                 </div>
                 <div class="mb-2">
                   <i class="fi-clock me-1"></i>
-                  <span class="ms-1"> 10:00 AM - 6:00 PM </span>
+                  <span class="ms-1"> 09:00 AM - 6:00 PM </span>
                 </div>
               </div>
             </div>
@@ -617,31 +618,58 @@
           <!-- Item-->
           <div class="col" style="height: 350px;">
             <div class="card shadow-sm card-hover border-0 h-100">
-              <div class="card-img-top card-img-hover" style="height: 200px; width: 100%;"><a class="img-overlay"
-                  href="real-estate-single-v1.html"></a>
+              <div class="card-img-top card-img-hover" style="height: 250px; width: 100%;"><a class="img-overlay" th:href="@{http://localhost/museumview(no=572)}"
+                 ></a>
                 <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
-                  <span class="d-table badge bg-success"> 대학 </span>
+                  <span class="d-table badge bg-info"> 공립 </span>
                 </div>
                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                  <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
-                    data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기 "><i class="fi-heart"></i></button>
                 </div>
-                <img src="img/museum_img/bg-1.png" alt="Image" style="height: 100%; width: 100%;">
+                <img src="img/museum_img/mu8.jpg" alt="Image" style="height: 100%; width: 100%;">
               </div>
               <div class="card-body position-relative pb-3">
                 <div class="h4">
-                  <a href="#" class="h3 nav-link stretched-link" style="min-height: 60px;">
-                    부산교육대학교 교육박물관(한새갤러리)
+                  <a class="h3 nav-link stretched-link" >
+                     혼불문학관
                   </a>
                 </div>
                 <div class="d-flex mb-1 text-primary">
                   <i class="fi-map-pin me-2"></i>
-                  서울특별시
-                  용산구 서빙고로 137
+                     전라북도 남원시 사매면 
                 </div>
                 <div class="mb-2">
                   <i class="fi-clock me-1"></i>
-                  <span class="ms-1"> 10:00 AM - 6:00 PM </span>
+                  <span class="ms-1"> 09:00 AM - 18:00 PM </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Item-->
+          <div class="col" style= "height: 350px;">
+            <div class="card shadow-sm card-hover border-0 h-100">
+              <div class="card-img-top card-img-hover" style="height: 250px;; width: 100%;"><a class="img-overlay" th:href="@{http://localhost/museumview(no=5)}"
+                  ></a>
+                <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
+                  <span class="d-table badge bg-warning mb-1"> 사립 </span>
+                  <span class="d-table badge bg-danger"> 유료 </span>
+                </div>
+                <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                </div>
+                <img src="img/museum_img/mu7.jpg" alt="Image" style="height: 100%; width: 100%;">
+              </div>
+              <div class="card-body position-relative pb-3">
+                <div class="h4">
+                  <a class="h3 nav-link stretched-link" >
+                     한국미술관
+                  </a>
+                </div>
+                <div class="d-flex mb-1 text-primary">
+                  <i class="fi-map-pin me-2"></i>
+                   경기도 용인시 기흥구 
+                </div>
+                <div class="mb-2">
+                  <i class="fi-clock me-1"></i>
+                  <span class="ms-1"> 10:00 AM - 17:30 PM </span>
                 </div>
               </div>
             </div>
@@ -649,101 +677,62 @@
           <!-- Item-->
           <div class="col" style="height: 350px;">
             <div class="card shadow-sm card-hover border-0 h-100">
-              <div class="card-img-top card-img-hover" style="height: 200px; width: 100%;"><a class="img-overlay"
-                  href="real-estate-single-v1.html"></a>
+              <div class="card-img-top card-img-hover" style="height: 250px;; width: 100%;"><a class="img-overlay" th:href="@{http://localhost/museumview(no=486)}"
+                  ></a>
                 <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
                   <span class="d-table badge bg-success"> 대학 </span>
                 </div>
                 <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                  <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
-                    data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기 "><i class="fi-heart"></i></button>
                 </div>
-                <img src="img/museum_img/bg-3.jpeg" alt="Image" style="height: 100%; width: 100%;">
+                <img src="img/museum_img/mu1.jpg" alt="Image" style = "height: 100%; width: 100%;">
               </div>
               <div class="card-body position-relative pb-3">
                 <div class="h4">
-                  <a href="#" class="h3 nav-link stretched-link" style="min-height: 60px;">
-                    국립중앙박물관
+                  <a class="h3 nav-link stretched-link">
+                     건국대학교박물관
                   </a>
                 </div>
                 <div class="d-flex mb-1 text-primary">
                   <i class="fi-map-pin me-2"></i>
-                  서울특별시
-                  용산구 서빙고로 137
+                    서울특별시 광진구 능동로 120 
                 </div>
                 <div class="mb-2">
                   <i class="fi-clock me-1"></i>
-                  <span class="ms-1"> 10:00 AM - 6:00 PM </span>
+                  <span class="ms-1"> 09:00 AM - 16:00 PM </span>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Item-->
+           <!-- Item-->
           <div class="col" style="height: 350px;">
             <div class="card shadow-sm card-hover border-0 h-100">
-              <div class="card-img-top card-img-hover" style="height: 200px; width: 100%;"><a class="img-overlay"
-                  href="real-estate-single-v1.html"></a>
+              <div class="card-img-top card-img-hover" style="height: 250px;; width: 100%;"><a class="img-overlay"th:href="@{http://localhost/museumview(no=710)}"
+                  ></a>
                 <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
-                  <span class="d-table badge bg-success"> 대학 </span>
+                  <span class="d-table badge bg-accent"> 국립 </span>
                 </div>
-                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                  <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
-                    data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기 "><i class="fi-heart"></i></button>
+                <div class="content-overlay end-0 top-0 pt-3 pe-3"> 
                 </div>
-                <img src="img/museum_img/bg-7.jpg" alt="Image" style="height: 100%; width: 100%;">
+                <img src="img/museum_img/mu5.jpg" alt="Image" style="height: 100%; width: 100%;">
               </div>
               <div class="card-body position-relative pb-3">
                 <div class="h4">
-                  <a href="#" class="h3 nav-link stretched-link" style="min-height: 60px;">
-                    부산교육대학교 교육박물관(한새갤러리)
+                  <a class="h3 nav-link stretched-link">
+                     국립익산박물관 
                   </a>
                 </div>
-                <div class="d-flex mb-1 text-primary">
+                <div class="d-flex mb-1 text-primary" style="min-height: 10px;">
                   <i class="fi-map-pin me-2"></i>
-                  서울특별시
-                  용산구 서빙고로 137
+                    전라북도 익산시 금마면 
                 </div>
                 <div class="mb-2">
                   <i class="fi-clock me-1"></i>
-                  <span class="ms-1"> 10:00 AM - 6:00 PM </span>
+                  <span class="ms-1"> 09:00 AM - 6:00 PM </span>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Item-->
-          <div class="col" style="height: 350px;">
-            <div class="card shadow-sm card-hover border-0 h-100">
-              <div class="card-img-top card-img-hover" style="height: 200px; width: 100%;"><a class="img-overlay"
-                  href="real-estate-single-v1.html"></a>
-                <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
-                  <span class="d-table badge bg-success"> 대학 </span>
-                </div>
-                <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                  <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
-                    data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기 "><i class="fi-heart"></i></button>
-                </div>
-                <img src="img/museum_img/bg-7.jpg" alt="Image" style="height: 100%; width: 100%;">
-              </div>
-              <div class="card-body position-relative pb-3">
-                <div class="h4">
-                  <a href="#" class="h3 nav-link stretched-link" style="min-height: 60px;">
-                    부산교육대학교 교육박물관(한새갤러리)
-                  </a>
-                </div>
-                <div class="d-flex mb-1 text-primary">
-                  <i class="fi-map-pin me-2"></i>
-                  서울특별시
-                  용산구 서빙고로 137
-                </div>
-                <div class="mb-2">
-                  <i class="fi-clock me-1"></i>
-                  <span class="ms-1"> 10:00 AM - 6:00 PM </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
+          
         </div>
       </div>
     </section>
