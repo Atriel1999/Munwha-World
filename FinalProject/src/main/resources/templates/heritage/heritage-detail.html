@@ -16,7 +16,7 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Favicon and Touch Icons-->
-    <link href="../dist/css/custom_yja.css" rel="stylesheet" />
+    <link th:href="@{/css/custom_yja.css}" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
@@ -160,8 +160,8 @@
         <!-- Breadcrumb-->
         <nav class="mt-3 mb-3 pt-md-3" aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
-          <li class="breadcrumb-item"><a href="real-estate-catalog-rent.html"> 문화재 검색 </a></li>
+          <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+          <li class="breadcrumb-item"><a th:href="@{/heritage-search}"> 문화재 검색 </a></li>
           <li class="breadcrumb-item active" aria-current="page"> 문화재 상세 페이지 </li>
         </ol>
       </nav>
@@ -169,35 +169,21 @@
           class="d-sm-flex align-items-center justify-content-between mt-4 pb-sm-2"
         >
           <div class="me-3 mb-sm-0">
-            <h1 class="h2">서울 북한산 신라 진흥왕 순수비</h1>
-            <h5 style="color: gray">서울 北漢山 新羅 眞興王 巡狩碑</h5>
+            <h1 class="h2">[[${heritage.ccbaMnm1}]]</h1>
+            <h5 style="color: gray">[[${heritage.ccbaMnm2}]]</h5>
           </div>
 
           <div class="text-nowrap">
-            <button
-              class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle"
-              type="button"
-              data-bs-toggle="tooltip"
-              title="bookmark"
-            >
-              <i class="fi-heart"></i>
-            </button>
-            <div
-              class="dropdown d-inline-block"
-              data-bs-toggle="tooltip"
-              title="Share"
-            >
-              <button
-                class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2"
-                type="button"
-                data-bs-toggle="dropdown"
-              >
-                <i class="fi-share"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end my-1">
-                <button class="dropdown-item" type="button">Kakao Talk</button>
-              </div>
-            </div>
+          	<th:block th:if="${session.loginMember != null}">
+	            <a
+	              class="btn btn-icon btn-light-primary btn-s shadow-sm rounded-circle"
+	              type="button"
+	              title="bookmark"
+	              th:onclick="'bmk('+${session.loginMember.mno}+', '+${heritage.hno}+');'"
+	            >
+	              <i class="fi-heart"></i>
+	            </a>
+          	</th:block>
           </div>
         </div>
         <!-- Nav pills-->
@@ -216,79 +202,128 @@
               <div class="col-8">
                 <a
                   class="gallery-item rounded rounded-md-3"
-                  href="http://www.cha.go.kr/unisearch/images/national_treasure/1611458.jpg"
+                  th:href="${heritage.imageUrl}"
                   data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Kids bed&lt;/h6&gt;'
                   ><img
-                    src="http://www.cha.go.kr/unisearch/images/national_treasure/1611458.jpg"
+                    th:src="${heritage.imageUrl}"
                     alt="Gallery thumbnail"
                 /></a>
               </div>
               <div class="col-4">
                 <a
                   class="gallery-item rounded rounded-md-3 mb-2 mb-md-3"
-                  href="http://www.cha.go.kr/unisearch/images/national_treasure/1611459.jpg"
+                  th:href="${himage.imageUrl1}"
                   data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Kids bed&lt;/h6&gt;'
                   ><img
-                    src="http://www.cha.go.kr/unisearch/images/national_treasure/1611459.jpg"
+                    th:src="${himage.imageUrl1}"
                     alt="Gallery thumbnail" /></a
-                ><a
-                  class="gallery-item rounded rounded-md-3"
-                  href="http://www.cha.go.kr/unisearch/images/national_treasure/1611460.jpg"
-                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
-                  ><img
-                    src="http://www.cha.go.kr/unisearch/images/national_treasure/1611460.jpg"
-                    alt="Gallery thumbnail"
-                /></a>
+                >
+                <th:block th:if="${himage.imageUrl2} != null">
+	                <a
+	                  class="gallery-item rounded rounded-md-3"
+	                  th:href="${himage.imageUrl2}"
+	                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
+	                  ><img
+	                    th:src="${himage.imageUrl2}"
+	                    alt="Gallery thumbnail"
+	                /></a>
+                </th:block>
+                <th:block th:if="${himage.imageUrl2} == null">
+	                <a
+	                  class="gallery-item rounded rounded-md-3"
+	                  th:href="${heritage.imageUrl}"
+	                  data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
+	                  ><img
+	                    th:src="${heritage.imageUrl}"
+	                    alt="Gallery thumbnail"
+	                /></a>
+                </th:block>
               </div>
               <div class="col-12">
                 <div class="row g-2 g-md-3">
                   <div class="col">
+                  <th:block th:if="${himage.imageUrl3} != null">
                     <a
                       class="gallery-item rounded-1 rounded-md-2 small-gallery"
-                      href="http://www.cha.go.kr/unisearch/images/national_treasure/1611461.jpg"
+                      th:href="${himage.imageUrl3}"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
                       ><img
-                        src="http://www.cha.go.kr/unisearch/images/national_treasure/1611461.jpg"
+                        th:src="${himage.imageUrl3}"
                         alt="Gallery thumbnail"
                     /></a>
-                  </div>
-                  <div class="col">
+                    </th:block>
+                  <th:block th:if="${himage.imageUrl3} == null">
                     <a
                       class="gallery-item rounded-1 rounded-md-2 small-gallery"
-                      href="http://www.cha.go.kr/unisearch/images/national_treasure/1611462.jpg"
+                      th:href="${heritage.imageUrl}"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Working desk&lt;/h6&gt;'
+                      ><img
+                        th:src="${heritage.imageUrl}"
+                        alt="Gallery thumbnail"
+                    /></a>
+                    </th:block>
+                  </div>
+                  <div class="col">
+                  <th:block th:if="${himage.imageUrl4} != null">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      th:href="${himage.imageUrl4}"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;King size bed&lt;/h6&gt;'
                       ><img
-                        src="http://www.cha.go.kr/unisearch/images/national_treasure/1611462.jpg"
+                        th:src="${himage.imageUrl4}"
                         alt="Gallery thumbnail"
                     /></a>
-                  </div>
-                  <div class="col">
+                    </th:block>
+                  <th:block th:if="${himage.imageUrl4} == null">
                     <a
                       class="gallery-item rounded-1 rounded-md-2 small-gallery"
-                      href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140800.jpg"
+                      th:href="${himage.imageUrl4}"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;King size bed&lt;/h6&gt;'
+                      ><img
+                        th:src="${heritage.imageUrl}"
+                        alt="Gallery thumbnail"
+                    /></a>
+                    </th:block>
+                  </div>
+                  <div class="col">
+                  <th:block th:if="${himage.imageUrl5} != null">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      th:href="${himage.imageUrl5}"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Towels&lt;/h6&gt;'
                       ><img
-                        src="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140800.jpg"
+                        th:src="${himage.imageUrl5}"
+                        alt="Gallery thumbnail"
+                    /></a>
+                    </th:block>
+                  <th:block th:if="${himage.imageUrl5} == null">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      th:href="${heritage.imageUrl}"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Towels&lt;/h6&gt;'
+                      ><img
+                        th:src="${heritage.imageUrl}"
+                        alt="Gallery thumbnail"
+                    /></a>
+                    </th:block>
+                  </div>
+                  <div class="col">
+                    <a
+                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
+                      th:href="${heritage.imageUrl}"
+                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
+                      ><img
+                        th:src="${heritage.imageUrl}"
                         alt="Gallery thumbnail"
                     /></a>
                   </div>
                   <div class="col">
                     <a
                       class="gallery-item rounded-1 rounded-md-2 small-gallery"
-                      href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140801.jpg"
+                      th:href="${heritage.imageUrl}"
                       data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
                       ><img
-                        src="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140801.jpg"
-                        alt="Gallery thumbnail"
-                    /></a>
-                  </div>
-                  <div class="col">
-                    <a
-                      class="gallery-item rounded-1 rounded-md-2 small-gallery"
-                      href="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140900.jpg"
-                      data-sub-html='&lt;h6 class="fs-sm text-light"&gt;Bathroom&lt;/h6&gt;'
-                      ><img
-                        src="http://www.cha.go.kr/unisearch/images/national_treasure/2022110417140900.jpg"
+                        th:src="${heritage.imageUrl}"
                         alt="Gallery thumbnail"
                     /></a>
                   </div>
@@ -300,11 +335,11 @@
           <aside class="col-md-5 d-flex flex-wrap align-content-stretch">
             <!-- Place card-->
             <div class="py-2 px-sm-5 px-3 shadow-sm mb-3">
-              <div class="card-body mx-n2">
+              <div class="card-body mx-n2" style="width: 450px">
                 <!-- Place info-->
                 <div class="d-flex align-items-start mb-3 pb-3 border-bottom">
                   <div class="ps-2 ms-1">
-                    <h3 class="h5 mb-2">서울 북한산 신라 진흥왕 순수비</h3>
+                    <h3 class="h5 mb-2">[[${heritage.ccbaMnm1}]]</h3>
                     <p
                       style="
                         font-size: 15px;
@@ -312,26 +347,26 @@
                         color: rgb(173, 173, 173);
                       "
                     >
-                      서울 北漢山 新羅 眞興王 巡狩碑
+                      [[${heritage.ccbaMnm2}]]
                     </p>
                     <ul class="list-unstyled d-flex flex-wrap fs-sm">
                       <li class="me-2 mb-1 pe-1">
                         <i
                           class="fi-star-filled mt-n1 me-1 text-warning align-middle opacity-70"
                         ></i
-                        ><b>4.9 </b>(48)
+                        ><b>4.9 </b>
                       </li>
                       <li class="me-2 mb-1 pe-1">
                         <i
-                          class="fi-heart-filled mt-n1 me-1 text-warning align-middle opacity-70"
+                          class="fi-eye-on mt-n1 me-1 align-middle opacity-70"
                         ></i
-                        ><b>23 </b>
+                        ><b>[[${heritage.viewCount}]]</b>
                       </li>
                       <li class="me-2 mb-1 pe-1">
                         <i
                           class="fi-chat-circle mt-n1 me-1 align-middle opacity-70"
                         ></i
-                        >3
+                        >[[${heritage.reviewCount}]]
                       </li>
                     </ul>
                   </div>
@@ -341,65 +376,46 @@
                   <h4 class="h5 mb-2">문화재 정보</h4>
                   <ul style="list-style: none; padding: 0">
                     <li>
-                      <a
-                        class="nav-link p-0 fw-normal d-flex align-items-start"
-                        href="#"
-                        >소재지: 서울 용산구 서빙고로 137, 국립중앙박물관
-                        (용산동6가)</a
-                      >
+                      [[${heritage.ccbaLcad}]]
                     </li>
                     <li>
-                      <a
-                        class="nav-link d-inline-block p-0 fw-normal d-inline-flex align-items-start"
-                        href="tel:3025550107"
-                        >문화재 종류: 기록유산</a
-                      >
+                      문화재 종류: [[${heritage.gcodeName}]]
                     </li>
                     <li>
-                      <a
-                        class="nav-link d-inline-block p-0 fw-normal"
-                        href="tel:3025550208"
-                      >
-                        문화재 분류: 서각류</a
-                      >,
-                      <a
-                        class="nav-link d-inline-block p-0 fw-normal d-inline-flex align-items-start"
-                        href="tel:3025550107"
-                        >금석각류</a
-                      >,
-                      <a
-                        class="nav-link d-inline-block p-0 fw-normal d-inline-flex align-items-start"
-                        href="tel:3025550107"
-                        >비</a
-                      >
+                      문화재 분류: [[${heritage.bcodeName}]], [[${heritage.mcodeName}]], [[${heritage.scodeName}]]
                     </li>
                     <li>
-                      <a
-                        class="nav-link p-0 fw-normal d-flex align-items-start"
-                        href="#"
-                        >지정(등록일): 1962.12.20</a
-                      >
+                      지정(등록일): [[${heritage.date}]]
                     </li>
                     <li>
-                      <a
-                        class="nav-link p-0 fw-normal d-flex align-items-start"
-                        href="mailto:bb-hotel@example.com"
-                        >시대: 신라 진흥왕 29년( 569)</a
-                      >
+                      [[${heritage.ccceName}]]
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
             <!-- Location (Map) 카카오맵 구현 부분-->
-            <div class="position-relative">
-              <img
-                style="height: 100%; object-fit: cover"
-                class="rounded-3"
-                src="img/city-guide/single/map-sm.jpg"
-                alt="Map"
-              />
+            <div class="position-relative" id="map" style="width:100%; height:300px;">
             </div>
+            <script type="text/javascript"
+              src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=04524540eaf5cf777208f85e52d03be1"></script>
+            <script>
+              var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = {
+                  center: new kakao.maps.LatLng('[[${heritage.latitude}]]', '[[${heritage.longitude}]]' ), // 지도의 중심좌표
+                  level: 2 // 지도의 확대 레벨
+                };
+              // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+              var map = new kakao.maps.Map(mapContainer, mapOption);
+           	  // 마커가 표시될 위치입니다 
+              var markerPosition  = new kakao.maps.LatLng('[[${heritage.latitude}]]', '[[${heritage.longitude}]]'); 
+              // 마커를 생성합니다
+              var marker = new kakao.maps.Marker({
+                  position: markerPosition
+              });
+              // 마커가 지도 위에 표시되도록 설정합니다
+              marker.setMap(map);
+            </script>
           </aside>
         </div>
       </section>
@@ -411,28 +427,9 @@
               <h4 class="h5 mb-2">문화재 소개</h4>
               <ul class="nav row gy-1">
                 <li class="col">
-                  <a
-                    class="nav-link p-0 fw-normal d-flex align-items-start"
-                    href="#"
-                    >신라 진흥왕(재위 540∼576)이 세운 순수척경비(巡狩拓境碑)
-                    가운데 하나로, 한강유역을 영토로 편입한 뒤 왕이 이 지역을
-                    방문한 것을 기념하기 위하여 세운 것이다. 원래는 북한산
-                    비봉에 자리하고 있었으나 비(碑)를 보존하기 위하여 경복궁에
-                    옮겨 놓았다가 현재는 국립중앙박물관에 보관되어 있다. 비의
-                    형태는 직사각형의 다듬어진 돌을 사용하였으며, 자연암반 위에
-                    2단의 층을 만들고 세웠다. 윗부분이 일부 없어졌는데, 현재
-                    남아 있는 비몸의 크기는 높이 1.54m, 너비 69㎝이며, 비에
-                    쓰여져 있는 글은 모두 12행으로 행마다 32자가 해서체로 새겨져
-                    있다. 내용으로는 왕이 지방을 방문하는 목적과 비를 세우게 된
-                    까닭 등이 기록되어 있는데, 대부분이 진흥왕의 영토확장을
-                    찬양하는 내용으로 이루어져 있다. 비의 건립연대는 비문에
-                    새겨진 연호가 닳아 없어져 확실하지 않으나, 창녕 신라 진흥황
-                    척경비(국보)가 건립된 진흥왕 22년(561)과 황초령비가 세워진
-                    진흥왕 29년(568) 사이에 세워졌거나 그 이후로 짐작하고 있다.
-                    조선 순조 16년(1816)에 추사 김정희가 발견하고 판독하여
-                    세상에 알려졌으며, 비에 새겨진 당시의 역사적 사실 등은
-                    삼국시대의 역사를 연구하는데 귀중한 자료가 되고 있다.</a
-                  >
+                  
+                    [[${heritage.content}]]
+                    
                 </li>
               </ul>
             </div>
@@ -446,7 +443,7 @@
             <div
               class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4"
             >
-              <h3 class="modal-title mt-4 text-center">Leave a review</h3>
+              <h3 class="modal-title mt-4 text-center">리뷰 남기기</h3>
               <button
                 class="btn-close position-absolute top-0 end-0 mt-3 me-3"
                 type="button"
@@ -455,75 +452,55 @@
               ></button>
             </div>
             <div class="modal-body px-sm-5 px-4">
-              <form class="needs-validation" novalidate>
+              <form class="needs-validation" novalidate th:action="@{/heritage-detail}" method="post">
                 <div class="mb-3">
-                  <label class="form-label" for="review-name"
-                    >Name <span class="text-danger">*</span></label
-                  >
                   <input
                     class="form-control"
-                    type="text"
-                    id="review-name"
-                    placeholder="Your name"
-                    required
+                    type="hidden"
+                    name="hno"
+                    th:value="${heritage.hno}"
                   />
-                  <div class="invalid-feedback">
-                    Please let us know your name.
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label" for="review-email"
-                    >Email <span class="text-danger">*</span></label
-                  >
-                  <input
-                    class="form-control"
-                    type="email"
-                    id="review-email"
-                    placeholder="Your email address"
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Please provide a valid email address.
-                  </div>
                 </div>
                 <div class="mb-3">
                   <label class="form-label" for="review-rating"
-                    >Rating <span class="text-danger">*</span></label
+                    >평점 <span class="text-danger">*</span></label
                   >
                   <select
                     class="form-control form-select"
                     id="review-rating"
                     required
+                    name="rate"
                   >
                     <option value="" selected disabled hidden>
-                      Choose rating
+                      평점을 골라주세요
                     </option>
-                    <option value="5 stars">5 stars</option>
-                    <option value="4 stars">4 stars</option>
-                    <option value="3 stars">3 stars</option>
-                    <option value="2 stars">2 stars</option>
-                    <option value="1 star">1 star</option>
+                    <option value="5">5점</option>
+                    <option value="4">4점</option>
+                    <option value="3">3점</option>
+                    <option value="2">2점</option>
+                    <option value="1">1점</option>
                   </select>
-                  <div class="invalid-feedback">Please rate the property.</div>
+                  <div class="invalid-feedback">평점을 선택하세요</div>
                 </div>
                 <div class="mb-4">
                   <label class="form-label" for="review-text"
-                    >Review <span class="text-danger">*</span></label
+                    >내용 <span class="text-danger">*</span></label
                   >
                   <textarea
                     class="form-control"
                     id="review-text"
                     rows="5"
-                    placeholder="Your review message"
+                    placeholder="리뷰내용"
                     required
+                    name="rcontent"
                   ></textarea>
-                  <div class="invalid-feedback">Please write your review.</div>
+                  <div class="invalid-feedback">리뷰를 작성해주세요</div>
                 </div>
                 <button
                   class="btn btn-primary d-block rounded-pill w-100 mb-4"
                   type="submit"
                 >
-                  Submit a review
+                  리뷰 달기
                 </button>
               </form>
             </div>
@@ -536,188 +513,64 @@
         <div
           class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-between mb-4 pb-4 border-bottom"
         >
-          <a
-            class="btn btn-outline-primary rounded-pill mb-sm-0 mb-3"
-            href="#modal-review"
-            data-bs-toggle="modal"
-            ><i class="fi-edit mt-n1 me-1 align-middle"></i>Add review</a
-          >
-          <div class="d-flex align-items-center ms-sm-4">
-            <label
-              class="d-inline-block me-2 pe-1 text-muted text-nowrap"
-              for="reviews-sort"
-              ><i class="fi-arrows-sort mt-n1 me-1 align-middle opacity-80"></i
-              >Sort by:</label
-            >
-            <select
-              class="form-select"
-              id="reviews-sort"
-              style="min-width: 180px"
-            >
-              <option>Newest</option>
-              <option>Oldest</option>
-              <option>Popular</option>
-              <option>High rating</option>
-              <option>Low rating</option>
-            </select>
-          </div>
+        
+        <h2 class="h2 me-3"> 문화재 리뷰 </h2>
+        
         </div>
-        <!-- Review-->
-        <div class="mb-4 pb-4 border-bottom">
-          <div class="d-flex justify-content-between mb-3">
-            <div class="d-flex align-items-center pe-2">
-              <img
-                class="rounded-circle me-1"
-                src="img/avatars/03.jpg"
-                width="48"
-                alt="Avatar"
-              />
-              <div class="ps-2">
-                <h6 class="fs-base mb-0">Annette Black</h6>
-                <span class="star-rating"
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                ></span>
-              </div>
-            </div>
-            <span class="text-muted fs-sm">Jan 17, 2021</span>
-          </div>
-          <p>
-            Elementum ut quam tincidunt egestas vitae elit, hendrerit.
-            Ullamcorper nulla amet lobortis elit, nibh condimentum enim. Aliquam
-            felis nisl tellus sodales lectus dictum tristique proin vitae. Odio
-            fermentum viverra tortor quis.
-          </p>
-        </div>
-        <!-- Review-->
-        <div class="mb-4 pb-4 border-bottom">
-          <div class="d-flex justify-content-between mb-3">
-            <div class="d-flex align-items-center pe-2">
-              <img
-                class="rounded-circle me-1"
-                src="img/avatars/13.png"
-                width="48"
-                alt="Avatar"
-              />
-              <div class="ps-2">
-                <h6 class="fs-base mb-0">Darrell Steward</h6>
-                <span class="star-rating"
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star"></i
-                ></span>
-              </div>
-            </div>
-            <span class="text-muted fs-sm">Dec 1, 2020</span>
-          </div>
-          <p>
-            Vel dictum nunc ut tristique. Egestas diam amet, ut proin hendrerit.
-            Dui accumsan at phasellus tempus consequat dignissim.
-          </p>
-        </div>
-        <!-- Review-->
-        <div class="mb-4 pb-4 border-bottom">
-          <div class="d-flex justify-content-between mb-3">
-            <div class="d-flex align-items-center pe-2">
-              <img
-                class="rounded-circle me-1"
-                src="img/avatars/13.png"
-                width="48"
-                alt="Avatar"
-              />
-              <div class="ps-2">
-                <h6 class="fs-base mb-0">Floyd Miles</h6>
-                <span class="star-rating"
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                ></span>
-              </div>
-            </div>
-            <span class="text-muted fs-sm">Oct 28, 2020</span>
-          </div>
-          <p>
-            Viverra nunc blandit sapien non imperdiet sit. Purus tempus
-            elementum aliquam eu urna. A aenean duis non egestas at libero
-            porttitor integer eget. Sed dictum lobortis laoreet gravida.
-          </p>
-        </div>
-        <!-- Review-->
-        <div class="mb-4 pb-4 border-bottom">
-          <div class="d-flex justify-content-between mb-3">
-            <div class="d-flex align-items-center pe-2">
-              <img
-                class="rounded-circle me-1"
-                src="img/avatars/04.jpg"
-                width="48"
-                alt="Avatar"
-              />
-              <div class="ps-2">
-                <h6 class="fs-base mb-0">Ralph Edwards</h6>
-                <span class="star-rating"
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star-filled active"></i
-                  ><i class="star-rating-icon fi-star"></i
-                ></span>
-              </div>
-            </div>
-            <span class="text-muted fs-sm">Sep 14, 2020</span>
-          </div>
-          <p>
-            Elementum nisl, egestas nam consectetur nisl, at pellentesque cras.
-            Non sed ac vivamus dolor dignissim ut. Nisl sapien blandit pulvinar
-            sagittis donec sociis ipsum arcu est. Tempus, rutrum morbi
-            scelerisque tempor mi. Etiam urna, cras bibendum leo nec faucibus
-            velit. Tempor lectus dignissim at auctor integer neque quam amet.
-          </p>
-        </div>
+        
+        <th:block th:each="item : ${rList}">
+	        <!-- Review-->
+	        <div class="mb-4 pb-4 border-bottom">
+	          <div class="d-flex justify-content-between mb-3">
+	            <div class="d-flex align-items-center pe-2">
+	              <img
+	                class="rounded-circle me-1"
+	                src="img/avatars/13.png"
+	                width="48"
+	                alt="Avatar"
+	              />
+	              <div class="ps-2">
+	                <h6 class="fs-base mb-0">[[${item.mname}]]</h6>
+	                <span class="star-rating">
+	                <th:block th:each="star : ${#numbers.sequence(1, item.rate)}">
+                          <i class="star-rating-icon fi-star-filled active"></i>
+                    </th:block>
+	                </span>
+	              </div>
+	            </div>
+	            <span class="text-muted fs-sm">[[${item.createDate}]]</span>
+	          </div>
+	          <p>
+	            [[${item.rcontent}]]
+	          </p>
+	          <th:block th:if="${session.loginMember != null && 
+							(session.loginMember.mno == item.mno || session.loginMember.role == 'ROLE_ADMIN')}">
+				<div style="display: flex; justify-content: end; margin-top: -15px" > 
+				
+					<a class="btn btn-outline-primary rounded-pill mb-1" th:onclick="'deleteReply(' + ${item.rno} + ',' + ${heritage.hno} + ');'" > 삭제 </a>
+				</div>
+				</th:block>
+	        </div>
+        </th:block>
+        <th:block th:if="${#lists.isEmpty(rList)}">
+			<div class="mb-4 border-bottom">
+	         <div class="h5 text-warning"> 등록된 리플이 없습니다.</div>
+	         </div>
+		</th:block>
+        
+        
         <!-- Review pagination + Add review btn-->
         <div class="d-flex align-items-center justify-content-between">
-          <nav aria-label="Reviews pagination">
-            <ul class="pagination mb-0">
-              <li class="page-item d-sm-none">
-                <span class="page-link page-link-static">1 / 8</span>
-              </li>
-              <li
-                class="page-item active d-none d-sm-block"
-                aria-current="page"
-              >
-                <span class="page-link"
-                  >1<span class="visually-hidden">(current)</span></span
-                >
-              </li>
-              <li class="page-item d-none d-sm-block">
-                <a class="page-link" href="#">2</a>
-              </li>
-              <li class="page-item d-none d-sm-block">
-                <a class="page-link" href="#">3</a>
-              </li>
-              <li class="page-item d-none d-sm-block">...</li>
-              <li class="page-item d-none d-sm-block">
-                <a class="page-link" href="#">8</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next"
-                  ><i class="fi-chevron-right"></i
-                ></a>
-              </li>
-            </ul>
-          </nav>
+          
+          <th:block th:if="${session.loginMember != null}">
           <a
             class="btn btn-outline-primary rounded-pill ms-4"
             href="#modal-review"
             data-bs-toggle="modal"
-            ><i class="fi-edit mt-n1 me-1 align-middle"></i>Add review</a
+            ><i class="fi-edit mt-n1 me-1 align-middle"></i>리뷰 남기기</a
           >
+          </th:block>
+          
         </div>
       </div>
       <!-- Recently viewed-->
@@ -728,7 +581,7 @@
           <h2 class="h3 mb-0">문화재 추천</h2>
           <a
             class="btn btn-link fw-normal ms-sm-3 p-0"
-            href="city-guide-catalog.html"
+            th:href="@{/heritage-recommend}"
             >더보기<i class="fi-arrow-long-right ms-2"></i
           ></a>
         </div>
@@ -739,13 +592,13 @@
             class="tns-carousel-inner"
             data-carousel-options='{"items": 3, "gutter": 24, "responsive": {"0":{"items":1,"nav":true},"500":{"items":2},"850":{"items":3},"1400":{"items":3,"nav":false}}}'
           >
-            <!-- Item-->
+          
             <div>
               <div class="position-relative">
                 <div class="position-relative mb-3">
                   <img
                     class="rounded-3"
-                    src="img/img_yja/숭례문.jpg"
+                    th:src="${hList[0].imageUrl}"
                     alt="Image"
                     height="275px"
                     style="object-fit: cover"
@@ -754,11 +607,11 @@
                 <h3 class="mb-2 fs-lg">
                   <a
                     class="nav-link stretched-link"
-                    href="city-guide-single.html"
-                    >서울 숭례문</a
+                    th:href="@{/heritage-detail(hno = ${hList[0].hno})}"
+                    >[[${hList[0].ccbaMnm1}]]</a
                   >
                 </h3>
-                <p>서울 중구 세종대로 40 (남대문 로4가)</p>
+                <p>[[${hList[0].ccbaLcad}]]</p>
                 <ul class="list-inline mb-0 fs-xs">
                   <li class="list-inline-item pe-1">
                     <i
@@ -775,13 +628,12 @@
                 </ul>
               </div>
             </div>
-            <!-- Item-->
             <div>
               <div class="position-relative">
                 <div class="position-relative mb-3">
                   <img
                     class="rounded-3"
-                    src="img/img_yja/숭례문.jpg"
+                    th:src="${hList[1].imageUrl}"
                     alt="Image"
                     height="275px"
                     style="object-fit: cover"
@@ -790,11 +642,11 @@
                 <h3 class="mb-2 fs-lg">
                   <a
                     class="nav-link stretched-link"
-                    href="city-guide-single.html"
-                    >서울 숭례문</a
+                    th:href="@{/heritage-detail(hno = ${hList[1].hno})}"
+                    >[[${hList[1].ccbaMnm1}]]</a
                   >
                 </h3>
-                <p>서울 중구 세종대로 40 (남대문 로4가)</p>
+                <p>[[${hList[1].ccbaLcad}]]</p>
                 <ul class="list-inline mb-0 fs-xs">
                   <li class="list-inline-item pe-1">
                     <i
@@ -811,13 +663,12 @@
                 </ul>
               </div>
             </div>
-            <!-- Item-->
             <div>
               <div class="position-relative">
                 <div class="position-relative mb-3">
                   <img
                     class="rounded-3"
-                    src="img/img_yja/숭례문.jpg"
+                    th:src="${hList[2].imageUrl}"
                     alt="Image"
                     height="275px"
                     style="object-fit: cover"
@@ -826,11 +677,11 @@
                 <h3 class="mb-2 fs-lg">
                   <a
                     class="nav-link stretched-link"
-                    href="city-guide-single.html"
-                    >서울 숭례문</a
+                    th:href="@{/heritage-detail(hno = ${hList[2].hno})}"
+                    >[[${hList[2].ccbaMnm1}]]</a
                   >
                 </h3>
-                <p>서울 중구 세종대로 40 (남대문 로4가)</p>
+                <p>[[${hList[2].ccbaLcad}]]</p>
                 <ul class="list-inline mb-0 fs-xs">
                   <li class="list-inline-item pe-1">
                     <i
@@ -847,13 +698,12 @@
                 </ul>
               </div>
             </div>
-            <!-- Item-->
             <div>
               <div class="position-relative">
                 <div class="position-relative mb-3">
                   <img
                     class="rounded-3"
-                    src="img/img_yja/숭례문.jpg"
+                    th:src="${hList[3].imageUrl}"
                     alt="Image"
                     height="275px"
                     style="object-fit: cover"
@@ -862,11 +712,11 @@
                 <h3 class="mb-2 fs-lg">
                   <a
                     class="nav-link stretched-link"
-                    href="city-guide-single.html"
-                    >서울 숭례문</a
+                    th:href="@{/heritage-detail(hno = ${hList[3].hno})}"
+                    >[[${hList[3].ccbaMnm1}]]</a
                   >
                 </h3>
-                <p>서울 중구 세종대로 40 (남대문 로4가)</p>
+                <p>[[${hList[3].ccbaLcad}]]</p>
                 <ul class="list-inline mb-0 fs-xs">
                   <li class="list-inline-item pe-1">
                     <i
@@ -883,6 +733,42 @@
                 </ul>
               </div>
             </div>
+            <div>
+              <div class="position-relative">
+                <div class="position-relative mb-3">
+                  <img
+                    class="rounded-3"
+                    th:src="${hList[5].imageUrl}"
+                    alt="Image"
+                    height="275px"
+                    style="object-fit: cover"
+                  />
+                </div>
+                <h3 class="mb-2 fs-lg">
+                  <a
+                    class="nav-link stretched-link"
+                    th:href="@{/heritage-detail(hno = ${hList[5].hno})}"
+                    >[[${hList[5].ccbaMnm1}]]</a
+                  >
+                </h3>
+                <p>[[${hList[5].ccbaLcad}]]</p>
+                <ul class="list-inline mb-0 fs-xs">
+                  <li class="list-inline-item pe-1">
+                    <i
+                      class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"
+                    ></i
+                    ><b>23</b>
+                  </li>
+                  <li class="list-inline-item pe-1">
+                    <i
+                      class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"
+                    ></i
+                    >3
+                  </li>
+                </ul>
+              </div>
+            </div>
+          
           </div>
         </div>
       </section>
@@ -892,6 +778,18 @@
     <th:block th:replace="common/footer :: footerFragment"></th:block>
     <!-- 푸터 끝 -->
 
+	<script type="text/javascript">
+		function deleteReply(replyNo, hno){
+	  		var url = "heritage/replyDel?replyNo=";
+	  		var requestURL = url + replyNo +"&hno=" + hno;
+	  		location.replace(requestURL);
+	  	}
+		function bmk(mno, hno){
+			var url = "heritage/bmk?mno=";
+			var requestURL = url + mno +"&hno=" + hno;
+	  		location.replace(requestURL);
+		}
+	</script>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
       ><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span
       ><i class="btn-scroll-top-icon fi-chevron-up"> </i

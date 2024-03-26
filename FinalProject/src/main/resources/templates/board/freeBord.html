@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Finder | Sign In Page</title>
@@ -10,6 +10,7 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
+    <link href="/css/custom_yja.css" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -128,291 +129,111 @@
     </div>
     <main class="page-wrapper">
 
-            <!-- Review modal-->
-            <div class="modal fade" id="modal-review" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4">
-                    <h3 class="modal-title mt-4 text-center">Leave a review</h3>
-                    <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body px-sm-5 px-4">
-                    <form class="needs-validation" novalidate>
-                      <div class="mb-3">
-                        <label class="form-label" for="review-name">Name <span class='text-danger'>*</span></label>
-                        <input class="form-control" type="text" id="review-name" placeholder="Your name" required>
-                        <div class="invalid-feedback">Please let us know your name.</div>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" for="review-email">Email <span class='text-danger'>*</span></label>
-                        <input class="form-control" type="email" id="review-email" placeholder="Your email address" required>
-                        <div class="invalid-feedback">Please provide a valid email address.</div>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" for="review-rating">Rating <span class='text-danger'>*</span></label>
-                        <select class="form-control form-select" id="review-rating" required>
-                          <option value="" selected disabled hidden>Choose rating</option>
-                          <option value="5 stars">5 stars</option>
-                          <option value="4 stars">4 stars</option>
-                          <option value="3 stars">3 stars</option>
-                          <option value="2 stars">2 stars</option>
-                          <option value="1 star">1 star</option>
-                        </select>
-                        <div class="invalid-feedback">Please rate the property.</div>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label" for="review-text">Review <span class='text-danger'>*</span></label>
-                        <textarea class="form-control" id="review-text" rows="5" placeholder="Your review message" required></textarea>
-                        <div class="invalid-feedback">Please write your review.</div>
-                      </div>
-                      <button class="btn btn-primary d-block rounded-pill w-100 mb-4" type="submit">Submit a review</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-      
-
-      <!-- 헤더 시작 -->
-      <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
-        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
-          <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
-          <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
-            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
-              <!-- Menu items-->
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문화재</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
-                  <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">날씨정보</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-            </ul>
+     
+     <!-- 헤더 시작 -->
+      <th:block th:replace="common/header :: headerFragment"></th:block>
+      <!-- 헤더 끝 -->   
+      	
+      <main class="page-wrapper">
+        <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 400px;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+              background-image: url('img/board/자유게시판.PNG'); background-size: cover; background-position: center;">
           </div>
-          <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
-            <i class="fi-user me-2"></i>로그인</span>
-          </a>
-        </div>
-      </header>
-      <!-- 헤더 끝 -->		
+    
+          <div class="content-overlay container py-md-5">
+            <div class="col-md-8 order-md-1">
+              <h1 class="display-4 mb-4 me-lg-n5 text-lg-start text-center" style="margin-top: 100px;">
+                자유 게시판
+              </h1>
+              <h4 class="text-info">
+                ※타인의 명예를 훼손하는<strong>상업성 및 도배성 </strong>게시물은 삭제될 수 있습니다.
+              </h4>
+          </section>
       
-      <!-- cont_info -->
-			<section class="container">
-				<h2 class="col-lg-2 mb-3 border-bottom" style="margin-top: 150px;">자유게시판</h2>
-				<div>
-		      <!-- form 영역 start -->
-		      <!-- <form id="" name="" action="" method=""> -->
-		        <!-- <input type="hidden" name="bbrdId" />           -->
-		        <!-- <input type="hidden" name="atacFleNm" /> -->
-		        <!-- <input type="hidden" name="atacFleSvNm" /> -->
-		        <!-- <input type="hidden" name="atacFleSvPath" /> -->
-					<table class="table table-stripe">
-						<tbody>
-						  <tr>  
-						  	<th scope="row">제목</th>
-						  	<td colspan="7">사이트 폐쇄 안내</td>
-						  </tr>
-						  <tr>
-						  	<th scope="row">작성자</th>
-						  	<td>관리자</td>
-						  	<th scope="row">등록일</th>
-						  	<td>2024-03-31</td>
-						  	<th scope="row">조회수</th>
-						  	<td>1384</td>
-						  	<th scope="row">첨부파일</th>
-						  	<td></td>
-						  </tr>
-						</tbody>
-					</table>
-          <div>
-            <h3>사이트 폐쇄 안내</h3>
-            <p>2024년 03월 31일 부로 사이트 폐쇄합니다.</p>
-            <p>그동안 성원에 감사드립니다.</p>
-          </div>
+        <div class="container-fluid align-items-center justify-content-center py-4 py-sm-5">
+        <div class="container content-overlay spy-5">
+        <table class="table table-striped table-hover">
+          <thead>
+              <tr>
+                  <th style="text-align:center;">번호</th>
+                  <th style="text-align:center;">타입</th>
+                  <th style="text-align:center;">제목</th>
+                  <th style="text-align:center;">작성자</th>
+                  <th style="text-align:center;">작성일</th>
+                  <th style="text-align:center;">첨부파일</th>
+                  <th style="text-align:center;">조회수</th>
+              </tr>
+          </thead>
+                <tbody>
+			<th:block th:if="${list == null || #lists.size(list) == 0}">
+				<tr>
+					<td colspan="6">조회된 글이 없습니다.</td>
+				</tr>
+			</th:block>
+			<th:block th:if="${list != null && #lists.size(list) != 0}">
+					<tr th:each="board : ${list}">
+						<td th:text="${board.bno}"></td>
+						<td th:text="${board.boardCategory.name}"></td>
+						<td>
+							<a th:href="|/board/view?no=${board.bno}|">
+								[[${board.title}]]
+							</a>
+						</td>
+						<td th:text="${board.member.memberId}"></td>
+						<td th:text="${#dates.format(board.createDate, 'yyyy/MM/dd')}"></td>
+						<td>
+							[[${#lists.size(board.boardAttachFileList)}]]
+						</td>
+						<td>[[${board.readCount}]]</td>
+					</tr>
+			</th:block>
+            </tbody>
+		</table>
+		<!-- 게시판 리스트 종료 -->
+		<!-- page부 시작 -->
 
-              <!-- Review-->
-              <div class="container-fluid py-5 px-10">
-                <div class="mb-4 pb-4 border-bottom">
-                  <div class="d-flex justify-content-between mb-3">
-                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
-                      <div class="ps-2">
-                        <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                      </div>
-                    </div><span class="text-muted fs-sm">Jan 17, 2021</span>
-                  </div>
-                  <p>Elementum ut quam tincidunt egestas vitae elit, hendrerit. Ullamcorper nulla amet lobortis elit, nibh condimentum enim. Aliquam felis nisl tellus sodales lectus dictum tristique proin vitae. Odio fermentum viverra tortor quis.</p>
-                  <div class="d-flex align-items-center">
-                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>
-                    <div class="border-end me-1">&nbsp;</div>
-                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
-                  </div>
-                </div>
-                <!-- Review-->
-                <div class="mb-4 pb-4 border-bottom">
-                  <div class="d-flex justify-content-between mb-3">
-                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/13.png" width="48" alt="Avatar">
-                      <div class="ps-2">
-                        <h6 class="fs-base mb-0">Darrell Steward</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star"></i></span>
-                      </div>
-                    </div><span class="text-muted fs-sm">Dec 1, 2020</span>
-                  </div>
-                  <p>Vel dictum nunc ut tristique. Egestas diam amet, ut proin hendrerit. Dui accumsan at phasellus tempus consequat dignissim.</p>
-                  <div class="d-flex align-items-center">
-                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
-                    <div class="border-end me-1">&nbsp;</div>
-                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
-                  </div>
-                </div>
-                <!-- Review-->
-                <div class="mb-4 pb-4 border-bottom">
-                  <div class="d-flex justify-content-between mb-3">
-                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/13.png" width="48" alt="Avatar">
-                      <div class="ps-2">
-                        <h6 class="fs-base mb-0">Floyd Miles</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                      </div>
-                    </div><span class="text-muted fs-sm">Oct  28, 2020</span>
-                  </div>
-                  <p>Viverra nunc blandit sapien non imperdiet sit. Purus tempus elementum aliquam eu urna. A aenean duis non egestas at libero porttitor integer eget. Sed dictum lobortis laoreet gravida.</p>
-                  <div class="d-flex align-items-center">
-                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(2)</span></button>
-                    <div class="border-end me-1">&nbsp;</div>
-                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
-                  </div>
-                </div>
-                <!-- Review-->
-                <div class="mb-4 pb-4 border-bottom">
-                  <div class="d-flex justify-content-between mb-3">
-                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/04.jpg" width="48" alt="Avatar">
-                      <div class="ps-2">
-                        <h6 class="fs-base mb-0">Ralph Edwards</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star"></i></span>
-                      </div>
-                    </div><span class="text-muted fs-sm">Sep 14, 2020</span>
-                  </div>
-                  <p>Elementum nisl, egestas nam consectetur nisl, at pellentesque cras. Non sed ac vivamus dolor dignissim ut. Nisl sapien blandit pulvinar sagittis donec sociis ipsum arcu est. Tempus, rutrum morbi scelerisque tempor mi. Etiam urna, cras bibendum leo nec faucibus velit. Tempor lectus dignissim at auctor integer neque quam amet.</p>
-                  <div class="d-flex align-items-center">
-                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
-                    <div class="border-end me-1">&nbsp;</div>
-                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
-                  </div>
-                </div>
-                <!-- Review pagination + Add review btn-->
-                <div class="d-flex align-items-center justify-content-between">
-                  <nav aria-label="Reviews pagination">
-                    <ul class="pagination mb-0">
-                      <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 8</span></li>
-                      <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
-                      <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item d-none d-sm-block">...</li>
-                      <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                      <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
-                    </ul>
-                  </nav><a class="btn btn-outline-primary rounded-pill ms-4" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit mt-n1 me-1 align-middle"></i>Add review</a>
-                </div>
-              </div>
-            </div>
-            
+
+    <!-- Pagination: with icons -->
+    <section class="container d-flex justify-content-center mt-5">
+      <nav class="mt-2" aria-label="Page navigation example">
+        <ul class="pagination pagination-lg">
+          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><i class="fi-chevron-left"></i></a>
+          </li>
+          <li class="page-item d-sm-none"><span class="page-link page-link-static">2 / 5</span></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">2<span
+                class="visually-hidden">(current)</span></span></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
+          <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+          
         </div>
-      </section>
+      </div>
+      </div>
     </main>
-<!-- 푸터 -->
-<footer class="footer bg-dark">
-  <div class="container pt-3 pt-lg-3 justify-content-between">
-    <div class="row pt-2 pt-lg-1">
-      <div class="col-lg-3 mt-4">
-        <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
-        <p class="fs-sm text-light opacity-70">새로 업데이트되는 소식을 전해드립니다</p>
-        <form class="form-group form-group-light w-100">
-          <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
-            <input class="form-control" type="text" placeholder="Email 주소">
-          </div>
-          <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
-        </form>
-      </div>
-      <div class="col mt-5">
-        <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
-        <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
-      </div>
-      <div class="col mt-5">
-        <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재행사</span></a><br><br>
-        <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
-      </div>
-      <div class="col mt-5">
-        <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
-        <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
-      </div>
-      <div class="col mt-5">
-        <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
-        <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
-      </div>
 
-      <div class="col-lg-3 mb-2 mb-sm-4">
-        <div class="row">
-          <div class="col mt-2">
-            <span class="text-light" style="font-size: 40pt;">문화</span>
-            <span class="text-light" style="font-size: 40pt;">&nbsp;월드</span>
-          </div>
-          <div class="col mt-2">
-            <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%;" alt="">
-            <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
-              <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>
-              <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-telegram"></i></a>
-            </div>
-          </div>
+    <!-- 푸터 -->
+    <th:block th:replace="common/footer :: footerFragment"></th:block>
+    <!-- 푸터 끝 -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- 푸터 끝 -->
-
-
-
-<!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
-<!-- Vendor scrits: js libraries and plugins-->
-<script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="vendor/simplebar/dist/simplebar.min.js"></script>
-<script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-<!-- Main theme script-->
-<script src="js/theme.min.js"></script>
-</body>
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
+      ><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span
+      ><i class="btn-scroll-top-icon fi-chevron-up"> </i
+    ></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+    <script src="vendor/lightgallery/lightgallery.min.js"></script>
+    <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+    <!-- Main theme script-->
+    <script th:src="@{/js/theme.min.js}"></script>
+  </body>
 </html>
-
-
-

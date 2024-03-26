@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+            <!-- 즐겨찾기 목록 시작 -->
+            <div class="col-md-9" id="listarea">
+            <th:block th:each="item : ${hList}">
+              <!-- 즐겨찾기 시작 -->
+              <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
+                <!-- 여기에 대표 이미지 -->
+                <a th:href="@{/heritage-detail(hno = ${item.heritage.hno})}" class="card-img-top" th:style="'background-image: url('+${item.heritage.imageUrl}+');'"></a>
+                <div class="card-body">
+                  <h3 class="pt-1 mb-2 h2">
+                    <a th:href="@{/heritage-detail(hno = ${item.heritage.hno})}" class="nav-link">[[${item.heritage.ccbaMnm1}]]</a>
+                  </h3>
+                  <br>
+                  <p class="text-muted h4">[[${item.heritage.ccbaLcad}]]</p>
+                  <p class="text-muted h4">[[${item.heritage.ccceName}]]</p>
+                  <p class="text-muted h4">[[${item.heritage.date}]] 지정</p>
+                  <span class="float-end"><a href="#"><i class="fi-trash alert-danger h4"></i></a></span>
+                </div>
+              </article>
+              <!-- 즐겨찾기 끝 -->
+              </th:block>
+              </div>
+</html>

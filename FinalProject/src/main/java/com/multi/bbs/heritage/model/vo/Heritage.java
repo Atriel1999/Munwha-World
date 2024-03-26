@@ -1,76 +1,79 @@
 package com.multi.bbs.heritage.model.vo;
 
-import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "heritage")
 @Transactional
+@DynamicUpdate
+@DynamicInsert
 public class Heritage {
 	@Id
 	@Column(name = "hno")
 	public int hno;
 	@Column(name = "sn")
 	public int sn;
-	@Column(name = "ccbaMnm1")
-	public String ccbaMnm1;
-	@Column(name = "ccbaMnm2")
+	@Column(name = "ccbamnm1")
+	public String ccbaMnm1; // 문화재 이름
+	@Column(name = "ccbamnm2")
 	public String ccbaMnm2;
-	@Column(name = "ccmaName")
-	public String ccmaName;
-	@Column(name = "ccbaKdcd")
+	@Column(name = "ccmaname")
+	public String ccmaName; // 유형
+	@Column(name = "ccbakdcd")
 	public String ccbaKdcd;
-	@Column(name = "ccbaCtcd")
+	@Column(name = "ccbactcd")
 	public String ccbaCtcd;
-	@Column(name = "ccbaAsno")
+	@Column(name = "ccbaasno")
 	public String ccbaAsno;
 	@Column(name = "longitude")
 	public double longitude;
 	@Column(name = "latitude")
 	public double latitude;
-	@Column(name = "gcodeName")
+	@Column(name = "gcodename")
 	public String gcodeName;
-	@Column(name = "bcodeName")
+	@Column(name = "bcodename")
 	public String bcodeName;
-	@Column(name = "mcodeName")
+	@Column(name = "mcodename")
 	public String mcodeName;
-	@Column(name = "scodeName")
+	@Column(name = "scodename")
 	public String scodeName;
 	@Column(name = "date")
 	public String date;
-	@Column(name = "ccbaLcad")
+	@Column(name = "ccbalcad")
 	public String ccbaLcad;
-	@Column(name = "ccceName")
+	@Column(name = "cccename")
 	public String ccceName;
-	@Column(name = "imageUrl")
+	@Column(name = "imageurl")
 	public String imageUrl;
 	@Column(name = "content")
 	public String content;
 	@Column(name = "rate")
 	public double rate;
-	@Column(name = "reviewCount")
-	@ColumnDefault("0")
+	@Column(name = "reviewcount")
 	public int reviewCount;
-	@Column(name = "viewCount")
-	@ColumnDefault("0")
+	@Column(name = "viewcount")
 	public int viewCount;
-	@Column(name = "ccbaCtcdNm")
+	@Column(name = "ccbactcdnm") // 지역
 	public String ccbaCtcdNm;
-	@Column(name = "ccsiName")
+	@Column(name = "ccsiname")
 	public String ccsiName;
-	@Column(name = "ccbaQuan")
+	@Column(name = "ccbaquan")
 	public String ccbaQuan;
-	@Column(name = "ccbaPoss")
+	@Column(name = "ccbaposs")
 	public String ccbaPoss;
-	@Column(name = "videoUrl")
+	@Column(name = "videourl")
 	public String videoUrl;
 }
