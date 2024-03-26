@@ -43,19 +43,15 @@ public class HeritageController {
 		int size = 0;
 		List<Heritage> list = null;
 		
+		size = heritageService.getSearchCount(keyword, region, category, generation);
 		PageInfo pageInfo = new PageInfo(param.getPage(), 5, size, 9); // page가 보여질 갯수 : 10, 게시글 목록은 12개
 		System.out.println("boardCount : " + size);
 		System.out.println("setLimit : " + size);
 		System.out.println("setOffset : " + (pageInfo.getStartList() - 1));
 		param.setLimit(pageInfo.getListLimit());
 		param.setOffset(pageInfo.getStartList() - 1);
+		list = heritageService.getSearchAll(keyword, region, category, generation, param);
 		
-		try {
-			size = heritageService.getSearchCount(keyword, region, category, generation);
-			list = heritageService.getSearchAll(keyword, region, category, generation, param);
-		} catch (Exception e) {
-
-		}
 		
 		System.out.println("@@@@ count : " + size);
 //		System.out.println(list);
