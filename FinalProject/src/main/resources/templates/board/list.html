@@ -13,7 +13,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
@@ -121,7 +120,7 @@
     <link rel="stylesheet" media="screen"  th:href="@{/vendor/nouislider/dist/nouislider.min.css}" />
     
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}" />
+    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}">
   </head>
   
   
@@ -139,10 +138,9 @@
       <!-- 헤더 끝 -->
       
     <main class="page-wrapper">
-      <div class="container-fluid" id="board-list-container" style="text-align: center;" >
-        <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 600px;">
+        <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 400px;">
           <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-              background-image: url('img/board/커뮤니티.PNG'); background-size:auto cover; background-position: center;">
+              background-image: url('img/board/커뮤니티.PNG'); background-size: cover; background-position: center;">
           </div>
           
 
@@ -154,8 +152,9 @@
               </div>
         </div>
         </section>
-        </div>
 
+		<section>
+		
         <div class="container pt-5">
           <nav class="mb-2 pt-md-1" aria-label="Breadcrumb">
             <ol class="breadcrumb">
@@ -212,17 +211,16 @@
         <!--   이용후기 리스트  =================== -->
         <div class="container pb-2 mb-4 col-lg-10">
           <br><br>
-          <ul class="nav nav-scroller">
             <select class="form-select" id="order-sort" style="width: 200px;">
               <option> 모두 </option>
               <option> 최신순 </option>
               <option> 오래된 순 </option>
               <option> 조회순 </option>
             </select>
+          <ul class="nav nav-scroller">
               <li class="nav-item" style="margin-left: 600px;"><a class="nav-link d-flex align-items-center" th:href="@{${path}(types='QUESTION')}"><i class="fi-help me-2"></i>Q & A</a></li>
               <li class="nav-item"><a class="nav-link d-flex align-items-center" th:href="@{${path}(types='NOTICE')}"><i class="fi-info-circle me-2"></i>공지사항</a></li>
               <li class="nav-item"><a class="nav-link d-flex align-items-center" th:href="@{${path}(types='PLAIN')}"><i class="fi-hangouts me-2"></i>자유 게시판</a></li>
-        
         <!-- 글쓰기 버튼 -->
         <li class="nav-item">
 		<th:block th:if="${session.loginMember != null}">
@@ -231,6 +229,7 @@
 		</li>
               
             </ul>
+        </div>
           
             
             <!-- 게시판 리스트 시작 -->
@@ -270,6 +269,7 @@
 			</th:block>
             </tbody>
 		</table>
+		</section>
 		<!-- 게시판 리스트 종료 -->
 		<!-- page부 시작 -->
 		
@@ -303,12 +303,12 @@
     ></a>
     <!-- Vendor scrits: js libraries and plugins-->
     <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
-    <script src="vendor/lightgallery/lightgallery.min.js"></script>
-    <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
+    <script th:src="@{/vendor/tiny-slider/dist/min/tiny-slider.js}"></script>
+    <script th:src="@{/vendor/lightgallery/lightgallery.min.js}"></script>
+    <script th:src="@{/vendor/lightgallery/plugins/video/lg-video.min.js}"></script>
     <!-- Main theme script-->
     <script th:src="@{/js/theme.min.js}"></script>
   </body>

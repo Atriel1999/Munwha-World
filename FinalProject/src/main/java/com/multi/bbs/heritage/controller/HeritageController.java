@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.multi.bbs.common.util.PageInfo;
 import com.multi.bbs.heritage.model.service.HeritageService;
 import com.multi.bbs.heritage.model.service.HimageService;
+import com.multi.bbs.heritage.model.vo.HBookmark;
 import com.multi.bbs.heritage.model.vo.HReview;
 import com.multi.bbs.heritage.model.vo.Heritage;
 import com.multi.bbs.heritage.model.vo.HeritageParam;
@@ -136,5 +137,28 @@ public class HeritageController {
 		
 		return "/common/msg";
 	}
+	
+	@GetMapping("/heritage/bmk")
+	public String HeritageBookmark(Model model, int mno, int hno) {
+		HBookmark hbookmark = new HBookmark(0, heritageService.findByHno(hno), hno, mno);
+		
+		// 북마크 저장
+		if (heritageService.findbmkByhnoandmno(hno, mno) == null) {
+			System.out.println("북마크 저장요청");
+			heritageService.saveBookmark(hbookmark);
+			model.addAttribute("msg", "즐겨찾기 저장");
+			model.addAttribute("location", "/heritage-detail?hno=" + hno);
+		} else if (heritageService.findbmkByhnoandmno(hno, mno) != null) {
+			// 북마크 삭제
+			int bno = heritageService.findbmkByhnoandmno(hno, mno).getBno();
+			System.out.println("북마크 삭제요청");
+			heritageService.deleteBookmark(bno);
+			model.addAttribute("msg", "즐겨찾기 삭제");
+			model.addAttribute("location", "/heritage-detail?hno=" + hno);
+		}
+		
+		return "/common/msg";
+	}
+	
 }
 

@@ -16,7 +16,7 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Favicon and Touch Icons-->
-    <link href="../dist/css/custom_yja.css" rel="stylesheet" />
+    <link th:href="@{/css/custom_yja.css}" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
@@ -174,30 +174,16 @@
           </div>
 
           <div class="text-nowrap">
-            <button
-              class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle"
-              type="button"
-              data-bs-toggle="tooltip"
-              title="bookmark"
-            >
-              <i class="fi-heart"></i>
-            </button>
-            <div
-              class="dropdown d-inline-block"
-              data-bs-toggle="tooltip"
-              title="Share"
-            >
-              <button
-                class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2"
-                type="button"
-                data-bs-toggle="dropdown"
-              >
-                <i class="fi-share"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end my-1">
-                <button class="dropdown-item" type="button">Kakao Talk</button>
-              </div>
-            </div>
+          	<th:block th:if="${session.loginMember != null}">
+	            <a
+	              class="btn btn-icon btn-light-primary btn-s shadow-sm rounded-circle"
+	              type="button"
+	              title="bookmark"
+	              th:onclick="'bmk('+${session.loginMember.mno}+', '+${heritage.hno}+');'"
+	            >
+	              <i class="fi-heart"></i>
+	            </a>
+          	</th:block>
           </div>
         </div>
         <!-- Nav pills-->
@@ -323,7 +309,7 @@
                       </li>
                       <li class="me-2 mb-1 pe-1">
                         <i
-                          class="fi-eye-on mt-n1 me-1 text-warning align-middle opacity-70"
+                          class="fi-eye-on mt-n1 me-1 align-middle opacity-70"
                         ></i
                         ><b>[[${heritage.viewCount}]]</b>
                       </li>
@@ -749,6 +735,11 @@
 	  		var requestURL = url + replyNo +"&hno=" + hno;
 	  		location.replace(requestURL);
 	  	}
+		function bmk(mno, hno){
+			var url = "heritage/bmk?mno=";
+			var requestURL = url + mno +"&hno=" + hno;
+	  		location.replace(requestURL);
+		}
 	</script>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
       ><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span

@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import com.multi.bbs.member.model.vo.Member;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,20 +19,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "HBOOKMARK")
 @Transactional
 @DynamicInsert
 @DynamicUpdate
-public class EventBookmark {
+public class HBookmark {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int fno;
+	private int bno;
 	
 	@ManyToOne
 	private Heritage heritage; // 문화재연결
 	
-	@ManyToOne
-	private Member member; // 회원연결
+	@Column
+	private int hno;
 	
+	@Column
+	private int mno;
 	
 }
