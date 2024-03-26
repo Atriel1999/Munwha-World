@@ -1,36 +1,185 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head" th:replace="~{common/layout :: head}">
-</head>
-<style>
-	section#board-list-container{width:600px; margin:0 auto; text-align:center;}
-	section#board-list-container h2{margin:10px 0;}
-	table#tbl-board{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both; }
-	table#tbl-board th, table#tbl-board td {border:1px solid; padding: 5px 0; text-align:center;} 
-	input#btn-add{float:right; margin: 0 0 15px;}
-	div#pageBar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3);}
-    .blue_window { display: inline-block; width: 366px;  border: 3px solid #6ccaf5; }
-    .input_text { width: calc( 100% - 14px); margin: 6px 7px; border: 0;  background: #007dd100; font-weight: bold;font-size: 16px; outline: none;}
-    .sch_smit {width: 54px; height: 40px; margin: 0; border: 0; vertical-align: top; background: #007dd1; color: white; font-weight: bold; border-radius: 1px; cursor: pointer;}
-    .sch_smit:hover {background: #007dd1;}
-    #board-list-container h2{text-align: center; margin-top: 5px; margin-bottom: 5px}
-</style>
+  <head>
+    <meta charset="utf-8">
+    <title>Finder | Sign In Page</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Page loading styles-->
+    <style>
+      @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      .gmarketfontM{
+        font-family: 'GmarketSansMedium';
+      }
+      * {
+        font-family: 'GmarketSansMedium';
+      }
+      .navbar {
+        height: 110px;
+      }
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #1f1b2d;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #fff;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #9691a4;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" th:href="@{/vendor/simplebar/dist/simplebar.min.css}"/>
+    <link rel="stylesheet" media="screen"  th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}" />
+    <link rel="stylesheet" media="screen"  th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}" />
+    <link rel="stylesheet" media="screen"  th:href="@{/vendor/nouislider/dist/nouislider.min.css}" />
+    
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}" />
+  </head>
+  
+  
+  <!-- Body-->
+  <body class="">
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Loading...</span>
+      </div>
+    </div>
 
-<body>
-<header th:replace="~{common/layout :: #header}"></header>
+      <!-- 헤더 시작 -->
+      <th:block th:replace="common/header :: headerFragment"></th:block>
+      <!-- 헤더 끝 -->
+      
+    <main class="page-wrapper">
+      <div class="container-fluid" id="board-list-container" style="text-align: center;" >
+        <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 600px;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+              background-image: url('img/board/커뮤니티.PNG'); background-size:auto cover; background-position: center;">
+          </div>
+          
+
+          <div class="content-overlay container py-md-5">
+            <div class="col-md-8 order-md-1">
+              <h1 class="display-4 mb-4 me-lg-n5 text-lg-start text-center text-light" style="margin-top: 100px;">
+                <span class="text-primary d-inline-block"> 커뮤니티 </span>
+              </h1>
+              </div>
+        </div>
+        </section>
+        </div>
+
+        <div class="container pt-5">
+          <nav class="mb-2 pt-md-1" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page"> 커뮤니티 </li>
+            </ol>
+          </nav>
+        </div>
 
 
-
-<section id="content">
-	<div id="board-list-container">
-		<h2>자유 게시판</h2>
-		
 		<!-- 검색창 시작 -->
 		<form name="searchForm" th:action="@{/board/list}" method="get">
 			<input type="hidden" name="page" value="1">		
 			
-			<!-- 카테고리 checkbox -->	
-			<div style="text-align: center;">
+
+
+        <!-----------------------------------------------------------      체크 박스 
+----------------------->
+        <div class="container"
+            style=" border-top: 1px solid; border-bottom: 1px solid; padding: 30px; margin-top: 40px;">
+            <!--name : 라디오를 그룹핑할 네임으로 중복해서 사용-->
+            <!--value : 실제 서버로 넘어갈 값-->
+            <div class="col-3">
+                <div class="form-check form-check-inline">
 				<th:block th:each="item : ${categoryList}">
 					<label>
 						<input type="checkbox" name="types" th:value="${item.type}"
@@ -38,44 +187,65 @@
 						[[${item.name}]]
 					</label>
 				</th:block>
-			</div>
-			<div style="text-align: center;">
-				<label>
-					<input type="radio" name="searchType" value="all" th:checked="${#strings.equals(param.searchType, 'all') } ? 'checked' : null "> 전체
-				</label>
-				<label>
-					<input type="radio" name="searchType" value="title" th:checked="${#strings.equals(param.searchType, 'title')} ? 'checked' : null "> 제목
-				</label>
-				<label>
-					<input type="radio" name="searchType" value="content" th:checked="${#strings.equals(param.searchType, 'content')} ? 'checked' : null "> 내용
-				</label>
-				<label>
-					<input type="radio" name="searchType" value="writer" th:checked="${#strings.equals(param.searchType, 'writer')} ? 'checked' : null "> 작성자
-				</label>
-				<span class="blue_window"> 
-					<input type="text" id="searchValue" name="searchValue" class="input_text" th:value="${param.searchValue}" />
-				</span>
-				<button type="submit" class="sch_smit">검색</button>
-			</div>
-		</form>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between h2">
+                <select class=" form-select" name="pharcategory" id="pharcategory" style="width: 320px; " required>
+                    <option name="searchType" value="all" th:checked="${#strings.equals(param.searchType, 'all') } ? 'checked' : null "> 전체 </option>
+                    <option name="searchType" value="title" th:checked="${#strings.equals(param.searchType, 'title')} ? 'checked' : null "> 제목 </option>
+                    <option name="searchType" value="content" th:checked="${#strings.equals(param.searchType, 'content')} ? 'checked' : null "> 내용</option>
+                    <option name="searchType" value="writer" th:checked="${#strings.equals(param.searchType, 'writer')} ? 'checked' : null "> 작성자 </option>
+                </select>
+                <div class="d-flex justify-content-between">
+                    <input class="form-control" type="text" id="road" placeholder="입력하세요" style="width: 700px;"
+                      th:value="${param.searchValue}"  required>
+                    <button class="btn btn-primary" type="submit" style="margin-left: 25px; margin-right: 30px;"> 
+                      <i class="ci-search me-1"></i> 검색
+                    </button>
+                </div>
+            </div>
+        </div>
+        </form>
 		<!-- 검색창 종료 -->
+		
 
-	
-		<!-- 글쓰기 버튼 -->
+        <!--   이용후기 리스트  =================== -->
+        <div class="container pb-2 mb-4 col-lg-10">
+          <br><br>
+          <ul class="nav nav-scroller">
+            <select class="form-select" id="order-sort" style="width: 200px;">
+              <option> 모두 </option>
+              <option> 최신순 </option>
+              <option> 오래된 순 </option>
+              <option> 조회순 </option>
+            </select>
+              <li class="nav-item" style="margin-left: 600px;"><a class="nav-link d-flex align-items-center" th:href="@{${path}(types='QUESTION')}"><i class="fi-help me-2"></i>Q & A</a></li>
+              <li class="nav-item"><a class="nav-link d-flex align-items-center" th:href="@{${path}(types='NOTICE')}"><i class="fi-info-circle me-2"></i>공지사항</a></li>
+              <li class="nav-item"><a class="nav-link d-flex align-items-center" th:href="@{${path}(types='PLAIN')}"><i class="fi-hangouts me-2"></i>자유 게시판</a></li>
+        
+        <!-- 글쓰기 버튼 -->
+        <li class="nav-item">
 		<th:block th:if="${session.loginMember != null}">
-				<button type="button" id="btn-add" onclick="location.href='/board/write'">글쓰기</button>
+				<button type="button" id="btn-add" onclick="location.href='/board/write'"><i class="fi-edit me-2"></i>글쓰기</button>
 		</th:block>
-		<!-- 게시판 리스트 시작 -->
-		<table id="tbl-board">
-			<tr>
-				<th>번호</th>
-				<th>타입</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>첨부파일</th>
-				<th>조회수</th>
-			</tr>
+		</li>
+              
+            </ul>
+          
+            
+            <!-- 게시판 리스트 시작 -->
+            <br>
+            <table class="table table-hover h5">
+                <tr class="border-top">
+                    <th class="text-center"> 번호 </th>
+                    <th class="text-center"> 타입 </th>
+                    <th class="text-center"> 제목</th>
+                    <th class="text-center"> 작성자 </th>
+                    <th class="text-center"> 작성일</th>
+                    <th class="text-center"> 첨부파일</th>
+                    <th class="text-center"> 조회수 </th>
+                </tr>
+                <tbody>
 			<th:block th:if="${list == null || #lists.size(list) == 0}">
 				<tr>
 					<td colspan="6">조회된 글이 없습니다.</td>
@@ -98,50 +268,48 @@
 						<td>[[${board.readCount}]]</td>
 					</tr>
 			</th:block>
+            </tbody>
 		</table>
 		<!-- 게시판 리스트 종료 -->
 		<!-- page부 시작 -->
 		
-		
-		<th:block th:if="${list != null && #lists.size(list) != 0}">
-			<div align="center">
-				<!--처음 페이지 -->
-				<button onclick="movePage(1);">&lt;&lt;</button>
-				<!--이전 페이지 -->
-				<button th:onclick="|movePage(${pageInfo.prevPage}');|">&lt;</button>
-			
-				<!-- 10개 페이지 -->
-				<th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
-					<th:block th:if="${status.current == pageInfo.currentPage}">
-						<button disabled>[[${status.current}]]</button>
-					</th:block>
-					<th:block th:if="${status.current != pageInfo.currentPage}">
-						<button th:onclick="|movePage(${status.current});|">
-							[[${status.current}]]
-						</button>
-					</th:block>
-				</th:block>
+    <section class="container d-flex justify-content-center mt-5">
+      <nav class="mt-2" aria-label="Page navigation example">
+        <ul class="pagination pagination-lg">
+          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><i class="fi-chevron-left"></i></a>
+          </li>
+          <li class="page-item d-sm-none"><span class="page-link page-link-static">2 / 5</span></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">2<span
+                class="visually-hidden">(current)</span></span></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
+          <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+          <!-- 페이지네이션 끝 -->
+    </main>
 
-				<!--다음 페이지 -->
-				<button th:onclick="|movePage(${pageInfo.nextPage});|">&gt;</button>
-				<!-- 마지막 페이지 -->
-				<button th:onclick="|movePage(${pageInfo.maxPage});|">&gt;&gt;</button>
-			</div>
-		</th:block>
-		<!-- page부 종료 -->
-	</div>
-</section>
+    <!-- 푸터 -->
+    <th:block th:replace="common/footer :: footerFragment"></th:block>
+    <!-- 푸터 끝 -->
 
-
-<footer th:replace="~{common/layout :: #footer}"></footer>
-</body>
-
-<script type="text/javascript">
-	function movePage(page){
-		searchForm.page.value = page;
-		searchForm.submit();
-	}
-</script>
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
+      ><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span
+      ><i class="btn-scroll-top-icon fi-chevron-up"> </i
+    ></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+    <script src="vendor/lightgallery/lightgallery.min.js"></script>
+    <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+    <!-- Main theme script-->
+    <script th:src="@{/js/theme.min.js}"></script>
+  </body>
 </html>
-
-

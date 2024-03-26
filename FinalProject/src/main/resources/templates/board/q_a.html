@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Finder | Sign In Page</title>
@@ -10,6 +10,7 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
+    <link href="/css/custom_yja.css" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -17,6 +18,7 @@
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
+    
     <!-- Page loading styles-->
     <style>
       @font-face {
@@ -44,7 +46,7 @@
         height: 100%;
         -webkit-transition: all .4s .2s ease-in-out;
         transition: all .4s .2s ease-in-out;
-        background-color: #fff;
+        background-color: #1f1b2d;
         opacity: 0;
         visibility: hidden;
         z-index: 9999;
@@ -72,7 +74,7 @@
         display: block;
         font-size: 1rem;
         font-weight: normal;
-        color: #666276;;
+        color: #fff;
       }
       .page-spinner {
         display: inline-block;
@@ -80,7 +82,7 @@
         height: 2.75rem;
         margin-bottom: .75rem;
         vertical-align: text-bottom;
-        border: .15em solid #bbb7c5;
+        border: .15em solid #9691a4;
         border-right-color: transparent;
         border-radius: 50%;
         -webkit-animation: spinner .75s linear infinite;
@@ -115,88 +117,66 @@
     </script>
     <!-- Vendor Styles-->
     <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen"  th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}" />
+    <link rel="stylesheet" media="screen"  th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}" />
+    <link rel="stylesheet" media="screen"  th:href="@{/vendor/nouislider/dist/nouislider.min.css}" />
+    
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="css/theme.min.css">
   </head>
+  
+      <!-- Vendor Styles-->
+    <link
+      rel="stylesheet"
+      media="screen"
+      th:href="@{/vendor/simplebar/dist/simplebar.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      media="screen"
+      th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}"
+    />
+    <link
+      rel="stylesheet"
+      media="screen"
+      th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}"
+    />
+  
+     <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}" />
+  
+  
   <!-- Body-->
-  <body class="bg-secondary">
+  <body class="">
     <!-- Page loading spinner-->
     <div class="page-loading active">
       <div class="page-loading-inner">
         <div class="page-spinner"></div><span>Loading...</span>
       </div>
     </div>
-    <main class="page-wrapper">
 
       <!-- 헤더 시작 -->
-      <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
-        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
-          <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
-          <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
-            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
-              <!-- Menu items-->
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문화재</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
-                  <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">날씨정보</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
-            <i class="fi-user me-2"></i>로그인</span>
-          </a>
-        </div>
-      </header>
+      <th:block th:replace="common/header :: headerFragment"></th:block>
       <!-- 헤더 끝 -->
-      <div class="container-fluid d-flex h-100 align-items-center justify-content-center py-4 py-sm-5">
-        <div class="container content-overlay mt-5 mb-md-4 py-5">
-        <div class="row">
-          <h2>Q & A</h2>
-          <div class="col-md-9">
-              <span>총 10개</span>
+      
+      <main class="page-wrapper">
+        <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 400px;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+              background-image: url('img/board/질문.PNG'); background-size: cover; background-position: center;">
           </div>
-          <div class="alert alert-danger d-flex fs-md mb-1" role="alert">
-            <div class="alert-icon fs-lg"><i class="ci-announcement"></i></div>
-            <div><strong>공지사항 &nbsp; </strong>※타인의 명예를 훼손하는<strong>상업성 및 도배성</strong>게시물은 삭제될 수 있습니다.</div>
-          </div>
-        </div>
+    
+          <div class="content-overlay container py-md-5">
+            <div class="col-md-8 order-md-1">
+              <h1 class="display-4 mb-4 me-lg-n5 text-lg-start text-center" style="margin-top: 100px;">
+                질문과 답변
+              </h1>
+              <h4 class="text-light">
+                ※타인의 명예를 훼손하는<strong>상업성 및 도배성 </strong>게시물은 삭제될 수 있습니다.
+              </h4>
+          </section>
+      
+        <div class="container-fluid align-items-center justify-content-center py-4 py-sm-5">
+        <div class="container content-overlay spy-5">
         <table class="table table-striped table-hover">
           <thead>
               <tr>
@@ -209,210 +189,78 @@
                   <th style="text-align:center;">조회수</th>
               </tr>
           </thead>
-          <tbody>
-              <tr style="cursor:pointer;" data-saft_not_no="10">
-                  <th class="" style="text-align:center;" scope="row">1</th>
-                  <td class="" style="text-align:center;">Q&A</td>
-                  <td class="" style="text-align: center;">사이트 폐쇄 안내</td>
-                  <td class="" style="text-align: center;">관리자</td>
-                  <td class="" style="text-align: center;">2024.04.01</td>
-                  <td class="" style="text-align: center;">-</td>
-                  <td class="" style="text-align: center;">100</td>
-              </tr>
-              <tr style="cursor:pointer;" data-saft_not_no="10">
-                <th class="" style="text-align:center;" scope="row">1</th>
-                <td class="" style="text-align:center;">Q&A</td>
-                <td class="" style="text-align: center;">사이트 폐쇄 안내</td>
-                <td class="" style="text-align: center;">관리자</td>
-                <td class="" style="text-align: center;">2024.04.01</td>
-                <td class="" style="text-align: center;">-</td>
-                <td class="" style="text-align: center;">100</td>
-            </tr>
-            <tr style="cursor:pointer;" data-saft_not_no="10">
-              <th class="" style="text-align:center;" scope="row">1</th>
-              <td class="" style="text-align:center;">Q&A</td>
-              <td class="" style="text-align: center;">사이트 폐쇄 안내</td>
-              <td class="" style="text-align: center;">관리자</td>
-              <td class="" style="text-align: center;">2024.04.01</td>
-              <td class="" style="text-align: center;">-</td>
-              <td class="" style="text-align: center;">100</td>
-          </tr>
-            <tr style="cursor:pointer;" data-saft_not_no="10">
-            <th class="" style="text-align:center;" scope="row">1</th>
-            <td class="" style="text-align:center;">Q&A</td>
-            <td class="" style="text-align: center;">사이트 폐쇄 안내</td>
-            <td class="" style="text-align: center;">관리자</td>
-            <td class="" style="text-align: center;">2024.04.01</td>
-            <td class="" style="text-align: center;">-</td>
-            <td class="" style="text-align: center;">100</td>
-          </tr>
-        <tr style="cursor:pointer;" data-saft_not_no="10">
-          <th class="" style="text-align:center;" scope="row">1</th>
-          <td class="" style="text-align:center;">Q&A</td>
-          <td class="" style="text-align: center;">사이트 폐쇄 안내</td>
-          <td class="" style="text-align: center;">관리자</td>
-          <td class="" style="text-align: center;">2024.04.01</td>
-          <td class="" style="text-align: center;">-</td>
-          <td class="" style="text-align: center;">100</td>
-      </tr>
-      <tr style="cursor:pointer;" data-saft_not_no="10">
-        <th class="" style="text-align:center;" scope="row">1</th>
-        <td class="" style="text-align:center;">Q&A</td>
-        <td class="" style="text-align: center;">사이트 폐쇄 안내</td>
-        <td class="" style="text-align: center;">관리자</td>
-        <td class="" style="text-align: center;">2024.04.01</td>
-        <td class="" style="text-align: center;">-</td>
-        <td class="" style="text-align: center;">100</td>
-    </tr>
-    <tr style="cursor:pointer;" data-saft_not_no="10">
-      <th class="" style="text-align:center;" scope="row">1</th>
-      <td class="" style="text-align:center;">Q&A</td>
-      <td class="" style="text-align: center;">사이트 폐쇄 안내</td>
-      <td class="" style="text-align: center;">관리자</td>
-      <td class="" style="text-align: center;">2024.04.01</td>
-      <td class="" style="text-align: center;">-</td>
-      <td class="" style="text-align: center;">100</td>
-  </tr>
-  <tr style="cursor:pointer;" data-saft_not_no="10">
-    <th class="" style="text-align:center;" scope="row">1</th>
-    <td class="" style="text-align:center;">Q&A</td>
-    <td class="" style="text-align: center;">사이트 폐쇄 안내</td>
-    <td class="" style="text-align: center;">관리자</td>
-    <td class="" style="text-align: center;">2024.04.01</td>
-    <td class="" style="text-align: center;">-</td>
-    <td class="" style="text-align: center;">100</td>
-</tr>
-<tr style="cursor:pointer;" data-saft_not_no="10">
-  <th class="" style="text-align:center;" scope="row">1</th>
-  <td class="" style="text-align:center;">Q&A</td>
-  <td class="" style="text-align: center;">사이트 폐쇄 안내</td>
-  <td class="" style="text-align: center;">관리자</td>
-  <td class="" style="text-align: center;">2024.04.01</td>
-  <td class="" style="text-align: center;">-</td>
-  <td class="" style="text-align: center;">100</td>
-</tr>
-<tr style="cursor:pointer;" data-saft_not_no="10">
-  <th class="" style="text-align:center;" scope="row">10</th>
-  <td class="" style="text-align:center;">Q&A</td>
-  <td class="" style="text-align: center;">사이트 폐쇄 안내</td>
-  <td class="" style="text-align: center;">관리자</td>
-  <td class="" style="text-align: center;">2024.04.01</td>
-  <td class="" style="text-align: center;">-</td>
-  <td class="" style="text-align: center;">100</td>
-</tr>
-          </tbody>
-        </table>
+                <tbody>
+			<th:block th:if="${list == null || #lists.size(list) == 0}">
+				<tr>
+					<td colspan="6">조회된 글이 없습니다.</td>
+				</tr>
+			</th:block>
+			<th:block th:if="${list != null && #lists.size(list) != 0}">
+					<tr th:each="board : ${list}">
+						<td th:text="${board.bno}"></td>
+						<td th:text="${board.boardCategory.name}"></td>
+						<td>
+							<a th:href="|/board/view?no=${board.bno}|">
+								[[${board.title}]]
+							</a>
+						</td>
+						<td th:text="${board.member.memberId}"></td>
+						<td th:text="${#dates.format(board.createDate, 'yyyy/MM/dd')}"></td>
+						<td>
+							[[${#lists.size(board.boardAttachFileList)}]]
+						</td>
+						<td>[[${board.readCount}]]</td>
+					</tr>
+			</th:block>
+            </tbody>
+		</table>
+		<!-- 게시판 리스트 종료 -->
+		<!-- page부 시작 -->
+		
 
 
-          <!-- 페이지네이션 -->
-           <div class="container" style="margin-left: 50px;">
-             <div class="row justify-content-center">
-               <div class="col-lg-2 pt-4 ms-4 pb-md-3">
-                 <nav aria-label="Page navigation example">
-                   <ul class="pagination">
-                     <li class="page-item">
-                       <a href="#" class="page-link" aria-label="Previous">
-                         <i class="fi-chevron-left"></i>
-                       </a>
-                     </li>
-                     <li class="page-item d-sm-none">
-                       <span class="page-link page-link-static">2 / 5</span>
-                     </li>
-                     <li class="page-item d-none d-sm-block">
-                       <a href="#" class="page-link">1</a>
-                     </li>
-                     <li class="page-item active d-none d-sm-block" aria-current="page">
-                       <span class="page-link">
-                         2
-                         <span class="visually-hidden">(current)</span>
-                       </span>
-                     </li>
-                     <li class="page-item d-none d-sm-block">
-                       <a href="#" class="page-link">3</a>
-                     </li>
-                     <li class="page-item d-none d-sm-block">
-                       <a href="#" class="page-link">4</a>
-                     </li>
-                     <li class="page-item d-none d-sm-block">
-                       <a href="#" class="page-link">5</a>
-                     </li>
-                     <li class="page-item">
-                       <a href="#" class="page-link" aria-label="Next">
-                         <i class="fi-chevron-right"></i>
-                       </a>
-                     </li>
-                   </ul>
-                 </nav>
-               </div>
-             </div>
-           </div>
-           <!-- 페이지네이션 끝 -->
+    <!-- Pagination: with icons -->
+    <section class="container d-flex justify-content-center mt-5">
+      <nav class="mt-2" aria-label="Page navigation example">
+        <ul class="pagination pagination-lg">
+          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><i class="fi-chevron-left"></i></a>
+          </li>
+          <li class="page-item d-sm-none"><span class="page-link page-link-static">2 / 5</span></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">2<span
+                class="visually-hidden">(current)</span></span></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
+          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
+          <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a>
+          </li>
+        </ul>
+      </nav>
+    </section>
           
         </div>
       </div>
       </div>
     </main>
 
+
     <!-- 푸터 -->
-    <footer class="footer bg-dark">
-        <div class="container pt-3 pt-lg-3 justify-content-between">
-          <div class="row pt-2 pt-lg-1">
-            <div class="col-lg-3 mt-4">
-              <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
-              <p class="fs-sm text-light opacity-70">새로 업데이트되는 소식을 전해드립니다</p>
-              <form class="form-group form-group-light w-100">
-                <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
-                  <input class="form-control" type="text" placeholder="Email 주소">
-                </div>
-                <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
-              </form>
-            </div>
-            <div class="col mt-5">
-              <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
-              <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
-            </div>
-            <div class="col mt-5">
-              <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재행사</span></a><br><br>
-              <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
-            </div>
-            <div class="col mt-5">
-              <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
-              <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
-            </div>
-            <div class="col mt-5">
-              <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
-              <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
-            </div>
-  
-            <div class="col-lg-3 mb-2 mb-sm-4">
-              <div class="row">
-                <div class="col mt-2">
-                  <span class="text-light" style="font-size: 40pt;">문화</span>
-                  <span class="text-light" style="font-size: 40pt;">&nbsp;월드</span>
-                </div>
-                <div class="col mt-2">
-                  <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%;" alt="">
-                  <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
-                    <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>
-                    <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-telegram"></i></a>
-                  </div>
-                </div>
-  
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <!-- 푸터 끝 -->
-  
-  
-  
-      <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
-      <!-- Vendor scrits: js libraries and plugins-->
-      <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-      <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-      <!-- Main theme script-->
-      <script src="js/theme.min.js"></script>
-    </body>
-  </html>
+    <th:block th:replace="common/footer :: footerFragment"></th:block>
+    <!-- 푸터 끝 -->
+
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
+      ><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span
+      ><i class="btn-scroll-top-icon fi-chevron-up"> </i
+    ></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+    <script src="vendor/lightgallery/lightgallery.min.js"></script>
+    <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+    <!-- Main theme script-->
+    <script th:src="@{/js/theme.min.js}"></script>
+  </body>
+</html>
