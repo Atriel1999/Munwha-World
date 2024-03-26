@@ -219,13 +219,25 @@
             <script type="text/javascript"
               src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=04524540eaf5cf777208f85e52d03be1"></script>
             <script>
-              var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-                mapOption = {
-                  center: new kakao.maps.LatLng( '[[${museum.mslati}]]', '[[${museum.mslong}]]' ), // 지도의 중심좌표
-                  level: 2 // 지도의 확대 레벨
-                };
-              // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-              var map = new kakao.maps.Map(mapContainer, mapOption); 
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+              center: new kakao.maps.LatLng( '[[${museum.mslati}]]', '[[${museum.mslong}]]' ), // 지도의 중심좌표
+              level: 2 // 지도의 확대 레벨
+            };
+          // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+          var map = new kakao.maps.Map(mapContainer, mapOption); 
+          
+          var imageSrc = "img/museum_img/lalamarker2.png", // 마커이미지의 주소입니다    
+          imageSize = new kakao.maps.Size(60, 69), // 마커이미지의 크기입니다
+          imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+   		  var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+      	    markerPosition = new kakao.maps.LatLng('[[${museum.mslati}]]', '[[${museum.mslong}]]' ); // 마커가 표시될 위치입니다
+
+     	  var marker = new kakao.maps.Marker({
+           position: markerPosition, 
+           image: markerImage // 마커이미지 설정 
+     			 });
+     			 marker.setMap(map);  
             </script>
           </section>
           <br>
@@ -537,20 +549,24 @@
             <h4 class="mb-3"> 로드뷰 </h4>
             <!-- 로드뷰 -->
             <!-- 로드뷰를 표시할 div 입니다 ============================================== -->
-            <div class="rounded-3" id="roadview" style="width:100%;height:300px;"></div>
-           <script type="text/javascript"
-              src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=04524540eaf5cf777208f85e52d03be1"></script> 
+            <div class="rounded-3" id="pano" style="width:100%;height:300px;"></div>
+            <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=g5ryfzaub4&submodules=panorama"></script>
            <script>
-              var roadviewContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
-              var roadview = new kakao.maps.Roadview(roadviewContainer); //로드뷰 객체
-              var roadviewClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
-              var position = new kakao.maps.LatLng( '[[${museum.mslati}]]', '[[${museum.mslong}]]' );
-              // 특정 위치의 좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
-              roadviewClient.getNearestPanoId(position, 50, function (panoId) {
-                roadview.setPanoId(panoId, position); //panoId와 중심좌표를 통해 로드뷰 실행
-              });
+           var pano = null;
+           naver.maps.onJSContentLoaded = function() {
+               // 아이디 혹은 지도 좌표로 파노라마를 표시할 수 있습니다.
+               pano = new naver.maps.Panorama("pano", {
+                   // panoId: "OregDk87L7tsQ35dcpp+Mg==",
+                   position: new naver.maps.LatLng( '[[${museum.mslati}]]', '[[${museum.mslong}]]'),
+                   pov: {
+                       pan: -135,
+                       tilt: 10,
+                       fov: 100
+                   },
+                   flightSpot: false, // 항공 아이콘 표시 여부, default: true
+               });
+           };
            </script>
-
           </div>
         </aside>
       </div>
