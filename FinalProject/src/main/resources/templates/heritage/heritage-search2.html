@@ -97,6 +97,10 @@
       -webkit-animation: spinner 0.75s linear infinite;
       animation: spinner 0.75s linear infinite;
     }
+    
+    .page-item:hover {
+    	cursor: pointer;
+    }
 
     @-webkit-keyframes spinner {
       100% {
@@ -177,7 +181,8 @@
 
           <!-- Search form-->
           <!--  th:action="@{/heritage-search}"  -->
-          <form name="searchForm" method="get" style="background-color: white;" class="form-group form-group-secondary d-block rounded-xl-pill mt-n3 mt-md-4 mt-xl-5 mb-md-4">
+          <form name="searchForm" th:action="@{/heritage-search}" method="get" style="background-color: white;" class="form-group form-group-secondary d-block rounded-xl-pill mt-n3 mt-md-4 mt-xl-5 mb-md-4">
+            <input type="hidden" name="page" value="1">	
             <div class="row align-items-center g-0 ms-n2">
               <div class="col-md-5 col-xl-3">
                 <div class="input-group input-group-lg border-end-md border-secondary"><span class="input-group-text text-secondary rounded-pill opacity-50 ps-3"><i class="fi-search" style="color: #6c757d; font-weight: bold"></i></span>
@@ -343,22 +348,17 @@
     <th:block th:if="${items != null && #lists.size(items) != 0}">
       <nav class="mt-2" aria-label="Page navigation example">
         <ul class="pagination pagination-lg">
-          <li class="page-item"><a class="page-link" href="#" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
+          <li class="page-item"><a class="page-link" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
           </li>
-          
-          
           <th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
          	<th:block th:if="${status.current == pageInfo.currentPage}">
-       
           		<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"> [[${status.current}]] <span
                 class="visually-hidden">(current)</span></span></li>
           	</th:block>      
           	<th:block th:if="${status.current != pageInfo.currentPage}">
-          <li class="page-item d-none d-sm-block"><a class="page-link"  th:onclick="|movePage(${status.current});|"> [[${status.current}]] </a></li>
-      
+          		<li class="page-item d-none d-sm-block"><a class="page-link"  th:onclick="|movePage(${status.current});|"> [[${status.current}]] </a></li>
           	</th:block>
           </th:block>
-          
           <li class="page-item"><a class="page-link" href="#" aria-label="Next"  th:onclick="|movePage(${pageInfo.nextPage});|"><i class="fi-chevron-right"></i></a>
           </li>
         </ul>
