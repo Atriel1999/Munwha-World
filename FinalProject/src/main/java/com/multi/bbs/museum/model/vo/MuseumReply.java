@@ -13,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -39,8 +40,10 @@ public class MuseumReply {
 	private int rno;
 	
 	@ManyToOne
+	@JoinColumn(name = "mno")
 	private Member member;
 	
+	@JoinColumn(name = "msno")
 	@ManyToOne
     private Museum museum;
 	
@@ -66,7 +69,7 @@ public class MuseumReply {
 	
 	@Override
 	public String toString() {
-		return "Reply [rno=" + rno + ", content=" + content +   ", rating=" + rating + ", createdate=" + createdate + ", modifydate="
+		return "Reply [rno=" + rno + ", content=" + content +  ", rating=" + rating + ", createdate=" + createdate + ", modifydate="
 				+ modifydate + "]";
 	}
 

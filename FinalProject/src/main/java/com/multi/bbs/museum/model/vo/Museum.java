@@ -1,12 +1,6 @@
 package com.multi.bbs.museum.model.vo;
 
-import java.util.Date;
 import java.util.List;
-
-import org.hibernate.annotations.CreationTimestamp;
-
-import com.multi.bbs.board.model.vo.BoardReply;
-import com.multi.bbs.member.model.vo.Member;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,11 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -105,6 +96,9 @@ public class Museum {
 				+ ", mshomepage=" + mshomepage + ", reviewcount=" + reviewcount + ", favcount=" + favcount 
 				+ ", rating=" + rating + ",readcount=" + readcount + ", imageUrl=" + imageUrl + "]";
 	}
+
+
+	
 	
 	
 }

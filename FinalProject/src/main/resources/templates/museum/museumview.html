@@ -252,21 +252,25 @@
               <div class="d-flex">
                 <div class="d-flex align-items-center">
                   <h2 class="h2 me-3"> 이용후기 </h2>
-                  <i class="fi-star-filled mt-n1 me-1 lead align-middle text-warning"></i>
-                  4,9 ( [[${museum.reviewcount}]] 이용후기)
+                  <i class="fi-star-filled mt-n1 me-2 lead align-middle text-warning"></i>
+                     <h5 class="mt-3"> [[${averageRating}]] ( [[${museum.reviewcount}]] 이용후기 ) </h5>
                 </div>
               </div>
-              <div class="d-flex align-items-center ms-sm-4 mb-1">
-                <label class="me-2 pe-1 text-nowrap" for="reviews-sorting">
-                  <i class="fi-arrows-sort text-muted mt-n1 me-2"></i> 정렬 순서 &nbsp :
-                </label>
-                <select class="form-select form-select-sm" id="reviews-sorting" style="font-weight: bold;">
-                  <option> 최신순 </option>
-                  <option> 오래된 순</option>
-                  <option> 인기 순 </option>
-                  <option> 별점 높은 순</option>
-                  <option> 별점 낮은 순 </option>
-                </select>
+              <div class="d-flex align-items-center ms-sm-4 mb-1">                           
+             <!--   <label class="me-2 pe-1 text-nowrap" for="reviews-sorting">                                                                               -->
+             <!--     <i class="fi-arrows-sort text-muted mt-n1 me-2"></i> 정렬 순서 &nbsp :                                                                  -->
+             <!--   </label>                                                                                                                                  -->
+             <!--    <form action="#" th:action="@{/museumview}" method="GET">                                                                                -->
+  			<!--  <!-- no 파라미터를 위한 hidden 필드 추가 -->    
+    		<!-- <input type="hidden" name="no" th:value="${museum.msno}" />                                                                                  -->
+             <!--   <select class="form-select form-select-sm" id="reviews-sorting"  name="sort" onchange="this.form.submit()" style="font-weight: bold;">    -->
+             <!--     <option value="newest" th:selected="${param.sort == 'newest'}"> 최신순 </option>                                                        -->
+             <!--     <option value="oldest" th:selected="${param.sort == 'oldest'}"> 오래된 순</option>                                                      -->
+             <!--     <option value="highrating" th:selected="${param.sort == 'highrating'}"> 별점 높은 순</option>                                           -->
+             <!--     <option value="lowrating" th:selected="${param.sort == 'lowrating'}"> 별점 낮은 순 </option>                                            -->
+             <!--   </select>                                                                                                                                 -->
+             <!--   </form>                                                                                                                                   -->
+                
               </div>
             </div>
             <hr><br>
@@ -303,7 +307,7 @@
 				</div>
 				</th:block>
             </div>
-            	</th:block>
+           </th:block>
 		</th:block>
 		<th:block th:if="${#lists.isEmpty(replyList)}">
 			<div class="mb-4 border-bottom">
@@ -417,10 +421,19 @@
 				<span th:if="${museum.msadultcharge != '0' or museum.msyngcharge != '0' or museum.mschildcharge != '0'}"class="badge bg-danger me-2 mb-2">유료</span>
               </div>
               <div class="text-nowrap">
+              <th:block th:if="${session.loginMember != null}">
                 <button
                   class="btn btn-icon btn-light-primary btn-xs text-warning shadow-sm rounded-circle ms-2 mb-2 me-2"
-                  type="button" data-bs-toggle="tooltip" title=" 즐겨찾기 "><i class="fi-heart"></i>
+                  type="button" data-bs-toggle="tooltip" title="즐겨찾기"  th:onclick="'bmk('+${session.loginMember.mno}+', '+${museum.msno}+');'"><i class="fi-heart"></i>
                 </button>
+                </th:block>
+                <script>
+              		function bmk(mno, msno){
+					var url = "/museumbookmark?mno=";
+					var requestURL = url + mno +"&msno=" + msno;
+	  				location.replace(requestURL);
+					}
+				</script>
                 <!--========================================================= 카카오톡 공유하기 -->
                 <div class="btn-xs d-inline-block shadow-sm" type="button" data-bs-toggle="tooltip" title="공유하기">
                   <a id="kakaotalk-sharing-btn" href="javascript:;">
@@ -445,14 +458,11 @@
                           'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA5MjRfMTg5%2FMDAxNjk1NTYyMzIzNTQ3.N9uPfbXKX7-eqmaQnbs-0Gspm9KSpbifQ9KTTO0s-5cg.KXHAFQuaCIBdpRzVGvjrQ66RKoeIzmyqnCbLvlUfsvEg.JPEG.hyunmi246%2F20230918_121735.jpg&type=a340',
                         link: {
                           // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
-                          webUrl: 'http://127.0.0.1:5500',
-                        },
-                      },
+                          webUrl: 'http://127.0.0.1:5500',}, },
                       social: {
                         likeCount: 286,
                         commentCount: 45,
-                        sharedCount: 845,
-                      },
+                        sharedCount: 845, },
                       buttons: [
                         {
                           title: '웹으로 보기',

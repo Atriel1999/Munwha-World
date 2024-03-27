@@ -7,8 +7,6 @@ public class MuseumParam {
 	private String searchAddress;  
 	private String searchName;
 	
-	private String sortBy;
-	
 	// 페이징인자
 	private int page;        // 현재페이지
 	private int limit;       // 한페이지 최대항목수 
@@ -80,15 +78,7 @@ public class MuseumParam {
 		this.offset = offset;
 	}
 
-	public String getSortBy() {
-		return sortBy;
-	}
-
-	public void setSortBy(String sortBy) {
-		this.sortBy = sortBy;
-	}
-
-
+	
 	
 	
 
