@@ -21,16 +21,17 @@ public class ShopController {
 
 	@GetMapping("shop/main")
 	public String shopmain(Model model, ProductParam param) {
-		System.out.println("쇼핑몰 요청 param : " + param.toString());
 		int count = service.getproductcount(param.getSearchValue());
-		PageInfo pageInfo = new PageInfo(param.getPage(), 9, count, 9);
+		PageInfo pageInfo = new PageInfo(param.getPage(), 5, count, 9);
 		param.setLimit(pageInfo.getListLimit());
 		param.setOffset(pageInfo.getStartList() - 1);
+		System.out.println("쇼핑몰 요청 param : " + param.toString());
 		List<Product> list = service.searchProductByTitle(param.getSearchValue(), param.getLimit(), param.getOffset());
 		
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("list", list);
 		model.addAttribute("param", param);
+		model.addAttribute("count", count);
 		
 		return "shopping/shoppingMain";
 	}
