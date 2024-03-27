@@ -175,24 +175,25 @@
             <div class="col-md-3 mb-4 pb-3 pb-md-0">
               <div style="max-width: 13rem;">
                 <ul class="list-unstyled fs-sm pb-1 pb-md-3">
-                  <li><a class="nav-link fw-normal d-flex align-items-center px-0 py-1" href="#">
+                  <li><a class="nav-link fw-normal d-flex align-items-center px-0 py-1"
+                  				onclick="gethlist();" href="#">
                     <i class="fi-heart opacity-70 me-2 h5"></i><span class="h5">문화재 즐겨찾기</span>
-                    <span class="text-muted ms-auto h5">(3)</span></a>
+                    <!-- <span class="text-muted ms-auto h5">(3)</span> --></a>
                   </li>
                   <li><a class="nav-link fw-normal d-flex align-items-center px-0 py-1" href="#">
                     <i class="fi-heart opacity-70 me-2 h5"></i><span class="h5">행사 즐겨찾기</span>
-                    <span class="text-muted ms-auto h5">(0)</span></a>
+                    <!-- <span class="text-muted ms-auto h5">(0)</span> --></a>
                   </li>
                   <li><a class="nav-link fw-normal d-flex align-items-center px-0 py-1" href="#">
                     <i class="fi-heart opacity-70 me-2 h5"></i><span class="h5">박물관 즐겨찾기</span>
-                    <span class="text-muted ms-auto h5">(0)</span></a>
+                    <!-- <span class="text-muted ms-auto h5">(0)</span> --></a>
                   </li>
                 </ul>
               </div>
             </div>
 
             <!-- 즐겨찾기 목록 시작 -->
-            <div class="col-md-9">
+            <div class="col-md-9" id="listarea">
               <!-- 즐겨찾기 시작 -->
               <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
                 <!-- 여기에 대표 이미지 -->
@@ -209,100 +210,6 @@
                 </div>
               </article>
               <!-- 즐겨찾기 끝 -->
-              <!-- 즐겨찾기 시작 -->
-              <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
-                <!-- 여기에 대표 이미지 -->
-                <a href="#" class="card-img-top" style="background-image: url(img/myimages/ksw/seokgatap.jpg);"></a>
-                <div class="card-body">
-                  <h3 class="pt-1 mb-2 h2">
-                    <a href="#" class="nav-link">경주 불국사 삼층 석탑</a>
-                  </h3>
-                  <br>
-                  <p class="text-muted h4">경북 경주시 불국로 385, 불국사 (진현동)</p>
-                  <p class="text-muted h4">통일신라시대 8세기</p>
-                  <p class="text-muted h4">1962.12.20. 지정</p>
-                  <span class="float-end"><a href="#"><i class="fi-trash alert-danger h4"></i></a></span>
-                </div>
-              </article>
-              <!-- 즐겨찾기 끝 -->
-              <!-- 즐겨찾기 시작 -->
-              <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
-                <!-- 여기에 대표 이미지 -->
-                <a href="#" class="card-img-top" style="background-image: url(img/myimages/ksw/seokgatap.jpg);"></a>
-                <div class="card-body">
-                  <h3 class="pt-1 mb-2 h2">
-                    <a href="#" class="nav-link">경주 불국사 삼층 석탑</a>
-                  </h3>
-                  <br>
-                  <p class="text-muted h4">경북 경주시 불국로 385, 불국사 (진현동)</p>
-                  <p class="text-muted h4">통일신라시대 8세기</p>
-                  <p class="text-muted h4">1962.12.20. 지정</p>
-                  <span class="float-end"><a href="#"><i class="fi-trash alert-danger h4"></i></a></span>
-                </div>
-              </article>
-              <!-- 즐겨찾기 끝 -->
-              <!-- 즐겨찾기 시작 -->
-              <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
-                <!-- 여기에 대표 이미지 -->
-                <a href="#" class="card-img-top" style="background-image: url(img/myimages/ksw/seokgatap.jpg);"></a>
-                <div class="card-body">
-                  <h3 class="pt-1 mb-2 h2">
-                    <a href="#" class="nav-link">경주 불국사 삼층 석탑</a>
-                  </h3>
-                  <br>
-                  <p class="text-muted h4">경북 경주시 불국로 385, 불국사 (진현동)</p>
-                  <p class="text-muted h4">통일신라시대 8세기</p>
-                  <p class="text-muted h4">1962.12.20. 지정</p>
-                  <span class="float-end"><a href="#"><i class="fi-trash alert-danger h4"></i></a></span>
-                </div>
-              </article>
-              <!-- 즐겨찾기 끝 -->
-              
-
-              <!-- 페이지네이션 -->
-              <div class="container mt-5">
-                <div class="row justify-content-center">
-                  <div class="col-5">
-                    <nav aria-label="Page navigation example">
-                      <ul class="pagination">
-                        <li class="page-item">
-                          <a href="#" class="page-link" aria-label="Previous">
-                            <i class="fi-chevron-left"></i>
-                          </a>
-                        </li>
-                        <li class="page-item d-sm-none">
-                          <span class="page-link page-link-static">2 / 5</span>
-                        </li>
-                        <li class="page-item d-none d-sm-block">
-                          <a href="#" class="page-link">1</a>
-                        </li>
-                        <li class="page-item active d-none d-sm-block" aria-current="page">
-                          <span class="page-link">
-                            2
-                            <span class="visually-hidden">(current)</span>
-                          </span>
-                        </li>
-                        <li class="page-item d-none d-sm-block">
-                          <a href="#" class="page-link">3</a>
-                        </li>
-                        <li class="page-item d-none d-sm-block">
-                          <a href="#" class="page-link">4</a>
-                        </li>
-                        <li class="page-item d-none d-sm-block">
-                          <a href="#" class="page-link">5</a>
-                        </li>
-                        <li class="page-item">
-                          <a href="#" class="page-link" aria-label="Next">
-                            <i class="fi-chevron-right"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
-              </div>
-              <!-- 페이지네이션 끝 -->
-
             </div>
             <!-- 즐겨찾기 목록 끝 -->
             
@@ -316,8 +223,27 @@
     <!-- 푸터 -->
 	<th:block th:replace="common/footer :: footerFragment"></th:block>
 
+	<script type="text/javascript">
+		function gethlist(){
+			$.ajax({
+				type: "post",
+				url: "/member/hbmk",
+				dataType: "text",
+			})
+				.done(function(result){
+					console.log(result);
+					$("#listarea").replaceWith(result);
+				})
+				.fail(function(jqXHR){
+					console.log(jqXHR);
+				})
+		}
+	</script>
+
+
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
     <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
     <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>

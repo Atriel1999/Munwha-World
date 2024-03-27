@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.multi.bbs.common.util.PageInfo;
 import com.multi.bbs.heritage.model.service.HeritageService;
 import com.multi.bbs.heritage.model.service.HimageService;
+import com.multi.bbs.heritage.model.vo.HBookmark;
 import com.multi.bbs.heritage.model.vo.HReview;
 import com.multi.bbs.heritage.model.vo.Heritage;
 import com.multi.bbs.heritage.model.vo.HeritageParam;
@@ -43,19 +44,15 @@ public class HeritageController {
 		int size = 0;
 		List<Heritage> list = null;
 		
+		size = heritageService.getSearchCount(keyword, region, category, generation);
 		PageInfo pageInfo = new PageInfo(param.getPage(), 5, size, 9); // page가 보여질 갯수 : 10, 게시글 목록은 12개
 		System.out.println("boardCount : " + size);
 		System.out.println("setLimit : " + size);
 		System.out.println("setOffset : " + (pageInfo.getStartList() - 1));
 		param.setLimit(pageInfo.getListLimit());
 		param.setOffset(pageInfo.getStartList() - 1);
+		list = heritageService.getSearchAll(keyword, region, category, generation, param);
 		
-		try {
-			size = heritageService.getSearchCount(keyword, region, category, generation);
-			list = heritageService.getSearchAll(keyword, region, category, generation, param);
-		} catch (Exception e) {
-
-		}
 		
 		System.out.println("@@@@ count : " + size);
 //		System.out.println(list);
@@ -91,8 +88,9 @@ public class HeritageController {
 		Himage himage = himageop.get();
 		model.addAttribute("himage", himage);
 		
-//		List<Heritage> hList = heritageService.getSearchAll("", "", "국보");
-//		model.addAttribute("hList", hList);
+		HeritageParam param = new HeritageParam("", "", "", "", 1, 10, 1);
+		List<Heritage> hList = heritageService.getSearchAll("", "", "", "", param);
+		model.addAttribute("hList", hList);
 		
 		return "heritage/heritage-detail";
 	}
@@ -112,7 +110,8 @@ public class HeritageController {
 			) {
 		System.out.println("리뷰저장시작");
 		HReview hreview = new HReview();
-		hreview.setHeritage(heritageService.findByHno(hno));
+		Heritage heritage = heritageService.findByHno(hno);
+		hreview.setHeritage(heritage);
 		hreview.setMno(loginMember.getMno());
 		hreview.setMname(loginMember.getName());
 		hreview.setRate(rate);
@@ -135,7 +134,31 @@ public class HeritageController {
 
 		model.addAttribute("msg", "리플 삭제가 정상적으로 완료되었습니다.");
 		model.addAttribute("location", "/heritage-detail?hno=" + hno);
+		
 		return "/common/msg";
 	}
+	
+	@GetMapping("/heritage/bmk")
+	public String HeritageBookmark(Model model, int mno, int hno) {
+		HBookmark hbookmark = new HBookmark(0, heritageService.findByHno(hno), hno, mno);
+		
+		// 북마크 저장
+		if (heritageService.findbmkByhnoandmno(hno, mno) == null) {
+			System.out.println("북마크 저장요청");
+			heritageService.saveBookmark(hbookmark);
+			model.addAttribute("msg", "즐겨찾기 저장");
+			model.addAttribute("location", "/heritage-detail?hno=" + hno);
+		} else if (heritageService.findbmkByhnoandmno(hno, mno) != null) {
+			// 북마크 삭제
+			int bno = heritageService.findbmkByhnoandmno(hno, mno).getBno();
+			System.out.println("북마크 삭제요청");
+			heritageService.deleteBookmark(bno);
+			model.addAttribute("msg", "즐겨찾기 삭제");
+			model.addAttribute("location", "/heritage-detail?hno=" + hno);
+		}
+		
+		return "/common/msg";
+	}
+	
 }
 

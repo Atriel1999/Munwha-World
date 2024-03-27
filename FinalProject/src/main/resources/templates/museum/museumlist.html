@@ -290,7 +290,7 @@
                 </th:block>
               </div>
               <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
+                <button class="btn btn-icon btn-light btn-xs text-warning rounded-circle" type="button"
                   data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기">
                   <i class="fi-heart"></i></button>
               </div>
@@ -300,9 +300,6 @@
 
 					<!-- 이미지가 없는 경우 대체 이미지를 사용 -->
 				<img th:if="${museum.imageUrl == null}" th:src="@{/img/museum_img/hero2.jpg}" alt="url 널 " style="height: 100%; width: 100%;">
-				
-              
-            
             </div>
             <div class="card-body position-relative pb-3">
               <div class="h3">
@@ -319,7 +316,7 @@
               </div>
               <div class="d-flex">
                 &ensp;<i class="fi-heart-filled opacity-70 me-1 text-warning"></i> <span th:text="${museum.favcount} + ' Likes' "> 즐겨찾기수 </span>
-                &ensp;&ensp;<i class="fi-chat-circle opacity-70 me-1"></i>  <span th:text="${museum.reviewcount} + ' Reviews'"> 이용후기수</span> 
+                &ensp;&ensp;<i class="fi-chat-circle opacity-70 me-1"></i>  <span th:text="${museum.reviewcount} + ' Reviews'"> 이용후기수 </span> 
               </div>
 
             </div>

@@ -208,9 +208,7 @@
         </div>
         <div class="container">
           <div class="h3">
-            <i class="fi-chevron-left primary" onclick="prevMonth();"></i>
-              7월의 문화행사
-            <i class="fi-chevron-right" onclick="nextMonth();"></i>
+              추천 행사
           </div>
           <br>
 
@@ -277,50 +275,6 @@
               </article>
             </div>
 
-            <!-- 페이지네이션 -->
-            <div class="container mt-5">
-              <div class="row justify-content-center">
-                <div class="col-3">
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a href="#" class="page-link" aria-label="Previous">
-                          <i class="fi-chevron-left"></i>
-                        </a>
-                      </li>
-                      <li class="page-item d-sm-none">
-                        <span class="page-link page-link-static">2 / 5</span>
-                      </li>
-                      <li class="page-item d-none d-sm-block">
-                        <a href="#" class="page-link">1</a>
-                      </li>
-                      <li class="page-item active d-none d-sm-block" aria-current="page">
-                        <span class="page-link">
-                          2
-                          <span class="visually-hidden">(current)</span>
-                        </span>
-                      </li>
-                      <li class="page-item d-none d-sm-block">
-                        <a href="#" class="page-link">3</a>
-                      </li>
-                      <li class="page-item d-none d-sm-block">
-                        <a href="#" class="page-link">4</a>
-                      </li>
-                      <li class="page-item d-none d-sm-block">
-                        <a href="#" class="page-link">5</a>
-                      </li>
-                      <li class="page-item">
-                        <a href="#" class="page-link" aria-label="Next">
-                          <i class="fi-chevron-right"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </div>
-            <!-- 페이지네이션 끝 -->
-
           </div>
           <!-- 행사목록 끝 -->
         </div>
@@ -331,15 +285,6 @@
     <!-- 푸터 -->
 	<th:block th:replace="common/footer :: footerFragment"></th:block>
 	
-	<script type="text/javascript">
-		function prevMonth() {
-			console.log('이전달');
-		}
-		
-		function nextMonth() {
-			console.log('다음달');
-		}
-	</script>
 
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->

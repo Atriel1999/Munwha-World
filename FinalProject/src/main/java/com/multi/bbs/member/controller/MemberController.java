@@ -1,7 +1,9 @@
 package com.multi.bbs.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.multi.bbs.heritage.model.service.HeritageService;
+import com.multi.bbs.heritage.model.vo.HBookmark;
+import com.multi.bbs.heritage.model.vo.Heritage;
 import com.multi.bbs.kakao.KakaoService;
 import com.multi.bbs.member.model.service.MemberService;
 import com.multi.bbs.member.model.vo.Member;
@@ -33,6 +38,9 @@ public class MemberController {
 	
 	@Autowired
 	private KakaoService kakaoService;
+	
+	@Autowired
+	private HeritageService heritageService;
 	
 	@PostMapping("/login")
 	String login(Model model, String memberId, String password) {
@@ -262,6 +270,7 @@ public class MemberController {
 			model.addAttribute("location","/");
 			return "common/msg";
 		}
+		
 		model.addAttribute("loginMember", loginMember);
 		return "member/mypageBookmarks";
 	}
@@ -280,6 +289,18 @@ public class MemberController {
 		model.addAttribute("loginMember", loginMember);
 		return "member/mypageShopList";
 	}	
+	
+	@PostMapping("/member/hbmk")
+	public String gethbmk(Model model,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember
+			) {
+		// 문화재 북마크
+		List<HBookmark> hList = heritageService.findbmkByMno(loginMember.getMno());
+		model.addAttribute("hList", hList);
+		return "member/hbmklist";
+	}
+	
+	
 	
 }
 
