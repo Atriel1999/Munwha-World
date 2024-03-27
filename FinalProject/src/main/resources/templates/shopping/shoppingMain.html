@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
-    <title>Finder | Sign In Page</title>
+    <title>쇼핑몰</title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
     <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
@@ -113,9 +113,9 @@
       
     </script>
     <!-- Vendor Styles-->
-    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen" th:href="@{/vendor/simplebar/dist/simplebar.min.css}"/>
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}">
   </head>
   <!-- Body-->
   <body class="bg-secondary">
@@ -125,302 +125,130 @@
         <div class="page-spinner"></div><span>Loading...</span>
       </div>
     </div>
+     <!-- 헤더 시작 -->
+  	<th:block th:replace="common/header :: headerFragment"></th:block>
     <main class="page-wrapper">
-
-      <!-- 헤더 시작 -->
-      <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
-        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%;" width="60" alt="Finder"></a>
-          <span style="font-size: 20pt; color: white;">&nbsp문화월드 |</span>
-          <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
-            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
-              <!-- Menu items-->
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">문화재</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">행사</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
-                  <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">박물관</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">쇼핑</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">날씨정보</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" style="font-size: 15pt;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                  <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
-            <i class="fi-user me-2"></i>로그인</span>
-          </a>
-        </div>
-      </header>
-      <!-- 헤더 끝 -->
 
       <!-- Page content-->
       <!-- Hero-->
-      <div class="container-fluid py-4 py-sm-5">
-        <div class="container-fluid col-8" style="text-align: center;">
-          <img src="img/shopping_img/덕수궁.PNG" alt="">
-        </div>
-
+      <section class="bg-dark py-xxl-5" style="position: relative; overflow: visible; height: 400px;">
+      	<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+  			  background-image: url('/img/shopping_img/덕수궁.PNG'); background-size: cover; background-position: center;">
+		</div>
+        </section>
       <!-- Page container-->
-      <div class="container-fluid d-flex h-100 align-items-center justify-content-center py-4 py-sm-5">
+      <section class="container">
+      
+      <div class="container-fluid pt-3 px-5 d-flex justify-content-center">
           <!-- Page content-->
           <div class="col-lg-8 col-xl-9 position-relative overflow-hidden pb-5 pt-4 px-3 px-xl-4 px-xxl-5">
-            <!-- Map popup-->
-            <div class="map-popup invisible" id="map">
-              <button class="btn btn-icon btn-light btn-sm shadow-sm rounded-circle" type="button" data-bs-toggle-class="invisible" data-bs-target="#map"><i class="fi-x fs-xs"></i></button>
-              <div class="interactive-map" data-map-options-json="json/map-options-city-guide.json"></div>
-            </div>
+            <nav class="mb-2 pt-md-1" aria-label="Breadcrumb">
+	          <ol class="breadcrumb">
+	            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+	            <li class="breadcrumb-item active" aria-current="page"> 쇼핑몰 메인 </li>
+	          </ol>
+	        </nav>
+             <form th:action="@{/shop/main}" method="get" name="searchForm">
              <!-- Search form-->
-             <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">
+             <div class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">
                <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
-                 <input class="form-control" type="text" placeholder="What are you looking for?">
+                 <input class="form-control" type="text" name="searchValue" th:value="${param.searchValue}" 
+                 		placeholder="어떤 상품을 찾으시나요?" style="font-size:15pt;">
+				 <input type="hidden" name="page" value="1">                 
                </div>
                <hr class="d-md-none my-2">
                <div class="d-sm-flex">
-                 <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="button">Search</button>
+                 <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="submit">상품 검색</button>
                </div>
-             </form>
-            </nav>
+             </div>
             <!-- Sorting-->
             <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
               <div class="d-flex align-items-center flex-shrink-0">
-                <label class="fs-sm me-2 pe-1 text-nowrap" for="sortby"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>Sort by:</label>
-                <select class="form-select form-select-sm" id="sortby">
-                  <option>Low - High Price</option>
-                  <option>High - Low Price</option>
+                <label class="fs-sm me-2 pe-1 text-nowrap" for="sortby"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>정렬 순서:</label>
+                <select class="form-select form-select-sm" id="sortby" name="order" onchange="this.form.submit()">
+                  <option value="asc" th:selected="${order} == 'asc'">
+                  	낮은 가격순
+                  </option>
+                  <option value="desc" th:selected="${order} == 'desc'">
+                  	높은 가격순
+                  </option>
                 </select>
               </div>
               <hr class="d-none d-sm-block w-100 mx-4">
             </div>
+            </form>
             <!-- Catalog grid-->
             <div class="row row-cols-xl-3 row-cols-sm-3 row-cols-1 gy-4 gx-3 gx-xxl-4 py-4">
+            	<th:block th:if="${list == null || #lists.size(list) == 0}">
+				<br>
+					<div class="h3 text-primary"> 조회된 상품이 없습니다.</div>
+	 			</th:block>
               <!-- Item-->
-              <div class="col pb-sm-2">
+              <div class="col pb-sm-2" th:each="item : ${list}">
                 <article class="position-relative">
                   <div class="position-relative mb-3">
-                    <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/곤룡포잔 1.PNG" alt="Article img">
+                    <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button>
+                    <a href="">
+                    <img class="rounded-3" th:src="${item.imgurl1}" alt="">
+                    </a>
                   </div>
-                  <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">곤룡포잔</a></h3>
+                  <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">[[${item.title}]]</a></h3>
                   <ul class="list-inline mb-0 fs-xs">
                     <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.9</b><span class="text-muted">&nbsp;(43)</span></li>
-                    <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>13000원</li>
-                  </ul>
-                </article>
-              </div>
-              <!-- Item-->
-              <div class="col pb-sm-2">
-                <article class="position-relative">
-                  <div class="position-relative mb-3">
-                    <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/키트1.PNG" alt="Article img">
-                  </div>
-                  <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">조선왕실등 만들기 키트</a></h3>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(12)</span></li>
-                    <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>35000원</li>
-                  </ul>
-                </article>
-              </div>
-              <!-- Item-->
-              <div class="col pb-sm-2">
-                <article class="position-relative">
-                  <div class="position-relative mb-3">
-                    <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/복북어1.PNG" alt="Article img">
-                  </div>
-                  <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">복 북어</a></h3>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.0</b><span class="text-muted">&nbsp;(9)</span></li>
-                    <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>50000원</li>
-                  </ul>
-                </article>
-              </div>
-              <!-- Item-->
-              <div class="col pb-sm-2">
-                <article class="position-relative">
-                  <div class="position-relative mb-3">
-                    <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/부채1.PNG" alt="Article img">
-                  </div>
-                  <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">'궁궐,시선을 담다' 부채</a></h3>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.8</b><span class="text-muted">&nbsp;(32)</span></li>
-                    <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>12000원</li>
-                  </ul>
-                </article>
-              </div>
-              <!-- Item-->
-              <div class="col pb-sm-2">
-                <article class="position-relative">
-                  <div class="position-relative mb-3">
-                    <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/머그1.PNG" alt="Article img">
-                  </div>
-                  <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">'궁궐,시선을 담다' 머그</a></h3>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.5</b><span class="text-muted">&nbsp;(13)</span></li>
-                    <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>13000원</li>
-                  </ul>
-                </article>
-              </div>
-              <!-- Item-->
-              <div class="col pb-sm-2">
-                <article class="position-relative">
-                  <div class="position-relative mb-3">
-                    <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/수저.PNG" alt="Article img">
-                  </div>
-                  <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">방짜유기 수저세트(2인)</a></h3>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(17)</span></li>
-                    <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>100000원</li>
-                  </ul>
-                </article>
-              </div>
-              <!-- Item-->
-              <div class="col pb-sm-2">
-                <article class="position-relative">
-                  <div class="position-relative mb-3">
-                    <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/문방사우.PNG" alt="Article img">
-                  </div>
-                  <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">나전 문방사우 메모패드</a></h3>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(45)</span></li>
-                    <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>60000원</li>
-                  </ul>
-                </article>
-              </div>
-              <!-- Item-->
-              <div class="col pb-sm-2">
-                <article class="position-relative">
-                  <div class="position-relative mb-3">
-                    <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/오르골.PNG" alt="Article img">
-                  </div>
-                  <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">도자기 오르골 (작호도/매화)</a></h3>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.0</b><span class="text-muted">&nbsp;(15)</span></li>
-                    <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>46000원</li>
-                  </ul>
-                </article>
-              </div>
-              <!-- Item-->
-              <div class="col pb-sm-2">
-                <article class="position-relative">
-                  <div class="position-relative mb-3">
-                    <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/우산1.PNG" alt="Article img">
-                  </div>
-                  <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">단청 꽃문 비닐우산</a></h3>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.6</b><span class="text-muted">&nbsp;(10)</span></li>
-                    <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>7000원</li>
+                    <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>[[${item.price}]]원</li>
                   </ul>
                 </article>
               </div>
             </div>
             <!-- Pagination-->
-            <nav class="border-top pb-md-4 pt-4" aria-label="Pagination">
-              <ul class="pagination mb-1">
-                <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                <li class="page-item d-none d-sm-block">...</li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-   </main>
-
-    <!-- 푸터 -->
-    <footer class="footer bg-dark">
-      <div class="container pt-3 pt-lg-3 justify-content-between">
-        <div class="row pt-2 pt-lg-1">
-          <div class="col-lg-3 mt-4">
-            <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
-            <p class="fs-sm text-light opacity-70">새로 업데이트되는 소식을 전해드립니다</p>
-            <form class="form-group form-group-light w-100">
-              <div class="input-group input-group-sm"><span class="input-group-text"> <i class="fi-mail"></i></span>
-                <input class="form-control" type="text" placeholder="Email 주소">
-              </div>
-              <button class="btn btn-primary btn-icon btn-sm" type="button"><i class="fi-send"></i></button>
-            </form>
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재행사</span></a><br><br>
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
-          </div>
-          <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
-          </div>
-
-          <div class="col-lg-3 mb-2 mb-sm-4">
-            <div class="row">
-              <div class="col mt-2">
-                <span class="text-light" style="font-size: 40pt;">문화</span>
-                <span class="text-light" style="font-size: 40pt;">&nbsp;월드</span>
-              </div>
-              <div class="col mt-2">
-                <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%;" alt="">
-                <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
-                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>
-                  <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-telegram"></i></a>
-                </div>
-              </div>
-
+            <div class="container d-flex justify-content-center">
+    		<th:block th:if="${list != null && #lists.size(list) != 0}">
+	          <nav class="mt-2" aria-label="Page navigation example">
+		        <ul class="pagination pagination-lg">
+		          <li class="page-item"><a class="page-link" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
+		          </li>
+		          
+		          <th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+		         	<th:block th:if="${status.current == pageInfo.currentPage}">
+		       
+		          		<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"> [[${status.current}]] <span
+		                class="visually-hidden">(current)</span></span></li>
+		          	</th:block>      
+		          	<th:block th:if="${status.current != pageInfo.currentPage}">
+		          <li class="page-item d-none d-sm-block"><a class="page-link"  th:onclick="|movePage(${status.current});|"> [[${status.current}]] </a></li>
+		      
+		          	</th:block>
+		          </th:block>
+		          
+		          <li class="page-item"><a class="page-link" aria-label="Next"  th:onclick="|movePage(${pageInfo.nextPage});|"><i class="fi-chevron-right"></i></a>
+		          </li>
+		        </ul>
+		      </nav>
+	        </th:block>
             </div>
           </div>
         </div>
-      </div>
-    </footer>
-    <!-- 푸터 끝 -->
+        
+        </section>
+   </main>
 
+	<!-- 푸터 -->	
+	<th:block th:replace="common/footer :: footerFragment"></th:block>
 
+	<script type="text/javascript">
+		function movePage(page){
+			searchForm.page.value = page;
+			searchForm.submit();
+		}
+    </script>
 
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
+    <script th:src="@{/vendor/tiny-slider/dist/min/tiny-slider.js}"></script>
     <!-- Main theme script-->
-    <script src="js/theme.min.js"></script>
+    <script th:src="@{/js/theme.min.js}"></script>
   </body>
 </html>

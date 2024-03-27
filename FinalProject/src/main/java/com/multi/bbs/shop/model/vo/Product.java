@@ -1,20 +1,45 @@
 package com.multi.bbs.shop.model.vo;
 
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @Builder
 @ToString
+@Entity(name = "Product")
+@Transactional
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
+	@Id
+	@Column(name = "pno")
 	private int pno;
+	@Column(name = "TITLE")
 	private String title;
+	@Column(name = "DESCRIPTION")
 	private String description;
-	private String price;
-	private String image; // main 이미지
-	private List<String> bigImageList; // 썸네일 + 제품 상세보기
-	private List<String> contentImageList; // 설명글 
+	@Column(name = "LINK")
+	private String link;
+	@Column(name = "PRICE")
+	private int price;
+	@Column(name = "MALLNAME")
+	private String mallname;
+	@Column(name = "BRAND")
+	private String brand;
+	@Column(name = "imgurl1")
+	private String imgurl1;
+	@Column(name = "imgurl2")
+	private String imgurl2;
+	@Column(name = "imgurl3")
+	private String imgurl3;
+	@Column(name = "imgurl4")
+	private String imgurl4;
 }

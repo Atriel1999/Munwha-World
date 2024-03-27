@@ -16,7 +16,7 @@
             </form>
           </div>
           <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
+            <a th:href="@{/heritage-search}" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">문화재</span></a><br><br>
             <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">추천페이지</span></a>
           </div>
           <div class="col mt-5">
@@ -24,11 +24,11 @@
             <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">날씨정보</span></a>
           </div>
           <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
+            <a th:href="@{/museumlist}" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">박물관</span></a><br><br>
             <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">모임</span></a>
           </div>
           <div class="col mt-5">
-            <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
+            <a th:href="@{/shop/main}" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">쇼핑</span></a><br><br>
             <a href="#" style="text-decoration: none;"><span class="text-light" style="font-size: 20pt;">커뮤니티</span></a>
           </div>
 
@@ -40,7 +40,7 @@
               </div>
               <div class="col mt-2">
               	<a th:href="@{/}">
-                  <img src="img/myimages/ksw/FinalLogo.jpg" width="120px" style="border-radius: 100%;" alt="">
+                  <img th:src="@{/img/myimages/ksw/FinalLogo.jpg}" width="120px" style="border-radius: 100%;" alt="">
               	</a>
                 <div class="d-flex flex-wrap pt-2"><a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-facebook"></i></a>
                   <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i class="fi-twitter"></i></a>

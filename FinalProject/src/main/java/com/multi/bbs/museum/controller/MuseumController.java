@@ -3,7 +3,6 @@ package com.multi.bbs.museum.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,14 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.multi.bbs.board.model.vo.Board;
-import com.multi.bbs.board.model.vo.BoardReply;
 import com.multi.bbs.common.util.PageInfo;
+import com.multi.bbs.heritage.model.vo.HBookmark;
+import com.multi.bbs.member.model.service.MemberService;
 import com.multi.bbs.member.model.vo.Member;
 import com.multi.bbs.museum.model.service.MuseumService;
 import com.multi.bbs.museum.model.vo.Museum;
+import com.multi.bbs.museum.model.vo.MuseumBookmark;
 import com.multi.bbs.museum.model.vo.MuseumParam;
 import com.multi.bbs.museum.model.vo.MuseumReply;
 
@@ -40,11 +39,9 @@ public class MuseumController {
 	
 	
 
-	@GetMapping("/museumlist")
+	@GetMapping("/museumlist")   
 	public String museumList(Model model, MuseumParam param) {
 		log.debug("@@ museum 리스트 요청 param : " + param);
-		
-		 
 		
 		int museumCount = service.getMuseumCount(param);
 		PageInfo pageInfo = new PageInfo(param.getPage(), 5, museumCount, 12); // page가 보여질 갯수 : 10, 게시글 목록은 12개
@@ -53,7 +50,6 @@ public class MuseumController {
 		System.out.println("setOffset : " + (pageInfo.getStartList() - 1));
 		param.setLimit(pageInfo.getListLimit());
 		param.setOffset(pageInfo.getStartList() - 1);
-		
 		
 		List<Museum> list = service.getMuseumList(param);
 		
@@ -72,6 +68,7 @@ public class MuseumController {
 		return "museum/museumlist";
 	}
 	
+	
 	@GetMapping("/museumview")
 	public String museumView(Model model, @RequestParam("no") int no) {
 		Museum museum = service.findByNo(no);
@@ -80,13 +77,18 @@ public class MuseumController {
 			return "redirect:error";
 		}
 		
-		  //  이미지 검색
+		// 별점평균 (doube, model 추가 총 두줄 )
+		double averageRating = service.getAverageRating(no); 
+		
+		//  이미지 (네이버검색)
         String firstImageUrl = service.getFirstImageUrlForMuseum(museum.getMsname());
+        
         museum.setImageUrl(firstImageUrl); // Museum 객체에 이미지 URL 설정
 	    
 		model.addAttribute("museum", museum);
-		model.addAttribute("replyList", museum.getReplyList());
-		 
+		model.addAttribute("averageRating", String.format("%.2f", averageRating)); // 계산된 평균(소수점두자리) 모델 추가
+		model.addAttribute("replyList", museum.getReplyList());  // 이용후기 
+		
 		return "museum/museumview";
 	}
 	
@@ -126,6 +128,30 @@ public class MuseumController {
 
 		model.addAttribute("msg", "리플 삭제가 정상적으로 완료되었습니다.");
 		model.addAttribute("location", "/museumview?no=" + museumNo);
+		return "/common/msg";
+	}
+	
+	
+	// 북마크 
+	@GetMapping("/museumbookmark")
+	public String MBookmark(Model model, @RequestParam int mno, @RequestParam int msno) {
+		MuseumBookmark mbookmark = new MuseumBookmark(0, service.findByNo(msno), msno, mno);
+		
+		// 북마크 저장
+		if (service.getBookmarkByMsnoAndMno(msno, mno) == null) {
+			System.out.println("북마크 저장요청");
+			service.saveBookmark(mbookmark);
+			model.addAttribute("msg", "즐겨찾기 저장");
+			model.addAttribute("location", "/museumview?no=" + msno);
+		} else if (service.getBookmarkByMsnoAndMno(msno, mno) != null) {
+			// 북마크 삭제
+			int bno = service.getBookmarkByMsnoAndMno(msno, mno).getBno();
+			System.out.println("북마크 삭제요청");
+			service.deleteBookmark(bno);
+			model.addAttribute("msg", "즐겨찾기 삭제");
+			model.addAttribute("location", "/museumview?no=" + msno);
+		}
+		
 		return "/common/msg";
 	}
 	
