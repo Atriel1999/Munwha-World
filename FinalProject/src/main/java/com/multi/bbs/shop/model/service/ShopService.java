@@ -24,6 +24,9 @@ public class ShopService {
 	public List<Product> searchProductByTitle(String title, int limit, int offset) {
 		return prepo.findByTitleContaining(title, limit, offset);
 	}
+	public List<Product> searchProductByTitleDesc(String title, int limit, int offset) {
+		return prepo.findByTitleContainingDesc(title, limit, offset);
+	}
 	public int getproductcount(String title) {
 		return prepo.countByTitleContaining(title);
 	}
