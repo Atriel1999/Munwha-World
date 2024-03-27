@@ -1,7 +1,6 @@
 package com.multi.bbs.museum.model.repository;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -19,5 +18,7 @@ public interface MuseumRepository extends JpaRepository<Museum, Integer>{
 	
 	List<Museum> findAll(Specification<Museum> spec, Pageable pageable);
 	int count(Specification<Museum> spec);
+	
+
 
 }

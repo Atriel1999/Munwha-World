@@ -6,26 +6,23 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.multi.bbs.heritage.model.vo.HBookmark;
+import com.multi.bbs.museum.model.repository.MuseumBookmarkRepository;
 import com.multi.bbs.museum.model.repository.MuseumReplyRepository;
 import com.multi.bbs.museum.model.repository.MuseumRepository;
 import com.multi.bbs.museum.model.vo.Museum;
+import com.multi.bbs.museum.model.vo.MuseumBookmark;
 import com.multi.bbs.museum.model.vo.MuseumParam;
 import com.multi.bbs.museum.model.vo.MuseumReply;
 import com.multi.bbs.naverapi.ApiExamSearchNaverAPI;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
-import jakarta.persistence.criteria.CriteriaBuilder.In;
-import jakarta.persistence.criteria.CriteriaQuery;
-
 
 
 
@@ -36,6 +33,8 @@ public class MuseumService {
 	private MuseumRepository museumRepository;
 	@Autowired
 	private MuseumReplyRepository museumReplyRepo;
+	@Autowired
+	private MuseumBookmarkRepository bookmarkrepo;
 	
 
 	
@@ -48,15 +47,31 @@ public class MuseumService {
 		
 	}
 	
+	// 리플 관련
 	@Transactional(rollbackFor = Exception.class)
 	public MuseumReply saveReply(MuseumReply reply) {
+		Museum museum = reply.getMuseum();
+		museum.setReviewcount(museum.getReviewcount() + 1);
 		return museumReplyRepo.save(reply);
 	}
 	
 	@Transactional(rollbackFor = Exception.class)
 	public void deleteReply(int no) {
+		
+		Museum museum = museumReplyRepo.findById(no).get().getMuseum();
+		if(museum.getReviewcount() > 0) {
+			museum.setReviewcount(museum.getReviewcount() - 1);
+		}
 		museumReplyRepo.deleteById(no);
 	}
+	
+	// 별점 평균 
+	//  getAverageRating 정의. 널 아니면 averageRating : 0.0  --> 컨트롤러
+	public double getAverageRating(int msno) {
+		Double averageRating = museumReplyRepo.findAverageRatingByMuseumMsno(msno);
+		return averageRating != null ? averageRating : 0.0; 
+	}
+	
 	
 	
 	public List<Museum> getSearchAll (String keyword, int page, int limit, String searchAddress){
@@ -143,31 +158,13 @@ public class MuseumService {
 
 	public List<Museum> getMuseumList(MuseumParam param){
 	
-		Sort sort = determineSortOrder(param.getSortBy());
+		Sort sort = Sort.by("msno").ascending();
 		PageRequest request = PageRequest.of(param.getPage()-1, param.getLimit(), sort);
 		return getSearchAll(param.getsearchName(), param.getPage() -1, param.getLimit(), param.getsearchAddress());
 
     }
 		
 
-		
-     private Sort determineSortOrder(String sortBy) {
-			 if (sortBy == null) {
-			        sortBy = "msno"; // 기본 정렬 기준 설정
-			    }
-			    
-			    switch (sortBy) {
-			        case "favcount":
-			            return Sort.by(Sort.Direction.DESC, "favcount");
-			        case "reviewcount":
-			            return Sort.by(Sort.Direction.DESC, "reviewcount");
-			        case "msweekopen":
-			            return Sort.by(Sort.Direction.ASC, "msweekopen");
-			        default:
-			            return Sort.by(Sort.Direction.ASC, "msno");
-			    }
-			 }
-		 
 		 
    // 네이버 api 이미지 
      public String getFirstImageUrlForMuseum(String msname) {
@@ -181,6 +178,27 @@ public class MuseumService {
              return null;
          }
      }
+     
+     
+     
+     // 북마크
+     @Transactional
+ 	public MuseumBookmark saveBookmark(MuseumBookmark bookmark) {
+ 		return bookmarkrepo.save(bookmark);
+ 	}
+ 	@Transactional
+ 	public void deleteBookmark(int bno) {
+ 		bookmarkrepo.deleteById(bno);
+ 	}
+ 	
+ 	
+ 	public List<MuseumBookmark> getBookmarkByMember(int mno) {
+ 		return bookmarkrepo.findByMno(mno);
+ 	}
+ 	public MuseumBookmark getBookmarkByMsnoAndMno(int msno, int mno) {
+ 		return bookmarkrepo.findByMsnoAndMno(msno, mno);
+ 	}
+ 	
 		
 		 
 }

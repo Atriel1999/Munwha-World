@@ -252,7 +252,6 @@
             <select name="sortBy" class="form-select form-select-ms" style="font-weight: bold;" id="sortby" onchange="this.form.submit()">
               <option value="favcount" th:selected="${param.sortBy == 'favcount'}"> 인기순 </option>
               <option value="reviewcount" th:selected="${param.sortBy == 'reviewcount'}"> 리뷰 많은순</option>
-              <option value="msweekopen" th:selected="${param.sortBy == 'msweekopen'}"> 운영 시간 빠른순 </option>
             </select>
           </div>
           <hr class="d-none d-sm-block w-100 mx-4">
@@ -290,10 +289,19 @@
                 </th:block>
               </div>
               <div class="content-overlay end-0 top-0 pt-3 pe-3">
+              <th:block th:if="${session.loginMember != null}">
                 <button class="btn btn-icon btn-light btn-xs text-warning rounded-circle" type="button"
-                  data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기">
+                  data-bs-toggle="tooltip" data-bs-placement="left" title="즐겨찾기" th:onclick="'bmk('+${session.loginMember.mno}+', '+${museum.msno}+');'">
                   <i class="fi-heart"></i></button>
+               </th:block>   
               </div>
+              <script>
+              		function bmk(mno, msno){
+					var url = "/museumbookmark?mno=";
+					var requestURL = url + mno +"&msno=" + msno;
+	  				location.replace(requestURL);
+				}
+			</script>
               <!-- --이미지 -->
               	<!-- 이미지가 있는 경우 해당 이미지를 사용 -->
 				<img th:if="${museum.imageUrl != null}" th:src="${museum.imageUrl}" style="height: 100%; width: 100%;">
@@ -302,8 +310,8 @@
 				<img th:if="${museum.imageUrl == null}" th:src="@{/img/museum_img/hero2.jpg}" alt="url 널 " style="height: 100%; width: 100%;">
             </div>
             <div class="card-body position-relative pb-3">
-              <div class="h3">
-                <a th:href="|/museumview?no=${museum.msno}|"class="h3 nav-link stretched-link" style="min-height: 70px;" th:text="${museum.msname}">
+              <div class="h2">
+                <a th:href="|/museumview?no=${museum.msno}|"class="h2 nav-link stretched-link" style="min-height: 70px;" th:text="${museum.msname}">
                   
                 </a>
               </div>
@@ -333,9 +341,8 @@
     <th:block th:if="${list != null && #lists.size(list) != 0}">
       <nav class="mt-2" aria-label="Page navigation example">
         <ul class="pagination pagination-lg">
-          <li class="page-item"><a class="page-link" href="#" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
+          <li class="page-item"><a class="page-link" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
           </li>
-          
           
           <th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
          	<th:block th:if="${status.current == pageInfo.currentPage}">
@@ -349,7 +356,7 @@
           	</th:block>
           </th:block>
           
-          <li class="page-item"><a class="page-link" href="#" aria-label="Next"  th:onclick="|movePage(${pageInfo.nextPage});|"><i class="fi-chevron-right"></i></a>
+          <li class="page-item"><a class="page-link" aria-label="Next"  th:onclick="|movePage(${pageInfo.nextPage});|"><i class="fi-chevron-right"></i></a>
           </li>
         </ul>
       </nav>
