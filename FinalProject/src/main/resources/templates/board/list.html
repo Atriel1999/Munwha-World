@@ -142,7 +142,7 @@
       <div class="container-fluid" id="board-list-container" style="text-align: center;" >
         <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 600px;">
           <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-              background-image: url('img/board/커뮤니티.PNG'); background-size:auto cover; background-position: center;">
+              background-image: url('http://localhost/img/board/커뮤니티.PNG'); background-size:auto cover; background-position: center;">
           </div>
           
 
@@ -176,8 +176,7 @@
 ----------------------->
         <div class="container"
             style=" border-top: 1px solid; border-bottom: 1px solid; padding: 30px; margin-top: 40px;">
-            <!--name : 라디오를 그룹핑할 네임으로 중복해서 사용-->
-            <!--value : 실제 서버로 넘어갈 값-->
+            <!-- 카테고리 checkbox -->	
             <div class="col-3">
                 <div class="form-check form-check-inline">
 				<th:block th:each="item : ${categoryList}">
@@ -190,14 +189,14 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between h2">
-                <select class=" form-select" name="pharcategory" id="pharcategory" style="width: 320px; " required>
-                    <option name="searchType" value="all" th:checked="${#strings.equals(param.searchType, 'all') } ? 'checked' : null "> 전체 </option>
-                    <option name="searchType" value="title" th:checked="${#strings.equals(param.searchType, 'title')} ? 'checked' : null "> 제목 </option>
-                    <option name="searchType" value="content" th:checked="${#strings.equals(param.searchType, 'content')} ? 'checked' : null "> 내용</option>
-                    <option name="searchType" value="writer" th:checked="${#strings.equals(param.searchType, 'writer')} ? 'checked' : null "> 작성자 </option>
+                <select class=" form-select" name="searchType" id="pharcategory" style="width: 320px; " required>
+                    <option value="all" th:checked="${#strings.equals(param.searchType, 'all') } ? 'checked' : null "> 전체 </option>
+                    <option value="title" th:checked="${#strings.equals(param.searchType, 'title')} ? 'checked' : null "> 제목 </option>
+                    <option value="content" th:checked="${#strings.equals(param.searchType, 'content')} ? 'checked' : null "> 내용</option>
+                    <option value="writer" th:checked="${#strings.equals(param.searchType, 'writer')} ? 'checked' : null "> 작성자 </option>
                 </select>
                 <div class="d-flex justify-content-between">
-                    <input class="form-control" type="text" id="road" placeholder="입력하세요" style="width: 700px;"
+                    <input class="form-control" type="text" id="searchValue" name="searchValue" placeholder="입력하세요" style="width: 700px;"
                       th:value="${param.searchValue}"  required>
                     <button class="btn btn-primary" type="submit" style="margin-left: 25px; margin-right: 30px;"> 
                       <i class="ci-search me-1"></i> 검색
@@ -219,15 +218,16 @@
               <option> 오래된 순 </option>
               <option> 조회순 </option>
             </select>
-              <li class="nav-item" style="margin-left: 600px;"><a class="nav-link d-flex align-items-center" th:href="@{${path}(types='QUESTION')}"><i class="fi-help me-2"></i>Q & A</a></li>
+                    <!-- 글쓰기 버튼 -->
+        <li class="nav-item">
+		<th:block th:if="${session.loginMember != null}">
+				<button class="btn btn-outline-primary rounded-pill ms-4" type="button" id="btn-add" onclick="location.href='/board/write'"><i class="fi-edit me-2"></i>글쓰기</button>
+		</th:block>
+            
+              <li class="nav-item" style="margin-left: 550px;"><a class="nav-link d-flex align-items-center" th:href="@{${path}(types='QUESTION')}"><i class="fi-help me-2"></i>Q & A</a></li>
               <li class="nav-item"><a class="nav-link d-flex align-items-center" th:href="@{${path}(types='NOTICE')}"><i class="fi-info-circle me-2"></i>공지사항</a></li>
               <li class="nav-item"><a class="nav-link d-flex align-items-center" th:href="@{${path}(types='PLAIN')}"><i class="fi-hangouts me-2"></i>자유 게시판</a></li>
         
-        <!-- 글쓰기 버튼 -->
-        <li class="nav-item">
-		<th:block th:if="${session.loginMember != null}">
-				<button type="button" id="btn-add" onclick="location.href='/board/write'"><i class="fi-edit me-2"></i>글쓰기</button>
-		</th:block>
 		</li>
               
             </ul>
@@ -237,15 +237,14 @@
             <br>
             <table class="table table-hover h5">
                 <tr class="border-top">
-                    <th class="text-center"> 번호 </th>
-                    <th class="text-center"> 타입 </th>
+                    <th class=""> 번호 </th>
+                    <th class=""> 타입 </th>
                     <th class="text-center"> 제목</th>
-                    <th class="text-center"> 작성자 </th>
+                    <th class=""> 작성자 </th>
                     <th class="text-center"> 작성일</th>
-                    <th class="text-center"> 첨부파일</th>
-                    <th class="text-center"> 조회수 </th>
+                    <th class=""> 첨부파일</th>
+                    <th class=""> 조회수 </th>
                 </tr>
-                <tbody>
 			<th:block th:if="${list == null || #lists.size(list) == 0}">
 				<tr>
 					<td colspan="6">조회된 글이 없습니다.</td>
@@ -268,30 +267,46 @@
 						<td>[[${board.readCount}]]</td>
 					</tr>
 			</th:block>
-            </tbody>
 		</table>
 		<!-- 게시판 리스트 종료 -->
 		<!-- page부 시작 -->
 		
+ <!-- Pagination: with icons -->
     <section class="container d-flex justify-content-center mt-5">
+    <th:block th:if="${list != null && #lists.size(list) != 0}">
       <nav class="mt-2" aria-label="Page navigation example">
         <ul class="pagination pagination-lg">
-          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><i class="fi-chevron-left"></i></a>
+      <!--이전 페이지 -->
+          <li class="page-item"><a class="page-link" href="#" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
           </li>
-          <li class="page-item d-sm-none"><span class="page-link page-link-static">2 / 5</span></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">2<span
+          
+          
+          <th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+         	<th:block th:if="${status.current == pageInfo.currentPage}">
+          		<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"> [[${status.current}]] <span
                 class="visually-hidden">(current)</span></span></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
-          <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a>
+          	</th:block>   
+          	   
+          	<th:block th:if="${status.current != pageInfo.currentPage}">
+          <li class="page-item d-none d-sm-block"><a class="page-link"  th:onclick="|movePage(${status.current});|"> [[${status.current}]] </a></li>
+          	</th:block>
+          </th:block>
+          
+          <!--다음 페이지 -->
+          <li class="page-item"><a class="page-link" href="#" aria-label="Next"  th:onclick="|movePage(${pageInfo.nextPage});|"><i class="fi-chevron-right"></i></a>
           </li>
         </ul>
       </nav>
-    </section>
-          <!-- 페이지네이션 끝 -->
+      </th:block>
+      <script type="text/javascript">
+			function movePage(page){
+				searchForm.page.value = page;
+				searchForm.submit();
+				}
+	  </script>
+    </section>        
     </main>
+    <!-- 페이지네이션 끝 -->
 
     <!-- 푸터 -->
     <th:block th:replace="common/footer :: footerFragment"></th:block>

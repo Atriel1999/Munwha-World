@@ -307,28 +307,43 @@
             </div>
           </div>
         </section>
-      </section>
 
-    <!-- Pagination: with icons -->
-    <section class="container d-flex justify-content-center mt-2 mb-5">
+ <!-- Pagination: with icons -->
+    <section class="container d-flex justify-content-center mt-5">
+    <th:block th:if="${list != null && #lists.size(list) != 0}">
       <nav class="mt-2" aria-label="Page navigation example">
         <ul class="pagination pagination-lg">
-          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><i class="fi-chevron-left"></i></a>
+          <li class="page-item"><a class="page-link" href="#" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
           </li>
-          <li class="page-item d-sm-none"><span class="page-link page-link-static">2 / 5</span></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">2<span
+          
+          
+          <th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+         	<th:block th:if="${status.current == pageInfo.currentPage}">
+       
+          		<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"> [[${status.current}]] <span
                 class="visually-hidden">(current)</span></span></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
-          <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a>
+          	</th:block>      
+          	<th:block th:if="${status.current != pageInfo.currentPage}">
+          <li class="page-item d-none d-sm-block"><a class="page-link"  th:onclick="|movePage(${status.current});|"> [[${status.current}]] </a></li>
+      
+          	</th:block>
+          </th:block>
+          
+          <li class="page-item"><a class="page-link" href="#" aria-label="Next"  th:onclick="|movePage(${pageInfo.nextPage});|"><i class="fi-chevron-right"></i></a>
           </li>
         </ul>
       </nav>
-    </section>
-
+      </th:block>
+      <script type="text/javascript">
+			function movePage(page){
+				searchForm.page.value = page;
+				searchForm.submit();
+				}
+	  </script>
+    </section>        
     </main>
+    <!-- 페이지네이션 끝 -->
+
     <!-- 푸터 -->
     <footer class="footer bg-dark">
       <div class="container pt-3 pt-lg-3 justify-content-between">

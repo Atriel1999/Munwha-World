@@ -160,44 +160,43 @@
       <!-- 헤더 끝 -->   	
       
 
-    <!-- Page content-->
-    <main class="page-wrapper">
-      <div class="container-fluid" id="content" style="margin-top: 150px;">
-       <form action="/board/write" method="post" enctype="multipart/form-data"> 
+     <!-- Page content-->
+      <div class="container-fluid" id='board-write-container' style="margin-top: 150px;">
+      <form action="/board/write" method="post" enctype="multipart/form-data">
         <section class="container px-5 mb-5 pb-2 my-5" style="margin-right: 100px;">
-            <div class="row gy-5">
-                <form class="needs-validation col-md-8" novalidate>
+            <div class="row gy-5 col-md-8">
                     <!-- Details-->
                     <div class="mb-4 pb-md-0 pb-2">
                       <h1>Write</h1>
-                        <div class="row gy-md-4 gy-3">
-                            <div class="col-sm-6">
+                          <div class="row gy-md-4 gy-3">
+                            <div class="col-sm-6" >
                                 <label class="form-label" for="details-category"> 게시판 선택 <span
                                         class="ms-1 text-danger">*</span> </label>
-                                <select class="form-select" id="details-category">
+                                <select class="form-select" name="type" id="details-category">
 							<th:block th:each="item : ${categoryList}">
 								<option th:value="${item.type}">[[${item.name}]]</option>
 							</th:block>
                                 </select>
                             </div>
+
                             <div class="col-12">
                               <label class="form-label" for="details-title"> 제목
                                   <span class="ms-1 text-danger">*</span></label>
-                              <input class="form-control" id="details-title" type="Text" placeholder="제목을 입력하세요"
+                              <input class="form-control" name="title" id="details-title" type="text" placeholder="제목을 입력하세요"
                                   required>
                               <div class="invalid-feedback">제목을 입력하세요</div><span class="form-text">
                                   최대 100자입니다. HTML이나 이모티콘은 허용되지 않습니다.</span>
                           </div>
+                            <div class="invalid-feedback">Please choose rating!</div>
                             <div class="col-12">
                                 <label class="form-label" for="details-description">내용<span
                                         class="ms-1 text-danger">*</span></label>
-                                <textarea class="form-control" id="details-description" rows="4"
+                                <textarea class="form-control" id="details-description" name="content" rows="4"
                                     placeholder="내용을 입력하세요"></textarea><span class="form-text">0 of 500 characters
                                     used.</span>
                             </div>
                         </div>
                     </div>
-
 
                     <!-- Upload file-->
                     <div class="mb-md-5 mb-4 pb-md-0 pb-2">
@@ -214,13 +213,14 @@
                     </div>
                     <!-- Submit-->
                     <div class="pt-2">
-                        <button class="btn btn-lg btn-accent d-block w-100" type="submit"> 작성 완료하기 </button>
+                        <button class="btn btn-lg btn-accent d-block w-100" value="등록" type="submit"> 작성 완료하기 </button>
                     </div>
-                </form>
             </div>
         </section>
+        </form>
       </div>
-    </main>
+
+    
     <!-- 푸터 -->
     <th:block th:replace="common/footer :: footerFragment"></th:block>
     <!-- 푸터 끝 -->

@@ -116,7 +116,7 @@
       
     </script>
     <!-- Vendor Styles-->
-    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen" th:href="@{/vendor/simplebar/dist/simplebar.min.css}" />
     <link rel="stylesheet" media="screen"  th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}" />
     <link rel="stylesheet" media="screen"  th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}" />
     <link rel="stylesheet" media="screen"  th:href="@{/vendor/nouislider/dist/nouislider.min.css}" />
@@ -155,66 +155,17 @@
       </div>
     </div>
     
-          <!-- Review modal-->
-            <div class="modal fade" id="modal-review" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4">
-                    <h3 class="modal-title mt-4 text-center">Leave a review</h3>
-                    <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body px-sm-5 px-4">
-                    <form class="needs-validation" novalidate>
-                      <div class="mb-3">
-                        <label class="form-label" for="review-name">Name <span class='text-danger'>*</span></label>
-                        <input class="form-control" type="text" id="review-name" placeholder="Your name" required>
-                        <div class="invalid-feedback">Please let us know your name.</div>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" for="review-email">Email <span class='text-danger'>*</span></label>
-                        <input class="form-control" type="email" id="review-email" placeholder="Your email address" required>
-                        <div class="invalid-feedback">Please provide a valid email address.</div>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" for="review-rating">Rating <span class='text-danger'>*</span></label>
-                        <select class="form-control form-select" id="review-rating" required>
-                          <option value="" selected disabled hidden>Choose rating</option>
-                          <option value="5 stars">5 stars</option>
-                          <option value="4 stars">4 stars</option>
-                          <option value="3 stars">3 stars</option>
-                          <option value="2 stars">2 stars</option>
-                          <option value="1 star">1 star</option>
-                        </select>
-                        <div class="invalid-feedback">Please rate the property.</div>
-                      </div>
-                      <div class="mb-4">
-                        <label class="form-label" for="review-text">Review <span class='text-danger'>*</span></label>
-                        <textarea class="form-control" id="review-text" rows="5" placeholder="Your review message" required></textarea>
-                        <div class="invalid-feedback">Please write your review.</div>
-                      </div>
-                      <button class="btn btn-primary d-block rounded-pill w-100 mb-4" type="submit">Submit a review</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-    
 
       <!-- 헤더 시작 -->
       <th:block th:replace="common/header :: headerFragment"></th:block>
       <!-- 헤더 끝 -->   	
       
       <!-- cont_info -->
+   <main class="page-wrapper">
 	<section class="container" id="board-write-container">
         <div class="col-1 mb-5" style="margin-top: 150px;">
           <img src="img/board/질문_상세.PNG" alt="">
         </div>
-		      <!-- form 영역 start -->
-		      <!-- <form id="" name="" action="" method=""> -->
-		        <!-- <input type="hidden" name="bbrdId" />           -->
-		        <!-- <input type="hidden" name="atacFleNm" /> -->
-		        <!-- <input type="hidden" name="atacFleSvNm" /> -->
-		        <!-- <input type="hidden" name="atacFleSvPath" /> -->
 					<table class="table table-stripe">
 						<tbody>
 						  <tr>  
@@ -248,119 +199,110 @@
 		  </tr>
 		</tbody>
 		</table>
-          <div>
-			<textarea  rows="10" cols="120" readonly >[[${board.content}]]</textarea>     
+			<textarea  rows="10" cols="120" readonly >[[${board.content}]]</textarea> 
+			
+  <!-- 리플 작성 Form 버튼 -->
+    <th:block th:if="${session.loginMember != null}">  
+      <div class="container-fluid" id="comment-container" tabindex="-1">
+	    	<div class="comment-editor" align="center">
+	    		<form action="/board/reply" method="post">
+	    			<input type="hidden" name="bno" th:value="${board.bno}" />
+	  				<th:block th:if="${session.loginMember != null}">
+		    			<input type="hidden" name="writerId" th:value="${session.loginMember.memberId}" />
+	   				</th:block>
+					<textarea class="form-control"  name="content" id="replyContent" rows="5" placeholder="이용후기 내용을 입력하세요." required></textarea>
+				 <button class="btn btn-primary d-block rounded-pill w-100 mb-4" type="submit"> 이용후기 작성 </button>
+	    		</form>
+	    	</div>
+   		</div>
+   		</th:block>
+			    
 
-              <!-- Review-->
+            <!-- Review-->
               <div class="container-fluid py-5 px-10">
+		<th:block th:if="${#lists.isEmpty(replyList) == false}">
+			<th:block  th:each="reply : ${replyList}"> 
+
                 <div class="mb-4 pb-4 border-bottom">
                   <div class="d-flex justify-content-between mb-3">
-                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/03.jpg" width="48" alt="Avatar">
+                    <div class="d-flex align-items-center pe-2">
                       <div class="ps-2">
-                        <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                      </div>
-                    </div><span class="text-muted fs-sm">Jan 17, 2021</span>
+                        <h6 class="fs-base mb-0">[[${reply.member.memberId}]]</h6>
+	           </div>
+                    </div><span class="text-muted fs-sm">[[${#dates.format(reply.createDate)}]]</span>
                   </div>
-                  <p>Elementum ut quam tincidunt egestas vitae elit, hendrerit. Ullamcorper nulla amet lobortis elit, nibh condimentum enim. Aliquam felis nisl tellus sodales lectus dictum tristique proin vitae. Odio fermentum viverra tortor quis.</p>
+                  <p>[[${reply.content}]]</p>
                   <div class="d-flex align-items-center">
                     <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>
                     <div class="border-end me-1">&nbsp;</div>
                     <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
-                  </div>
-                </div>
-                <!-- Review-->
-                <div class="mb-4 pb-4 border-bottom">
-                  <div class="d-flex justify-content-between mb-3">
-                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/13.png" width="48" alt="Avatar">
-                      <div class="ps-2">
-                        <h6 class="fs-base mb-0">Darrell Steward</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star"></i></span>
-                      </div>
-                    </div><span class="text-muted fs-sm">Dec 1, 2020</span>
-                  </div>
-                  <p>Vel dictum nunc ut tristique. Egestas diam amet, ut proin hendrerit. Dui accumsan at phasellus tempus consequat dignissim.</p>
-                  <div class="d-flex align-items-center">
-                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
                     <div class="border-end me-1">&nbsp;</div>
-                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
-                  </div>
-                </div>
-                <!-- Review-->
-                <div class="mb-4 pb-4 border-bottom">
-                  <div class="d-flex justify-content-between mb-3">
-                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/13.png" width="48" alt="Avatar">
-                      <div class="ps-2">
-                        <h6 class="fs-base mb-0">Floyd Miles</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                      </div>
-                    </div><span class="text-muted fs-sm">Oct  28, 2020</span>
-                  </div>
-                  <p>Viverra nunc blandit sapien non imperdiet sit. Purus tempus elementum aliquam eu urna. A aenean duis non egestas at libero porttitor integer eget. Sed dictum lobortis laoreet gravida.</p>
-                  <div class="d-flex align-items-center">
-                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(2)</span></button>
-                    <div class="border-end me-1">&nbsp;</div>
-                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
-                  </div>
-                </div>
-                <!-- Review-->
-                <div class="mb-4 pb-4 border-bottom">
-                  <div class="d-flex justify-content-between mb-3">
-                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="img/avatars/04.jpg" width="48" alt="Avatar">
-                      <div class="ps-2">
-                        <h6 class="fs-base mb-0">Ralph Edwards</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star"></i></span>
-                      </div>
-                    </div><span class="text-muted fs-sm">Sep 14, 2020</span>
-                  </div>
-                  <p>Elementum nisl, egestas nam consectetur nisl, at pellentesque cras. Non sed ac vivamus dolor dignissim ut. Nisl sapien blandit pulvinar sagittis donec sociis ipsum arcu est. Tempus, rutrum morbi scelerisque tempor mi. Etiam urna, cras bibendum leo nec faucibus velit. Tempor lectus dignissim at auctor integer neque quam amet.</p>
-                  <div class="d-flex align-items-center">
-                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
-                    <div class="border-end me-1">&nbsp;</div>
-                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
-                  </div>
-                </div>
-                <!-- Review pagination + Add review btn-->
-                <div class="d-flex align-items-center justify-content-between">
-                    <!-- Pagination: with icons -->
-                    <section class="container d-flex justify-content-center mt-5">
-                      <nav class="mt-2" aria-label="Page navigation example">
-                        <ul class="pagination pagination-lg">
-                          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><i class="fi-chevron-left"></i></a>
-                          </li>
-                          <li class="page-item d-sm-none"><span class="page-link page-link-static">2 / 5</span></li>
-                          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">2<span
-                                class="visually-hidden">(current)</span></span></li>
-                          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
-                          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
-                          <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </section>
-                  </nav><a class="btn btn-outline-primary rounded-pill ms-4" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit mt-n1 me-1 align-middle"></i>답변 작성</a>
-                </div>
-              </div>
-            </div>
-            
-        </div>
-      </section>
-    </main>
-    <!-- 푸터 -->
-    <th:block th:replace="common/footer :: footerFragment"></th:block>
-    <!-- 푸터 끝 -->
+                    						<th:block th:if="${session.loginMember != null && 
+							(session.loginMember.memberId == board.member.memberId || session.loginMember.role == 'ROLE_ADMIN')}">
+				
+							<button class="btn-delete btn btn-primary d-block rounded-pill w-5 mb-1" th:onclick="|deleteReply(${reply.rno},${board.bno});|" >삭제</button>
+						</th:block>
 
-    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
-      ><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span
-      ><i class="btn-scroll-top-icon fi-chevron-up"> </i
-    ></a>
-    <!-- Vendor scrits: js libraries and plugins-->
-    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
-    <script src="vendor/lightgallery/lightgallery.min.js"></script>
-    <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
-    <!-- Main theme script-->
-    <script th:src="@{/js/theme.min.js}"></script>
-  </body>
+                  </div>
+                </div>
+                
+		
+		<th:block th:if="${#lists.isEmpty(replyList)}">
+			<tr>
+				<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
+			</tr>
+		</th:block>
+	<br>
+</section>
+       
+                
+<script type="text/javascript">
+	$(document).ready(() => {
+		$("#btnUpdate").on("click", (e) => {
+			location.href = "/board/update?no=[[${board.bno}]]";
+		});
+		
+		$("#btnDelete").on("click", (e) => {
+			if(confirm("정말로 게시글을 삭제 하시겠습니까?")) {
+				location.replace("/board/delete?boardNo=[[${board.bno}]]");
+			}
+		});
+	});
+	
+	function deleteReply(replyNo, boardNo){
+		var url = "/board/replyDel?replyNo=";
+		var requestURL = url + replyNo +"&boardNo=" + boardNo;
+		location.replace(requestURL);
+	}
+	
+	function fileDownload(fno){
+		const url = '/board/fileDown';
+		fno = encodeURIComponent(fno)
+		location.href = url + '?fno=' + fno;
+	}
+</script>            
+
+          
+    
+    </main>
+  <!-- 푸터 -->
+  <th:block th:replace="common/footer :: footerFragment"></th:block>
+  <!-- 푸터 끝 -->
+
+  <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span
+      class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">
+    </i></a>
+  <!-- Vendor scrits: js libraries and plugins-->
+  <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/simplebar/dist/simplebar.min.js"></script>
+  <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="/vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="/vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+  <script src="/vendor/nouislider/dist/nouislider.min.js"></script>
+  <script src="/vendor/cleave.js/dist/cleave.min.js"></script>
+  <!-- Main theme script-->
+  <script src="/js/theme.min.js"></script>
+</body>
+
 </html>

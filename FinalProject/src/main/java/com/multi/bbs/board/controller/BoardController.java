@@ -99,9 +99,9 @@ public class BoardController {
 			return "/board/q_a";
 		}
 		
-		// 질문답변 분류하는 법
+		// 자유게시판 분류하는 법
 		if (param.getTypeList() != null && param.getTypeList().size() == 1 && param.getTypeList().get(0).equals("PLAIN")) {
-			return "/board/q_a";
+			return "/board/freeBoard";
 		}
 
 		

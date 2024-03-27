@@ -18,6 +18,7 @@
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
+    
     <!-- Page loading styles-->
     <style>
       @font-face {
@@ -45,7 +46,7 @@
         height: 100%;
         -webkit-transition: all .4s .2s ease-in-out;
         transition: all .4s .2s ease-in-out;
-        background-color: #fff;
+        background-color: #1f1b2d;
         opacity: 0;
         visibility: hidden;
         z-index: 9999;
@@ -73,7 +74,7 @@
         display: block;
         font-size: 1rem;
         font-weight: normal;
-        color: #666276;;
+        color: #fff;
       }
       .page-spinner {
         display: inline-block;
@@ -81,7 +82,7 @@
         height: 2.75rem;
         margin-bottom: .75rem;
         vertical-align: text-bottom;
-        border: .15em solid #bbb7c5;
+        border: .15em solid #9691a4;
         border-right-color: transparent;
         border-radius: 50%;
         -webkit-animation: spinner .75s linear infinite;
@@ -116,28 +117,52 @@
     </script>
     <!-- Vendor Styles-->
     <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen"  th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}" />
+    <link rel="stylesheet" media="screen"  th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}" />
+    <link rel="stylesheet" media="screen"  th:href="@{/vendor/nouislider/dist/nouislider.min.css}" />
+    
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="css/theme.min.css">
   </head>
+  
+      <!-- Vendor Styles-->
+    <link
+      rel="stylesheet"
+      media="screen"
+      th:href="@{/vendor/simplebar/dist/simplebar.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      media="screen"
+      th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}"
+    />
+    <link
+      rel="stylesheet"
+      media="screen"
+      th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}"
+    />
+  
+     <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}" />
+  
+  
   <!-- Body-->
-  <body class="bg-secondary">
+  <body class="">
     <!-- Page loading spinner-->
     <div class="page-loading active">
       <div class="page-loading-inner">
         <div class="page-spinner"></div><span>Loading...</span>
       </div>
     </div>
-    <main class="page-wrapper">
 
-     
-     <!-- 헤더 시작 -->
+      <!-- 헤더 시작 -->
       <th:block th:replace="common/header :: headerFragment"></th:block>
-      <!-- 헤더 끝 -->   
+      <!-- 헤더 끝 --> 
       	
       <main class="page-wrapper">
         <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 400px;">
           <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-              background-image: url('img/board/자유게시판.PNG'); background-size: cover; background-position: center;">
+              background-image: url('http://localhost/img/board/자유게시판.PNG'); background-size: cover; background-position: center;">
           </div>
     
           <div class="content-overlay container py-md-5">
@@ -193,29 +218,48 @@
 		<!-- page부 시작 -->
 
 
-    <!-- Pagination: with icons -->
+ <!-- Pagination: with icons -->
+  		<!-- 페이지 넘기는 데 필요 -->
+		<form name="searchForm" th:action="@{/board/list}" method="get">
+			<input type="hidden" name="page" value="1">
+			<input type="hidden" name="types" value="PLAIN">
+		</form>
+ 
+ 
     <section class="container d-flex justify-content-center mt-5">
+    <th:block th:if="${list != null && #lists.size(list) != 0}">
       <nav class="mt-2" aria-label="Page navigation example">
         <ul class="pagination pagination-lg">
-          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><i class="fi-chevron-left"></i></a>
+          <li class="page-item"><a class="page-link" href="#" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
           </li>
-          <li class="page-item d-sm-none"><span class="page-link page-link-static">2 / 5</span></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">2<span
+          
+          
+          <th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+         	<th:block th:if="${status.current == pageInfo.currentPage}">
+       
+          		<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"> [[${status.current}]] <span
                 class="visually-hidden">(current)</span></span></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
-          <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
-          <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a>
+          	</th:block>      
+          	<th:block th:if="${status.current != pageInfo.currentPage}">
+          <li class="page-item d-none d-sm-block"><a class="page-link"  th:onclick="|movePage(${status.current});|"> [[${status.current}]] </a></li>
+      
+          	</th:block>
+          </th:block>
+          
+          <li class="page-item"><a class="page-link" href="#" aria-label="Next"  th:onclick="|movePage(${pageInfo.nextPage});|"><i class="fi-chevron-right"></i></a>
           </li>
         </ul>
       </nav>
-    </section>
-          
-        </div>
-      </div>
-      </div>
+      </th:block>
+      <script type="text/javascript">
+			function movePage(page){
+				searchForm.page.value = page;
+				searchForm.submit();
+				}
+	  </script>
+    </section>        
     </main>
+    <!-- 페이지네이션 끝 -->
 
     <!-- 푸터 -->
     <th:block th:replace="common/footer :: footerFragment"></th:block>
