@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
-    <title>Finder | Sign In Page</title>
+    <title>쇼핑몰</title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
     <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
@@ -183,7 +183,9 @@
                 <article class="position-relative">
                   <div class="position-relative mb-3">
                     <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"><i class="fi-heart"></i></button>
+                    <a href="">
                     <img class="rounded-3" th:src="${item.imgurl1}" alt="">
+                    </a>
                   </div>
                   <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">[[${item.title}]]</a></h3>
                   <ul class="list-inline mb-0 fs-xs">
