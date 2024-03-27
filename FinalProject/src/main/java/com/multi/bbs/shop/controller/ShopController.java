@@ -23,17 +23,27 @@ public class ShopController {
 	
 
 	@GetMapping("shop/main")
-	public String shopmain(Model model, ProductParam param) {
-		System.out.println("쇼핑몰 요청 param : " + param.toString());
+	public String shopmain(Model model, ProductParam param, String order) {
 		int count = service.getproductcount(param.getSearchValue());
-		PageInfo pageInfo = new PageInfo(param.getPage(), 9, count, 9);
+		PageInfo pageInfo = new PageInfo(param.getPage(), 5, count, 9);
 		param.setLimit(pageInfo.getListLimit());
 		param.setOffset(pageInfo.getStartList() - 1);
-		List<Product> list = service.searchProductByTitle(param.getSearchValue(), param.getLimit(), param.getOffset());
+		System.out.println("쇼핑몰 요청 param : " + param.toString());
+		if (order == null) {
+			order = "asc";
+		}
+		if (order.equals("asc")) {
+			List<Product> list = service.searchProductByTitle(param.getSearchValue(), param.getLimit(), param.getOffset());
+			model.addAttribute("list", list);
+		} else if (order.equals("desc")) {
+			List<Product> list = service.searchProductByTitleDesc(param.getSearchValue(), param.getLimit(), param.getOffset());
+			model.addAttribute("list", list);
+		}
 		
 		model.addAttribute("pageInfo", pageInfo);
-		model.addAttribute("list", list);
 		model.addAttribute("param", param);
+		model.addAttribute("count", count);
+		model.addAttribute("order", order);
 		
 		return "shopping/shoppingMain";
 	}
