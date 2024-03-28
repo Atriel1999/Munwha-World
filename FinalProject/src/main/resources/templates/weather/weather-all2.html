@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title> 날씨 정보 </title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template" />
+  <meta name="keywords"
+    content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch" />
+  <meta name="author" content="Createx Studio" />
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicon and Touch Icons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg" />
+  <meta name="msapplication-TileColor" content="#766df4" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <!-- Page loading styles-->
+  <style>
+    @font-face {
+      font-family: "GmarketSansMedium";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    .gmarketfontM {
+      font-family: "GmarketSansMedium";
+    }
+
+    * {
+      font-family: "GmarketSansMedium";
+    }
+
+
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all 0.4s 0.2s ease-in-out;
+      transition: all 0.4s 0.2s ease-in-out;
+      background-color: #1f1b2d;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #fff;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: 0.75rem;
+      vertical-align: text-bottom;
+      border: 0.15em solid #9691a4;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner 0.75s linear infinite;
+      animation: spinner 0.75s linear infinite;
+    }
+
+    @-webkit-keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <!--차트 2개 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
+
+  <!-- Page loading scripts-->
+  <script>
+    (function () {
+      window.onload = function () {
+        var preloader = document.querySelector(".page-loading");
+        preloader.classList.remove("active");
+        setTimeout(function () {
+          preloader.remove();
+        }, 2000);
+      };
+    })();
+  </script>
+
+  <!-- Vendor Styles-->
+  <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css" />
+  <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css" />
+  <link rel="stylesheet" media="screen" href="vendor/lightgallery/css/lightgallery-bundle.min.css" />
+  <link rel="stylesheet" media="screen" href="vendor/nouislider/dist/nouislider.min.css" />
+
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="css/theme.min.css" />
+  <!--웨더 css -->
+  <link href="../dist/css/weather.css" rel="stylesheet" />
+</head>
+<!-- Body-->
+
+<body>
+  <!-- Page loading spinner-->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div>
+      <span>Loading...</span>
+    </div>
+  </div>
+  <!-- 헤더 시작 -->
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+    <div class="container">
+      <a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block"
+          src="img/myimages/ksw/FinalLogo.jpg" style="border-radius: 100%" width="60" alt="Finder" /></a>
+      <span style="font-size: 20pt; color: white">&nbsp문화월드 |</span>
+      <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+        <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem">
+          <!-- Menu items-->
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">문화재</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">행사</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-single.html">Single Job Page</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">박물관</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">쇼핑</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">추천</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">날씨정보</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" style="font-size: 15pt" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">커뮤니티</a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="job-board-home-v2.html">For Employers</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <a href="#" class="btn btn-primary btn-sm ms-2 order-lg-3">
+        <i class="fi-user me-2"></i><span>로그인</span>
+      </a>
+    </div>
+  </header>
+  <!-- 헤더 끝 -->
+  <main class="page-wrapper">
+    <!--  히어로    ================================================    -->
+    <section class="bg-dark" style="position: relative; overflow: hidden; height: 340px;">
+      <div style="width: 100%; height: 100%; 
+          background-image: url('img/weather_img/bg2.jpeg'); background-size: cover; background-position: center;">
+      </div>
+      <div class="text-light" style="margin-top: -110px; margin-left: 100px;">
+        <div class="display-3"> 날씨정보 </div>
+      </div>
+    </section>
+    <!--===============================================================-->
+    <!---======================================================== 오늘, 내일, 주간 -->
+    <section class="container">
+      <br>
+      <br>
+      <!--==================================================================  주간 -->
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <h1 class="h1 me-3"> 주간 예보 </h1>
+          <h6 class="text-primary mt-3" style="letter-spacing: 0.1em;"> WEEK </h6>
+        </div>
+        <h6 class="text-primary"> 강수확률 </h6>
+      </div>
+      <table class="table text-center" style="width: 1330px;">
+        <thead class="text-center">
+          <tr class="bg-secondary" style="height: 40px;">
+            <th scope="col" rowspan="2"> <b>지역</b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 10일(일) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 11일(월) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 12일(화) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 13일(수) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 14일(목) </b> </th>
+            <th scope="col" colspan="1" rowspan="1"> <b> 15일(금) </b> </th>
+            <th scope="col" colspan="1" rowspan="1"> <b> 16일(토) </b> </th>
+            <th scope="col" colspan="1" rowspan="1"> <b> 17일(일) </b> </th>
+          </tr>
+          <tr class="bg-secondary">
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> </b></th>
+            <th scope="col"> <b> </b></th>
+            <th scope="col"> <b></b> </th>
+          </tr>
+        </thead>
+        <tbody class="border-primary">
+          <!-- 서울, 인천, 경기도 -->
+          <tr>
+            <th rowspan="1"> <b> 서울 <br /> 인천 <br /> 경기도 </b></th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+          </tr>
+          <!-- 강원도 영서 -->
+          <tr>
+            <th rowspan="1"> <b> 강원도<br />영서</b></th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+          </tr>
+          <!-- 강원도 영동 -->
+          <tr>
+            <th rowspan="1"> <b>강원도<br />영동 </b></th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+          </tr>
+          <!-- 대전, 세종, 충청남도 -->
+          <tr>
+            <th rowspan="1"> <b> 대전<br />세종<br />충청남도 </b> </th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+
+          </tr>
+          <!--충청북도 -->
+          <tr>
+            <th rowspan="1"> <b>충청북도 </b></th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+          </tr>
+          <!-- 광주, 전라남도 -->
+          <tr>
+            <th rowspan="1"> <b> 광주<br />전라남도</b></th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+          </tr>
+          <!--전라북도-->
+          <tr>
+            <th rowspan="1"><b> 전라북도</b></th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+          </tr>
+          <!-- 부산, 울산, 경상남도 -->
+          <tr>
+            <th rowspan="1"> <b> 부산<br />울산<br />경상남도</b>
+            </th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+          </tr>
+          <!--대구, 경상북도 -->
+          <tr>
+            <th rowspan="1"> <b> 대구<br />경상북도</b></th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+          </tr>
+          <!-- 제주도 -->
+          <tr class="border-dark">
+            <th rowspan="1"> <b> 제주도 </b></th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+      <br>
+      <!--============================================================= (최저,최고기온 )-->
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+        </div>
+        <h6 class="text-primary"> 최저/최고기온(℃) </h6>
+      </div>
+      <table class="table text-center" style="width: 1330px;">
+        <thead class="text-center">
+          <tr class="bg-secondary" style="height: 40px;">
+            <th scope="col" rowspan="2"> <b>지역</b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 10일(일) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 11일(월) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 12일(화) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 13일(수) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 14일(목) </b> </th>
+            <th scope="col" colspan="1" rowspan="1"> <b> 15일(금) </b> </th>
+            <th scope="col" colspan="1" rowspan="1"> <b> 16일(토) </b> </th>
+            <th scope="col" colspan="1" rowspan="1"> <b> 17일(일) </b> </th>
+          </tr>
+          <tr class="bg-secondary">
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> </b></th>
+            <th scope="col"> <b> </b></th>
+            <th scope="col"> <b></b> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 최저/ 최고기온 -->
+          <tr class="border-dark">
+            <th>서울</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th>인천</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th>수원</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th>파주</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th>이천</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th>평택</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 춘천 </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 원주 </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th> 강릉 </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th>대전 </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th>세종</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th>홍성</th>
+            <th scope="col" colspan="2" rowspan="1"> <span class="text-info">1</span> / <span
+                class="text-danger">11</span> </th>
+            <th scope="col" colspan="2" rowspan="1"> <span class="text-info">2</span> / <span
+                class="text-danger">11</span> </th>
+            <th scope="col" colspan="2" rowspan="1"> <span class="text-info">3</span> / <span
+                class="text-danger">11</span> </th>
+            <th scope="col" colspan="2" rowspan="1"> <span class="text-info">4</span> / <span
+                class="text-danger">11</span> </th>
+            <th scope="col" colspan="2" rowspan="1"> <span class="text-info">5</span> / <span
+                class="text-danger">11</span> </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <!-- 
+          <tr class="border-dark ">
+            <th> 청주 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 충주 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 영동 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 광주 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 목포 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 여수 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 순천 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 광양 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 나주 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 전주 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 군산 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 정읍 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 남원 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 고창 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 무주 </th>
+          </tr>
+
+          <tr class="border-dark bg-secondary">
+            <th> 부산 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 울산 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 창원 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 진주 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 거창 </th>
+          </tr>
+          <tr class="border-dark bg-secondary">
+            <th> 통영 </th>
+          </tr>
+
+          <tr class="border-dark ">
+            <th> 대구 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 안동 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 포항 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 경주 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 울진 </th>
+          </tr>
+          <tr class="border-dark ">
+            <th> 울릉도 </th>
+          </tr>
+ 		  
+          <tr class="border-dark bg-secondary">
+            <th> 제주 </th>
+          </tr>
+          -->
+          <tr class="border-dark bg-secondary">
+            <th> 서귀포 </th>
+            <th scope="col" colspan="2" rowspan="1"> <span class="text-info">1</span> / <span
+                class="text-danger">11</span> </th>
+            <th scope="col" colspan="2" rowspan="1"> <span class="text-info">2</span> / <span
+                class="text-danger">11</span> </th>
+            <th scope="col" colspan="2" rowspan="1"> <span class="text-info">3</span> / <span
+                class="text-danger">11</span> </th>
+            <th scope="col" colspan="2" rowspan="1"> <span class="text-info">4</span> / <span
+                class="text-danger">11</span> </th>
+            <th scope="col" colspan="2" rowspan="1"> <span class="text-info">5</span> / <span
+                class="text-danger">11</span> </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+
+
+        </tbody>
+      </Table>
+      <br>
+      <br>
+      <!--=================================================== 주간 (강수량 + 최저,최고기온 )-->
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <h1 class="h1 me-3"> 주간 예보 </h1>
+          <h6 class="text-primary mt-3" style="letter-spacing: 0.1em;"> WEEK </h6>
+        </div>
+        <h6 class="text-primary">강수량, 최저/최고기온(℃) </h6>
+      </div>
+      <table class="table text-center" style="width: 1330px;">
+        <thead class="text-center">
+          <tr class="bg-secondary" style="height: 40px;">
+            <th scope="col" rowspan="2"> <b>지역</b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 10일(일) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 11일(월) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 12일(화) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 13일(수) </b> </th>
+            <th scope="col" colspan="2" rowspan="1"> <b> 14일(목) </b> </th>
+            <th scope="col" colspan="1" rowspan="1"> <b> 15일(금) </b> </th>
+            <th scope="col" colspan="1" rowspan="1"> <b> 16일(토) </b> </th>
+            <th scope="col" colspan="1" rowspan="1"> <b> 17일(일) </b> </th>
+          </tr>
+          <tr class="bg-secondary">
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> 오전</b></th>
+            <th scope="col"> <b> 오후</b></th>
+            <th scope="col"> <b> </b></th>
+            <th scope="col"> <b> </b></th>
+            <th scope="col"> <b></b> </th>
+          </tr>
+        </thead>
+        <tbody class="border-primary">
+          <!-- 서울, 인천, 경기도 -->
+          <tr>
+            <th rowspan="1"> <b> 서울 <br /> 인천 <br /> 경기도 </b></th>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_darkcloudy.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_manyclouds.png" alt="">
+              <h6>10%</h6>
+            </td>
+            <td class="week"><img src="img/weather_img/h_sunny.png" alt="">
+              <h6>10%</h6>
+            </td>
+          </tr>
+          <!-- 최저/ 최고기온 -->
+          <tr class="border-dark">
+            <th>서울</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th>인천</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th>수원</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th>파주</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th>이천</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+          <tr class="border-dark">
+            <th>평택</th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">1</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">2</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">3</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">4</span> / <span class="text-danger">11</span>
+            </th>
+            <th scope="col" colspan="2" rowspan="1">
+              <span class="text-info">5</span> / <span class="text-danger">11</span>
+            </th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+            <th> <span class="text-info">7</span> / <span class="text-danger">11</span></th>
+          </tr>
+        </tbody>
+      </Table>
+
+
+
+
+
+
+    </section>
+
+  </main>
+  <br><br>
+
+
+
+  <!-- 푸터 -->
+  <footer class="footer bg-dark">
+    <div class="container pt-3 pt-lg-3">
+      <div class="row pt-2 pt-lg-1">
+        <div class="col-lg-3 mt-4">
+          <h3 class="h5 text-light mb-2">문화월드의 소식을 구독해 보세요</h3>
+          <p class="fs-sm text-light opacity-70">
+            새로 업데이트되는 소식을 전해드립니다
+          </p>
+          <form class="form-group form-group-light w-100">
+            <div class="input-group input-group-sm">
+              <span class="input-group-text"> <i class="fi-mail"></i></span>
+              <input class="form-control" type="text" placeholder="Email 주소" />
+            </div>
+            <button class="btn btn-primary btn-icon btn-sm" type="button">
+              <i class="fi-send"></i>
+            </button>
+          </form>
+        </div>
+        <div class="col mt-5">
+          <a href="#" style="text-decoration: none"><span class="text-light"
+              style="font-size: 20pt">문화재</span></a><br /><br />
+          <a href="#" style="text-decoration: none"><span class="text-light" style="font-size: 20pt">추천페이지</span></a>
+        </div>
+        <div class="col mt-5">
+          <a href="#" style="text-decoration: none"><span class="text-light"
+              style="font-size: 20pt">문화재행사</span></a><br /><br />
+          <a href="#" style="text-decoration: none"><span class="text-light" style="font-size: 20pt">날씨정보</span></a>
+        </div>
+        <div class="col mt-5">
+          <a href="#" style="text-decoration: none"><span class="text-light"
+              style="font-size: 20pt">박물관</span></a><br /><br />
+          <a href="#" style="text-decoration: none"><span class="text-light" style="font-size: 20pt">모임</span></a>
+        </div>
+        <div class="col mt-5">
+          <a href="#" style="text-decoration: none"><span class="text-light"
+              style="font-size: 20pt">쇼핑</span></a><br /><br />
+          <a href="#" style="text-decoration: none"><span class="text-light" style="font-size: 20pt">커뮤니티</span></a>
+        </div>
+
+        <div class="col-lg-3 mb-2 mb-sm-4">
+          <div class="row">
+            <div class="col mt-2">
+              <span class="text-light" style="font-size: 40pt">문화</span>
+              <span class="text-light" style="font-size: 40pt">&nbsp;월드</span>
+            </div>
+            <div class="col mt-2">
+              <img src="img/myimages/ksw/FinalLogo.jpg" width="140px" style="border-radius: 100%" alt="" />
+              <div class="d-flex flex-wrap pt-2">
+                <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i
+                    class="fi-facebook"></i></a>
+                <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i
+                    class="fi-twitter"></i></a>
+                <a class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-2 me-2" href="#"><i
+                    class="fi-telegram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 끝 -->
+
+  <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span
+      class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">
+    </i></a>
+  <!-- Vendor scrits: js libraries and plugins-->
+  <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+  <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+  <script src="vendor/nouislider/dist/nouislider.min.js"></script>
+  <script src="vendor/cleave.js/dist/cleave.min.js"></script>
+  <!-- Main theme script-->
+  <script src="js/theme.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <title>문화월드</title>
+    <!-- SEO Meta Tags-->
+    <meta
+      name="description"
+      content="Finder - Directory &amp; Listings Bootstrap Template"
+    />
+    <meta
+      name="keywords"
+      content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch"
+    />
+    <meta name="author" content="Createx Studio" />
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Favicon and Touch Icons-->
+    <link href="/css/custom_yja.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg" />
+    <meta name="msapplication-TileColor" content="#766df4" />
+    <meta name="theme-color" content="#ffffff" />
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <!-- Page loading styles-->
+    <style>
+      @font-face {
+        font-family: "GmarketSansMedium";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      .gmarketfontM {
+        font-family: "GmarketSansMedium";
+      }
+      * {
+        font-family: "GmarketSansMedium";
+      }
+	  .navbar {
+        height: 110px;
+      }
+      .chat-box {
+		  height: 350px;
+		  overflow-y: scroll;
+		}
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all 0.4s 0.2s ease-in-out;
+        transition: all 0.4s 0.2s ease-in-out;
+        background-color: #1f1b2d;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity 0.2s ease-in-out;
+        transition: opacity 0.2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #fff;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: 0.75rem;
+        vertical-align: text-bottom;
+        border: 0.15em solid #9691a4;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner 0.75s linear infinite;
+        animation: spinner 0.75s linear infinite;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector(".page-loading");
+          preloader.classList.remove("active");
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+    </script>
+    <!-- Vendor Styles-->
+    <link
+      rel="stylesheet"
+      media="screen"
+      th:href="@{/vendor/simplebar/dist/simplebar.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      media="screen"
+      th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}"
+    />
+    <link
+      rel="stylesheet"
+      media="screen"
+      th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}"
+    />
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}" />
+  </head>
+  <!-- Body-->
+  <body>
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div>
+        <span>Loading...</span>
+      </div>
+    </div>
+    <!-- 헤더 시작 -->
+    <th:block th:replace="common/header :: headerFragment"></th:block>
+    <!-- 헤더 끝 -->
+
+    <main class="page-wrapper">
+    <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 480px;">
+      	<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+  			  background-image: url('img/img_yja/문화재.jpg'); background-size: cover; background-position: center;">
+		</div>
+
+      <div class="content-overlay container py-md-5">
+        <div class="order-md-1">
+          <h3 class="display-4 mb-4 me-lg-n5 text-lg-start text-center text-light" style="margin-top: 100px;">
+            문화재와 함께 역사 속으로 
+          </h1>
+          <h3 class="display-4 mb-4 me-lg-n5 text-lg-start text-center text-light">
+            <span class="d-inline-block text-color" style="color:#ab40ff"> 문화월드 </span>
+            와 함께 떠나요!
+          </h3>
+        </div>
+      </div>
+    </section>
+
+
+
+<section class="container section-3">
+	<div class="col-6">
+	
+	     <aside class="col-md-11">
+            <!-- Place card-->
+            <div class="card mb-4 p-2 shadow-sm">
+              <div class="card-body">
+                <!-- Place info-->
+                <div class="d-flex align-items-start mb-3 pb-2 border-bottom"><img src="img/city-guide/brands/hotel.svg" width="60" alt="Thumbnail">
+                  <div class="ps-2 ms-1">
+                    <h3 class="h5 mb-2"> 서울 토박이</h3>
+                    <ul class="list-unstyled d-flex flex-wrap fs-sm">
+                      <li class="me-2 mb-1 pe-1"><i class="fi-star-filled mt-n1 me-1 text-warning align-middle opacity-70"></i><b>총 가입자 </b>230명</li>
+                      <li class="me-2 mb-1 pe-1"><i class="fi-map-pin mt-n1 me-1 align-middle opacity-70"></i>주운영</li>
+                      <li class="me-2 mb-1 pe-1"><i class="fi-map-pin mt-n1 me-1 align-middle opacity-70"></i>박준영</li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Place contacts-->
+                <div class="mb-3 pb-3 border-bottom">
+                  <h4 class="h5 mb-2">모임 소개글</h4>
+					서울를 사랑하는 모든사람들을 위한 모임</br>
+					서울 문화재를 사랑하는 지역사람들</br>
+					전공을 파고있는 사람들</br>
+					모두모두 포용해서 좋은 모임을 만들어</br>
+					문화재를 사랑하고 알리고 함께 즐기는것이 목표입니다.</br>
+					@한달에 한번 정모</br>
+					@일주일에 한번씩 번개가 있음(강요X)</br>
+                  <!-- 
+					경주를 사랑하는 모든사람들을 위한 모임</br>
+					경주 문화재를 사랑하는 지역사람들</br>
+					전공을 파고있는 사람들</br>
+					모두모두 포용해서 좋은 모임을 만들어</br>
+					문화재를 사랑하고 알리고 함께 즐기는것이 목표입니다.</br>
+					@한달에 한번 정모</br>
+					@일주일에 한번씩 번개가 있음(강요X)</br>
+					@가입후 자기소개 작성해주세요.</br>
+					모두함께 즐거운 모임 활동 됩시다.</br>
+					 -->
+					</br>
+					<div class="col" style="">
+						<a class="btn btn-primary btn-lg rounded-pill w-sm-auto w-100"
+						 style="background-color:#ab40ff"	href="/toboardlist">모임 게시판 이동<i class="fi-chevron-right fs-sm ms-2"></i></a>
+					</div>
+                </div>
+                <!-- Place pricing-->
+
+                <!-- Place following-->
+              </div>
+            </div>
+          </aside>
+	</div>
+	
+	<div class="col-6">
+	          <aside class="col-md-12">
+            <!-- Place card-->
+            <div class="card mb-4 p-2 shadow-sm">
+              <div class="card-body">
+                <!-- Place info-->
+                <div class="d-flex align-items-start mb-3 pb-2 border-bottom">
+                
+                  <div class="ps-2 ms-1">
+                    <h3 class="h5 mb-2"> 모임 정모</h3>
+                    <ul class="list-unstyled d-flex flex-wrap fs-sm">
+                      <li class="me-2 mb-1 pe-1"><i class="fi-star-filled mt-n1 me-1 text-warning align-middle opacity-70"></i><b>참여자 </b>(12명)</li>
+                      <li class="me-2 mb-1 pe-1"><i class="fi-wallet mt-n1 me-1 align-middle opacity-70"></i>$15000</li>
+                      <li class="me-2 mb-1 pe-1"><i class="fi-map-pin mt-n1 me-1 align-middle opacity-70"></i>김용호</li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Place contacts-->
+                <div class="mb-3 pb-3 border-bottom">
+                  <h4 class="h5 mb-2">모임 연락처:</h4>
+                  <ul class="nav flex-column">
+									<li class="nav-item mb-2"><a
+										class="nav-link p-0 fw-normal d-flex align-items-start"
+										href="#"><i
+											class="fi-map-pin mt-1 me-2 align-middle opacity-70"></i>서울 동서울버스터미널</a></li>
+									<li class="nav-item mb-2"><a
+										class="nav-link d-inline-block p-0 fw-normal d-inline-flex align-items-start"
+										href="tel:3025550107"><i
+											class="fi-phone mt-1 me-2 align-middle opacity-70"></i>01080083704</a></li>
+									<li class="nav-item mb-2"><a
+										class="nav-link p-0 fw-normal d-flex align-items-start"
+										href="#"><i
+											class="fi-globe mt-1 me-2 align-middle opacity-60"></i>https</a></li>
+									<li class="nav-item"><a
+										class="nav-link p-0 fw-normal d-flex align-items-start"
+										href="mailto:bb-hotel@example.com"><i
+											class="fi-mail mt-1 me-2 align-middle opacity-70"></i>zoshs38@gmail.com</a></li>
+								</ul>
+								
+
+                </div>
+                <!-- Place pricing-->
+                <div class="mb-3 pb-4 border-bottom">
+                  <div class="row row-cols-1">
+                    <div class="col mb-3">
+                      <!-- <h4 class="h5 mb-0"><span class="fs-4">$50-100&nbsp;</span><span class="fs-base fw-normal text-body">/night</span></h4> -->
+                    </div>
+									<div class="col" style="">
+										<a class="btn btn-primary btn-lg rounded-pill w-sm-auto w-100"
+										 style="background-color:#ab40ff"	href="/tochat">채팅방 참여<i class="fi-chevron-right fs-sm ms-2"></i></a>
+									</div>
+								</div>
+                </div>
+                <!-- Place following-->
+              </div>
+            </div>
+          </aside>
+	</div>
+</section>
+
+      <section class="container section-3">
+        <div>
+          <h2>공지사항</h2>
+          <ul class="board">
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >행사 또 언제 있나요?</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >오늘 너무 재밌었어요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >주말에 시간내길 잘했어요!</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >담에 또 오려구요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >친구들이랑 왔는데 너무 좋았어요!</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >강아지도 좋아해요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >강아지도 좋아해요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >강아지도 좋아해요</a
+              ><span>2023.12.25</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2>모임 일정</h2>
+          <div class="souvenir">
+            <article>
+              <a
+                href="#"
+                class="d-block rounded-3 overflow-hidden"
+                style="border: 0.2px solid rgb(216, 216, 216)"
+              >
+                <img class="d-block" src="img/img_yja/상품1.jpg" alt="Image" />
+              </a>
+              <div class="py-3">
+                <h3 class="fs-base pt-1">
+                  <a class="nav-link" href="#"
+                    >모임을 떠나봅시다</a
+                  >
+                </h3>
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-decoration-none"
+                >
+                  <div>
+                    <h6 class="fs-sm mb-1" style="color: gray">2024.4.15</h6>
+                  </div>
+                </a>
+              </div>
+            </article>
+            <article>
+              <a
+                href="#"
+                class="d-block rounded-3 overflow-hidden"
+                style="border: 0.2px solid rgb(216, 216, 216)"
+              >
+                <img class="d-block" src="img/img_yja/상품1.jpg" alt="Image" />
+              </a>
+              <div class="py-3">
+                <h3 class="fs-base pt-1">
+                  <a class="nav-link" href="#"
+                    >모임을 떠나봅시다</a
+                  >
+                </h3>
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-decoration-none"
+                >
+                  <div>
+                    <h6 class="fs-sm mb-1" style="color: gray">2024.4.15</h6>
+                  </div>
+                </a>
+              </div>
+            </article>
+            <article>
+              <a
+                href="#"
+                class="d-block rounded-3 overflow-hidden"
+                style="border: 0.2px solid rgb(216, 216, 216)"
+              >
+                <img class="d-block" src="img/img_yja/상품1.jpg" alt="Image" />
+              </a>
+              <div class="py-3">
+                <h3 class="fs-base pt-1">
+                  <a class="nav-link" href="#"
+                    >모임을 떠나봅시다</a
+                  >
+                </h3>
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-decoration-none"
+                >
+                  <div>
+                    <h6 class="fs-sm mb-1" style="color: gray">2024.4.15</h6>
+                  </div>
+                </a>
+              </div>
+            </article>
+            <article>
+              <a
+                href="#"
+                class="d-block rounded-3 overflow-hidden"
+                style="border: 0.2px solid rgb(216, 216, 216)"
+              >
+                <img class="d-block" src="img/img_yja/상품1.jpg" alt="Image" />
+              </a>
+              <div class="py-3">
+                <h3 class="fs-base pt-1">
+                  <a class="nav-link" href="#"
+                    >모임을 떠나봅시다</a
+                  >
+                </h3>
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-decoration-none"
+                >
+                  <div>
+                    <h6 class="fs-sm mb-1" style="color: gray">2024.4.15</h6>
+                  </div>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="container section-3">
+        <div class="col-5">
+          <h2>자유게시판</h2>
+          <ul class="board">
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >행사 또 언제 있나요?</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >오늘 너무 재밌었어요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >주말에 시간내길 잘했어요!</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >담에 또 오려구요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >친구들이랑 왔는데 너무 좋았어요!</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >강아지도 좋아해요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >강아지도 좋아해요</a
+              ><span>2023.12.25</span>
+            </li>
+            <li>
+              <a href="post.html" style="text-decoration: none; color: black"
+                >강아지도 좋아해요</a
+              ><span>2023.12.25</span>
+            </li>
+          </ul>
+        </div>
+	        <div class="d-flex ms-auto col">
+        <div class="today-museum col-7">
+          <h2>모임 사진첩</h2>
+          <div class="today-museum__grid" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/aa5a2b0c-6c55-4353-8837-7fbc84e377bd.jpeg);
+                width: 180px;
+                height: 130px;
+                
+              "
+            >
+              
+
+            </div>
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(img/img_yja/경주박물관.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
+            </div>
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://upload.wikimedia.org/wikipedia/commons/0/0b/%EA%B2%BD%EC%A3%BC_%EB%B6%88%EA%B5%AD%EC%82%AC_%EC%B2%AD%EC%9A%B4%EA%B5%90_%EB%B0%8F_%EB%B0%B1%EC%9A%B4%EA%B5%90.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
+            </div>
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://previews.123rf.com/images/matriyoshka/matriyoshka1610/matriyoshka161000002/63843756-%EA%B3%A0%EA%B3%A0%ED%95%99-%EB%B0%9C%EA%B5%B4-%EA%B3%A0%EB%8C%80%EC%82%AC-%EA%B3%A0%EA%B3%A0%ED%95%99%EC%9E%90%EA%B0%80-%EA%B3%A0%EB%8C%80-%EC%9C%A0%EB%AC%BC%EC%9D%84-%EB%B0%9C%EA%B5%B4.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
+            </div>
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/aa5a2b0c-6c55-4353-8837-7fbc84e377bd.jpeg);
+                width: 180px;
+                height: 130px;
+                
+              "
+            >
+              
+
+            </div>
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(img/img_yja/경주박물관.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
+            </div>
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://upload.wikimedia.org/wikipedia/commons/0/0b/%EA%B2%BD%EC%A3%BC_%EB%B6%88%EA%B5%AD%EC%82%AC_%EC%B2%AD%EC%9A%B4%EA%B5%90_%EB%B0%8F_%EB%B0%B1%EC%9A%B4%EA%B5%90.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
+            </div>
+            <div
+              class="card bg-size-cover bg-position-center border-0 overflow-hidden"
+              style="
+                background-image: url(https://previews.123rf.com/images/matriyoshka/matriyoshka1610/matriyoshka161000002/63843756-%EA%B3%A0%EA%B3%A0%ED%95%99-%EB%B0%9C%EA%B5%B4-%EA%B3%A0%EB%8C%80%EC%82%AC-%EA%B3%A0%EA%B3%A0%ED%95%99%EC%9E%90%EA%B0%80-%EA%B3%A0%EB%8C%80-%EC%9C%A0%EB%AC%BC%EC%9D%84-%EB%B0%9C%EA%B5%B4.jpg);
+                width: 180px;
+                height: 130px;
+
+              "
+            >
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 푸터 -->
+    <th:block th:replace="common/footer :: footerFragment"></th:block>
+    <!-- 푸터 끝 -->
+
+	<!-- 챗봇 기능 -->
+    <script>
+    	var ws;
+    	var memberId = "Question";
+    
+		function connect() {
+			ws = new WebSocket('ws://localhost:80/chat.do');
+			// 채팅 입장
+			ws.onopen = function() {
+                console.log("웹소켓 연결 생성");
+                
+				var msg = {
+                    type: "register",
+                    memberId: memberId
+                }
+                
+                ws.send(JSON.stringify(msg));
+			};
+			
+			ws.onerror = function(event){
+				console.log(event);
+			}
+			// 서버에서 메세지 수신
+			ws.onmessage = function(e) {
+				var msg = e.data;
+				$('#chat-box').append(
+					  "<div class='media w-50 mb-3'><img src='img/myimages/ksw/FinalLogo.jpg' alt='user' width='50' class='img-thumbnail rounded-circle'>"+
+		                "<div class='media-body ml-3'>"+
+		                  "<div class='bg-light rounded py-2 px-3 mb-2'>"+
+		                    "<p class='text-small mb-0 text-muted'>"+
+		                    msg +
+		                    "</p>"+
+		                  "</div>"+
+		                "</div>"+
+		              "</div>"
+					);
+				
+                const top = $('#chat-box').prop('scrollHeight');
+                $('#chat-box').scrollTop(top);
+			};
+			
+			ws.onclose = function() {
+				console.log(ws);
+				console.log("연결종료");
+			};
+		}
+		connect();
+		
+
+		// 사용자 채팅 송신
+		function send() {
+            var chat = $("#userChat").val();
+            $('#chat-box').append(
+            		"<div class='media w-50 ms-auto mb-3'>"+
+	                "<div class='media-body'>"+
+	                  "<div class='bg-primary rounded py-2 px-3 mb-2'>"+
+	                    "<p class='text-small mb-0 text-white'>"+
+	                    chat +
+	                    "</p>"+
+	                  "</div>"+
+	                "</div>"+
+	              "</div>"
+    			);
+    			
+            const top = $('#chat-box').prop('scrollHeight');
+            $('#chat-box').scrollTop(top);
+            
+            var sendMsg = {
+            	id : memberId,
+                type: "chat",
+                target: "",
+                msg: chat
+            }
+            ws.send(JSON.stringify(sendMsg));
+   			$('#userChat').val("");
+        }
+    	$(()=>{
+    		var startMsg = {
+   				id : memberId,
+                type: "chat",
+                target: "",
+                msg: "안녕하세요"
+    		}
+            ws.send(JSON.stringify(startMsg));
+    	});
+    	$(document).ready(function() {
+    		  $(window).keydown(function(event){
+    		    if(event.keyCode == 13) {
+    		      event.preventDefault();
+    		      return false;
+    		    }
+    		  });
+    		});
+    </script>
+
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
+      ><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span
+      ><i class="btn-scroll-top-icon fi-chevron-up"> </i
+    ></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
+    <script th:src="@{/vendor/tiny-slider/dist/min/tiny-slider.js}"></script>
+    <script th:src="@{/vendor/lightgallery/lightgallery.min.js}"></script>
+    <script th:src="@{/vendor/lightgallery/plugins/video/lg-video.min.js}"></script>
+    <!-- Main theme script-->
+    <script th:src="@{/js/theme.min.js}"></script>
+  </body>
+</html>
