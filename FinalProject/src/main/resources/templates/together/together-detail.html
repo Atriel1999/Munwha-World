@@ -660,15 +660,7 @@
             ws.send(JSON.stringify(sendMsg));
    			$('#userChat').val("");
         }
-    	$(()=>{
-    		var startMsg = {
-   				id : memberId,
-                type: "chat",
-                target: "",
-                msg: "안녕하세요"
-    		}
-            ws.send(JSON.stringify(startMsg));
-    	});
+
     	$(document).ready(function() {
     		  $(window).keydown(function(event){
     		    if(event.keyCode == 13) {
