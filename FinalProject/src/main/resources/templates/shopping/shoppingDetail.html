@@ -113,12 +113,14 @@
       })();
       
     </script>
+    
     <!-- Vendor Styles-->
-    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
-    <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css"/>
-    <link rel="stylesheet" media="screen" href="vendor/flatpickr/dist/flatpickr.min.css"/>
+    <link rel="stylesheet" media="screen" th:href="@{/vendor/simplebar/dist/simplebar.min.css}"/>
+    <link rel="stylesheet" media="screen" th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}"/>
+    <link rel="stylesheet" media="screen" th:href="@{/vendor/flatpickr/dist/flatpickr.min.css}"/>
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}">
+    
   </head>
   <!-- Body-->
   <body class="bg-secondary">
@@ -189,10 +191,10 @@
       <!-- 헤더 끝 -->
       <!-- Page Title-->
       <div class="container-fluid">
-        <div class="container d-lg-flex justify-content-between" style= "margin-top: 150px; margin-left: 300px;">
-          <h1>곤룡포잔</h1>
+        <div class="container d-lg-flex justify-content-between" style= "margin-top: 150px;">
+          <h1 th:text="${item.title}"></h1>
         </div>
-      <div class="container">
+       <div class="container">
         <!-- Gallery + details-->
         <div class="bg-light shadow-lg rounded-3 px-4 py-3 mb-5">
           <div class="px-lg-3">
@@ -203,24 +205,19 @@
                   <div class="tns-slides-count text-light"><i class="fi-image fs-lg me-2"></i>
                     <div class="ps-1"><span class="tns-current-slide fw-bold"></span><span class="fs-5 fw-bold">/</span><span class="tns-total-slides fs-5 fw-bold"></span></div>
                   </div>
-                  <div class="tns-carousel-wrapper">
+                  <div class="tns-carousel-wrapper" style="">
                     <div class="tns-slides-count text-light"><i class="fi-image fs-lg me-2"></i>
                       <div class="ps-1"><span class="tns-current-slide fs-5 fw-bold"></span><span class="fs-5 fw-bold">/</span><span class="tns-total-slides fs-5 fw-bold"></span></div>
-                    </div>
-                    <div class="tns-carousel-inner" data-carousel-options="{&quot;navAsThumbnails&quot;: true, &quot;navContainer&quot;: &quot;#thumbnails&quot;, &quot;gutter&quot;: 12, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false},&quot;500&quot;:{&quot;controls&quot;: true}}}">
-                      <div><img class="rounded-3" src="img/shopping_img/곤룡포잔 1.PNG" alt="Image"></div>
-                      <div><img class="rounded-3" src="img/shopping_img/곤룡포잔2.PNG" alt="Image"></div>
-                      <div><img class="rounded-3" src="img/shopping_img/곤룡포자 3.PNG" alt="Image"></div>
-                      <div><img class="rounded-3" src="img/shopping_img/곤룡포자4.PNG" alt="Image"></div>
-                      <div><img class="rounded-3" src="img/shopping_img/곤룡포자5.PNG" alt="Image"></div>
+                    </div> 
+                    <div class="tns-carousel-inner">
                     </div>
                   </div>
+                  <img th:src="@{${item.imgurl1}}">
                   <ul class="tns-thumbnails" id="thumbnails">
-                    <li class="tns-thumbnail"><img src="img/shopping_img/곤룡포잔 1.PNG" alt="Thumbnail"></li>
-                    <li class="tns-thumbnail"><img src="img/shopping_img/곤룡포잔2.PNG" alt="Thumbnail"></li>
-                    <li class="tns-thumbnail"><img src="img/shopping_img/곤룡포자 3.PNG" alt="Thumbnail"></li>
-                    <li class="tns-thumbnail"><img src="img/shopping_img/곤룡포자4.PNG" alt="Thumbnail"></li>
-                    <li class="tns-thumbnail"><img src="img/shopping_img/곤룡포자5.PNG" alt="Thumbnail"></li>
+                    <li class="tns-thumbnail"><img th:src="@{${item.imgurl1}}" alt="Thumbnail"></li>
+                    <li class="tns-thumbnail"><img th:src="@{${item.imgurl2}}" alt="Thumbnail"></li>
+                    <li class="tns-thumbnail"><img th:src="@{${item.imgurl3}}" alt="Thumbnail"></li>
+                    <li class="tns-thumbnail"><img th:src="@{${item.imgurl4}}" alt="Thumbnail"></li>
                   </ul>
                 </div>
               </div>
@@ -232,7 +229,7 @@
                       </div><span class="d-inline-block fs-sm text-body align-middle mt-1 ms-1">74 Reviews</span></a>
                       <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="찜하기"><i class="fi-heart"></i></button>
                   </div>
-                  <div class="mb-3"><span class="h3 fw-normal text-accent me-1">35000원</span>
+                  <div class="mb-3"><span class="h3 fw-normal text-accent me-1" th:text="|${#numbers.formatInteger(item.price,3,'COMMA')}원|"></span>
                   </div>
                   <div class="position-relative me-n4 mb-3">
                   <form class="mb-grid-gutter" method="post">
@@ -244,7 +241,7 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                       </select>
-                      <button class="btn btn-primary btn-shadow d-block w-100" type="submit"><i class="ci-cart fs-lg me-2"></i>Add to Cart</button>
+                      <button class="btn btn-primary btn-shadow d-block w-100" type="submit"><i class="ci-cart fs-lg me-2"></i>장바구니 추가</button>
                     </div>
                   </form>
                   <!-- Product panels-->
@@ -253,7 +250,7 @@
                       <h3 class="accordion-header"><a class="accordion-button" href="#productInfo" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="productInfo"><i class="fi-info-circle text-muted fs-lg align-middle mt-n1 me-2"></i>Product info</a></h3>
                       <div class="accordion-collapse collapse show" id="productInfo" data-bs-parent="#productPanels">
                         <div class="accordion-body">
-                          <h6 class="fs-sm mb-2">곤룡포잔은 청색, 적색, 백색잔 3가지 컬러로 구성되어 있으며 패키지 뒷면에 한글과 영문 설명이 표기되어 있어 외국인 선물로 추천합니다.</h6>
+                          <h6 class="fs-sm mb-2" th:text="${item.description}"></h6>
                         </div>
                       </div>
                     </div>
@@ -278,6 +275,8 @@
                               <br> ※ 고객님의 마음이 바뀌어 교환, 반품을 하실 경우 상품반송 비용은 고객님께서 부담하셔야 합니다. (색상 교환, 사이즈 교환 등 포함)
                               서비스문의 기업·기관주문/대량주문/로고인쇄 문의 
                               <br><br> ■ 전화번호 : 02-2270-1208 ■ E-mail : b2b@chf.or.kr
+                              <br>브랜드: <span th:text="${item.brand}"></span>
+                              <br>판매처: <span th:text="${item.mallname}"></span> <a th:href="@{${item.link}}">판매처 바로가기</a>
                             </ul>
                             </h6>
                         </div>

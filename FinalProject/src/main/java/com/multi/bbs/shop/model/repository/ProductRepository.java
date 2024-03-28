@@ -10,6 +10,7 @@ import com.multi.bbs.shop.model.vo.Product;
 
 
 public interface ProductRepository extends JpaRepository<Product, Integer>{
+	
 	Product findByPno(int pno);
 	
 	@Query("select p from Product p WHERE p.title like concat('%', :title, '%') ORDER BY p.price ASC LIMIT :limit OFFSET :offset")

@@ -20,6 +20,10 @@ public class ShopService {
 //	@Autowired
 //	private CartRepository crepo;
 	
+	public Product findByPno(int pno) {
+		return prepo.findByPno(pno);
+	}
+	
 	
 	public List<Product> searchProductByTitle(String title, int limit, int offset) {
 		return prepo.findByTitleContaining(title, limit, offset);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.multi.bbs.common.util.PageInfo;
 import com.multi.bbs.shop.model.service.ShopService;
@@ -46,7 +47,10 @@ public class ShopController {
 	}
 	
 	@GetMapping("shop/detail")
-	public String shopdetail(Model model) {
+	public String shopdetail(Model model, @RequestParam("pno") int pno) {
+		Product product = service.findByPno(pno);
+		
+		model.addAttribute("item",product);
 		return "shopping/shoppingDetail";
 	}
 	
