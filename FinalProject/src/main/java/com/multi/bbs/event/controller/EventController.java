@@ -43,7 +43,7 @@ public class EventController {
 			if (eList.get(i).getSdate() == 0 || eList.get(i).getEdate() == 0) {
 				continue;
 			}
-			if (eList.get(i).getSdate() < 10000000 || eList.get(i).getEdate() > 10000000) {
+			if (eList.get(i).getSdate() < 10000000 || eList.get(i).getEdate() > 100000000) {
 				continue;
 			}
 			hash.put("title", eList.get(i).getSubtitle());
