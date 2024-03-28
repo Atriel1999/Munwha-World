@@ -242,19 +242,17 @@
             <li class="breadcrumb-item active" aria-current="page"> 박물관 검색 </li>
           </ol>
         </nav>
-        <h1 class="h2 mb-sm-3"> 박물관 검색 결과 </h1>
-        <!-- Sorting-->
-        <form action="#" th:action="@{/museumlist}" method="GET">
-        <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
-          <div class="d-flex align-items-center flex-shrink-0">
-            
-          </div>
+        <h1 class="h2"> 박물관 검색 결과 </h1>
+  
+       <div class="mb-1" style="margin-top: -25px">
+        <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch "
+          >
           <hr class="d-none d-sm-block w-100 mx-4">
           <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted">
             <i class="fi-check-circle me-2"></i><span class="h6 mt-3" style="color: #811faf" th:text="${museumCount} + ' 검색결과' "></span>
           </div>
         </div>
-        </form>
+     
       </div>
     </section>
     <section class="container">
