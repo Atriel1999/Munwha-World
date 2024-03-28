@@ -617,6 +617,24 @@
 		          <h2>챗봇</h2>
 	            <div class="px-4 py-5 alert alert-secondary chat-box" id="chat-box">
 	
+	              <!-- Reciever Message-->
+	              <div class="media w-50 ms-auto mb-3">
+	                <div class="media-body">
+	                  <div class="bg-primary rounded py-2 px-3 mb-2">
+	                    <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
+	                  </div>
+	                </div>
+	              </div>
+	
+	              <!-- Sender Message-->
+	              <div class="media w-50 mb-3"><img src="img/myimages/ksw/FinalLogo.jpg" alt="user" width="50" class="img-thumbnail rounded-circle">
+	                <div class="media-body ml-3">
+	                  <div class="bg-light rounded py-2 px-3 mb-2">
+	                    <p class="text-small mb-0 text-muted">Test, which is a new approach</p>
+	                  </div>
+	                </div>
+	              </div>
+	
 	            </div>
 	
 	            <!-- Typing area -->
@@ -771,29 +789,102 @@
         <div>
           <h2>기념품</h2>
           <div class="souvenir">
-          	<th:block  th:each="item : ${pList}">
             <article>
               <a
                 href="#"
                 class="d-block rounded-3 overflow-hidden"
                 style="border: 0.2px solid rgb(216, 216, 216)"
               >
-                <img class="d-block" th:src="${item.imgurl1}" alt="Image" />
+                <img class="d-block" src="img/img_yja/상품1.jpg" alt="Image" />
               </a>
               <div class="py-3">
                 <h3 class="fs-base pt-1">
                   <a class="nav-link" href="#"
-                    >[[${item.title}]]</a
+                    >This Year is All About New Harley Davidson</a
                   >
                 </h3>
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-decoration-none"
+                >
                   <div>
-                  	<i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle">
-                  	</i>
-                    <span class="fs-sm mb-1" style="color: gray">[[${item.price}]]원</span>
+                    <h6 class="fs-sm mb-1" style="color: gray">2,500원</h6>
                   </div>
+                </a>
               </div>
             </article>
-          	</th:block>
+            <article>
+              <a
+                href="#"
+                class="d-block rounded-3 overflow-hidden"
+                style="border: 0.2px solid rgb(216, 216, 216)"
+              >
+                <img class="d-block" src="img/img_yja/상품1.jpg" alt="Image" />
+              </a>
+              <div class="py-3">
+                <h3 class="fs-base pt-1">
+                  <a class="nav-link" href="#"
+                    >This Year is All About New Harley Davidson</a
+                  >
+                </h3>
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-decoration-none"
+                >
+                  <div>
+                    <h6 class="fs-sm mb-1" style="color: gray">2,500원</h6>
+                  </div>
+                </a>
+              </div>
+            </article>
+            <article>
+              <a
+                href="#"
+                class="d-block rounded-3 overflow-hidden"
+                style="border: 0.2px solid rgb(216, 216, 216)"
+              >
+                <img class="d-block" src="img/img_yja/상품1.jpg" alt="Image" />
+              </a>
+              <div class="py-3">
+                <h3 class="fs-base pt-1">
+                  <a class="nav-link" href="#"
+                    >This Year is All About New Harley Davidson</a
+                  >
+                </h3>
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-decoration-none"
+                >
+                  <div>
+                    <h6 class="fs-sm mb-1" style="color: gray">2,500원</h6>
+                  </div>
+                </a>
+              </div>
+            </article>
+            <article>
+              <a
+                href="#"
+                class="d-block rounded-3 overflow-hidden"
+                style="border: 0.2px solid rgb(216, 216, 216)"
+              >
+                <img class="d-block" src="img/img_yja/상품1.jpg" alt="Image" />
+              </a>
+              <div class="py-3">
+                <h3 class="fs-base pt-1">
+                  <a class="nav-link" href="#"
+                    >This Year is All About New Harley Davidson</a
+                  >
+                </h3>
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-decoration-none"
+                >
+                  <div>
+                    <h6 class="fs-sm mb-1" style="color: gray">2,500원</h6>
+                  </div>
+                </a>
+              </div>
+            </article>
           </div>
         </div>
       </section>
