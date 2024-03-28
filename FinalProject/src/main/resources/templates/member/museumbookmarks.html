@@ -3,11 +3,28 @@
 
              <!-- 즐겨찾기 목록 시작 -->
             <div class="col-md-9" id="listarea">
+            <th:block th:if="${bookmarks == null || bookmarks.isEmpty()}">
+				<br>
+					<div class="h3 text-primary"> 즐겨찾기에 추가된 박물관이 없습니다.</div>
+				
+			</th:block>
+            
+            
+            
             <th:block th:each="item : ${bookmarks}">
               <!-- 즐겨찾기 시작 -->
               <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
                 <!-- 여기에 대표 이미지 -->
-                <a th:href="@{/museumview(msno=${item.museum?.msno})}" class="card-img-top" style="background-image: url('/img/museum_img/hero2.jpg');"></a>
+                <!-- imageUrl이 있는 경우 -->
+				<div th:if="${item.museum?.imageUrl != null}" 
+    				 th:style="'background-image: url(' + ${item.museum?.imageUrl} + ');'" 
+    						 class="card-img-top"></div>
+
+					<!-- imageUrl이 없는 경우  -->
+					<div th:unless="${item.museum?.imageUrl != null}" 
+     					style="background-image: url('/img/museum_img/bg-6.jpg');" 
+     						class="card-img-top"></div>
+              
                 
 				<div class="card-body">
   				<h3 class="pt-1 mb-2 h2">
@@ -17,10 +34,16 @@
   				<p class="text-muted h4">[[${item.museum?.msaddress}]]</p>
   				<p class="text-muted h4">[[${item.museum?.mstel}]]</p>
   
-  				<span class="float-end"><a href="#"><i class="fi-trash alert-danger h4"></i></a></span>
+  				 <span class="float-end">
+  				  <a th:href="@{/member/deleteBookmark(bno=${item.bno})}"
+   				    onclick="return confirm('이 즐겨찾기를 삭제하시겠습니까?');">
+   				     <i class="fi-trash alert-danger h4"></i>
+   					 </a>
+					</span>
+  				
 				</div>
               </article>
               <!-- 즐겨찾기 끝 -->
               </th:block>
               </div>
-				</html>
+</html>

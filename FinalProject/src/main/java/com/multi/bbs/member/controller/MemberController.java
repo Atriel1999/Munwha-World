@@ -14,9 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.multi.bbs.heritage.model.service.HeritageService;
 import com.multi.bbs.heritage.model.vo.HBookmark;
@@ -314,7 +316,31 @@ public class MemberController {
         model.addAttribute("bookmarks", bookmarks);
         return "member/museumbookmarks"; 
     }
+    @GetMapping("/member/deleteBookmark")
+    public String deleteBookmark(@RequestParam("bno") int bno, 
+                                 @SessionAttribute(name = "loginMember", required = false) Member loginMember,
+                                 RedirectAttributes redirectAttributes) {
+        MuseumBookmark bookmark = museumservice.findbmkByBno(bno);
+
+        if (bookmark != null && bookmark.getMno() == loginMember.getMno()) {
+            museumservice.deleteBookmark(bno);
+            redirectAttributes.addFlashAttribute("msg", "즐겨찾기가 삭제되었습니다.");
+        } else {
+            redirectAttributes.addFlashAttribute("msg", "즐겨찾기 삭제 권한이 없습니다.");
+        }
+
+        return "redirect:/mypageBookmarks##";
+    }
+
+
+    
+
+    
+    
+
 }
+
+
 
 
 
