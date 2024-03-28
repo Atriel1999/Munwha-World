@@ -24,6 +24,8 @@ import com.multi.bbs.heritage.model.vo.Heritage;
 import com.multi.bbs.kakao.KakaoService;
 import com.multi.bbs.member.model.service.MemberService;
 import com.multi.bbs.member.model.vo.Member;
+import com.multi.bbs.museum.model.service.MuseumService;
+import com.multi.bbs.museum.model.vo.MuseumBookmark;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,6 +43,9 @@ public class MemberController {
 	
 	@Autowired
 	private HeritageService heritageService;
+	
+	@Autowired
+	private MuseumService museumservice;
 	
 	@PostMapping("/login")
 	String login(Model model, String memberId, String password) {
@@ -300,8 +305,15 @@ public class MemberController {
 		return "member/hbmklist";
 	}
 	
-	
-	
+	  // 박물관 북마크 
+    @PostMapping("/member/museumbook")
+    public String getbookmarks(Model model,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember
+			) {
+        List<MuseumBookmark> bookmarks = museumservice.findbmkByMno(loginMember.getMno());
+        model.addAttribute("bookmarks", bookmarks);
+        return "member/museumbookmarks"; 
+    }
 }
 
 
