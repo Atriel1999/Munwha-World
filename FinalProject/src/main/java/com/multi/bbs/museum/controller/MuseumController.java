@@ -3,6 +3,7 @@ package com.multi.bbs.museum.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.multi.bbs.common.util.PageInfo;
 import com.multi.bbs.heritage.model.vo.HBookmark;
@@ -112,13 +114,14 @@ public class MuseumController {
 		MuseumReply result = service.saveReply(reply);
 
 		if (result != null) {
-			model.addAttribute("msg", "리플이 등록되었습니다.");
+			model.addAttribute("msg", "이용후기가 등록되었습니다.");
 		} else {
-			model.addAttribute("msg", "리플 등록에 실패하였습니다.");
+			model.addAttribute("msg", "이용후기 등록이 실패하였습니다.");
 		}
 		model.addAttribute("location", "/museumview?no=" + msno);
 		return "/common/msg";
 	}
+	
 	
 	@GetMapping("/replyDel")
 	public String deleteReply(Model model, @SessionAttribute(name = "loginMember", required = false) Member loginMember,
@@ -126,34 +129,36 @@ public class MuseumController {
 		log.info("리플 삭제 요청");
 		service.deleteReply(replyNo);
 
-		model.addAttribute("msg", "리플 삭제가 정상적으로 완료되었습니다.");
+		model.addAttribute("msg", "이용후기 삭제가 정상적으로 완료되었습니다.");
 		model.addAttribute("location", "/museumview?no=" + museumNo);
 		return "/common/msg";
 	}
 	
 	
-	// 북마크 
-	@GetMapping("/museumbookmark")
-	public String MBookmark(Model model, @RequestParam int mno, @RequestParam int msno) {
-		MuseumBookmark mbookmark = new MuseumBookmark(0, service.findByNo(msno), msno, mno);
-		
-		// 북마크 저장
-		if (service.getBookmarkByMsnoAndMno(msno, mno) == null) {
-			System.out.println("북마크 저장요청");
-			service.saveBookmark(mbookmark);
-			model.addAttribute("msg", "즐겨찾기 저장");
-			model.addAttribute("location", "/museumview?no=" + msno);
-		} else if (service.getBookmarkByMsnoAndMno(msno, mno) != null) {
-			// 북마크 삭제
-			int bno = service.getBookmarkByMsnoAndMno(msno, mno).getBno();
-			System.out.println("북마크 삭제요청");
-			service.deleteBookmark(bno);
-			model.addAttribute("msg", "즐겨찾기 삭제");
-			model.addAttribute("location", "/museumview?no=" + msno);
-		}
-		
-		return "/common/msg";
-	}
+	// 북마크  --> 박물관 상세페이지에서 북마크 추가, 삭제 가능 
+	@GetMapping("/Bookmark")
+	public String toggleBookmark(Model model, int mno, int msno) {
+        MuseumBookmark mbookmark = new MuseumBookmark(0, service.findByNo(msno),msno,mno);
+        
+     // 북마크 저장
+     		if (service.findBookmarkByMsnoAndMno(msno, mno) == null) {
+     			System.out.println("북마크 저장요청");
+     			service.addBookmark(mbookmark);
+     			model.addAttribute("msg", "즐겨찾기 저장");
+     			model.addAttribute("location",  "/museumview?no=" + msno);
+     		} else if (service.findBookmarkByMsnoAndMno(msno, mno) != null) {
+     			// 북마크 삭제
+     			int bno = service.findBookmarkByMsnoAndMno(msno, mno).getBno();
+     			System.out.println("북마크 삭제요청");
+     			service.deleteBookmark(bno);
+     			model.addAttribute("msg", "즐겨찾기 삭제");
+     			model.addAttribute("location",  "/museumview?no=" + msno);
+     		}
+        return "/common/msg"; 
+    }
 	
+	
+	
+  
 	
 }

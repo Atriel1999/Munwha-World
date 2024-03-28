@@ -184,7 +184,8 @@
                     <i class="fi-heart opacity-70 me-2 h5"></i><span class="h5">행사 즐겨찾기</span>
                     <!-- <span class="text-muted ms-auto h5">(0)</span> --></a>
                   </li>
-                  <li><a class="nav-link fw-normal d-flex align-items-center px-0 py-1" href="#">
+                  <li><a class="nav-link fw-normal d-flex align-items-center px-0 py-1" 
+                  		onclick ="getbookmarks();" href="#">
                     <i class="fi-heart opacity-70 me-2 h5"></i><span class="h5">박물관 즐겨찾기</span>
                     <!-- <span class="text-muted ms-auto h5">(0)</span> --></a>
                   </li>
@@ -192,7 +193,7 @@
               </div>
             </div>
 
-            <!-- 즐겨찾기 목록 시작 -->
+             <!-- 즐겨찾기 목록 시작 -->
             <div class="col-md-9" id="listarea">
               <!-- 즐겨찾기 시작 -->
               <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
@@ -238,8 +239,24 @@
 					console.log(jqXHR);
 				})
 		}
+		
+		function getbookmarks(){
+			$.ajax({
+				type: "post",
+				url: "/member/museumbook",
+				dataType: "text",
+			})
+				.done(function(result){
+					console.log(result);
+					$("#listarea").replaceWith(result);
+				})
+				.fail(function(jqXHR){
+					console.log(jqXHR);
+				})
+		}
 	</script>
-
+	
+	
 
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
