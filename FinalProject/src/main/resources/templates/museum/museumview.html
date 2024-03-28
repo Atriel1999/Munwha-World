@@ -422,18 +422,21 @@
               </div>
               <div class="text-nowrap">
               <th:block th:if="${session.loginMember != null}">
+               
                 <button
                   class="btn btn-icon btn-light-primary btn-xs text-warning shadow-sm rounded-circle ms-2 mb-2 me-2"
-                  type="button" data-bs-toggle="tooltip" title="즐겨찾기"  th:onclick="'bmk('+${session.loginMember.mno}+', '+${museum.msno}+');'"><i class="fi-heart"></i>
+                  type="button" data-bs-toggle="tooltip" title="즐겨찾기" th:onclick="'toggleBookmark(' + ${session.loginMember.mno} + ', ' + ${museum.msno} + ');'"><i class="fi-heart"></i>
                 </button>
+                
                 </th:block>
-                <script>
-              		function bmk(mno, msno){
-					var url = "/museumbookmark?mno=";
-					var requestURL = url + mno +"&msno=" + msno;
-	  				location.replace(requestURL);
-					}
+                <script type="text/javascript">
+   					 function toggleBookmark(mno, msno) {
+   						var url = "Bookmark?mno=";
+   						var requestURL = url + mno +"&msno=" + msno;
+   				  		location.replace(requestURL);
+   						 }
 				</script>
+        
                 <!--========================================================= 카카오톡 공유하기 -->
                 <div class="btn-xs d-inline-block shadow-sm" type="button" data-bs-toggle="tooltip" title="공유하기">
                   <a id="kakaotalk-sharing-btn" href="javascript:;">

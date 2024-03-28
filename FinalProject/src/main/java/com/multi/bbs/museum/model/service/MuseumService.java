@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.multi.bbs.heritage.model.vo.HBookmark;
+import com.multi.bbs.member.model.repository.MemberRepository;
+import com.multi.bbs.member.model.vo.Member;
 import com.multi.bbs.museum.model.repository.MuseumBookmarkRepository;
 import com.multi.bbs.museum.model.repository.MuseumReplyRepository;
 import com.multi.bbs.museum.model.repository.MuseumRepository;
@@ -22,6 +24,7 @@ import com.multi.bbs.museum.model.vo.MuseumParam;
 import com.multi.bbs.museum.model.vo.MuseumReply;
 import com.multi.bbs.naverapi.ApiExamSearchNaverAPI;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Predicate;
 
 
@@ -34,7 +37,7 @@ public class MuseumService {
 	@Autowired
 	private MuseumReplyRepository museumReplyRepo;
 	@Autowired
-	private MuseumBookmarkRepository bookmarkrepo;
+	private MuseumBookmarkRepository museumBookmarkRepository;
 	
 
 	
@@ -167,40 +170,52 @@ public class MuseumService {
 
 		 
    // 네이버 api 이미지 
-     public String getFirstImageUrlForMuseum(String msname) {
-         try {
-             // ApiExamSearchNaverAPI 의 searchFirstImageUrl 메소드를 사용하여 이미지 검색
-             String firstImageUrl = ApiExamSearchNaverAPI.searchFirstImageUrl(msname);
-             return firstImageUrl;
-         } catch (IOException | ParseException e) {
-             // 예외 처리
-             e.printStackTrace();
-             return null;
-         }
-     }
+	public String getFirstImageUrlForMuseum(String msname) {
+	    try {
+	        // ApiExamSearchNaverAPI의 searchFirstImageUrl 메소드를 사용하여 이미지 검색
+	        String firstImageUrl = ApiExamSearchNaverAPI.searchFirstImageUrl(msname);
+	        if (firstImageUrl == null) {
+	            // 이미지 URL이 null인 경우, 기본 이미지 URL로 대체
+	            firstImageUrl = "/img/museum_img/bg-30.jpg";
+	        }
+	        return firstImageUrl;
+	    } catch (IOException | ParseException e) {
+	        // 예외 처리
+	        e.printStackTrace();
+	        // 예외 발생 시 기본 이미지 URL 반환
+	        return "/img/museum_img/bg-30.jpg";
+	    }
+	}
+
      
      
      
      // 북마크
+     
      @Transactional
- 	public MuseumBookmark saveBookmark(MuseumBookmark bookmark) {
- 		return bookmarkrepo.save(bookmark);
- 	}
- 	@Transactional
- 	public void deleteBookmark(int bno) {
- 		bookmarkrepo.deleteById(bno);
- 	}
- 	
- 	
- 	public List<MuseumBookmark> getBookmarkByMember(int mno) {
- 		return bookmarkrepo.findByMno(mno);
- 	}
- 	public MuseumBookmark getBookmarkByMsnoAndMno(int msno, int mno) {
- 		return bookmarkrepo.findByMsnoAndMno(msno, mno);
- 	}
- 	
-		
-		 
+     public MuseumBookmark addBookmark(MuseumBookmark museumbookmark) {       
+         return museumBookmarkRepository.save(museumbookmark);
+     }
+
+
+     @Transactional
+     public void deleteBookmark(int bno) {
+         museumBookmarkRepository.deleteById(bno);
+     }
+
+     public MuseumBookmark findbmkByBno(int bno) {
+         return museumBookmarkRepository.findByBno(bno);
+     }
+
+     
+     public List<MuseumBookmark> findbmkByMno(int mno) {
+    	    return museumBookmarkRepository.findByMno(mno);
+    	}
+	
+     public MuseumBookmark findBookmarkByMsnoAndMno(int msno, int mno) {
+    	    return museumBookmarkRepository.findByMsnoAndMno(msno, mno);
+    	}
+	 
 }
 			 
 			 
