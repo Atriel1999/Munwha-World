@@ -96,7 +96,16 @@ public class Museum {
 				+ ", mshomepage=" + mshomepage + ", reviewcount=" + reviewcount + ", favcount=" + favcount 
 				+ ", rating=" + rating + ",readcount=" + readcount + ", imageUrl=" + imageUrl + "]";
 	}
+	
+	
+	 public String getImageUrl() {
+	        return imageUrl;
+	    }
 
+	 public void setImageUrl(String imageUrl) {
+	        this.imageUrl = imageUrl;
+	    }
+	
 
 	
 	

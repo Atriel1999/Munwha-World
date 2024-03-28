@@ -27,17 +27,6 @@ public class EventController {
 		return "event/eventCalendar";
 	}
 	
-	@GetMapping("/heritage-event-search")
-	public String heritageEventSearch() {
-		return "event/heritage-event-search";
-	}
-	
-	@GetMapping("/heritage-event-single")
-	public String heritageEventSingle() {
-		return "event/heritage-event-single";
-	}
-	
-	
 	// 달력 ajax
 	@SuppressWarnings("unchecked")
 	@ResponseBody
@@ -51,17 +40,17 @@ public class EventController {
 		HashMap<String, Object> hash = new HashMap<String, Object>();
 		
 		for (int i = 0; i < eList.size(); i++) {
-			if (eList.get(i).getSDate() == null || eList.get(i).getEDate() == null) {
+			if (eList.get(i).getSdate() == 0 || eList.get(i).getEdate() == 0) {
 				continue;
 			}
-			if (eList.get(i).getSDate().length() != 8 || eList.get(i).getEDate().length() != 8) {
+			if (eList.get(i).getSdate() < 10000000 || eList.get(i).getEdate() > 100000000) {
 				continue;
 			}
-			hash.put("title", eList.get(i).getSubTitle());
-			hash.put("start", formatDate(eList.get(i).getSDate()));
-			hash.put("end", formatDate(eList.get(i).getEDate()));
-			if (eList.get(i).getSubPath() != null) {
-				hash.put("url", eList.get(i).getSubPath());
+			hash.put("title", eList.get(i).getSubtitle());
+			hash.put("start", formatDate(eList.get(i).getSdate()));
+			hash.put("end", formatDate(eList.get(i).getEdate()));
+			if (eList.get(i).getSubpath() != null) {
+				hash.put("url", eList.get(i).getSubpath());
 			}
 			
 			jsonObj = new JSONObject(hash);
@@ -71,10 +60,11 @@ public class EventController {
 	}
 	
 	// 날짜 포맷 변환용 메소드
-		public String formatDate(String input) {
+		public String formatDate(int inputint) {
 			// 20230101
 			// 01234567
 			String result = "";
+			String input = Integer.toString(inputint);
 			result += input.substring(0, 4);
 			result += "-";
 			result += input.substring(4, 6);

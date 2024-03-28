@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+             <!-- 즐겨찾기 목록 시작 -->
+            <div class="col-md-9" id="listarea">
+            <th:block th:each="item : ${bookmarks}">
+              <!-- 즐겨찾기 시작 -->
+              <article class="card border-0 shadow-sm card-hover card-horizontal mb-2">
+                <!-- 여기에 대표 이미지 -->
+                <a th:href="@{/museumview(msno=${item.museum?.msno})}" class="card-img-top" style="background-image: url('/img/museum_img/hero2.jpg');"></a>
+                
+				<div class="card-body">
+  				<h3 class="pt-1 mb-2 h2">
+  				  <a th:href="@{/museumview?(msno=${item.museum?.msno})}" class="nav-link">[[${item.museum?.msname}]]</a>
+  				</h3>
+  				<br>
+  				<p class="text-muted h4">[[${item.museum?.msaddress}]]</p>
+  				<p class="text-muted h4">[[${item.museum?.mstel}]]</p>
+  
+  				<span class="float-end"><a href="#"><i class="fi-trash alert-danger h4"></i></a></span>
+				</div>
+              </article>
+              <!-- 즐겨찾기 끝 -->
+              </th:block>
+              </div>
+				</html>
