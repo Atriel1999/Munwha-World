@@ -1,666 +1,376 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8" />
-    <title>문화월드</title>
-    <!-- SEO Meta Tags-->
-    <meta
-      name="description"
-      content="Finder - Directory &amp; Listings Bootstrap Template"
-    />
-    <meta
-      name="keywords"
-      content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch"
-    />
-    <meta name="author" content="Createx Studio" />
-    <!-- Viewport-->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Favicon and Touch Icons-->
-    <link href="/css/custom_yja.css" rel="stylesheet" />
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg" />
-    <meta name="msapplication-TileColor" content="#766df4" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- Page loading styles-->
-    <style>
-      @font-face {
-        font-family: "GmarketSansMedium";
-        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
-          format("woff");
-        font-weight: normal;
-        font-style: normal;
-      }
-      .gmarketfontM {
-        font-family: "GmarketSansMedium";
-      }
-      * {
-        font-family: "GmarketSansMedium";
-      }
 
-      .page-loading {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        -webkit-transition: all 0.4s 0.2s ease-in-out;
-        transition: all 0.4s 0.2s ease-in-out;
-        background-color: #1f1b2d;
-        opacity: 0;
-        visibility: hidden;
-        z-index: 9999;
+<head>
+  <meta charset="utf-8" />
+  <title> 모임 검색 </title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template" />
+  <meta name="keywords"
+    content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch" />
+  <meta name="author" content="Createx Studio" />
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicon and Touch Icons-->
+
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg" />
+  <meta name="msapplication-TileColor" content="#766df4" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <!-- Page loading styles-->
+  <style>
+    @font-face {
+      font-family: "GmarketSansMedium";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    .gmarketfontM {
+      font-family: "GmarketSansMedium";
+    }
+
+    * {
+      font-family: "GmarketSansMedium";
+    }
+
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all 0.4s 0.2s ease-in-out;
+      transition: all 0.4s 0.2s ease-in-out;
+      background-color: #1f1b2d;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #fff;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: 0.75rem;
+      vertical-align: text-bottom;
+      border: 0.15em solid #9691a4;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner 0.75s linear infinite;
+      animation: spinner 0.75s linear infinite;
+    }
+
+    @-webkit-keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
       }
-      .page-loading.active {
-        opacity: 1;
-        visibility: visible;
+    }
+
+    @keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
       }
-      .page-loading-inner {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        -webkit-transition: opacity 0.2s ease-in-out;
-        transition: opacity 0.2s ease-in-out;
-        opacity: 0;
-      }
-      .page-loading.active > .page-loading-inner {
-        opacity: 1;
-      }
-      .page-loading-inner > span {
-        display: block;
-        font-size: 1rem;
-        font-weight: normal;
-        color: #fff;
-      }
-      .page-spinner {
-        display: inline-block;
-        width: 2.75rem;
-        height: 2.75rem;
-        margin-bottom: 0.75rem;
-        vertical-align: text-bottom;
-        border: 0.15em solid #9691a4;
-        border-right-color: transparent;
-        border-radius: 50%;
-        -webkit-animation: spinner 0.75s linear infinite;
-        animation: spinner 0.75s linear infinite;
-      }
-      @-webkit-keyframes spinner {
-        100% {
-          -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-        }
-      }
-      @keyframes spinner {
-        100% {
-          -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-        }
-      }
-    </style>
-    <!-- Page loading scripts-->
-    <script>
-      (function () {
-        window.onload = function () {
-          var preloader = document.querySelector(".page-loading");
-          preloader.classList.remove("active");
-          setTimeout(function () {
-            preloader.remove();
-          }, 2000);
-        };
-      })();
-    </script>
-    <!-- Vendor Styles-->
-    <link
-      rel="stylesheet"
-      media="screen"
-      th:href="@{/vendor/simplebar/dist/simplebar.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      media="screen"
-      th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}"
-    />
-    <link
-      rel="stylesheet"
-      media="screen"
-      th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}"
-    />
-    <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}" />
-  </head>
-  <!-- Body-->
-  <body>
-    <!-- Page loading spinner-->
-    <div class="page-loading active">
-      <div class="page-loading-inner">
-        <div class="page-spinner"></div>
-        <span>Loading...</span>
-      </div>
+    }
+  </style>
+  <!-- Page loading scripts-->
+  <script>
+    (function () {
+      window.onload = function () {
+        var preloader = document.querySelector(".page-loading");
+        preloader.classList.remove("active");
+        setTimeout(function () {
+          preloader.remove();
+        }, 2000);
+      };
+    })();
+  </script>
+  <!-- Vendor Styles-->
+  <link rel="stylesheet" media="screen"  th:href="@{/vendor/simplebar/dist/simplebar.min.css}" />
+  <link rel="stylesheet" media="screen"  th:href="@{/vendor/tiny-slider/dist/tiny-slider.css}" />
+  <link rel="stylesheet" media="screen"  th:href="@{/vendor/lightgallery/css/lightgallery-bundle.min.css}" />
+  <link rel="stylesheet" media="screen"  th:href="@{/vendor/nouislider/dist/nouislider.min.css}" />
+
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" th:href="@{/css/theme.min.css}" />
+</head>
+<!-- Body-->
+
+<body>
+  <!-- Page loading spinner-->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div>
+      <span>Loading...</span>
     </div>
-    <!-- 헤더 시작 -->
-    <th:block th:replace="common/header :: headerFragment"></th:block>
-    <!-- 헤더 끝 -->
-
-    <main class="page-wrapper">
-    <section class="bg-dark py-xxl-5" style="position: relative; overflow: hidden; height: 600px;">
+  </div>
+  <!-- 헤더시작 -->
+  <th:block th:replace="common/header :: headerFragment"></th:block>
+  <!-- 헤더 끝 -->
+  <!--  히어로 시작 ===========================================================================-->
+  <main class="page-wrapper">
+    <section class="bg-dark py-xxl-5" style="position: relative; overflow: visible; height: 600px;">
       	<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-  			  background-image: url('https://www.gotokyo.org/kr/guide-services/spiritual-calm/images/256_0203_5_750x1100.jpg'); background-size: cover; background-position: center;">
+  			  background-image: url('http://www.dnnews.co.kr/news/photo/202209/13646_14626_2322.jpeg'); background-size: cover; background-position: center;">
 		</div>
 
-      <div class="content-overlay container py-md-5">
-        <div class="order-md-1">
-          <h3 class="display-4 mb-4 me-lg-n5 text-lg-start text-center text-light" style="margin-top: 100px;">
-            모임을 찾아서 함게 떠나보세요.
+      <div class="content-overlay container py-md-5"  style="z-index: 300;">
+        <div class="col-md-8 order-md-1">
+          <h1 class="display-4 mb-4 me-lg-n5 text-lg-start text-center text-light" style="margin-top: 100px;">
+            전국 모임 
+            <span class="text-primary d-inline-block"> 검색 </span>
           </h1>
-          <h3 class="display-4 mb-4 me-lg-n5 text-lg-start text-center text-light">
-            <span class="d-inline-block text-color" style="color:#ab40ff"> 사람들과 함께 </span>
-            모임을 꾸려 즐겨보아요!
-          </h3>
+          <h4 class="text-lg-start text-center text-light mb-4 mb-lg-5"
+            style= "margin-right: 80px; max-width: 590px;">
+             함께 모임을 즐겨보아요.
+          </h4>
 
           <!-- Search form-->
-          <form style="background-color: white;" class="form-group form-group-secondary d-block rounded-xl-pill mt-n3 mt-md-4 mt-xl-5 mb-md-4">
-            <div class="row align-items-center g-0 ms-n2">
-              <div class="col-md-5 col-xl-9">
-                <div class="input-group input-group-lg border-end-md border-secondary"><span class="input-group-text text-secondary rounded-pill opacity-50 ps-3"><i class="fi-search" style="color: #6c757d; font-weight: bold"></i></span>
-                  <input class="form-control" type="text" placeholder="모임 이름">
-                </div>
-              </div>
-              <hr class="hr-light d-md-none my-2">
-              <div class="col-md-7 col-xl-3 d-sm-flex">
-                <div class="dropdown w-sm-50 border-end-sm border-secondary" data-bs-toggle="select">
-                  <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">카테고리</span></button>
-                  <input type="hidden">
-                  <ul class="dropdown-menu dropdown-menu-dark my-3">
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Dallas</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Chicago</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Houston</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Las Vegas</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Los Angeles</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">New York</span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">San Francisco</span></a></li>
+          <form class="form-group  d-block rounded-xl-pill mb-2 my-md-4 mt-xl-5" name="searchForm" th:action="@{/museumlist}" method="get">
+	          <input type="hidden" name="page" value="1">		
+            <div class="row align-items-center g-0 ms-n2" >
+              <div class="col-xl-3">
+                <div class="dropdown w-100" data-bs-toggle="select">
+                  <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="fi-map-pin text-primary" style="margin-left: 10px;"></i> <span
+                      class="dropdown-toggle-label" style="width: 155px;">
+                      지역 </span>
+                  </button>
+                  <input type="hidden" name="searchAddress" id="searchAddress" th:value="${param.searchAddress}">
+                  <ul class="dropdown-menu dropdown-menu-dark my-3" >
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('지역')"><span class="dropdown-item-label"> 전체  </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('서울특별시')"><span class="dropdown-item-label"> 서울특별시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('인천광역시')"><span class="dropdown-item-label"> 인천광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('세종특별자치시')"><span class="dropdown-item-label"> 세종특별자치시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('대전광역시')"><span class="dropdown-item-label"> 대전광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('부산광역시')"><span class="dropdown-item-label"> 부산광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('대구광역시')"><span class="dropdown-item-label"> 대구광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('울산광역시')"><span class="dropdown-item-label"> 울산광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('광주광역시')"><span class="dropdown-item-label"> 광주광역시 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('경기도')"><span class="dropdown-item-label"> 경기도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('강원특별자치도')"><span class="dropdown-item-label"> 강원특별자치도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('충청북도')"><span class="dropdown-item-label"> 충청북도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('충청남도')"><span class="dropdown-item-label"> 충청남도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('전북특별자치도')"><span class="dropdown-item-label"> 전북특별자치도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('전라남도')"><span class="dropdown-item-label"> 전라남도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('경상북도')"><span class="dropdown-item-label"> 경상북도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('경상남도')"><span class="dropdown-item-label"> 경상남도 </span></a></li>
+                    <li><a class="dropdown-item" href="#" onclick="selectRegion('제주특별자치도')"><span class="dropdown-item-label"> 제주특별자치도 </span></a></li>
                   </ul>
                 </div>
-                <button class="btn btn-primary btn-lg w-100 w-sm-50 w-lg-auto rounded-pill mt-4 mt-sm-0" type="button" style="margin-left: 15px;">모임 검색</button>
+              </div>
+              <div class="col-xl-9 d-lg-flex align-items-center">
+                <div class="d-sm-flex w-100">
+                  <div class="input-group input-group-lg border-end-xl border-light"><span
+                      class="input-group-text text-light rounded-pill ps-3">
+                     &ensp;&ensp; <i class="fi-search text-primary" style="font-weight: bold;"></i></span>
+                    <input class="form-control" type="text" name="searchName"  id="searchName" placeholder="찾으시는 모임이름을 입력해주세요." th:value="${param.searchName}">
+                  </div>ㅇ
+                </div>
+                <hr class="hr-light d-xl-none mt-2 mb-3">
+                <button class="btn btn-primary btn-lg rounded-pill w-100 w-lg-auto ms-auto" type="submit" value="박물관 검색">
+                  박물관 검색 </button>
               </div>
             </div>
           </form>
+			<script>
+			 document.addEventListener("DOMContentLoaded", function() {
+				// 페이지 로드 시 실행되는 함수
+				    function initRegionDropdown() {
+				      // 서버로부터 받은 searchAddress 값이 있는지 확인
+				      var searchAddress = document.getElementById('searchAddress').value;
+				      
+				      // searchAddress 값이 있고, 지역 선택 드롭다운에 해당 값이 존재하는지 확인
+				      if (searchAddress && document.querySelector(".dropdown-item[onclick*='" + searchAddress + "']")) {
+				        document.querySelector('.dropdown-toggle-label').textContent = searchAddress;
+				      }
+				    }
+
+				    // 초기화 함수 실행
+				    initRegionDropdown();
+				});
+				</script>
+
         </div>
       </div>
     </section>
 
-      <section class="container">
-        <div class="best-heritage__title">
-          <div class="best-heritage">
-            <h2>BEST 3모임</h2>
-            <span>인기 많은 모임들을 확인해보세요.</span>
-          </div>
-          <p>더보기 >></p>
-        </div>
-        <div>
-          <div
-            class="d-sm-flex align-items-center justify-content-between mb-4 pb-2"
-          ></div>
-          <div
-            class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside"
+    <!--===================================================================== 정렬순서  =======================================-->
+    <section class="position-relative bg-white rounded-xxl-4 zindex-5" style="margin-top: -30px;">
+      <div class="container pt-5">
+        <nav class="mb-2 pt-md-1" aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> 모임 검색 </li>
+          </ol>
+        </nav>
+        <h1 class="h2"> 모임 검색 결과 </h1>
+  
+       <div class="mb-1" style="margin-top: -25px">
+        <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch "
           >
-            <div
-              class="tns-carousel-inner"
-              data-carousel-options='{"items": 3, "gutter": 24, "responsive": {"0":{"items":1,"nav":true},"500":{"items":2},"850":{"items":3},"1400":{"items":3,"nav":false}}}'
-            >
-              <!-- Item-->
-              <div>
-                <div class="position-relative">
-                  <div class="position-relative mb-3">
-                    <img
-                      class="rounded-3"
-                      src="img/img_yja/숭례문.jpg"
-                      alt="Image"
-                      height="275px"
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <h3 class="mb-2 fs-lg">
-                    <a
-                      class="nav-link stretched-link"
-                      href="city-guide-single.html"
-                      >서울 문화재를 사랑하는모임</a
-                    >
-                  </h3>
-                  <p>주요지역 : 서울</p>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"
-                      ></i
-                      ><b>300</b>
-                    </li>
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"
-                      ></i
-                      >3
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- Item-->
-              <div>
-                <div class="position-relative">
-                  <div class="position-relative mb-3">
-                    <img
-                      class="rounded-3"
-                      src="img/img_yja/숭례문.jpg"
-                      alt="Image"
-                      height="275px"
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <h3 class="mb-2 fs-lg">
-                    <a
-                      class="nav-link stretched-link"
-                      href="city-guide-single.html"
-                      >서울 숭례문</a
-                    >
-                  </h3>
-                  <p>서울 중구 세종대로 40 (남대문 로4가)</p>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"
-                      ></i
-                      ><b>300</b>
-                    </li>
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"
-                      ></i
-                      >3
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- Item-->
-              <div>
-                <div class="position-relative">
-                  <div class="position-relative mb-3">
-                    <img
-                      class="rounded-3"
-                      src="img/img_yja/숭례문.jpg"
-                      alt="Image"
-                      height="275px"
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <h3 class="mb-2 fs-lg">
-                    <a
-                      class="nav-link stretched-link"
-                      href="city-guide-single.html"
-                      >서울 숭례문</a
-                    >
-                  </h3>
-                  <p>서울 중구 세종대로 40 (남대문 로4가)</p>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"
-                      ></i
-                      ><b>23</b>
-                    </li>
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"
-                      ></i
-                      >3
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- Item-->
-              <div>
-                <div class="position-relative">
-                  <div class="position-relative mb-3">
-                    <img
-                      class="rounded-3"
-                      src="img/img_yja/숭례문.jpg"
-                      alt="Image"
-                      height="275px"
-                      style="object-fit: cover"
-                    />
-                  </div>
-                  <h3 class="mb-2 fs-lg">
-                    <a
-                      class="nav-link stretched-link"
-                      href="city-guide-single.html"
-                      >서울 숭례문</a
-                    >
-                  </h3>
-                  <p>서울 중구 세종대로 40 (남대문 로4가)</p>
-                  <ul class="list-inline mb-0 fs-xs">
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"
-                      ></i
-                      ><b>23</b>
-                    </li>
-                    <li class="list-inline-item pe-1">
-                      <i
-                        class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"
-                      ></i
-                      >3
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+          <hr class="d-none d-sm-block w-100 mx-4">
+          <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted">
+            <i class="fi-check-circle me-2"></i><span class="h6 mt-3" style="color: #811faf" th:text="${museumCount} + ' 검색결과' "></span>
           </div>
         </div>
-      </section>
+     
+      </div>
+    </section>
+    <section class="container">
+      <!--============================================================== 검색결과 리스트===============  -->
+      <div class="row g-5 g-md-2 g-lg-5 pt-3">
+      	<th:block th:if="${list == null || #lists.size(list) == 0}">
+				<br>
+					<div class="h3 text-primary"> 조회된 박물관이 없습니다.</div>
+				
+		</th:block>
+        <!-- Item ========================================================= 첫번쨰 아이템 ================= -->
+        <th:block th:if="${list != null && #lists.size(list) != 0}">
+         <div class="col-sm-6 col-lg-4" th:each="museum : ${list}">
+          <div class="card shadow-sm card-hover border-0 h-100" style="height: 500px;">
+          <!-- 배경 이미지  -->
+            <div class="card-img-top card-img-hover" style="height: 260px; width: 100%; background: url('/img/museum_img/bg-30.jpg') no-repeat center center; background-size: cover;">
+            	<a class="img-overlay" th:href="|/museumview?no=${museum.msno}|"></a>
+              <div class="position-absolute start-0 top-0 pt-3 ps-3 h5">
+              
+                <span th:if="${museum.mstype == '대학'}" class="d-table badge bg-success mb-1">대학</span>
+				<span th:if="${museum.mstype == '사립'}" class="d-table badge bg-warning mb-1">사립</span>
+				<span th:if="${museum.mstype == '공립'}" class="d-table badge bg-info mb-1">공립</span>
+				<span th:if="${museum.mstype == '국립'}" class="d-table badge bg-accent mb-1">국립</span>
+                
+                <th:block th:if="${museum.msadultcharge != '0' or museum.msyngcharge != '0' or museum.mschildcharge != '0'}">
+                 <span class="d-table badge bg-danger"> 유료 </span>
+                </th:block>
+              </div>
+              <div class="content-overlay end-0 top-0 pt-3 pe-3">
+             
+              </div>
+             
+              <!-- --이미지 -->
+              	<!-- 이미지가 있는 경우 해당 이미지를 사용 -->
+				<img th:if="${museum.imageUrl != null}" th:src="${museum.imageUrl}" style="height: 100%; width: 100%;">
 
-      <section class="container">
-        <div class="best-heritage__title">
-          <div class="best-heritage">
-            <h2>인기 모임</h2>
-            <span>인기 많은 모임을 찾아보세요.</span>
-          </div>
-          <p>더보기 >></p>
-        </div>
-        <div
-          class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush mx-n2"
-        >
-          <div
-            class="tns-carousel-inner row gx-4 mx-0 py-md-4 py-3"
-            data-carousel-options='{"items": 4, "responsive": {"0":{"items":1},"500":{"items":2},"768":{"items":3},"992":{"items":4}}}'
-          >
-            <!-- Item-->
-            <div class="col">
-              <a
-                class="card shadow-sm card-hover border-0"
-                href="real-estate-catalog-sale.html"
-              >
-                <div class="card-img-top card-img-hover">
-                  <span></span
-                  ><img src="img/img_yja/숭례문.jpg" alt="New York" />
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="mb-0 fs-base text-nav">숭례문</h3>
-                </div></a
-              >
+					<!-- 이미지가 없는 경우 대체 이미지를 사용 -->
+				<img th:if="${museum.imageUrl == null}" th:src="@{/img/museum_img/hero2.jpg}" alt="url 널 " style="height: 100%; width: 100%;">
             </div>
-            <!-- Item-->
-            <div class="col">
-              <a
-                class="card shadow-sm card-hover border-0"
-                href="real-estate-catalog-sale.html"
-              >
-                <div class="card-img-top card-img-hover">
-                  <span></span
-                  ><img src="img/img_yja/숭례문.jpg" alt="New York" />
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="mb-0 fs-base text-nav">숭례문</h3>
-                </div></a
-              >
-            </div>
-            <!-- Item-->
-            <div class="col">
-              <a
-                class="card shadow-sm card-hover border-0"
-                href="real-estate-catalog-sale.html"
-              >
-                <div class="card-img-top card-img-hover">
-                  <span></span
-                  ><img src="img/img_yja/숭례문.jpg" alt="New York" />
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="mb-0 fs-base text-nav">숭례문</h3>
-                </div></a
-              >
-            </div>
-            <!-- Item-->
-            <div class="col">
-              <a
-                class="card shadow-sm card-hover border-0"
-                href="real-estate-catalog-sale.html"
-              >
-                <div class="card-img-top card-img-hover">
-                  <span></span
-                  ><img src="img/img_yja/숭례문.jpg" alt="New York" />
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="mb-0 fs-base text-nav">숭례문</h3>
-                </div></a
-              >
-            </div>
-            <!-- Item-->
-            <div class="col">
-              <a
-                class="card shadow-sm card-hover border-0"
-                href="real-estate-catalog-sale.html"
-              >
-                <div class="card-img-top card-img-hover">
-                  <span></span
-                  ><img src="img/img_yja/숭례문.jpg" alt="New York" />
-                </div>
-                <div class="card-body text-center">
-                  <h3 class="mb-0 fs-base text-nav">숭례문</h3>
-                </div></a
-              >
+            <div class="card-body position-relative pb-3">
+              <div class="h2">
+                <a th:href="|/museumview?no=${museum.msno}|"class="h2 nav-link stretched-link" style="min-height: 70px;" th:text="${museum.msname}">
+                  
+                </a>
+              </div>
+              <div class="d-flex h6 mb-1 text-primary" >
+                <i class="fi-map-pin me-2"></i> <span th:text="${museum.msaddress}"></span>
+              </div>
+              <div class="mb-2 h6">
+                <i class="fi-clock me-1"></i>
+                <span class="ms-1 h5" th:text="${museum.msweekopen} + ' AM - ' + ${museum.msweekclose} + ' PM'"> </span>
+              </div>
+              <div class="d-flex">
+                &ensp;<i class="fi-heart-filled me-1 text-warning"></i> <span > 조회수  [[${museum.readcount}]] </span>
+                &ensp;&ensp;<i class="fi-chat-circle me-1"></i>  <span th:text="${museum.reviewcount} + ' 이용후기'"> 이용후기수 </span> 
+              </div>
+
             </div>
           </div>
+         </div>
+        </th:block>
+        <!--================= -->
+        
         </div>
-      </section>
+    </section>
+    <!--================= -->
+    <!-- Pagination: with icons -->
+    <section class="container d-flex justify-content-center mt-5">
+    <th:block th:if="${list != null && #lists.size(list) != 0}">
+      <nav class="mt-2" aria-label="Page navigation example">
+        <ul class="pagination pagination-lg">
+          <li class="page-item"><a class="page-link" aria-label="Previous" th:onclick="|movePage(${pageInfo.prevPage});|"><i class="fi-chevron-left"></i></a>
+          </li>
+          
+          <th:block th:each="num, status : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+         	<th:block th:if="${status.current == pageInfo.currentPage}">
+       
+          		<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"> [[${status.current}]] <span
+                class="visually-hidden">(current)</span></span></li>
+          	</th:block>      
+          	<th:block th:if="${status.current != pageInfo.currentPage}">
+          <li class="page-item d-none d-sm-block"><a class="page-link"  th:onclick="|movePage(${status.current});|"> [[${status.current}]] </a></li>
+      
+          	</th:block>
+          </th:block>
+          
+          <li class="page-item"><a class="page-link" aria-label="Next"  th:onclick="|movePage(${pageInfo.nextPage});|"><i class="fi-chevron-right"></i></a>
+          </li>
+        </ul>
+      </nav>
+      </th:block>
+      <script type="text/javascript">
+			function movePage(page){
+				searchForm.page.value = page;
+				searchForm.submit();
+				}
+	  </script>
+    </section>
+  </main>
+  <br><br><br>
+  <!-- 푸터 -->
+  <th:block th:replace="common/footer :: footerFragment"></th:block>
+  <!-- 푸터 끝 -->
 
-      <!-- Categories-->
-      <section class="container d-flex flex-wrap flex-column flex-sm-row pt-5 pb-3 mb-md-3"><a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 shadow-sm rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="city-guide-catalog.html">
-          <div class="icon-box-media bg-faded-accent text-accent rounded-circle me-2"><i class="fi-bed"></i></div>
-          <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">문화재</h3></a><a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 shadow-sm rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="city-guide-catalog.html">
-          <div class="icon-box-media bg-faded-warning text-warning rounded-circle me-2"><i class="fi-cafe"></i></div>
-          <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">박물관</h3></a><a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 shadow-sm rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="city-guide-catalog.html">
-          <div class="icon-box-media bg-faded-primary text-primary rounded-circle me-2"><i class="fi-shopping-bag"></i></div>
-          <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">지역탐방</h3></a><a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 shadow-sm rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="city-guide-catalog.html">
-          <div class="icon-box-media bg-faded-success text-success rounded-circle me-2"><i class="fi-museum"></i></div>
-          <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">사찰 과거사료</h3></a>
-          <a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 shadow-sm rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="city-guide-catalog.html">
-          <div class="icon-box-media bg-faded-primary text-primary rounded-circle me-2"><i class="fi-entertainment"></i></div>
-          <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">문화행사</h3></a>
-          <a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 shadow-sm rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="city-guide-catalog.html">
-          <div class="icon-box-media bg-faded-primary text-primary rounded-circle me-2"><i class="fi-meds"></i></div>
-          <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">모든것</h3></a>
-        <div class="dropdown mb-2 mb-sm-3"><a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 shadow-sm rounded-pill py-2 ps-2 pe-4" href="#" data-bs-toggle="dropdown">
-            <div class="icon-box-media bg-faded-info text-info rounded-circle me-2"><i class="fi-dots-horisontal"></i></div>
-            <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">More</h3></a>
-				<div class="dropdown-menu dropdown-menu-sm-end my-1">
-					<a class="dropdown-item fw-bold" href="city-guide-catalog.html">
-					<i class="fi-meds fs-base opacity-60 me-2"></i>Medicine</a>
-					<a
-						class="dropdown-item fw-bold" href="city-guide-catalog.html"><i
-						class="fi-makeup fs-base opacity-60 me-2"></i>Beauty</a><a
-						class="dropdown-item fw-bold" href="city-guide-catalog.html"><i
-						class="fi-car fs-base opacity-60 me-2"></i>Car Rental</a><a
-						class="dropdown-item fw-bold" href="city-guide-catalog.html"><i
-						class="fi-dumbell fs-base opacity-60 me-2"></i>Fitness &amp; Sport</a><a
-						class="dropdown-item fw-bold" href="city-guide-catalog.html"><i
-						class="fi-disco-ball fs-base opacity-60 me-2"></i>Night Club</a>
-				</div>
-			</div>
-      </section>
+  <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span
+      class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">
+    </i></a>
+  <!-- Vendor scrits: js libraries and plugins-->
+  <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/simplebar/dist/simplebar.min.js"></script>
+  <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="/vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="/vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+  <script src="/vendor/nouislider/dist/nouislider.min.js"></script>
+  <script src="/vendor/cleave.js/dist/cleave.min.js"></script>
+  <!-- Main theme script-->
+  <script src="/js/theme.min.js"></script>
+</body>
 
-      <section class="container mb-5 pb-lg-3">
-        <div class="best-heritage d-md-flex align-items-center justify-content-between mb-4 pb-md-2">
-          <h2 class="h3 w-100 mb-md-0">가장 가까운 모임의 일정</h2>
-          <!-- Sorting by date-->
-          <div class="w-100 ms-md-3 mb-n3 pt-2 pb-3 px-1" data-simplebar data-simplebar-auto-hide="false">
-            <div class="d-flex align-items-center">
-              <div class="input-group input-group-sm flex-shrink-0 ms-md-auto me-3" style="max-width: 180px;">
-                <input class="form-control date-picker rounded-pill ps-5" type="text" placeholder="Choose date" data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;F j, Y&quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;}"><i class="fi-calendar position-absolute top-50 start-0 translate-middle-y ms-3 ps-1"></i>
-              </div><a class="btn btn-sm btn-secondary rounded-pill fw-normal ms-n1 me-3" href="#">Tomorrow</a><a class="btn btn-sm btn-secondary rounded-pill fw-normal ms-n1 me-3" href="#">This weekend</a><a class="btn btn-link ms-md-3 ms-auto p-0 fw-normal" href="city-guide-catalog.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- Carousel-->
-        <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-center">
-          <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 1, &quot;edgePadding&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false, &quot;gutter&quot;: 16},&quot;500&quot;:{&quot;controls&quot;: true, &quot;gutter&quot;: 16}, &quot;768&quot;: {&quot;gutter&quot;: 24}}}">
-            <!-- Item-->
-            <div>
-              <div class="card border-0 bg-size-cover pt-5" style="background-image: url(img/city-guide/home/upcoming-1.jpg);">
-                <div class="d-none d-md-block" style="height: 13rem;"></div>
-                <div class="card-body text-center text-md-start pt-4 pt-xl-0">
-                  <div class="d-md-flex justify-content-between align-items-end">
-                    <div class="me-2 mb-4 mb-md-0">
-                      <div class="d-flex justify-content-center justify-content-md-start text-light fs-sm mb-2">
-                        <div class="text-nowrap me-3"><i class="fi-calendar-alt me-1 opacity-70"></i><span class="align-middle">Nov 15</span></div>
-                        <div class="text-nowrap"><i class="fi-clock me-1 opacity-70"></i><span class="align-middle">21:00</span></div>
-                      </div>
-                      <h3 class="h5 text-light mb-0">Simon Rock Concert</h3>
-                    </div>
-                    <div class="btn-group"><a class="btn btn-primary rounded-pill rounded-end-0 px-3" href="#">Tickets from $50</a>
-                      <div class="position-relative border-start border-light zindex-5" style="margin-left: -1px;"></div>
-                      <button class="btn btn-primary rounded-pill rounded-start-0 px-3" type="button"><i class="fi-heart"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Item-->
-            <div>
-              <div class="card border-0 bg-size-cover pt-5" style="background-image: url(img/city-guide/home/upcoming-2.jpg);">
-                <div class="d-none d-md-block" style="height: 13rem;"></div>
-                <div class="card-body text-center text-md-start pt-4 pt-xl-0">
-                  <div class="d-md-flex justify-content-between align-items-end">
-                    <div class="me-2 mb-4 mb-md-0">
-                      <div class="d-flex justify-content-center justify-content-md-start text-light fs-sm mb-2">
-                        <div class="text-nowrap me-3"><i class="fi-calendar-alt me-1 opacity-70"></i><span class="align-middle">Dec 2</span></div>
-                        <div class="text-nowrap"><i class="fi-clock me-1 opacity-70"></i><span class="align-middle">10:00</span></div>
-                      </div>
-                      <h3 class="h5 text-light mb-0">Holi Festival</h3>
-                    </div>
-                    <div class="btn-group"><a class="btn btn-primary rounded-pill rounded-end-0 px-3" href="#">Tickets from $35</a>
-                      <div class="position-relative border-start border-light zindex-5" style="margin-left: -1px;"></div>
-                      <button class="btn btn-primary rounded-pill rounded-start-0 px-3" type="button"><i class="fi-heart"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Item-->
-            <div>
-              <div class="card border-0 bg-size-cover pt-5" style="background-image: url(img/city-guide/home/upcoming-3.jpg);">
-                <div class="d-none d-md-block" style="height: 13rem;"></div>
-                <div class="card-body text-center text-md-start pt-4 pt-xl-0">
-                  <div class="d-md-flex justify-content-between align-items-end">
-                    <div class="me-2 mb-4 mb-md-0">
-                      <div class="d-flex justify-content-center justify-content-md-start text-light fs-sm mb-2">
-                        <div class="text-nowrap me-3"><i class="fi-calendar-alt me-1 opacity-70"></i><span class="align-middle">No 11</span></div>
-                        <div class="text-nowrap"><i class="fi-clock me-1 opacity-70"></i><span class="align-middle">18:00</span></div>
-                      </div>
-                      <h3 class="h5 text-light mb-0">Football Match</h3>
-                    </div>
-                    <div class="btn-group"><a class="btn btn-primary rounded-pill rounded-end-0 px-3" href="#">Tickets from $40</a>
-                      <div class="position-relative border-start border-light zindex-5" style="margin-left: -1px;"></div>
-                      <button class="btn btn-primary rounded-pill rounded-start-0 px-3" type="button"><i class="fi-heart"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="container mb-sm-5 mb-4 pb-lg-4">
-        <div class="best-heritage d-sm-flex align-items-center justify-content-between mb-4 pb-2">
-          <h2 class="h3 mb-sm-0">지역별 모임</h2><a class="btn btn-link fw-normal ms-sm-3 p-0" href="city-guide-catalog.html">더많은 모임보기<i class="fi-arrow-long-right ms-2"></i></a>
-        </div>
-        <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside">
-          <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 3, &quot;gutter&quot;: 24, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1,&quot;nav&quot;:true},&quot;500&quot;:{&quot;items&quot;:2},&quot;850&quot;:{&quot;items&quot;:3},&quot;1400&quot;:{&quot;items&quot;:3,&quot;nav&quot;:false}}}">
-            <!-- Item-->
-            <div>
-              <div class="position-relative">
-                <div class="position-relative mb-3">
-                  <img class="rounded-3" src="img/city-guide/catalog/01.jpg" alt="Image">
-                </div>
-                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">경주 사랑단</a></h3>
-                <ul class="list-inline mb-0 fs-xs">
-                  <!--  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.8</b><span class="text-muted">&nbsp;(24)</span></li>-->
-                  <li class="list-inline-item pe-1"><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle"></i>1.4 km from center</li>
-                </ul>
-              </div>
-            </div>
-            <!-- Item-->
-            <div>
-              <div class="position-relative">
-                <div class="position-relative mb-3">
-
-								<img class="rounded-3" src="img/city-guide/catalog/02.jpg"
-									alt="Image">
-							</div>
-                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">사찰의 불</a></h3>
-                <ul class="list-inline mb-0 fs-xs">
-                  <!--  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.8</b><span class="text-muted">&nbsp;(24)</span></li>-->
-                  <li class="list-inline-item pe-1"><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle"></i>0.5 km from center</li>
-                </ul>
-              </div>
-            </div>
-            <!-- Item-->
-            <div>
-              <div class="position-relative">
-                <div class="position-relative mb-3">
-
-								<img class="rounded-3" src="img/city-guide/catalog/03.jpg"
-									alt="Image">
-							</div>
-                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">샨도라를 위해</a></h3>
-                <ul class="list-inline mb-0 fs-xs">
-                  <!--  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.8</b><span class="text-muted">&nbsp;(24)</span></li>-->
-                  <li class="list-inline-item pe-1"><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle"></i>1.8 km from center</li>
-                </ul>
-              </div>
-            </div>
-            <!-- Item-->
-            <div>
-              <div class="position-relative">
-                <div class="position-relative mb-3">
-								<img class="rounded-3" src="img/city-guide/catalog/04.jpg"
-									alt="Image">
-							</div>
-                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">Merry Berry Motel</a></h3>
-                <ul class="list-inline mb-0 fs-xs">
-                  <!--  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.8</b><span class="text-muted">&nbsp;(24)</span></li>-->
-                  <li class="list-inline-item pe-1"><i class="fi-map-pin mt-n1 me-1 fs-base text-muted align-middle"></i>0.4 km from center</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- 푸터 -->
-    <th:block th:replace="common/footer :: footerFragment"></th:block>
-    <!-- 푸터 끝 -->
-
-    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll
-      ><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span
-      ><i class="btn-scroll-top-icon fi-chevron-up"> </i
-    ></a>
-    <!-- Vendor scrits: js libraries and plugins-->
-    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
-    <script src="vendor/lightgallery/lightgallery.min.js"></script>
-    <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
-    <!-- Main theme script-->
-    <script th:src="@{/js/theme.min.js}"></script>
-  </body>
 </html>

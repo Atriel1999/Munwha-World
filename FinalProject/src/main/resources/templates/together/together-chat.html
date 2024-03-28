@@ -88,10 +88,13 @@
     <!-- 챗봇 기능 -->
     <script>
     	var ws;
-    	var memberId = "Question";
-    
+    	//var memberId = "Question";
+    	var memberId = "[(${session.loginMember.memberId})]";
+    	
+
+    	
 		function connect() {
-			ws = new WebSocket('ws://localhost:80/chat.do');
+			ws = new WebSocket('ws://localhost:80/tochat.do');
 			// 채팅 입장
 			ws.onopen = function() {
                 console.log("웹소켓 연결 생성");
@@ -110,6 +113,59 @@
 			// 서버에서 메세지 수신
 			ws.onmessage = function(e) {
 				var msg = e.data;
+				
+		    	
+		    	function compareID(message) {
+		    	    // ":"를 기준으로 문자열을 분할합니다.
+		    	    var parts = message.split(':');
+		    	    // 첫 번째 부분을 추출합니다.
+		    	    var idPart = parts[0].trim();
+		    	    
+		    	    // 추출한 ID 부분과 비교할 값입니다.
+		    	    var targetID = "[(${session.loginMember.memberId})]";
+		    	    
+		    	    // 추출한 ID 부분과 비교합니다.
+		    	    if (idPart == targetID) {
+		    	    	console.log("true");
+		    	        return true; // 같은 경우
+		    	    } else {
+		    	    	console.log("false");
+		    	        return false; // 다른 경우
+		    	    }
+		    	}
+				
+				if(compareID(msg)){
+		            $('#chatArea').append(
+		   					"<div class='d-flex col-md-9 col-xl-7 ms-auto mb-3'>"+
+		   		              "<div class='ms-auto me-3'>"+
+		   		                "<div class='bg-primary rounded p-4 mb-2'>"+
+		   		                  "<p class='text-sm mb-0 text-white'>"+
+		   		                    msg +
+		   		                  "</p>"+
+		   		                "</div>"+
+		   		              "</div>"+
+		   		              "<img class='img-thumbnail rounded-circle' "+
+		   		                  "style='height: 80px;'"+
+		   		                  "src='img/myimages/ksw/replyicon.png'>"+
+		   		            "</div>"
+		    			);
+				}else{
+					$('#chatArea').append(
+							"<div class='d-flex col-md-9 col-xl-7 mb-3'>"+
+				              "<img class='img-thumbnail rounded-circle' "+
+				                  "style='height: 80px;'"+
+				                  "src='img/myimages/ksw/FinalLogo.jpg'>"+
+				              "<div class='ms-3'>"+
+				                "<div class='bg-secondary rounded p-4 mb-2'>"+
+				                  "<p class='text-sm mb-0'>"+
+				                    msg +
+				                  "</p>"+
+				                "</div>"+
+				              "</div>"+
+				            "</div>"
+					);
+				}
+				/*
 				$('#chatArea').append(
 							"<div class='d-flex col-md-9 col-xl-7 mb-3'>"+
 				              "<img class='img-thumbnail rounded-circle' "+
@@ -124,7 +180,7 @@
 				              "</div>"+
 				            "</div>"
 					);
-				
+				*/
                 /* const top = $('#area').prop('scrollHeight');
                 $('#area').scrollTop(top); */
 			};
@@ -140,6 +196,7 @@
 		// 사용자 채팅 송신
 		function send() {
             var chat = $("#userChat").val();
+            /*
             $('#chatArea').append(
    					"<div class='d-flex col-md-9 col-xl-7 ms-auto mb-3'>"+
    		              "<div class='ms-auto me-3'>"+
@@ -154,7 +211,7 @@
    		                  "src='img/myimages/ksw/replyicon.png'>"+
    		            "</div>"
     			);
-    			
+    		*/
    			/* const top = $('#area').prop('scrollHeight');
             $('#area').scrollTop(top); */
             
