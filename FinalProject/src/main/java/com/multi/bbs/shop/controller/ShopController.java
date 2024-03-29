@@ -21,7 +21,6 @@ import com.multi.bbs.shop.model.vo.ProductParam;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/shop")
 @Controller
 public class ShopController {
 	
