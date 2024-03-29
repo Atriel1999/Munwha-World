@@ -1,14 +1,9 @@
 package com.multi.bbs.shop.model.service;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.multi.bbs.board.model.vo.Board;
-import com.multi.bbs.board.model.vo.BoardAttachFile;
-import com.multi.bbs.heritage.model.vo.Himage;
 import com.multi.bbs.shop.model.repository.ProductRepository;
 import com.multi.bbs.shop.model.vo.Product;
 
@@ -25,6 +20,9 @@ public class ShopService {
 //	@Autowired
 //	private CartRepository crepo;
 	
+	public Product findByPno(int pno) {
+		return prepo.findByPno(pno);
+	}	
 	
 	public List<Product> searchProductByTitle(String title, int limit, int offset) {
 		return prepo.findByTitleContaining(title, limit, offset);

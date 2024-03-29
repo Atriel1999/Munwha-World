@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Finder | Sign In Page</title>
@@ -238,11 +238,11 @@
         </div>
         <!-- Product description section 1-->
         <div class="row align-items-center py-md-3 m-lg-4 col-10" style="padding-left: 250px;">
-            <img src="img/shopping_img/곤룡포잔 디테일1.PNG" alt="">
+            <img th:src="@{img/shopping_img/곤룡포잔 디테일1.PNG}" alt="">
         </div>
         <!-- Product description section 2-->
         <div class="row align-items-center py-md-3 col-10" style="padding-left: 250px;">
-            <img src="img/shopping_img/곤룡포잔 디테일3.PNG" alt="">
+            <img th:src="@{img/shopping_img/곤룡포잔 디테일3.PNG}" alt="">
         </div>
       </div>
       <!-- Reviews-->
@@ -310,16 +310,7 @@
               </div>
             </div>-->
             <!-- Review pagination + Add review btn-->
-            <div class="d-flex align-items-center justify-content-between">
-              <nav aria-label="Reviews pagination">
-                <ul class="pagination mb-0">
-                  <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 1</span></li>
-                  <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
-
-                  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
-                </ul>
-              </nav>
-            </div>
+           
           </div>
             <!-- Leave review form-->
             <div class="col-md-5 mt-2 pt-4 mt-md-0 pt-md-0">
@@ -351,70 +342,7 @@
         </div>
       </div>
       <!-- Recently viewed-->
-      <section class="container pb-5 mb-lg-4">
-        <div class="d-flex align-items-center justify-content-between mb-4 pb-2">
-          <h2 class="h3 mb-0">최근에 본 상품</h2><a class="btn btn-link fw-normal ms-sm-3 p-0" href="city-guide-catalog.html">전체 보기<i class="fi-arrow-long-right ms-2"></i></a>
-        </div>
-        <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside mb-xxl-2">
-          <div class="">
-            <!-- Item-->
-            <div>
-              <div class="position-relative">
-                <div class="position-relative mb-3">
-                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                  <img class="rounded-3" src="img/shopping_img/머그1.PNG" alt="Article img">
-                </div>
-                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="#">'궁궐,시선을 담다' 머그</a></h3>
-                <ul class="list-inline mb-0 fs-xs">
-                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>5.0</b><span class="text-muted">&nbsp;(48)</span></li>
-                  <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>13000원</li>
-                </ul>
-              </div>
-            </div>
-            <!-- Item-->
-            <div>
-              <div class="position-relative">
-                <div class="position-relative mb-3">
-                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                  <img class="rounded-3" th:src="img/shopping_img/부채1.PNG" alt="Article img">
-                </div>
-                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="#">'궁궐,시선을 담다' 부채</a></h3>
-                <ul class="list-inline mb-0 fs-xs">
-                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.8</b><span class="text-muted">&nbsp;(24)</span></li>
-                  <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>12000원</li>
-                </ul>
-              </div>
-            </div>
-            <!-- Item-->
-            <div>
-              <div class="position-relative">
-                <div class="position-relative mb-3">
-                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                  <img class="rounded-3" src="img/shopping_img/복북어1.PNG" alt="Article img">
-                </div>
-                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="#">복 북어</a></h3>
-                <ul class="list-inline mb-0 fs-xs">
-                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.9</b><span class="text-muted">&nbsp;(43)</span></li>
-                  <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>50000원</li>
-                </ul>
-              </div>
-            </div>
-            <!-- Item-->
-            <div>
-              <div class="position-relative">
-                <div class="position-relative mb-3">
-                  <button class="btn btn-icon btn-light-primary btn-xs text-primary rounded-circle position-absolute top-0 end-0 m-3 zindex-5" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button><img class="rounded-3" src="img/shopping_img/키트1.PNG" alt="Article img">
-                </div>
-                <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="#">조선왕실등 만들기 키트</a></h3>
-                <ul class="list-inline mb-0 fs-xs">
-                  <li class="list-inline-item pe-1"><i class="fi-star-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>4.5</b><span class="text-muted">&nbsp;(13)</span></li>
-                  <li class="list-inline-item pe-1"><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle"></i>35000원</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
       </div>
       </div>
     </main>
@@ -427,14 +355,14 @@
 
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="vendor/lightgallery/lightgallery.min.js"></script>
-    <script src="vendor/flatpickr/dist/flatpickr.min.js"></script>
-    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
-    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+    <script  th:src="@{/vendor/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendor/simplebar/dist/simplebar.min.js}"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
+    <script th:src="@{/vendor/lightgallery/lightgallery.min.js}"></script>
+    <script th:src="@{/vendor/flatpickr/dist/flatpickr.min.js}"></script>
+    <script th:src="@{/vendor/tiny-slider/dist/min/tiny-slider.js}"></script>
+    <script th:src="@{/vendor/tiny-slider/dist/min/tiny-slider.js}"></script>
     <!-- Main theme script-->
-    <script src="js/theme.min.js"></script>
+    <script th:src="@{/js/theme.min.js}"></script>
   </body>
 </html>

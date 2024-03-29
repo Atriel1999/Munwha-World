@@ -2,29 +2,20 @@ package com.multi.bbs.shop.controller;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.multi.bbs.board.model.vo.Board;
 import com.multi.bbs.common.util.PageInfo;
-import com.multi.bbs.member.model.vo.Member;
 import com.multi.bbs.shop.model.service.ShopService;
 import com.multi.bbs.shop.model.vo.Product;
 import com.multi.bbs.shop.model.vo.ProductParam;
 
-import jakarta.servlet.http.HttpSession;
-
 @Controller
 public class ShopController {
-	
-	
 	@Autowired
 	private ShopService service;
 	
@@ -56,12 +47,17 @@ public class ShopController {
 	}
 	
 	@GetMapping("shop/detail")
-	public String shopdetail(Model model) {
-		
+	public String shopdetail(Model model, @RequestParam("pno") int pno) {
+		Product product = service.findByPno(pno);
+
+		model.addAttribute("item",product);
 		return "shopping/shoppingDetail";
 	}
 	
-
+	@GetMapping("shop/basket")
+	public String shopbasket(Model model) {
+		return "shopping/shoppingBasket";
+	}
+	
+	
 }
-
-
