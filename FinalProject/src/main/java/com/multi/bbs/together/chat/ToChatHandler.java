@@ -11,6 +11,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.multi.bbs.chatbot.ChatAPI;
 
 @Component("tochatHandler")
 public class ToChatHandler extends TextWebSocketHandler {
@@ -53,7 +54,7 @@ public class ToChatHandler extends TextWebSocketHandler {
 			String answer = null;
 			try {
 				if(id.equals("Question")) {
-					//answer =  ToChatAPI.sendChat(msg);
+					answer =  ChatAPI.sendChat(msg);
 				}
 			} catch (Exception e) {}
 			System.out.println(answer);
