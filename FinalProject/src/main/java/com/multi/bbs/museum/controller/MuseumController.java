@@ -3,7 +3,6 @@ package com.multi.bbs.museum.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,11 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.multi.bbs.common.util.PageInfo;
-import com.multi.bbs.heritage.model.vo.HBookmark;
-import com.multi.bbs.member.model.service.MemberService;
 import com.multi.bbs.member.model.vo.Member;
 import com.multi.bbs.museum.model.service.MuseumService;
 import com.multi.bbs.museum.model.vo.Museum;

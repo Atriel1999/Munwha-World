@@ -1,4 +1,4 @@
-package com.multi.bbs.chatbot;
+package com.multi.bbs.together.chat;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,18 +12,18 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-@Component("chatHandler")
-public class ChatHandler extends TextWebSocketHandler {
+@Component("tochatHandler")
+public class ToChatHandler extends TextWebSocketHandler {
 
 	private ArrayList<WebSocketSession> members;
 	private ConcurrentHashMap<String, WebSocketSession> map;
 	
-	public ChatHandler() {
+	public ToChatHandler() {
 		members = new ArrayList<WebSocketSession>();
 		map = new ConcurrentHashMap<String, WebSocketSession>();
-		System.out.println("소켓 생성됨!333");
+		System.out.println("소켓 생성됨!");
 		 try {
-			ChatAPI.sendChat("키보드 추천해줘");
+			//ChatAPI.sendChat("키보드 추천해줘");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -32,7 +32,7 @@ public class ChatHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println("연결 성공!!222");
+		System.out.println("연결 성공!!");
 		members.add(session);
 	}
 	
@@ -52,10 +52,10 @@ public class ChatHandler extends TextWebSocketHandler {
 			String id = element.getAsJsonObject().get("id").getAsString();
 			String answer = null;
 			try {
-				answer =  ChatAPI.sendChat(msg);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+				if(id.equals("Question")) {
+					answer =  ToChatAPI.sendChat(msg);
+				}
+			} catch (Exception e) {}
 			System.out.println(answer);
 			if(target == null || target.length() == 0) { // 전체 메세지
 				for(String key : map.keySet()) {

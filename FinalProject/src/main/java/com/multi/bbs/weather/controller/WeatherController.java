@@ -11,4 +11,9 @@ public class WeatherController {
 		return "weather/weather";
 	}
 
+	@GetMapping("/weatherAll")
+	public String WeatherAll() {
+		return "weather/weather-all";
+	}
+	
 }

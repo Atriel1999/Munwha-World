@@ -1,6 +1,8 @@
-package com.multi.bbs.museum.model.vo;
+package com.multi.bbs.together.model.vo;
 
+import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -10,40 +12,36 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "MuseumBookmark")
+@AllArgsConstructor
+@Entity // 객체를 Table로 생성 시켜주는 어노테이션
 @Transactional
 @DynamicInsert
 @DynamicUpdate
-public class MuseumBookmark {
-	
-
-
+public class TogetherBoardAttachFile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int bno;
+	private int fno;
 	
+	@Column(length = 1000)
+	private String originalFilename;
+	@Column(length = 1000)
+	private String renamedFilename;
 	
 	@ManyToOne
-    private Museum museum;
+    private TogetherBoard board;
 	
-	
-	@Column
-	private int msno;
-	
-	@Column
-	private int mno;
-	
-
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	private Date createDate;
 }
