@@ -130,7 +130,10 @@
       </div>
     </div>
     <main class="page-wrapper">
-      <th:block th:replace="common/header :: headerFragment"></th:block>
+      
+      <!-- 헤더 시작 -->
+    <th:block th:replace="common/header :: headerFragment"></th:block>
+    <!-- 헤더 끝 -->
 
       <!-- Page content-->
       <!-- 리뷰 페이지 모달 -->
@@ -194,7 +197,6 @@
             <h1 class="h2 text-light mb-md-0 chosun" th:text="${event.subtitle}"></h1>
             <div class="d-md-none">
               <div class="d-flex align-items-center mb-3">
-
               </div>
             </div>
           </div>
@@ -213,25 +215,150 @@
         <div class="row">
           <div class="col-md-7">
             <!-- Gallery-->
-            <div class="tns-carousel-wrapper">
-              <div class="tns-slides-count text-light"><i class="fi-image fs-lg me-2"></i>
-                <div class="ps-1"><span class="tns-current-slide fs-5 fw-bold"></span><span class="fs-5 fw-bold">/</span><span class="tns-total-slides fs-5 fw-bold"></span></div>
-              </div>
-              <img class="rounded-3" th:src="@{/img/myimages/ybh/test_thumnail(coal)1.png}" alt="Image">
-              <div class="tns-carousel-inner">
-                <div><img class="rounded-3" th:src="@{/img/myimages/ybh/test_thumnail(coal)1.png}" alt="Image"></div>
-                <div><img class="rounded-3" th:src="@{/img/myimages/ybh/test_thumnail(coal)2.png}" alt="Image"></div>
-                <div><img class="rounded-3" th:src="@{/img/myimages/ybh/test_thumnail(coal)3.png}" alt="Image"></div>
-                <div><img class="rounded-3" th:src="@{/img/myimages/ybh/test_thumnail(coal)4.png}" alt="Image"></div>
-              </div>
-            </div>
-            <ul class="tns-thumbnails" id="thumbnails">
-              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/test_thumnail(coal)1.png}" alt="Thumbnail"></li>
-              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/test_thumnail(coal)2.png}" alt="Thumbnail"></li>
-              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/test_thumnail(coal)3.png}" alt="Thumbnail"></li>
-              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/test_thumnail(coal)4.png}" alt="Thumbnail"></li>
-              <li class="tns-thumbnail"><a class="d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-faded-light rounded text-light text-decoration-none" href="https://www.youtube.com/watch?v=iP2i_Kbc8bs&ab_channel=YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4" data-bs-toggle="lightbox" data-video="true"><i class="fi-play-circle fs-5"></i><span class="opacity-70 mt-1">영상 재생</span></a></li>
-            </ul>
+            <div th:switch="${event.sitecode}">
+              <th:block th:case="01">
+               	<div class="tns-carousel-wrapper">
+	              <div class="tns-slides-count text-light">
+	                <div class="ps-1"></div>
+	              </div>
+	              <img class="rounded-3" th:src="@{/img/myimages/ybh/night1.jpg}">
+	              <div class="tns-carousel-inner">
+	              </div>
+	            </div>
+	            <ul class="tns-thumbnails" id="thumbnails">
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/night1.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/night2.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/night3.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/night4.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><a class="d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-faded-light rounded text-light text-decoration-none" href="https://www.youtube.com/watch?v=iP2i_Kbc8bs&ab_channel=YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4" data-bs-toggle="lightbox" data-video="true"><i class="fi-play-circle fs-5"></i><span class="opacity-70 mt-1">영상 재생</span></a></li>
+	            </ul>  
+              </th:block>
+              <th:block th:case="02">
+              	<div class="tns-carousel-wrapper">
+	              <div class="tns-slides-count text-light">
+	                <div class="ps-1"></div>
+	              </div>
+	              <img class="rounded-3" th:src="@{/img/myimages/ybh/ssang1.jpg}">
+	              <div class="tns-carousel-inner">
+	              </div>
+	            </div>
+	            <ul class="tns-thumbnails" id="thumbnails">
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/ssang1.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/ssang2.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/ssang3.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/ssang4.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><a class="d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-faded-light rounded text-light text-decoration-none" href="https://www.youtube.com/watch?v=iP2i_Kbc8bs&ab_channel=YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4" data-bs-toggle="lightbox" data-video="true"><i class="fi-play-circle fs-5"></i><span class="opacity-70 mt-1">영상 재생</span></a></li>
+	            </ul>  
+              </th:block>
+              <th:block th:case="03">
+              	<div class="tns-carousel-wrapper">
+	              <div class="tns-slides-count text-light">
+	                <div class="ps-1"></div>
+	              </div>
+	              <img class="rounded-3" th:src="@{/img/myimages/ybh/sansa1.jpg}">
+	              <div class="tns-carousel-inner">
+	              </div>
+	            </div>
+	            <ul class="tns-thumbnails" id="thumbnails">
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sansa1.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sansa2.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sansa3.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sansa4.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><a class="d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-faded-light rounded text-light text-decoration-none" href="https://www.youtube.com/watch?v=iP2i_Kbc8bs&ab_channel=YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4" data-bs-toggle="lightbox" data-video="true"><i class="fi-play-circle fs-5"></i><span class="opacity-70 mt-1">영상 재생</span></a></li>
+	            </ul>  
+              </th:block>
+              <th:block th:case="04">
+              	<div class="tns-carousel-wrapper">
+	              <div class="tns-slides-count text-light">
+	                <div class="ps-1"></div>
+	              </div>
+	              <img class="rounded-3" th:src="@{/img/myimages/ybh/hyangyo1.jpg}">
+	              <div class="tns-carousel-inner">
+	              </div>
+	            </div>
+	            <ul class="tns-thumbnails" id="thumbnails">
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/hyangyo1.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/hyangyo2.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/hyangyo3.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/hyangyo4.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><a class="d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-faded-light rounded text-light text-decoration-none" href="https://www.youtube.com/watch?v=iP2i_Kbc8bs&ab_channel=YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4" data-bs-toggle="lightbox" data-video="true"><i class="fi-play-circle fs-5"></i><span class="opacity-70 mt-1">영상 재생</span></a></li>
+	            </ul>  
+              </th:block>
+              <th:block th:case="06">
+              </th:block>
+              <th:block th:case="07">
+              </th:block>
+              <th:block th:case="08">
+              	<div class="tns-carousel-wrapper">
+	              <div class="tns-slides-count text-light">
+	                <div class="ps-1"></div>
+	              </div>
+	              <img class="rounded-3" th:src="@{/img/myimages/ybh/jedan1.jpg}">
+	              <div class="tns-carousel-inner">
+	              </div>
+	            </div>
+	            <ul class="tns-thumbnails" id="thumbnails">
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/jedan1.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/jedan2.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/jedan3.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/jedan4.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><a class="d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-faded-light rounded text-light text-decoration-none" href="https://www.youtube.com/watch?v=iP2i_Kbc8bs&ab_channel=YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4" data-bs-toggle="lightbox" data-video="true"><i class="fi-play-circle fs-5"></i><span class="opacity-70 mt-1">영상 재생</span></a></li>
+	            </ul>  
+              </th:block>
+              <th:block th:case="09">
+              	<div class="tns-carousel-wrapper">
+	              <div class="tns-slides-count text-light">
+	                <div class="ps-1"></div>
+	              </div>
+	              <img class="rounded-3" th:src="@{/img/myimages/ybh/gotec1.jpg}">
+	              <div class="tns-carousel-inner">
+	              </div>
+	            </div>
+	            <ul class="tns-thumbnails" id="thumbnails">
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/gotec1.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/gotec2.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/gotec3.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/gotec4.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><a class="d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-faded-light rounded text-light text-decoration-none" href="https://www.youtube.com/watch?v=iP2i_Kbc8bs&ab_channel=YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4" data-bs-toggle="lightbox" data-video="true"><i class="fi-play-circle fs-5"></i><span class="opacity-70 mt-1">영상 재생</span></a></li>
+	            </ul>  
+              </th:block>
+              <th:block th:case="10">
+              	<div class="tns-carousel-wrapper">
+	              <div class="tns-slides-count text-light">
+	                <div class="ps-1"></div>
+	              </div>
+	              <img class="rounded-3" th:src="@{/img/myimages/ybh/sege1.jpg}">
+	              <div class="tns-carousel-inner">
+	              </div>
+	            </div>
+	            <ul class="tns-thumbnails" id="thumbnails">
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sege1.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sege2.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sege3.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sege4.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><a class="d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-faded-light rounded text-light text-decoration-none" href="https://www.youtube.com/watch?v=iP2i_Kbc8bs&ab_channel=YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4" data-bs-toggle="lightbox" data-video="true"><i class="fi-play-circle fs-5"></i><span class="opacity-70 mt-1">영상 재생</span></a></li>
+	            </ul>  
+              </th:block>
+              <th:block th:case="*">
+              	<div class="tns-carousel-wrapper">
+	              <div class="tns-slides-count text-light">
+	                <div class="ps-1"></div>
+	              </div>
+	              <img class="rounded-3" th:src="@{/img/myimages/ybh/sege1.jpg}">
+	              <div class="tns-carousel-inner">
+	              </div>
+	            </div>
+	            <ul class="tns-thumbnails" id="thumbnails">
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sege1.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sege2.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sege3.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><img th:src="@{/img/myimages/ybh/sege4.jpg}" alt="Thumbnail"></li>
+	              <li class="tns-thumbnail"><a class="d-flex flex-column align-items-center justify-content-center w-100 h-100 bg-faded-light rounded text-light text-decoration-none" href="https://www.youtube.com/watch?v=iP2i_Kbc8bs&ab_channel=YTN%EC%82%AC%EC%9D%B4%EC%96%B8%EC%8A%A4" data-bs-toggle="lightbox" data-video="true"><i class="fi-play-circle fs-5"></i><span class="opacity-70 mt-1">영상 재생</span></a></li>
+	            </ul>  
+			  </th:block>
+			</div>
+			
+            
             <!-- 리뷰 리스트-->
             <h2 class="h4 mb-4 text-light">리뷰 작성</h2>
             <div class="row mb-md-5 mb-4">
@@ -240,14 +367,14 @@
                 <div class="d-flex align-items-center mb-2 fs-sm">
                   <div class="text-nowrap">5<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
                   <div class="progress w-100 mx-3">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div><span style="min-width: 48px;">80%</span>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><span style="min-width: 48px;">0%</span>
                 </div>
                 <div class="d-flex align-items-center mb-2 fs-sm">
                   <div class="text-nowrap">4<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
                   <div class="progress w-100 mx-3">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div><span style="min-width: 48px;">10%</span>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><span style="min-width: 48px;">100%</span>
                 </div>
                 <div class="d-flex align-items-center mb-2 fs-sm">
                   <div class="text-nowrap">3<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
@@ -264,15 +391,15 @@
                 <div class="d-flex align-items-center mb-2 fs-sm">
                   <div class="text-nowrap">1<i class="fi-star mt-n1 ms-1 align-middle opacity-70"></i></div>
                   <div class="progress w-100 mx-3">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div><span style="min-width: 48px;">10%</span>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><span style="min-width: 48px;">0%</span>
                 </div>
               </div>
               <!-- 점수 요약-->
               <div class="col-sm-4 order-sm-2 order-1 mb-sm-0 mb-3 text-center">
-                <h5 class="display-4 mb-2 text-light">4.7</h5>
+                <h5 class="display-4 mb-2 text-light">4.0</h5>
                 <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                </div><span class="fs-sm">48개 평가</span>
+                </div><span class="fs-sm">1개 평가</span>
               </div>
             </div>
             <!-- 리뷰 작성 & 리뷰 정렬-->
@@ -303,10 +430,10 @@
                     </div>
                   </div>
                 </div>
-                <span class="text-light" >[행사]검은 노다지(석탄), 새로운 시대를 만나다!</span>
+                <span class="text-light" th:text="|[행사] ${event.subtitle}|"></span>
                 <span class="fs-sm"><i class="fi-clock"></i> 2024.01.20. &nbsp;<a href="#"><i class="fi-trash alert-danger"></i></a></span>
               </div>
-              <p class="text-light">대한민국에 이만한 석탑이 어디 있겠는가? 아름다움으로는 그 어느 탑들도 따라갈 수 없는 멋있는 구조물. 요즘 사람들은 잘 찾지 않겠지만 10원짜리 동전에도 계속 새겨져 있다.</p>
+              <p class="text-light">다음에도 또 가고 싶어요</p>
             </div>
             <!-- 리뷰글 끝 -->
             
@@ -359,7 +486,10 @@
                 </div><br>
 
                 <div class="h5 text-light mb-1">가격</div>
-                <div class="text-light mb-2" th:text="${event.subdesc3}"></div>
+                <div class="text-light mb-2" th:text="${event.subdesc3}"></div><br>
+                
+                <div class="h5 text-light mb-1">조회수</div>
+                <div class="text-light mb-2" th:text="${event.readCount}"></div>
               </div>
             </div>
           </div>
@@ -382,7 +512,55 @@
 	                  <div class="position-absolute start-0 top-0 pt-3 ps-3"></div>
 	                  <div class="content-overlay end-0 top-0 pt-3 pe-3">
 	                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="찜하기"><i class="fi-heart"></i></button>
-	                  </div><img th:src="@{/img/myimages/ybh/relate1.png}" alt="Image">
+	                  </div>
+	                  
+	                  <!-- 수정부분 -->
+	                  <div th:switch="${event.sitecode}">
+			              <th:block th:case="01">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 1}" th:src="@{/img/myimages/ybh/night2.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 2}" th:src="@{/img/myimages/ybh/night3.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 3}" th:src="@{/img/myimages/ybh/night4.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+			              </th:block>
+			              <th:block th:case="02">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 1}" th:src="@{/img/myimages/ybh/ssang2.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 2}" th:src="@{/img/myimages/ybh/ssang3.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 3}" th:src="@{/img/myimages/ybh/ssang4.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+			              </th:block>
+			              <th:block th:case="03">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 1}" th:src="@{/img/myimages/ybh/sansa2.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 2}" th:src="@{/img/myimages/ybh/sansa3.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 3}" th:src="@{/img/myimages/ybh/sansa4.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+			              </th:block>
+			              <th:block th:case="04">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 1}" th:src="@{/img/myimages/ybh/hyangyo2.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 2}" th:src="@{/img/myimages/ybh/hyangyo3.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 3}" th:src="@{/img/myimages/ybh/hyangyo4.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+			              </th:block>
+			              <th:block th:case="06">
+			              </th:block>
+			              <th:block th:case="07">
+			              </th:block>
+			              <th:block th:case="08">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 1}" th:src="@{/img/myimages/ybh/jedan2.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 2}" th:src="@{/img/myimages/ybh/jedan3.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				              <img class="rounded-3" th:if = "${eventdataStat.count == 3}" th:src="@{/img/myimages/ybh/jedan4.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+			              </th:block>
+			              <th:block th:case="09">
+			              	<img class="rounded-3" th:if = "${eventdataStat.count == 1}" th:src="@{/img/myimages/ybh/gotec2.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				            <img class="rounded-3" th:if = "${eventdataStat.count == 2}" th:src="@{/img/myimages/ybh/gotec3.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				            <img class="rounded-3" th:if = "${eventdataStat.count == 3}" th:src="@{/img/myimages/ybh/gotec4.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+			              </th:block>
+			              <th:block th:case="10">
+				            <img class="rounded-3" th:if = "${eventdataStat.count == 1}" th:src="@{/img/myimages/ybh/sege2.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				            <img class="rounded-3" th:if = "${eventdataStat.count == 2}" th:src="@{/img/myimages/ybh/sege3.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				            <img class="rounded-3" th:if = "${eventdataStat.count == 3}" th:src="@{/img/myimages/ybh/sege4.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+			              </th:block>
+			              <th:block th:case="*">
+				            <img class="rounded-3" th:if = "${eventdataStat.count == 1}" th:src="@{/img/myimages/ybh/sege2.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				            <img class="rounded-3" th:if = "${eventdataStat.count == 2}" th:src="@{/img/myimages/ybh/sege3.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+				            <img class="rounded-3" th:if = "${eventdataStat.count == 3}" th:src="@{/img/myimages/ybh/sege4.jpg}" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" alt="Image">
+						  </th:block>
+						</div>
 	                </div>
 	                <div class="card-body">
 	                  <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">
@@ -390,7 +568,7 @@
 	                	<span th:unless="${eventdata.sdate == eventdata.edate}" th:text="|${#temporals.createDate(eventdata.sdate, 'yyyyMMdd')} ~ ${#temporals.createDate(eventdata.edate, 'yyyyMMdd')}|"></span>
 	                	</span>
 	                  </div>
-	                  <h3 class="h6 mb-1"><a class="nav-link-light" href="#" th:text="${eventdata.subtitle}"></a></h3>
+	                  <h3 class="h6 mb-1"><a class="nav-link-light" th:href="@{/event/heritage-event-single(seqno=${eventdata.seqno}, sido=${event.sido})}" th:text="${eventdata.subtitle}"></a></h3>
 	                  <div class="text-primary fw-bold mb-1" th:text="${eventdata.subdesc3}">무료</div>
 	                  <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i><span th:text="|${eventdata.sido} ${eventdata.gugun}|"></span></div>
 	                </div>
@@ -443,8 +621,10 @@
         
       </div>
     </main>
-    
+    <!-- 푸터 -->
     <th:block th:replace="common/footer :: footerFragment"></th:block>
+    <!-- 푸터 끝 -->
+
     
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
