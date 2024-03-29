@@ -53,7 +53,7 @@ public class ToChatHandler extends TextWebSocketHandler {
 			String answer = null;
 			try {
 				if(id.equals("Question")) {
-					answer =  ToChatAPI.sendChat(msg);
+					//answer =  ToChatAPI.sendChat(msg);
 				}
 			} catch (Exception e) {}
 			System.out.println(answer);
