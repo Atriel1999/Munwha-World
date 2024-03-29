@@ -52,7 +52,9 @@ public class ToChatHandler extends TextWebSocketHandler {
 			String id = element.getAsJsonObject().get("id").getAsString();
 			String answer = null;
 			try {
-				//answer =  ChatAPI.sendChat(msg);
+				if(id.equals("Question")) {
+					answer =  ToChatAPI.sendChat(msg);
+				}
 			} catch (Exception e) {}
 			System.out.println(answer);
 			if(target == null || target.length() == 0) { // 전체 메세지

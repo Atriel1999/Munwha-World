@@ -21,7 +21,7 @@ public class ChatHandler extends TextWebSocketHandler {
 	public ChatHandler() {
 		members = new ArrayList<WebSocketSession>();
 		map = new ConcurrentHashMap<String, WebSocketSession>();
-		System.out.println("소켓 생성됨!");
+		System.out.println("소켓 생성됨!333");
 		 try {
 			ChatAPI.sendChat("키보드 추천해줘");
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class ChatHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println("연결 성공!!");
+		System.out.println("연결 성공!!222");
 		members.add(session);
 	}
 	
@@ -53,7 +53,9 @@ public class ChatHandler extends TextWebSocketHandler {
 			String answer = null;
 			try {
 				answer =  ChatAPI.sendChat(msg);
-			} catch (Exception e) {}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			System.out.println(answer);
 			if(target == null || target.length() == 0) { // 전체 메세지
 				for(String key : map.keySet()) {
